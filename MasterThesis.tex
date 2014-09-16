@@ -547,54 +547,48 @@ Biology:
 \end{enumerate}
 
 Computational Modelling:
-\begin{enumerate}
-    \item Prior art: Xavi's PLoS One 2013 paper
+\begin{itemize}
+    \item Z. Li 199
+    \begin{itemize}
+        \item No color, just black \& white \textit{lines}
+        \item No sense of scales
+        \item Dynamical processing
+    \end{itemize}
+    \item X. Otazu 2013
+    \begin{itemize}
+        \item No color, just black \& white \textit{edges}
+        \item Generalized to real images (edges vs lines)
+        \item Added scales
+        \item Dynamical processing
+        \item \textbf{Avoid detail, save that for \textit{Method}..?}
+        \item Extension of Z. Li's edge detection work
+        \item Uses DWT to extract oriented edges in grayscale
         \begin{itemize}
-            \item \textbf{Avoid detail, save that for \textit{Method}..?}
-            \item Extension of Z. Li's edge detection work
-            \item Uses DWT to extract oriented edges in grayscale
-            \begin{itemize}
-                \item ..in our context, it's essentially a luminence sensitive double opponent cell.
-            \end{itemize}
+            \item ..in our context, it's essentially a luminence sensitive double opponent cell.
         \end{itemize}
-    \item Other computational models to consider:
-        \begin{itemize}
-            \item Z. Li 199
-            \begin{itemize}
-                \item No color, just black \& white \textit{lines}
-                \item No sense of scales
-                \item Dynamical processing
-            \end{itemize}
-            \item X. Otazu 2013
-            \begin{itemize}
-                \item No color, just black \& white \textit{edges}
-                \item Generalized to real images (edges vs lines)
-                \item Added scales
-                \item Dynamical processing
-            \end{itemize}
-            \item L. Itti 1999
-            \begin{itemize}
-                \item Opponent color transformations
-                \item No double opponent cells
-                \item Center \& surround using scales
-                \item Has scales, but collapses them into one (right?)
-                \item \textit{No dynamical processing}
-            \end{itemize}
-            \item Serre Lab 2013 (2014?)
-            \begin{itemize}
-                \item Single \& double opponent color using weights
-                \item Has center/surround (Gabbor filters for DO, gaussians for SO?)
-                \item No scales
-                \item \textit{No dynamical processing}
-            \end{itemize}
-            \item Computational adaptation model and its predictions for color induction of first and second orders
-            \begin{itemize}
-                \item Single \& double opponent color transformations using receptive fields
-                \item Center \& surround receptive fields
-                \item \textit{No dynamical processing}
-            \end{itemize}
-        \end{itemize}
-\end{enumerate}
+    \end{itemize}
+    \item L. Itti 1999
+    \begin{itemize}
+        \item Opponent color transformations
+        \item No double opponent cells
+        \item Center \& surround using scales
+        \item Has scales, but collapses them into one (right?)
+        \item \textit{No dynamical processing}
+    \end{itemize}
+    \item Serre Lab 2013 (2014?)
+    \begin{itemize}
+        \item Single \& double opponent color using weights
+        \item Has center/surround (Gabbor filters for DO, gaussians for SO?)
+        \item No scales
+        \item \textit{No dynamical processing}
+    \end{itemize}
+    \item Computational adaptation model and its predictions for color induction of first and second orders
+    \begin{itemize}
+        \item Single \& double opponent color transformations using receptive fields
+        \item Center \& surround receptive fields
+        \item \textit{No dynamical processing}
+    \end{itemize}
+\end{itemize}
 
 The purpose of this project is to \textbf{feed opponent color information into a neurodynamical model} sensitive to edges \& surfaces in a biologically inspired manner.
 
