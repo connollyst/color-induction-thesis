@@ -754,7 +754,40 @@ Considerations:
 
 RGB $\rightarrow$ L*a*b* $\rightarrow$ DWT
 
-Previous work by Penacchio \textit{et al.} \cite{otazu:plosone} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into it's oriented edges at scale. In the context of our research, this could be thought of as representing achromatic double opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or in response to chromatic changes.
+Previous work by Penacchio \textit{et al.} \cite{otazu:plosone} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edges at scale. In the context of our research, this could be thought of as representing achromatic double opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent color space and examine it's applicability as a replacement of the aforementioned explicit opponent processing of neural receptive fields.
+
+Process:
+\begin{itemize}
+    \item Convert image from RGB to L*a*b*
+    \item Subtract 50 from L* to center it on 0 (a* and b* are already zero centered)
+    \item Apply DWT at each scale
+\end{itemize}
+\begin{enumerate}
+    \item the wavelet signal at each scale is the DO response in that channel
+    \item the wavelet residual at each scale is the SO response in the channel
+\end{enumerate}
+\begin{itemize}
+    To recover R, G, B, Y, L, \& D we take positive and negative values of the R-G, B-Y, \& L-D channels.
+\end{itemize}
+
+This implementation comes with obvious deviations from the biology:
+\begin{enumerate}
+    \item By transforming RGB to L*a*b* at the pixel level, we lose receptive field integration
+    \item The brain doesn't translate to opponent colors and then find edges
+    \begin{itemize}
+        \item this can be formalized as the difference between
+        \begin{enumerate}
+            \item the addition of convolutions
+            \item the convolution of additions
+        \end{enumerate}
+    \end{itemize}
+\end{enumerate}
+
+What are the advantages?
+\begin{enumerate}
+    \item Computationally efficient \& relatively fast
+    \item ...?
+\end{enumerate}
 
 \textbf{// TODO} \textit{show diagram of oriented DWT filter}
 
