@@ -707,14 +707,14 @@ The color opponent theory defines three axes visual information, obtained by pro
 
 The process RGB information into opponent colors as follows (based on L. Itti 1999):
 \begin{itemize}
-    \item R(c, s, scale) = on(r(c, scale) - (g(s, scale) + b(s, scale))/2)
-    \item G(c, s, scale) = on(g(c, scale) - (r(s, scale) + b(s, scale))/2)
-    \item B(c, s, scale) = on(b(c, scale) - (r(s, scale) + g(s, scale))/2)
-    \item Y(c, s, scale) = on((r(c, scale) + g(c, scale))/2 - abs(r(s, scale) - g(s, scale))/2 - b(s, scale))
-    \item L(c, s, scale) = on(i(c, scale))
-    \item D(c, s, scale) = off(i(c, scale))
+    \item R(c, s, sig) = on(r(c, sig) - (g(s, sig) + b(s, sig))/2)
+    \item G(c, s, sig) = on(g(c, sig) - (r(s, sig) + b(s, sig))/2)
+    \item B(c, s, sig) = on(b(c, sig) - (r(s, sig) + g(s, sig))/2)
+    \item Y(c, s, sig) = on((r(c, sig) + g(c, sig))/2 - abs(r(s, sig) - g(s, sig))/2 - b(s, sig))
+    \item L(c, s, sig) = on(i(c, sig))
+    \item D(c, s, sig) = off(i(c, sig))
 \end{itemize}
-Where \textit{c} indicates the 'center' and \textit{s} indicates the surround, used to define the relationship between center and surround receptive fields. For example, \textit{c} can be given a smaller receptive field than \textit{s}, or \textit{s} can be given a smaller weight than \textit{c}. The \textit{scale} is used to scale both center and surround. 
+Where \textit{c} indicates the 'center' and \textit{s} indicates the surround, used to define the relationship between center and surround receptive fields. For example, \textit{c} can be given a smaller receptive field than \textit{s}, or \textit{s} can be given a smaller weight than \textit{c}. The \textit{sig} is used to scale both center and surround. 
 
 Centers and surrounds are built by applying gaussian filters to the raw image channels. This simulates a neuron at V1 receiving input from many cones.
 
