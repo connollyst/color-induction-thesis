@@ -767,7 +767,7 @@ Process:
     \item the wavelet residual at each scale is the SO response in the channel
 \end{enumerate}
 \begin{itemize}
-    To recover R, G, B, Y, L, \& D we take positive and negative values of the R-G, B-Y, \& L-D channels.
+    \item To recover R, G, B, Y, L, \& D we take positive and negative values of the R-G, B-Y, \& L-D channels.
 \end{itemize}
 
 This implementation comes with obvious deviations from the biology:
@@ -796,12 +796,14 @@ What are the advantages?
 
 \subsection*{Neurodynamical Processing}
 
-\textit{TODO} How does V1 process the data?
+We've described two processes for transforming raw data into reasonable input to the neurodynamical model. The two have their pros and cons, but both are applicable. In either case, the chromatic and achromatic SO and DO information is used as input, conceptually, neural stimulation. The model then processes the dynamical interactions between the neurons in order to propagate contextual effects where applicable.
+
+Notes:
 \begin{itemize}
     \item An extension of X. Otazu's PLoS One model
-    \item (itself an extension of Z. Li's 1999 model)
-\end{itemize}
-\begin{itemize}
+    \begin{itemize}
+        \item itself an extension of Z. Li's 1999 model
+    \end{itemize}
     \item describe what exactly 'neurodynamical' means
     \item describe how the X. Otazu \& Z. Li models work and are extended
     \item describe how this is agnostic to the initial transformation (data is cell firing rates (1-4))
