@@ -435,9 +435,9 @@ primary visual cortex, striate cortex, V1, receptive field, single opponent, dou
 
 % TODO perhaps the distinction between physical color and perception color is valuable here?
 
-\IEEEPARstart{C}{olor} induction and contrast are two related, opposing, perceptual phenomena. The former is a change in perceived color "toward" a nearby color, while the latter is a change of one color "away" from the nearby color. Neurophysiological research suggests that these phenomena may arise as early in primate vision as the primary visual cortex (V1). It is proposed that the boundaries between two colored regions drive these effects. Specifically, research in the field describes neurons which fire selectively to boundaries between specific colors, so called double opponent cells, and identifies them as being critically related to the color perceived.
+\IEEEPARstart{C}{olor} induction and contrast are two related, opposing, perceptual phenomena. The former is a change in perceived color "toward" a nearby color, while the latter is a change of one color "away" from the nearby color. Neurophysiological research suggests that these phenomena may arise as early in primate vision as the primary visual cortex (V1). It is proposed that the boundaries between two colored regions drive these effects. Specifically, research in the field describes neurons which fire selectively to boundaries between certain colors, so called double opponent cells, and identifies them as being critically related to the color perceived.
 
-Within, we propose a computational model inspired by the current understanding of this biology. We present two implementations, one more biologically accurate, and another more computationally elegant. We explore the behavior of these models with respect to what they can teach us about the assumed biological theories, as well as their application to the field of computer vision.
+Within, we propose a computational model designed around the current understanding of this biology. We present two implementations, one more biologically accurate, and another more computationally elegant. We explore the behavior of these models with respect to what they can teach us about the assumed biological theories, as well as their application to the field of computer vision.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -665,32 +665,26 @@ The purpose of this project is to \textbf{feed opponent color information into a
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Method}
 
-To investigate the nature of visual information representation and processing in the primate visual cortex (V1) we consider a biologically inspired computational model. 
-
-
-\subsection{Implementation}
-
-The \textit{Method} section will be broken down into 2 distinct problems/sections:
+We present a computational model designed to be representitive of the aforementioned biology of the striate cortex (V1). This can be conceived of as two distinct challenges:
 \begin{enumerate}
-    \item How is the data represented in V1?
-    \begin{enumerate}
-        \item RGB $\rightarrow$ receptive fields $\rightarrow$ LDRGBY
-        \item RGB $\rightarrow$ L*a*b* $\rightarrow$ DWT
-    \end{enumerate}
-    \begin{itemize}
-        \item In either case, it's then transformed into neuronal excitation (scale 1-4) and used as the INITIAL STIMULUS for each time step.
-    \end{itemize}
-    \item How does V1 process the data?
-    \begin{itemize}
-        \item An extension of X. Otazu's PLoS One model
-        \item (itself an extension of Z. Li's 1999 model)
-    \end{itemize}
+    \item The transformation of raw image data to a biologically meaningful representation of information.
+    \item The dynamical processing of this information in accordance with neurobiological understanding.
 \end{enumerate}
 
 
-\subsection{Image Data Transformation}
+\subsection{Computational Representation of Visual Information}
+
+\textit{TODO} How is the data represented in V1?
 
 \textit{TODO} Introduce the 2 data transformations and their respective meanings
+
+\begin{enumerate}
+    \item RGB $\rightarrow$ receptive fields $\rightarrow$ LDRGBY
+    \item RGB $\rightarrow$ L*a*b* $\rightarrow$ DWT
+\end{enumerate}
+\begin{itemize}
+    \item In either case, it's then transformed into neuronal excitation (scale 1-4) and used as the INITIAL STIMULUS for each time step.
+\end{itemize}
 
 
 \subsubsection{Opponent Receptive Fields}
@@ -706,8 +700,14 @@ RGB $\rightarrow$ L*a*b* $\rightarrow$ DWT
     \item describe motivation
 \end{itemize}
 
-\subsection{Neuro-Dynamical Model}
 
+\subsection{Neuro-Dynamical Processing}
+
+\textit{TODO} How does V1 process the data?
+\begin{itemize}
+    \item An extension of X. Otazu's PLoS One model
+    \item (itself an extension of Z. Li's 1999 model)
+\end{itemize}
 \begin{itemize}
     \item describe what exactly 'neuro-dynamical' means
     \item describe how the X. Otazu \& Z. Li models work and are extended
