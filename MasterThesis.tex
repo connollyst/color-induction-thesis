@@ -466,17 +466,7 @@ Research in the past decade or so has seen a shift from this thinking, however. 
 
 Much research has been focused on the specific neural mechanisms behind the perception of color, with these psychophysical observations in mind. The current view holds that the LGN does indeed carry color and contrast information through distinct pathways to the striate cortex (V1). However, unlike previous views, it is now thought that color and form become deeply intertwined as they are processed in V1.
 
-To explain the simultaneous processing of color and form in V1, the literature proposes three classifications of neurons based on their opponent inputs: non-opponent cells, single opponent cells, \& double opponent cells (Johnson et al. Color and Orientation in V1). Opponency, in neurobiology, refers to antagonistic inputs to a neuron; one source of input exciting the neuron while another source inhibits it. With respect to cells in the early visual system, we are referring to chromatic and spatial opponency from the neuron and LGN, as will be detailed below. Briefly, non-opponent neurons are color blind, they only respond to changes in luminosity. Single opponent cells are sensitive to particular colors and respond best to large areas of color. Double opponent cells are also color preferring but respond best, not to areas of color, but to the boundaries between particular colors.
-
-\subsection*{Non-opponent Neurons}
-
-These cells are the simplest to conceive of: they have no chromatic nor spatial opponency. Instead, they amalgamate all color input in a balanced manner so as to only respond to changes in luminosity.
-
-\textbf{// TODO} \textit{add image depicting example receptive field(s)}
-
-\textbf{// TODO} \textit{add image of simple behavior: gradient response to ((mono)chromatic) intensity changes}
-
-\textbf{// TODO} \textit{add image of simple behavior: no response to isoluminant chromatic boundaries}
+To explain the simultaneous processing of color and form in V1, the literature proposes two classifications of neurons based on their opponent inputs: single opponent cells, \& double opponent cells (Johnson et al. Color and Orientation in V1). Opponency, in neurobiology, refers to antagonistic inputs to a neuron; one source of input exciting the neuron, while another source inhibits it. With respect to cells in the early visual system, we are referring to chromatic and spatial opponency, as will be detailed below. Briefly, single opponent cells respond best to large areas of color, while double opponent cells respond only to the boundaries between particular colors.
 
 
 \subsection*{Single Opponent Neurons}
@@ -489,6 +479,17 @@ Single opponent neurons are built using the classical center/surround receptive 
 
 \textbf{// TODO} \textit{add image of simple behavior: no response to intensity changes}
 
+\subsubsection*{Achromatic Single Opponent Neurons}
+
+Sometimes called non-opponent cells, they have no chromatic nor spatial opponency. Instead, they amalgamate all color input in a balanced manner so as to only respond to changes in luminosity. Technically, we can consider non-opponent cells to be a special case of single opponent cells.
+
+\textbf{// TODO} are NO cells the same as SO cells? What about achromatic single opponent cells?
+
+\textbf{// TODO} \textit{add image depicting example receptive field(s)}
+
+\textbf{// TODO} \textit{add image of simple behavior: gradient response to ((mono)chromatic) intensity changes}
+
+\textbf{// TODO} \textit{add image of simple behavior: no response to isoluminant chromatic boundaries}
 
 \subsection*{Double Opponent Neurons}
 
@@ -502,10 +503,15 @@ Double opponent neurons are a point of confusion in the field. The term double o
 
 \textbf{// TODO} \textbf{describe Spatial Frequency Selectivity}
 
+\subsubsection*{Achromatic Double Opponent Neurons}
+
+\textbf{// TODO} \textbf{describe achromatic double opponent cells}
+
+
+
 \textbf{// TODO} \textit{add image of Shapley response curves for NO, SO, \& DO}
 
 \textbf{// TODO} \textit{mention relative abundance of NO, SO, \& DO}
-
 
 To recapitulate: non-opponent neurons have no color preferences and fire equally to chromatic or achromatic luminosity changes, single opponent neurons are color preferring and fire best to full field stimulation, and double opponent neurons are color preferring but fire only at the boundaries between particular colors.
 
@@ -640,10 +646,8 @@ Their research was focused on observing brightness induction (BI) arising from s
         \multicolumn{1}{r|}{Colors}           & N   & N                         & Y                & Y           & Y        \\
         \multicolumn{1}{r|}{Scales}           & N   & Y                         & Y                & N           & N        \\
         \multicolumn{1}{r|}{Orientations}     & Y   & Y                         & Y                & N           & N        \\
-        \multicolumn{1}{r|}{NO}               & N   & N                         & Y                & N           & N        \\
         \multicolumn{1}{r|}{SO}               & N   & N                         & Y                & Y           & Y        \\
         \multicolumn{1}{r|}{DO}               & N   & Y (achromatic)            & Y                & Y           & Y        \\
-        \multicolumn{1}{r|}{NO RF}            & N/A & N/A                       & Gaussian Pyramid & None        & N/A      \\
         \multicolumn{1}{r|}{SO RF}            & N/A & N/A                       & Gaussian Pyramid & None        & Gaussian \\
         \multicolumn{1}{r|}{DO RF}            & N/A & DWT                       & Gaussian Pyramid & None        & Gabor    \\
         \multicolumn{1}{r|}{Goal}             & Saliency & Brightness Induction & Saliency         & Descriptor  & Color Induction
@@ -665,14 +669,22 @@ The purpose of this project is to \textbf{feed opponent color information into a
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Method}
 
-We present a computational model designed to be representitive of the aforementioned biology of the striate cortex (V1). This can be conceived of as two distinct challenges:
+We present a computational model designed to be representative of the aforementioned biology. The implementation of this model can be conceived of as two distinct challenges:
 \begin{enumerate}
-    \item The transformation of raw image data to a biologically meaningful representation of information.
-    \item The dynamical processing of this information in accordance with neurobiological understanding.
+    \item The transformation of raw image data into a biologically meaningful information representation.
+    \item The dynamical processing of this information in accordance with neurobiological theory.
 \end{enumerate}
 
 
-\subsection{Computational Representation of Visual Information}
+\subsection*{Computational Representation of Visual Information}
+
+The pathways from the retina to V1 inform us that ..?
+
+The issue of how represent information meaningfully can itself be broken down into two issues: color opponency, neural receptive fields.
+
+\subsubsection*{Color Opponency} With only three cone cells, the brain perceives the gamut of colors we see by comparing and contrasting their stimuli. This is known as the opponent color theory. In modeling vision meaningfully, it is important to consider color information in this way.
+
+Single opponent (SO), and double opponent (DO) cells comprise the focus of our modeling efforts. SO cells respond to surfaces while DO cells respond to the boundaries between surfaces.
 
 \textit{TODO} How is the data represented in V1?
 
@@ -687,21 +699,68 @@ We present a computational model designed to be representitive of the aforementi
 \end{itemize}
 
 
-\subsubsection{Opponent Receptive Fields}
+\subsection{Opponent Processing of Neural Receptive Fields}
+
 RGB $\rightarrow$ receptive fields $\rightarrow$ LDRGBY
+
+The color opponent theory defines three axes visual information, obtained by processing of cone activity from the retina. These axes are Red-Green (R-G), Blue-Yellow (B-Y), and Light-Dark (L-D). Information from the retina is transduced to opponent color information by contrasting stimulus of cones of different wavelength sensitivity. To model visual information in V1, we apply this opponent color processing to raw image data. Figure \ref{fig:receptive-fields} depicts some of the opponent receptive fields we modeled.
+
+The process RGB information into opponent colors as follows (based on L. Itti 1999):
 \begin{itemize}
-    \item describe motivation
+    \item R(c, s, scale) = on(r(c, scale) - (g(s, scale) + b(s, scale))/2)
+    \item G(c, s, scale) = on(g(c, scale) - (r(s, scale) + b(s, scale))/2)
+    \item B(c, s, scale) = on(b(c, scale) - (r(s, scale) + g(s, scale))/2)
+    \item Y(c, s, scale) = on((r(c, scale) + g(c, scale))/2 - abs(r(s, scale) - g(s, scale))/2 - b(s, scale))
+    \item L(c, s, scale) = on(i(c, scale))
+    \item D(c, s, scale) = off(i(c, scale))
+\end{itemize}
+Where \textit{c} indicates the 'center' and \textit{s} indicates the surround, used to define the relationship between center and surround receptive fields. For example, \textit{c} can be given a smaller receptive field than \textit{s}, or \textit{s} can be given a smaller weight than \textit{c}. The \textit{scale} is used to scale both center and surround. 
+
+Centers and surrounds are built by applying gaussian filters to the raw image channels. This simulates a neuron at V1 receiving input from many cones.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{receptive-fields}
+    \caption{Diagrams of receptive fields.}
+    \label{fig:receptive-fields}
+\end{figure}
+
+Double opponent cells are constructed in the exact same way as single opponent cells, the receptive fields are just more complex.
+
+\textbf{// TODO} \textit{show diagram of single opponent center \& surround}
+
+\textbf{// TODO} \textit{show diagram of double opponent center \& surround}
+
+\textbf{// TODO} \textit{show original \& decomposed image}
+
+Considerations:
+\begin{itemize}
+    \item CON: Relatively slow
+    \begin{itemize}
+        \item Could be improved with Gabor instead of gaussian for DO cells.
+        \item It's just an upfront cost, the neurodynamical processing is the most expensive.
+    \end{itemize}
+    \item PRO: more receptive field control (explicit RF definitions)
+    \item CON: requires tweaking of receptive fields
+    \item PRO: more true to biology (combination of signal rather than numeric transformation of color space)
+    \item CON: requires decision on meaningful RGB combination (should be elucidated from biology)
+    \begin{itemize}
+        \item Pre-transformation to LMS might be valuable/meaningful.
+    \end{itemize}
 \end{itemize}
 
 
-\subsubsection{Discrete Wavelet Transform}
+\subsection{Discrete Wavelet Transform in Opponent Colorspace}
+
 RGB $\rightarrow$ L*a*b* $\rightarrow$ DWT
-\begin{itemize}
-    \item describe motivation
-\end{itemize}
 
+Previous work by Penacchio \textit{et al.} \cite{otazu:plosone} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into it's oriented edges at scale. In the context of our research, this could be thought of as representing achromatic double opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or in response to chromatic changes.
 
-\subsection{Neuro-Dynamical Processing}
+\textbf{// TODO} \textit{show diagram of oriented DWT filter}
+
+\textbf{// TODO} \textit{show original \& decomposed image}
+
+\subsection*{Neurodynamical Processing}
 
 \textit{TODO} How does V1 process the data?
 \begin{itemize}
@@ -709,7 +768,7 @@ RGB $\rightarrow$ L*a*b* $\rightarrow$ DWT
     \item (itself an extension of Z. Li's 1999 model)
 \end{itemize}
 \begin{itemize}
-    \item describe what exactly 'neuro-dynamical' means
+    \item describe what exactly 'neurodynamical' means
     \item describe how the X. Otazu \& Z. Li models work and are extended
     \item describe how this is agnostic to the initial transformation (data is cell firing rates (1-4))
 \end{itemize}
