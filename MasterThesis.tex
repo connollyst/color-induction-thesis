@@ -225,11 +225,11 @@
 
 
 % *** SUBFIGURE PACKAGES ***
-%\ifCLASSOPTIONcompsoc
-%  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
-%\else
-%  \usepackage[caption=false,font=footnotesize]{subfig}
-%\fi
+\ifCLASSOPTIONcompsoc
+  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\else
+  \usepackage[caption=false,font=footnotesize]{subfig}
+\fi
 % subfig.sty, written by Steven Douglas Cochran, is the modern replacement
 % for subfigure.sty, the latter of which is no longer maintained and is
 % incompatible with some LaTeX packages including fixltx2e. However,
@@ -493,7 +493,19 @@ Sometimes called non-opponent cells, they have no chromatic nor spatial opponenc
 
 \subsection*{Double Opponent Neurons}
 
-Double opponent neurons are a point of confusion in the field. The term double opponent is to indicate that the inputs to the neuron are such that it is sensitive to color (chromatically opponent) and contrast (spatially opponent). Generally, all agree that the role of such neurons, however their receptive fields are constructed, be to respond best to the boundaries between particular colors.
+\textbf{Point:}
+Double opponent neurons are edge detectors. 
+
+\textbf{Story:}
+Double opponent neurons are a topic of confusion in the field of neurobiology. All researchers on the topic seem to agree that the input to the neuron is that of two single opponent neurons itself. In this sense, the term "double opponent" can be thought of as indicating that the dimensionality of color opponency has been doubled. However, another camp of researchers take the definition a step further and suggest that the two SO inputs are spatially offset. By this definition, the term "double opponent" is thought to indicate that the cell is sensitive to opponency in two \textit{different} dimensions, color and space.
+
+The distinction is non-trivial as the response patterns differ, and thus the interpretation of their role in vision differs.
+
+\textbf{// TODO} \textbf{present the differences between the two DO configurations}
+
+\subsubsection*{Orientation Selectivity}
+
+Research shows that cells identified as double opponent are orientation selective. That is, they respond most strongly when stimulated by a border of particular orientation, less so with variation from that preferred orientation, and weekly, if at all, to borders orthogonal to the preferred orientation. This is intuitive given the organization of the receptive field as previously defined.
 
 \textbf{// TODO} \textbf{describe Orientation Selectivity}
 
@@ -501,7 +513,11 @@ Double opponent neurons are a point of confusion in the field. The term double o
 
 \textbf{// TODO} \textit{add image of simple behavior: peak activity AT sharp edge}
 
-\textbf{// TODO} \textbf{describe Spatial Frequency Selectivity}
+
+\subsubsection*{Spatial Frequency Selectivity}
+
+It is recognized that
+
 
 \subsubsection*{Achromatic Double Opponent Neurons}
 
@@ -676,6 +692,18 @@ Double opponent cells are constructed in the exact same way as single opponent c
 \textbf{// TODO} \textit{show diagram of single opponent center \& surround}
 
 \textbf{// TODO} \textit{show diagram of double opponent center \& surround}
+
+
+\begin{figure}
+    \subfloat[Symmetric Balanced]{\includegraphics[width=160pt]{rf_so_1}}
+    \subfloat[Symmetric Unbalanced]{\includegraphics[width=160pt]{rf_so_2}}
+    \subfloat[Center/Surround]{\includegraphics[width=160pt]{rf_so_3}}
+    \caption{Visualization of a variety of single opponent (SO) receptive fields.}
+    \label{fig:rf-so}
+\end{figure}
+
+
+
 
 Considerations:
 \begin{itemize}
