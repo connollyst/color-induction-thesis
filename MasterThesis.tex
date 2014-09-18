@@ -798,15 +798,20 @@ We've described two processes for transforming raw data into reasonable input to
 
 \begin{equation}
 \begin{cases} 
-\dot{x}_{ics\theta} = - \alpha_{x}X_{is\theta} \\
-                    & - g_y(y_{ics\theta}) \\
-                    & - \sum\nolimits_{\Delta_{s}, \Delta_{\theta} \neq 0} \Psi(\Delta_{s}, \Delta_{\theta}) g_y(y_{is + \Delta_{s\theta} + \Delta_{\theta}}) + J_0(g_x(X_{is\theta})) \\
-                    & + \sum\nolimits_{j \neq i,s'\theta'}J_{[is\theta, js'\theta']}g_x()js'\theta') \\
-                    & + I_{is\theta} \\
+\dot{x}_{i \gamma s\theta} = - \alpha_{x}X_{i \gamma s \theta} \\
+                    & - g_y(y_{i \gamma s\theta}) \\
+                    & - \sum\nolimits_{\gamma' \neq \text{opp($\gamma$)}, \Delta_{s}, \Delta_{\theta} \neq 0}
+                        \Psi(\gamma', \Delta_{s}, \Delta_{\theta})
+                        g_y(y_{i \gamma s + \Delta_{s\theta} + \Delta_{\theta}})
+                        + J_0(g_x(X_{is\theta})) \\
+                    & + \sum\nolimits_{j \neq i,\gamma',s'\theta'}
+                        J_{[i \gamma s \theta, j \gamma' s' \theta']}g_x(X_{j \gamma 's'\theta'})) \\
+                    & + I_{i \gamma s \theta} \\
                     & + I_0 \\
-\dot{y}_{ics\theta} = - \alpha_{y}Y_{is\theta} \\
-                    & + g_x(X_{is\theta}) \\
-                    & + \sum\nolimits_{j \neq i,s'\theta'}W_{[is\theta, js'\theta']}g_x()js'\theta') \\
+\dot{y}_{i \gamma s \theta} = - \alpha_{y}Y_{i \gamma s \theta} \\
+                    & + g_x(X_{i \gamma s \theta}) \\
+                    & + \sum\nolimits_{j \neq i, \gamma' s' \theta'}
+                        W_{[i \gamma s \theta, j \gamma' s' \theta']}g_x(X_{j \gamma' s' \theta'}) \\
                     & + I_{c}
 \end{cases}
 \end{equation}
