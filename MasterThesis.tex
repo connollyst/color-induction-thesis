@@ -159,7 +159,7 @@
 
 % *** MATH PACKAGES ***
 %
-%\usepackage[cmex10]{amsmath}
+\usepackage[cmex10]{amsmath}
 % A popular package from the American Mathematical Society that provides
 % many useful and powerful commands for dealing with mathematics. If using
 % it, be sure to load this package with the cmex10 option to ensure that
@@ -619,11 +619,16 @@ Their research was focused on observing brightness induction (BI) arising from s
 \end{itemize}
 
 \subsection*{Comparison of Models}
-These models, though approaching different problems in different ways, can be compared to each other in terms of our current work. In Table \ref{tab:model-comparison} we contrast and compare the features of these computational models
-\begin{table}[h]
+These models, though approaching different problems in different ways, can be compared to each other in terms of our current work. In Table \ref{tab:model-comparison} we contrast and compare the features of the presented computational models with respect to ours.
+
+\textbf{// TODO} \textit{describe what exactly qualifies for 'colors', 'scales', and 'orientations' in this general comparison}
+
+\textbf{// TODO} \textit{add citations to Table \ref{tab:model-comparison}}
+
+\begin{table}[H]
     \centering
     \begin{tabular}{rcccccc}
-        \multicolumn{1}{r|}{}                 & Li       & Penacchio                       & Itti             & Zhang           & Spitzer         & Connolly \\ \cline{1-7}
+        \multicolumn{1}{r|}{}                 & Li \cite{li:1999}       & Penacchio \cite{otazu:plosone}                      & Itti            & Zhang           & Spitzer         & Connolly \\ \cline{1-7}
         \multicolumn{1}{r|}{Dynamical}        & Y        & Y                               & N                & N               & N               & Y \\
         \multicolumn{1}{r|}{Colors}           & N        & N                               & Y                & Y               & Y               & Y \\
         \multicolumn{1}{r|}{Scales}           & N        & Y                               & Y                & N               & N               & Y \\
@@ -638,7 +643,15 @@ These models, though approaching different problems in different ways, can be co
     \label{tab:model-comparison}
 \end{table}
 
-The purpose of this project is to \textbf{feed opponent color information into a neurodynamical model} sensitive to edges \& surfaces in a biologically inspired manner.
+To summarize, the purpose of this project is to \textbf{feed opponent color information into a neurodynamical model} sensitive to edges \& surfaces in a biologically inspired manner.
+
+\textbf{// TODO} \textit{We need to properly summarize the State of the Art before proceeding.}
+\begin{itemize}
+    \item What does the biology predict?
+    \item What have computational models done?
+    \item Where do computational models fall short? (A: no dynamical color model)
+    \item Thus, where does our work fit into the field?
+\end{itemize}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -651,7 +664,7 @@ The purpose of this project is to \textbf{feed opponent color information into a
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Method}
 
-We present a computational model designed to be representative of the aforementioned biology. The implementation of this model can be conceived of as two distinct challenges:
+We present a computational model designed to be representative of the aforementioned biology. The implementation of this model can be conceived of as two distinct parts:
 \begin{enumerate}
     \item The transformation of raw image data into a biologically meaningful information representation.
     \item The dynamical processing of this information in accordance with neurobiological theory.
@@ -660,7 +673,25 @@ We present a computational model designed to be representative of the aforementi
 
 \subsection*{Computational Representation of Visual Information}
 
-The pathways from the retina to V1 inform us that ..?
+The response behavior of both single opponent and double opponent cells is modeled. In both cases we model color preferring and achromatic cells. The pathways from the retina through to V1 inform us that color sensitivity and luminance sensitivity in V1 derive from the various combinations of input from L, M, and S cones in the retina. We compute such transformation based on work by L. Itti \textit{et al.} \cite{itti:1999}. We extend their equations so as to integrate surround effects at this low level, rather than simply calculating color opponency at the pixel level. We redefine their equations as such, where \textit{c} and \textit{s} define the center and surround convolutions, respectively, and where \textit{r}, \textit{g}, and \textit{b} are the red, green, and blue components of the image, respectively.
+
+\begin{flalign*}
+    R(c, s) &= max(0, r(c) - \frac{g(s) + b(s)}{2}) \\
+    G(c, s) &= max(0, g(c) - \frac{r(s) + b(s)}{2}) \\
+    B(c, s) &= max(0, b(c) - \frac{r(s) + g(s)}{2}) \\
+    Y(c, s) &= max(0, \frac{r(c) + g(c)}{2} - | \frac{r(s) - g(s)}{2} | - b(s)) \\
+    \label{eq:rgby}
+\end{flalign*}
+
+We also introduce two new opponent channels, lightness (L) and darkness (D):
+
+\begin{flalign*}
+    L(c) &= max(0, \frac{r(c) + g(c) + b(c)}{3}) \\
+    D(c) &= | min(0, \frac{r(c) + g(c) + b(c)}{3}) | \\
+    \label{eq:ld}
+\end{flalign*}
+
+It's important to note that these channels do not incorporate surround effects as the color opponent channels do. More work can be done in this regard.
 
 The issue of how represent information meaningfully can itself be broken down into two issues: color opponency, neural receptive fields.
 
@@ -696,7 +727,7 @@ The process RGB information into opponent colors as follows (based on L. Itti 19
     \item L(c, s, sig) = on(i(c, sig))
     \item D(c, s, sig) = off(i(c, sig))
 \end{itemize}
-Where \textit{c} indicates the 'center' and \textit{s} indicates the surround, used to define the relationship between center and surround receptive fields. For example, \textit{c} can be given a smaller receptive field than \textit{s}, or \textit{s} can be given a smaller weight than \textit{c}. The \textit{sig} is used to scale both center and surround. 
+Where \textit{c} indicates the 'center' and \textit{s} indicates the surround, used to define the relationship between center and surround receptive fields. For example, \textit{c} can be given a smaller receptive field than \textit{s}, or \textit{s} can be given a smaller weight than \textit{c}.
 
 Centers and surrounds are built by applying gaussian filters to the raw image channels. This simulates a neuron at V1 receiving input from many cones.
 
