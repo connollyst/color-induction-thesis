@@ -673,25 +673,7 @@ We present a computational model designed to be representative of the aforementi
 
 \subsection*{Computational Representation of Visual Information}
 
-The response behavior of both single opponent and double opponent cells is modeled. In both cases we model color preferring and achromatic cells. The pathways from the retina through to V1 inform us that color sensitivity and luminance sensitivity in V1 derive from the various combinations of input from L, M, and S cones in the retina. We compute such transformation based on work by L. Itti \textit{et al.} \cite{itti:1999}. We extend their equations so as to integrate surround effects at this low level, rather than simply calculating color opponency at the pixel level. We redefine their equations as such, where \textit{c} and \textit{s} define the center and surround convolutions, respectively, and where \textit{r}, \textit{g}, and \textit{b} are the red, green, and blue components of the image, respectively.
-
-\begin{flalign*}
-    R(c, s) &= max(0, r(c) - \frac{g(s) + b(s)}{2}) \\
-    G(c, s) &= max(0, g(c) - \frac{r(s) + b(s)}{2}) \\
-    B(c, s) &= max(0, b(c) - \frac{r(s) + g(s)}{2}) \\
-    Y(c, s) &= max(0, \frac{r(c) + g(c)}{2} - | \frac{r(s) - g(s)}{2} | - b(s)) \\
-    \label{eq:rgby}
-\end{flalign*}
-
-We also introduce two new opponent channels, lightness (L) and darkness (D):
-
-\begin{flalign*}
-    L(c) &= max(0, \frac{r(c) + g(c) + b(c)}{3}) \\
-    D(c) &= | min(0, \frac{r(c) + g(c) + b(c)}{3}) | \\
-    \label{eq:ld}
-\end{flalign*}
-
-It's important to note that these channels do not incorporate surround effects as the color opponent channels do. More work can be done in this regard.
+The response behavior of both single opponent and double opponent cells is modeled. In both cases we model color preferring and achromatic cells. 
 
 The issue of how represent information meaningfully can itself be broken down into two issues: color opponency, neural receptive fields.
 
@@ -716,24 +698,33 @@ Single opponent (SO), and double opponent (DO) cells comprise the focus of our m
 
 RGB $\rightarrow$ receptive fields $\rightarrow$ LDRGBY
 
-The color opponent theory defines three axes visual information, obtained by processing of cone activity from the retina. These axes are Red-Green (R-G), Blue-Yellow (B-Y), and Light-Dark (L-D). Information from the retina is transduced to opponent color information by contrasting stimulus of cones of different wavelength sensitivity. To model visual information in V1, we apply this opponent color processing to raw image data. Figure \ref{fig:receptive-fields} depicts some of the opponent receptive fields we modeled.
+The color opponent theory defines three axes visual information, obtained by processing of cone activity from the retina. These axes are Red-Green (R-G), Blue-Yellow (B-Y), and Light-Dark (L-D).
 
-The process RGB information into opponent colors as follows (based on L. Itti 1999):
-\begin{itemize}
-    \item R(c, s, sig) = on(r(c, sig) - (g(s, sig) + b(s, sig))/2)
-    \item G(c, s, sig) = on(g(c, sig) - (r(s, sig) + b(s, sig))/2)
-    \item B(c, s, sig) = on(b(c, sig) - (r(s, sig) + g(s, sig))/2)
-    \item Y(c, s, sig) = on((r(c, sig) + g(c, sig))/2 - abs(r(s, sig) - g(s, sig))/2 - b(s, sig))
-    \item L(c, s, sig) = on(i(c, sig))
-    \item D(c, s, sig) = off(i(c, sig))
-\end{itemize}
-Where \textit{c} indicates the 'center' and \textit{s} indicates the surround, used to define the relationship between center and surround receptive fields. For example, \textit{c} can be given a smaller receptive field than \textit{s}, or \textit{s} can be given a smaller weight than \textit{c}.
+The pathways from the retina through to V1 inform us that color sensitivity and luminance sensitivity in V1 derive from the various combinations of input from L, M, and S cones in the retina. We compute such transformation based on work by L. Itti \textit{et al.} \cite{itti:1999}. We extend their equations so as to integrate surround effects at this low level, rather than simply calculating color opponency at the pixel level. We redefine their equations as such, where \textit{r}, \textit{g}, and \textit{b} are the red, green, and blue components of the image, respectively, and where \textit{c} and \textit{s} define the center and surround convolutions, respectively.
 
-Centers and surrounds are built by applying gaussian filters to the raw image channels. This simulates a neuron at V1 receiving input from many cones.
+\begin{flalign*}
+    R(c, s) &= max(0, r(c) - \frac{g(s) + b(s)}{2}) \\
+    G(c, s) &= max(0, g(c) - \frac{r(s) + b(s)}{2}) \\
+    B(c, s) &= max(0, b(c) - \frac{r(s) + g(s)}{2}) \\
+    Y(c, s) &= max(0, \frac{r(c) + g(c)}{2} - | \frac{r(s) - g(s)}{2} | - b(s)) \\
+\end{flalign*}
 
-Double opponent cells are constructed in the exact same way as single opponent cells, the receptive fields are just more complex.
+Where \textit{c} indicates the 'center' and \textit{s} indicates the surround, used to define the relationship between center and surround receptive fields. For example, \textit{c} can be given a smaller receptive field and greater weight than \textit{s}. Centers and surrounds are built by applying gaussian filters to the raw image channels. This simulates a neuron at V1 receiving input from many cones.
 
 \textbf{// TODO} \textit{show diagram of single opponent center \& surround}
+
+We also introduce two new opponent channels, lightness (L) and darkness (D):
+
+\begin{flalign*}
+    L(c) &= max(0, \frac{r(c) + g(c) + b(c)}{3}) \\
+    D(c) &= | min(0, \frac{r(c) + g(c) + b(c)}{3}) | \\
+\end{flalign*}
+
+It's important to note that the L \& D components do not incorporate surround effects as the color opponent channels do. More work can be done in this regard.
+
+Information from the retina is transduced to opponent color information by contrasting stimulus of cones of different wavelength sensitivity. To model visual information in V1, we apply this opponent color processing to raw image data. Figure \ref{fig:receptive-fields} depicts some of the opponent receptive fields we modeled.
+
+Double opponent cells are constructed exactly as single opponent cells by defining off-center receptive fields.
 
 \textbf{// TODO} \textit{show diagram of double opponent center \& surround}
 
