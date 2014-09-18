@@ -625,17 +625,17 @@ Their research was focused on observing brightness induction (BI) arising from s
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{rccccc}
-        \multicolumn{1}{r|}{}                  & Li  & Penacchio                & Itti             & Zhang       & Spitzer  \\ \cline{1-6}
-        \multicolumn{1}{r|}{Dynamical}        & Y   & Y                         & N                & N           & N        \\
-        \multicolumn{1}{r|}{Colors}           & N   & N                         & Y                & Y           & Y        \\
-        \multicolumn{1}{r|}{Scales}           & N   & Y                         & Y                & N           & N        \\
-        \multicolumn{1}{r|}{Orientations}     & Y   & Y                         & Y                & N           & N        \\
-        \multicolumn{1}{r|}{SO}               & N   & N                         & Y                & Y           & Y        \\
-        \multicolumn{1}{r|}{DO}               & N   & Y (achromatic)            & Y                & Y           & Y        \\
-        \multicolumn{1}{r|}{SO RF}            & N/A & N/A                       & Gaussian Pyramid & None        & Gaussian \\
-        \multicolumn{1}{r|}{DO RF}            & N/A & DWT                       & Gaussian Pyramid & None        & Gabor    \\
-        \multicolumn{1}{r|}{Goal}             & Saliency & Brightness Induction & Saliency         & Descriptor  & Color Induction
+    \begin{tabular}{rcccccc}
+        \multicolumn{1}{r|}{}                 & Li       & Penacchio                       & Itti             & Zhang           & Spitzer         & Connolly \\ \cline{1-7}
+        \multicolumn{1}{r|}{Dynamical}        & Y        & Y                               & N                & N               & N               & Y \\
+        \multicolumn{1}{r|}{Colors}           & N        & N                               & Y                & Y               & Y               & Y \\
+        \multicolumn{1}{r|}{Scales}           & N        & Y                               & Y                & N               & N               & Y \\
+        \multicolumn{1}{r|}{Orientations}     & Y        & Y                               & Y                & N               & N               & Y \\
+        \multicolumn{1}{r|}{SO}               & N        & N                               & Y                & Y               & Y               & Y \\
+        \multicolumn{1}{r|}{DO}               & N        & Y (achromatic)                  & Y                & Y               & Y               & Y \\
+        \multicolumn{1}{r|}{SO RF}            & N/A      & N/A                             & Gaussian Pyramid & None            & Gaussian        & Gaussian / DWT \\
+        \multicolumn{1}{r|}{DO RF}            & N/A      & DWT                             & Gaussian Pyramid & None            & Gabor           & Gabor-like / DWT \\
+        \multicolumn{1}{r|}{Goal}             & Saliency & Brightness Induction & Saliency & Descriptor       & Color Induction & Color Induction
     \end{tabular}
     \caption{Comparison of some of the relevant models. Each has very different goals, and thus takes a very different approach. Some include colors while others don't. Some are dynamical while others aren't.}
     \label{tab:model-comparison}
