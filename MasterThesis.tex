@@ -709,7 +709,7 @@ The pathways from the retina through to V1 inform us that color sensitivity and 
     Y(c, s) &= max(0, \frac{r(c) + g(c)}{2} - | \frac{r(s) - g(s)}{2} | - b(s)) \\
 \end{flalign*}
 
-Where \textit{c} indicates the 'center' and \textit{s} indicates the surround, used to define the relationship between center and surround receptive fields. For example, \textit{c} can be given a smaller receptive field and greater weight than \textit{s}. Centers and surrounds are built by applying gaussian filters to the raw image channels. This simulates a neuron at V1 receiving input from many cones.
+Where \textit{c} indicates the 'center' and \textit{s} indicates the surround, used to define the relationship between center and surround receptive fields. For example, \textit{c} can be given a smaller receptive field and greater weight than \textit{s}. Centers and surrounds are built by applying gaussian filters to the raw image channels, as visualized in Figure \ref{fig:rf-so}. This convolution of gaussians simulates a neuron in the retina receiving input from many cones.
 
 \textbf{// TODO} \textit{show diagram of single opponent center \& surround}
 
@@ -752,7 +752,23 @@ Considerations:
 
 RGB $\rightarrow$ L*a*b* $\rightarrow$ DWT
 
-Previous work by Penacchio \textit{et al.} \cite{otazu:plosone} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edges at scale. In the context of our research, this could be thought of as representing achromatic double opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent color space and examine it's applicability as a replacement of the aforementioned explicit opponent processing of neural receptive fields.
+Previous work by Penacchio \textit{et al.} \cite{otazu:plosone} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edges at scale. In the context of our current research, this could be thought of as representing achromatic double opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent color space and examine it's applicability as a replacement of the aforementioned opponent processing of neural receptive fields.
+
+\textbf{// TODO} \textit{PARAGRAPH ON OPPONENT COLOR SPACE}
+
+\textbf{// TODO} \textit{PARAGRAPH ON DISCRETE WAVELET TRANSFORM}
+
+\textbf{// TODO} \textit{FIGURE: show diagram of oriented DWT filter}
+
+\textbf{// TODO} \textit{FIGURE: show original \& decomposed image}
+
+\textbf{// TODO} \textit{PARAGRAPH ON INTERPRETATION OF COMPONENTS (DO \& SO)}
+
+\textbf{// TODO} \textit{PARAGRAPH ON WORKFLOW: RGB $\rightarrow$ L*a*b* (-50) $\rightarrow$ DWT $\rightarrow$ ON/OFF}
+
+\textbf{// TODO} \textit{PARAGRAPH ON PROS/CONS}
+
+\subsubsection{Notes}
 
 Process:
 \begin{itemize}
@@ -787,10 +803,10 @@ What are the advantages?
     \item ...?
 \end{enumerate}
 
-\textbf{// TODO} \textit{show diagram of oriented DWT filter}
 
-\textbf{// TODO} \textit{show original \& decomposed image}
+\subsection*{Neurodynamical Processing}
 
+We've described two processes for transforming raw data into reasonable input to the neurodynamical model. Each has their pros and cons, but both are applicable, as could be others. In any case, the chromatic and achromatic SO and DO information is used as input, conceptually, neural stimulation. The model then processes the dynamic interactions between the neurons in order to propagate contextual effects where applicable.
 
 \subsection*{Neurodynamical Processing}
 
