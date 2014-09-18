@@ -796,6 +796,21 @@ What are the advantages?
 
 We've described two processes for transforming raw data into reasonable input to the neurodynamical model. The two have their pros and cons, but both are applicable. In either case, the chromatic and achromatic SO and DO information is used as input, conceptually, neural stimulation. The model then processes the dynamical interactions between the neurons in order to propagate contextual effects where applicable.
 
+\begin{equation}
+\begin{cases} 
+\dot{x}_{ics\theta} = - \alpha_{x}X_{is\theta} \\
+                    & - g_y(y_{ics\theta}) \\
+                    & - \sum\nolimits_{\Delta_{s}, \Delta_{\theta} \neq 0} \Psi(\Delta_{s}, \Delta_{\theta}) g_y(y_{is + \Delta_{s\theta} + \Delta_{\theta}}) + J_0(g_x(X_{is\theta})) \\
+                    & + \sum\nolimits_{j \neq i,s'\theta'}J_{[is\theta, js'\theta']}g_x()js'\theta') \\
+                    & + I_{is\theta} \\
+                    & + I_0 \\
+\dot{y}_{ics\theta} = - \alpha_{y}Y_{is\theta} \\
+                    & + g_x(X_{is\theta}) \\
+                    & + \sum\nolimits_{j \neq i,s'\theta'}W_{[is\theta, js'\theta']}g_x()js'\theta') \\
+                    & + I_{c}
+\end{cases}
+\end{equation}
+
 Notes:
 \begin{itemize}
     \item An extension of X. Otazu's PLoS One model
