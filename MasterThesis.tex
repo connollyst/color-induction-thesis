@@ -697,7 +697,7 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
 
 In our implementation, for convenience, we utilize the R, G, and B channels of the raw image as an approximation of L, M, and S cone activity, respectively. It should be noted that a preprocessing step could be performed to better match RGB to LMS so as to be more biologically consistent. The impact is likely negligible.
 
-To construct opponent color channels, we combine center $(c)$ and surround $(s)$ convolutions of the L, M, and S channels into three pairs: two color \cite{spitzer:2005} and one achromatic.
+To construct opponent color channels, we contrast center $(c)$ and surround $(s)$ convolutions of the L, M, and S channels into three pairs: two color \cite{spitzer:2005} and one achromatic.
 
 \begin{flalign}
     R(c, s) &= max(0, L(c) - M(s)) \\
@@ -709,9 +709,11 @@ To construct opponent color channels, we combine center $(c)$ and surround $(s)$
 We also introduce two new opponent channels, lightness (L) and darkness (D):
 
 \begin{flalign}
-    L(c) &= max(0, \frac{L(c) + M(c) + S(c)}{3} - 0.5) \\
-    D(c) &= | min(0, \frac{L(c) + M(c) + S(c)}{3} - 0.5) |
+    L(c, s) &= max(0, \frac{L(c) + M(c) + S(c)}{3} - 0.5) \\
+    D(c, s) &= | min(0, \frac{L(c) + M(c) + S(c)}{3} - 0.5) |
 \end{flalign}
+
+\textbf{// TODO} \textit{consider} $\frac{L(c) + M(c) + S(c)}{3} - \frac{L(s) + M(s) + S(s)}{3})$
 
 It is important to note that the L \& D opponent channels do not incorporate surround effects as the color opponent channels do. More work can be done in this regard.
 
@@ -719,12 +721,12 @@ It is important to note that the L \& D opponent channels do not incorporate sur
     \centering
     \includegraphics[width=0.8\textwidth]{model2_mockup}
     \caption{Depiction of opponent processing of center/surround receptive fields. The RGB channels are convoluted with gaussians and then combined to obtain opponent color signal.}
-    \label{fig:opponent-process-gaussians}
+    \label{fig:opponent-process}
 \end{figure}
 
-Information from the retina is transduced to opponent color information by contrasting stimulus of cones of different wavelength sensitivity. To model visual information in V1, we apply this opponent color processing to raw image data. Figure \ref{fig:receptive-fields} depicts some of the opponent receptive fields we considered.
+\textbf{// TODO} \textit{ADD L \& D to Figure \ref{fig:opponent-process}}
 
-Double opponent cells are constructed exactly as single opponent cells by defining off-center receptive fields.
+\subsubsection{Double-Opponent Neurons} The process of constructing double-opponent color channels is exactly the same as in \textit{Single-Opponent Neurons} above, the only difference being the definition of the gaussian filters used to define the cells' receptive fields. Instead of using two concentric, centered, circular gaussian filters, for double-opponent cells we use asymmetrical, off-center, elongated gaussian filters, like those depicted in Figure \ref{fig:rf-do}. As with the single-opponents cell model, the 'center' and 'surround' (more appropriately referred to as 'excitatory' and 'inhibitory' in the context of double-opponent cells) receptive fields can be adjusted to different sizes, shapes, and weights each. For our tests we worked with symmetric balanced receptive fields, as in Figure \ref{fig:rf-do} (a).
 
 \textbf{// TODO} \textit{reference diagram of double opponent center \& surround}
 
