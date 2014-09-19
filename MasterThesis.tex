@@ -95,7 +95,8 @@
 % \ifCLASSINFOpdf conditional that works the same way.
 % When switching from latex to pdflatex and vice-versa, the compiler may
 % have to be run twice to clear warning/error messages.
-
+\usepackage{enumitem}
+% enumitem enables enumerations with letters
 
 
 
@@ -668,17 +669,10 @@ To summarize, the purpose of this project is to \textbf{feed opponent color info
 \section{Method}
 
 We present a computational model designed to be representative of the aforementioned biology. The implementation of this model can be conceived of as two distinct parts:
-\begin{enumerate}
-    \item The transformation of raw image data into a biologically meaningful information representation.
-    \item The dynamical processing of this information in accordance with neurobiological theory.
-\end{enumerate}
-
-
-\subsection*{Computational Representation of Visual Information}
-
-\textit{TODO} How is the data represented in V1?
-
-\textit{TODO} Introduce the 2 data transformations and their respective meanings
+\begin{itemize}
+    \item \textit{Description of Visual Information:} transformation of image(s) into a biologically meaningful representation.
+    \item \textit{Neurodynamical Processing:} iterative processing of the dynamic interactions between the neurons modeled.
+\end{itemize}
 
 \begin{figure}[H]
     \centering
@@ -687,6 +681,11 @@ We present a computational model designed to be representative of the aforementi
     \label{fig:model-parts}
 \end{figure}
 
+\subsection*{Description of Visual Information}
+
+\textit{TODO} How is the data represented in V1?
+
+\textit{TODO} Introduce the 2 data transformations and their respective meanings
 
 \subsection{Opponent Processing of Neural Receptive Fields}
 
