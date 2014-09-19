@@ -693,7 +693,9 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
 
 \subsection{Opponent Processing of Neural Receptive Fields}
 
-\subsubsection{Single-Opponent Neurons} Processing starts by convoluting each of the L, M, and S cone spectral response functions with two different, concentric, centered, circular gaussian filters. These convolutions simulate integration of information in a neuron's receptive field. One convolution is used to build the center of a cell's receptive field, the other convolution, the surround. In a classical center-surround configuration, the center is smaller and weighed significantly more heavily than the surround, as in Figure \ref{fig:rf-so} (c).
+Processing starts by convoluting each of the L, M, and S cone spectral response functions with two different gaussian filters. These convolutions simulate integration of information in a neuron's receptive field. One convolution is used to build the excitatory component of the receptive field (referred to as the center), the other convolution, the inhibitory (referred to as the surround).
+
+Single-opponent cells' receptive fields are the classical center-surround configuration: symmetric, centered, circular gaussians. Typically, the center is smaller and weighed significantly more heavily than the surround, as in Figure \ref{fig:rf-so} (c). Double-opponent receptive fields are markedly more complex: asymmetrical, off-center, elongated gaussian filters. Similarly, these filters can be adjusted to different sizes, shapes, and weights. For our tests we worked with symmetric balanced receptive fields, as in Figure \ref{fig:rf-do} (a).
 
 In our implementation, for convenience, we utilize the R, G, and B channels of the raw image as an approximation of L, M, and S cone activity, respectively. It should be noted that a preprocessing step could be performed to better match RGB to LMS so as to be more biologically consistent. The impact is likely negligible.
 
@@ -715,6 +717,7 @@ We also introduce two new opponent channels, lightness (L) and darkness (D):
 
 \textbf{// TODO} \textit{consider} $\frac{L(c) + M(c) + S(c)}{3} - \frac{L(s) + M(s) + S(s)}{3})$
 
+
 It is important to note that the L \& D opponent channels do not incorporate surround effects as the color opponent channels do. More work can be done in this regard.
 
 \begin{figure}[H]
@@ -726,12 +729,8 @@ It is important to note that the L \& D opponent channels do not incorporate sur
 
 \textbf{// TODO} \textit{ADD L \& D to Figure \ref{fig:opponent-process}}
 
-\subsubsection{Double-Opponent Neurons} The process of constructing double-opponent color channels is exactly the same as in \textit{Single-Opponent Neurons} above, the only difference being the definition of the gaussian filters used to define the cells' receptive fields. Instead of using two concentric, centered, circular gaussian filters, for double-opponent cells we use asymmetrical, off-center, elongated gaussian filters, like those depicted in Figure \ref{fig:rf-do}. As with the single-opponents cell model, the 'center' and 'surround' (more appropriately referred to as 'excitatory' and 'inhibitory' in the context of double-opponent cells) receptive fields can be adjusted to different sizes, shapes, and weights each. For our tests we worked with symmetric balanced receptive fields, as in Figure \ref{fig:rf-do} (a).
 
-\textbf{// TODO} \textit{reference diagram of double opponent center \& surround}
-
-
-Considerations:
+\subsubsection{Considerations}
 \begin{itemize}
     \item CON: Relatively slow
     \begin{itemize}
