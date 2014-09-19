@@ -676,25 +676,16 @@ We present a computational model designed to be representative of the aforementi
 
 \subsection*{Computational Representation of Visual Information}
 
-The response behavior of both single opponent and double opponent cells is modeled. In both cases we model color preferring and achromatic cells. 
-
-The issue of how represent information meaningfully can itself be broken down into two issues: color opponency, neural receptive fields.
-
-\subsubsection*{Color Opponency} With only three cone cells, the brain perceives the gamut of colors we see by comparing and contrasting their stimuli. This is known as the opponent color theory. In modeling vision meaningfully, it is important to consider color information in this way.
-
-Single opponent (SO), and double opponent (DO) cells comprise the focus of our modeling efforts. SO cells respond to surfaces while DO cells respond to the boundaries between surfaces.
-
 \textit{TODO} How is the data represented in V1?
 
 \textit{TODO} Introduce the 2 data transformations and their respective meanings
 
-\begin{enumerate}
-    \item RGB $\rightarrow$ receptive fields $\rightarrow$ LDRGBY
-    \item RGB $\rightarrow$ L*a*b* $\rightarrow$ DWT
-\end{enumerate}
-\begin{itemize}
-    \item In either case, it's then transformed into neuronal excitation (scale 1-4) and used as the INITIAL STIMULUS for each time step.
-\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{model1_mockup}
+    \caption{High level schematic of model components. The point of emphasis here is that neurodynamical model is agnostic to how the data is processed upfront, as long as the format is correct. The two methods for data preparation (read: color description) are independent of each other and analyzed separately.}
+    \label{fig:model-parts}
+\end{figure}
 
 
 \subsection{Opponent Processing of Neural Receptive Fields}
