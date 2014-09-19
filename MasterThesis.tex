@@ -683,15 +683,15 @@ We present a computational model designed to be representative of the aforementi
 
 \subsection*{Description of Visual Information}
 
-\textit{TODO} How is the data represented in V1?
+The opponent-process theory defines three axes visual information, obtained by processing of cone activity from the retina. These axes are Red-Green (R-G), Blue-Yellow (B-Y), and Light-Dark (L-D). Neurobiological research corroborates such processing of color information (\textbf{// TODO} \textit{cite this}). \textbf{// TODO} \textit{MORE ON OPPONENT-PROCESS THEORY}
 
-\textit{TODO} Introduce the 2 data transformations and their respective meanings
+\textbf{// TODO} \textit{PARAGRAPH ON SINGLE AND DOUBLE OPPONENT CELLS}
+
+In accordance with this understanding of biology, the input to the neurodynamical model should 1) separate opponent color components from each other, and 2) separate edge information from surface information. We describe two different approaches to this end. The first approach, herein referred to in prolixity as the "\textit{Opponent Processing of Neural Receptive Fields}", represents an effort to explicitly transform raw visual data as we understand the neural mechanisms in the retina, lateral geniculate nucleus (LGN), and striate cortex (V1) do. The second approach, termed with equal verbosity, is the \textit{"Discrete Wavelet Transform in Opponent Colorspace"}. In this approach we stray from the details of the biological pathways in an attempt to achieve the same end, through more computationally efficient means.
+
+In both, the input is a normal RGB image, and the output to the neurodynamical model is a 5 dimensional matrix containing 6 opponent color channels (R, G, B, Y, L, \& D), each deconvoluted into its surface and oriented edge components, and 1 or more scales. Before processing by the neurodynamical model, this data is normalized so as to circumvent differences between the data output by these two methods.
 
 \subsection{Opponent Processing of Neural Receptive Fields}
-
-RGB $\rightarrow$ receptive fields $\rightarrow$ LDRGBY
-
-The color opponent theory defines three axes visual information, obtained by processing of cone activity from the retina. These axes are Red-Green (R-G), Blue-Yellow (B-Y), and Light-Dark (L-D).
 
 The pathways from the retina through to V1 inform us that color sensitivity and luminance sensitivity in V1 derive from the various combinations of input from L, M, and S cones in the retina. We compute such transformation based on work by L. Itti \textit{et al.} \cite{itti:1999}. We extend their equations so as to integrate surround effects at this low level, rather than simply calculating color opponency at the pixel level. We redefine their equations as such, where \textit{r}, \textit{g}, and \textit{b} are the red, green, and blue components of the image, respectively, and where \textit{c} and \textit{s} define the center and surround convolutions, respectively.
 
@@ -747,7 +747,7 @@ RGB $\rightarrow$ L*a*b* $\rightarrow$ DWT
 
 Previous work by Penacchio \textit{et al.} \cite{otazu:plosone} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edges at scale. In the context of our current research, this could be thought of as representing achromatic double opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent color space and examine it's applicability as a replacement of the aforementioned opponent processing of neural receptive fields.
 
-\textbf{// TODO} \textit{PARAGRAPH ON OPPONENT COLOR SPACE}
+\textbf{// TODO} \textit{PARAGRAPH ON LAB OPPONENT COLOR SPACE}
 
 \textbf{// TODO} \textit{PARAGRAPH ON DISCRETE WAVELET TRANSFORM}
 
