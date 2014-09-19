@@ -693,25 +693,27 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
 
 \subsection{Opponent Processing of Neural Receptive Fields}
 
-The pathways from the retina through to V1 inform us that color sensitivity and luminance sensitivity in V1 derive from the various combinations of input from L, M, and S cones in the retina. We compute such transformation based on work by L. Itti \textit{et al.} \cite{itti:1999}. We extend their equations so as to integrate surround effects at this low level, rather than simply calculating color opponency at the pixel level. We redefine their equations as such, where \textit{r}, \textit{g}, and \textit{b} are the red, green, and blue components of the image, respectively, and where \textit{c} and \textit{s} define the center and surround convolutions, respectively.
+\subsubsection{Single-Opponent Neurons} Processing starts by convoluting each of the L, M, and S cone spectral response functions with two different, concentric, centered, circular gaussian filters. These convolutions simulate integration of information in a neuron's receptive field. One convolution is used to build the center of a cell's receptive field, the other convolution, the surround. In a classical center-surround configuration, the center is smaller and weighed significantly more heavily than the surround, as in Figure \ref{fig:rf-so} (c).
 
-\begin{flalign*}
-    R(c, s) &= max(0, r(c) - \frac{g(s) + b(s)}{2}) \\
-    G(c, s) &= max(0, g(c) - \frac{r(s) + b(s)}{2}) \\
-    B(c, s) &= max(0, b(c) - \frac{r(s) + g(s)}{2}) \\
-    Y(c, s) &= max(0, \frac{r(c) + g(c)}{2} - | \frac{r(s) - g(s)}{2} | - b(s)) \\
-\end{flalign*}
+In our implementation, for convenience, we utilize the R, G, and B channels of the raw image as an approximation of L, M, and S cone activity, respectively. It should be noted that a preprocessing step could be performed to better match RGB to LMS so as to be more biologically consistent. The impact is likely negligible.
 
-Where \textit{c} indicates the 'center' and \textit{s} indicates the surround, used to define the relationship between center and surround receptive fields. For example, \textit{c} can be given a smaller receptive field and greater weight than \textit{s}. Centers and surrounds are built by applying gaussian filters to the raw image channels, as visualized in Figure \ref{fig:rf-so}. This convolution of gaussians simulates a neuron in the retina receiving input from many cones.
+To construct opponent color channels, we combine center $(c)$ and surround $(s)$ convolutions of the L, M, and S channels into three pairs: two color \cite{spitzer:2005} and one achromatic.
+
+\begin{flalign}
+    R(c, s) &= max(0, L(c) - M(s)) \\
+    G(c, s) &= max(0, M(c) - L(s)) \\
+    B(c, s) &= max(0, S(c) - \frac{L(s) + M(s)}{2}) \\
+    Y(c, s) &= max(0, \frac{L(c) + M(c)}{2} - S(s))
+\end{flalign}
 
 We also introduce two new opponent channels, lightness (L) and darkness (D):
 
-\begin{flalign*}
-    L(c) &= max(0, \frac{r(c) + g(c) + b(c)}{3}) \\
-    D(c) &= | min(0, \frac{r(c) + g(c) + b(c)}{3}) | \\
-\end{flalign*}
+\begin{flalign}
+    L(c) &= max(0, \frac{L(c) + M(c) + S(c)}{3} - 0.5) \\
+    D(c) &= | min(0, \frac{L(c) + M(c) + S(c)}{3} - 0.5) |
+\end{flalign}
 
-It's important to note that the L \& D components do not incorporate surround effects as the color opponent channels do. More work can be done in this regard.
+It is important to note that the L \& D opponent channels do not incorporate surround effects as the color opponent channels do. More work can be done in this regard.
 
 \begin{figure}[H]
     \centering
@@ -750,7 +752,7 @@ Considerations:
 
 RGB $\rightarrow$ L*a*b* $\rightarrow$ DWT
 
-Previous work by Penacchio \textit{et al.} \cite{otazu:plosone} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edges at scale. In the context of our current research, this could be thought of as representing achromatic double opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent color space and examine it's applicability as a replacement of the aforementioned opponent processing of neural receptive fields.
+Previous work by Penacchio \textit{et al.} \cite{otazu:plosone} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edges at scale. In the context of our current research, this could be thought of as representing achromatic double opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent color space and examine its applicability as a replacement of the aforementioned opponent processing of neural receptive fields.
 
 \textbf{// TODO} \textit{PARAGRAPH ON LAB OPPONENT COLOR SPACE}
 
