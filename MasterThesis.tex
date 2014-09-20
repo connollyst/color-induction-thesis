@@ -652,23 +652,22 @@ These models, though approaching different problems in different ways, can be co
 
 \textbf{//TODO} \textit{describe what exactly qualifies for 'colors', 'scales', and 'orientations' in this general comparison}
 
-\textbf{//TODO} \textit{add citations to Table \ref{tab:model-comparison}}
-
 \begin{table}
+    \label{tab:model-comparison}
     \centering
     \begin{threeparttable}
     \caption{Comparison of some of the relevant models. Each has very different goals, and thus takes a very different approach.}
     \begin{tabular}{rcccccc}
-        \multicolumn{1}{r|}{}                 & Proposed Model        & Li \cite{li:1999}     & Penacchio \cite{otazu:plosone} & Itti \cite{itti:1999} & Zhang            & Spitzer \\ \cline{1-7}
-        \multicolumn{1}{r|}{Dynamical}        & Y                      & Y                    & Y                              & N                     & N                & N               \\
-        \multicolumn{1}{r|}{Colors}           & Y                      & N                    & N                              & Y                     & Y                & Y               \\
-        \multicolumn{1}{r|}{Scales}           & Y                      & N                    & Y                              & Y                     & N                & N               \\
-        \multicolumn{1}{r|}{Orientations}     & Y                      & Y                    & Y                              & Y                     & N                & N               \\
-        \multicolumn{1}{r|}{SO}               & Y                      & N                    & N                              & Y                     & Y                & Y               \\
-        \multicolumn{1}{r|}{DO}               & Y                      & N                    & Y (achromatic)                 & Y                     & Y                & Y               \\
-        \multicolumn{1}{r|}{SO RF}            & Gaussian / DWT         & N/A                  & N/A                            & Gaussian Pyramid      & None             & Gaussian        \\
-        \multicolumn{1}{r|}{DO RF}            & Gabor-like / DWT       & N/A                  & DWT                            & Gaussian Pyramid      & None             & Gabor           \\
-        \multicolumn{1}{r|}{Goal}             & Color Induction        & Saliency             & Brightness Induction           & Saliency              & Color Descriptor & Color Induction
+        \multicolumn{1}{r|}{}                 & Proposed Model        & Li \cite{li:1999}     & Penacchio \cite{otazu:plosone} & Itti \cite{itti:1999} & Zhang \cite{zhang:2012} & Spitzer \cite{spitzer:2005} \\ \cline{1-7}
+        \multicolumn{1}{r|}{Dynamical}        & Y                      & Y                    & Y                              & N                     & N                       & N               \\
+        \multicolumn{1}{r|}{Colors}           & Y                      & N                    & N                              & Y                     & Y                       & Y               \\
+        \multicolumn{1}{r|}{Scales}           & Y                      & N                    & Y                              & Y                     & N                       & N               \\
+        \multicolumn{1}{r|}{Orientations}     & Y                      & Y                    & Y                              & Y                     & N                       & N               \\
+        \multicolumn{1}{r|}{SO}               & Y                      & N                    & N                              & Y                     & Y                       & Y               \\
+        \multicolumn{1}{r|}{DO}               & Y                      & N                    & Y (achromatic)                 & Y                     & Y                       & Y               \\
+        \multicolumn{1}{r|}{SO RF}            & Gaussian / DWT         & N/A                  & N/A                            & Gaussian Pyramid      & None                    & Gaussian        \\
+        \multicolumn{1}{r|}{DO RF}            & Gabor-like / DWT       & N/A                  & DWT                            & Gaussian Pyramid      & None                    & Gabor           \\
+        \multicolumn{1}{r|}{Goal}             & Color Induction        & Saliency             & Brightness Induction           & Saliency              & Color Descriptor        & Color Induction
     \end{tabular}
     \begin{tablenotes}
         \item In the interest of clarity, the categories are defined below.
@@ -685,7 +684,6 @@ These models, though approaching different problems in different ways, can be co
         \end{tabular}
     \end{tablenotes}
     \end{threeparttable}
-    \label{tab:model-comparison}
 \end{table}
 
 To summarize, the purpose of this project is to \textbf{feed opponent color information into a neurodynamical model} sensitive to edges \& surfaces in a biologically inspired manner.
