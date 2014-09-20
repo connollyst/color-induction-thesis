@@ -848,13 +848,14 @@ As all color channels are $0$ centered, we can easily split them into independen
 
 \subsection*{Neurodynamical Processing}
 
-We've described two processes for transforming raw data into reasonable input to the neurodynamical model. Each has their pros and cons, but both are applicable, as could be others. In any case, the chromatic and achromatic SO and DO information is used as input, conceptually, neural stimulation. The model then processes the dynamic interactions between the neurons in order to propagate contextual effects where applicable.
+Stage I of the proposed method focuses on the description of color in a biologically meaningful form, of which we've described two distinct approaches. Stage II is to further process this data in an iterative computational model of neurodynamical processes. The input to Stage II is the output of Stage I.
 
-\textbf{//TODO} \textit{PARAGRAPH ON RETINOTOPIC ($X_{i}\gamma\sigma\theta$)}
+The input stimulus at time $\tau$, $I^\tau_{i\gamma\sigma\theta}$ drives the model and mainly determines its response. The normalization of the input stimulus at each time step is extended from that proposed by Li \cite{li:1999} and Penacchio \cite{otazu:plosone} to normalize within each opponent color channel ($\gamma$), scale ($\sigma$), and orientation ($\theta$). At the first time step of the algorithm, $I^1_{i\gamma\sigma\theta}$ is used to bootstrap the model and set as the initial excitation response, $x_{i\gamma\sigma\theta}$.
 
-The model processes input in a retinotopic manner. That is, neurons are laid out in physical corresponde
+$x_{i\gamma\sigma\theta}$ can be viewed as a representation of retinotopic excitation hypercolumns in V1, and $y_{i\gamma\sigma\theta}$ its inhibitory counterpart. A cell can interact with another by exciting it or inhibiting it, via monosynaptic excitation through excitatory-excitatory horizontal connections, or disynaptic inhibition through excitatory-inhibitory connections, respectively. Such interactions are modeled between cells within and across hypercolumns; color, scale, and orientation, as well as between cells within and across CO-blobs and patches; double-opponent and single-opponent.
 
-\textbf{//TODO} \textit{PARAGRAPH ON MULTIPLE FEATURES AT EACH POSITION (hypercolumn of $\gamma, \sigma, \& \theta$)}
+These neural interactions are defined by $J_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}$ (excitatory) and $W_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}$ (inhibitory).
+
 
 \textbf{//TODO} \textit{PARAGRAPH ON INTERACTION MAPS (J \& W)}
 
@@ -866,20 +867,20 @@ The model processes input in a retinotopic manner. That is, neurons are laid out
 
 \begin{equation}
 \begin{cases} 
-\dot{x}_{i\gamma\sigma\theta} = - \alpha_{x}X_{i\gamma\sigma\theta} \\
+\dot{x}_{i\gamma\sigma\theta} = - \alpha_{x}x_{i\gamma\sigma\theta} \\
     & - g_y(y_{i\gamma\sigma\theta}) \\
     & - \sum\nolimits_{\gamma' \neq \text{opp($\gamma$)},\Delta_{\sigma},\Delta_{\theta} \neq 0}
         \Psi(\gamma',\Delta_{\sigma},\Delta_{\theta})
         g_y(y_{i\gamma\sigma + \Delta_{\sigma\theta} + \Delta_{\theta}})
-        + J_0(g_x(X_{i\gamma\sigma\theta})) \\
+        + J_0(g_x(x_{i\gamma\sigma\theta})) \\
     & + \sum\nolimits_{j \neq i,\gamma',\sigma'\theta'}
-        J_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}g_x(X_{j\gamma'\sigma'\theta'})) \\
-    & + I_{i\gamma\sigma\theta} \\
+        J_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}g_x(x_{j\gamma'\sigma'\theta'})) \\
+    & + I^\tau_{i\gamma\sigma\theta} \\
     & + I_0 \\
 \dot{y}_{i\gamma\sigma\theta} = - \alpha_{y}Y_{i\gamma\sigma\theta} \\
     & + g_x(X_{i\gamma\sigma\theta}) \\
     & + \sum\nolimits_{j \neq i, \gamma'\sigma'\theta'}
-        W_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}g_x(X_{j\gamma'\sigma'\theta'}) \\
+        W_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}g_x(x_{j\gamma'\sigma'\theta'}) \\
     & + I_{c}
 \end{cases}
 \end{equation}
