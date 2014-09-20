@@ -154,6 +154,11 @@
 %
 % You can find documentation about the pdfTeX application at:
 % http://www.tug.org/applications/pdftex
+\usepackage{tikz}
+% TikZ enabled us to draw graphics directly in LaTeX
+\usepackage{color}
+\definecolor{sunset}{rgb}{0.96, 0.28, 0.28}
+\definecolor{gossip}{rgb}{0.54, 0.83, 0.48}
 
 
 
@@ -498,6 +503,48 @@ In so called color preferring single-opponent cells, the cone inputs to the cent
 
 
 As mentioned, one of the three axes of the opponent process theory is lightness vs darkness. This is achieved by single-opponent cells by balancing the inputs into the \textit{on} center and the \textit{off} surround. By including equal input of L, M, and S cones into the center and surround, the cells becomes 'color blind' and instead only responds to changes in luminosity. Sometimes incorrectly labeled as non-opponent cells, these neurons are, indeed, single-opponent cells.
+
+\setlength{\unitlength}{0.8cm}
+\begin{figure}[H]
+\subfloat[Symmetric Balanced]  {
+\begin{picture}(5,10)(0,-5)
+    \thicklines
+    % Upper Gaussian
+    \color{sunset}
+    \qbezier(0,0)(1,0)(1.25,2)
+    \qbezier(1.25,2)(1.5,3.5)(1.75,2)
+    \qbezier(1.75,2)(2,0)(3,0)
+    % Lower Gaussian
+    \color{gossip}
+    \qbezier(0,0)(1,0)(1.25,-2)
+    \qbezier(1.25,-2)(1.5,-3.5)(1.75,-2)
+    \qbezier(1.75,-2)(2,0)(3,0)
+    \color{black}
+    \put(0,0){\line(1,0){3}}
+\end{picture}}
+\subfloat[Symmetric Balanced]  {
+\begin{picture}(5,10)(0,-5)
+    \thicklines
+    % Upper Gaussian
+    \color{sunset}
+    \qbezier(0,0)(1,0)(1.25,2)
+    \qbezier(1.25,2)(1.5,3.5)(1.75,2)
+    \qbezier(1.75,2)(2,0)(3,0)
+    % Lower Gaussian
+    \color{gossip}
+    \qbezier(0,0)(1,0)(1.25,-0.75)
+    \qbezier(1.25,-0.75)(1.5,-1)(1.75,-0.75)
+    \qbezier(1.75,-0.75)(2,0)(3,0)
+    \color{black}
+    \put(0,0){\line(1,0){3}}
+\end{picture}}
+\end{figure}
+
+\begin{tikzpicture}
+    \filldraw[blue, very thick]                        (0.0,0.0) rectangle (3, 2);
+    \filldraw[color=red!60,   fill=red!5,   very thick](0.0,0.7) ellipse   (1 and 0.3);
+    \filldraw[color=green!60, fill=green!5, very thick](0.0,0.0) ellipse   (1 and 0.3);
+\end{tikzpicture}
 
 \textbf{//TODO} \textit{add image depicting example receptive field(s)}
 
