@@ -658,7 +658,7 @@ These models, though approaching different problems in different ways, can be co
     \begin{threeparttable}
     \caption{Comparison of some of the relevant models. Each has very different goals, and thus takes a very different approach.}
     \begin{tabular}{rcccccc}
-        \multicolumn{1}{r|}{}                 & Proposed Model        & Li \cite{li:1999}     & Penacchio \cite{otazu:plosone} & Itti \cite{itti:1999} & Zhang \cite{zhang:2012} & Spitzer \cite{spitzer:2005} \\ \cline{1-7}
+        \multicolumn{1}{r|}{}                 & Proposed Model        & Li \cite{li:1999}     & Penacchio \cite{penacchio:2013} & Itti \cite{itti:1998} & Zhang \cite{zhang:2012} & Spitzer \cite{spitzer:2005} \\ \cline{1-7}
         \multicolumn{1}{r|}{Dynamical}        & Y                      & Y                    & Y                              & N                     & N                       & N               \\
         \multicolumn{1}{r|}{Colors}           & Y                      & N                    & N                              & Y                     & Y                       & Y               \\
         \multicolumn{1}{r|}{Scales}           & Y                      & N                    & Y                              & Y                     & N                       & N               \\
@@ -846,7 +846,7 @@ As all color channels are $0$ centered, we can easily split them into independen
 
 \subsection*{Neurodynamical Processing}
 
-Stage I of the proposed method focuses on the description of color in a biologically meaningful form, of which we've described two distinct approaches. Stage II is to further process this data in an iterative computational model of neurodynamical processes, as defined in Equations \ref{eq:delta-x} and \ref{eq:delta-y}. The input stimulus, from Stage I, at time $\tau$, $I^\tau_{i\gamma\sigma\theta}$ drives the model and mainly determines its response. The normalization of the stimulus at each time step is extended from that proposed by Li \cite{li:1999} and Penacchio \cite{otazu:plosone}. We normalize within each color channel ($\gamma$), scale ($\sigma$), and orientation ($\theta$). At the first time step, $I^1_{i\gamma\sigma\theta}$ is used to bootstrap the model and set as the initial excitation response, $x_{i\gamma\sigma\theta}$.
+Stage I of the proposed method focuses on the description of color in a biologically meaningful form, of which we've described two distinct approaches. Stage II is to further process this data in an iterative computational model of neurodynamical processes, as defined in Equations \ref{eq:delta-x} and \ref{eq:delta-y}. The input stimulus, from Stage I, at time $\tau$, $I^\tau_{i\gamma\sigma\theta}$ drives the model and mainly determines its response. The normalization of the stimulus at each time step is extended from that proposed by Li \cite{li:1999} and Penacchio \cite{penacchio:2013}. We normalize within each color channel ($\gamma$), scale ($\sigma$), and orientation ($\theta$). At the first time step, $I^1_{i\gamma\sigma\theta}$ is used to bootstrap the model and set as the initial excitation response, $x_{i\gamma\sigma\theta}$.
 
 $x_{i\gamma\sigma\theta}$ can be viewed as a model of retinotopic excitation hypercolumns in V1, $i$ defining the retinotopic location of the hypercolumn. Similarly, $y_{i\gamma\sigma\theta}$ may be interpreted as its retinotopic inhibitory counterpart. $\dot{x}_{i\gamma\sigma\theta}$ and $\dot{y}_{i\gamma\sigma\theta}$, then, are the change in excitatory and inhibitory membrane potentials, respectively, and follow the equations:
 \begin{align}
@@ -873,22 +873,22 @@ $x_{i\gamma\sigma\theta}$ can be viewed as a model of retinotopic excitation hyp
 where $\alpha_{x}x_{i\gamma\sigma\theta}$ and $\alpha_{y}Y_{i\gamma\sigma\theta}$ model the decay to the resting potential, $g_x(x)$ and $g_y(y)$ are sigmoid-like functions modeling cells' firing rates in response to membrane potentials $x$ and $y$, respectively, $\Psi(\gamma',\Delta_{\sigma},\Delta_{\theta}) \leq 1$ is the spread of inhibition within a hypercolumn, $J_0g_x(x_{i\gamma\sigma\theta})$ is self-excitation, and $I_c$ is background noise \cite{li:1999}.
 
 \subsubsection*{Orientation ($\theta$)}
-Any cell can interact with another by exciting it or inhibiting it, via monosynaptic excitation through excitatory-excitatory horizontal connections, or disynaptic inhibition through excitatory-inhibitory connections, respectively \cite{otazu:plosone}. Such interactions are modeled between cells within and across hypercolumns; color, scale, and orientation, as well as between cells within and across cell classes; double-opponent and single-opponent.
+Any cell can interact with another by exciting it or inhibiting it, via monosynaptic excitation through excitatory-excitatory horizontal connections, or disynaptic inhibition through excitatory-inhibitory connections, respectively \cite{penacchio:2013}. Such interactions are modeled between cells within and across hypercolumns; color, scale, and orientation, as well as between cells within and across cell classes; double-opponent and single-opponent.
 
-These cellular interactions are defined by $J_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}$ (excitatory) and $W_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}$ (inhibitory). The excitatory and inhibitory interactions between double-opponent cells are exactly as those defined by Penacchio \cite{otazu:plosone} and Li \cite{li:1999}. Single-opponent cells, introduced in our work, are non-directional; they have no preferred orientation $\theta$. $\Delta\theta$ is thus not computable and so this class of cells do not \textit{inhibit} the activity of other cells. Single-opponent cells do not contribute to $W$. In order to explore 'fill in' effects, however, we support parameterization of \textit{excitatory} weights to and from single-opponent and double-opponent cells. These interactions are modeled by a circular-symmetric gaussian in $J$.
+These cellular interactions are defined by $J_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}$ (excitatory) and $W_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}$ (inhibitory). The excitatory and inhibitory interactions between double-opponent cells are exactly as those defined by Penacchio \cite{penacchio:2013} and Li \cite{li:1999}. Single-opponent cells, introduced in our work, are non-directional; they have no preferred orientation $\theta$. $\Delta\theta$ is thus not computable and so this class of cells do not \textit{inhibit} the activity of other cells. Single-opponent cells do not contribute to $W$. In order to explore 'fill in' effects, however, we support parameterization of \textit{excitatory} weights to and from single-opponent and double-opponent cells. These interactions are modeled by a circular-symmetric gaussian in $J$.
 
 \subsubsection*{Scale ($\sigma$)}
-As in Penacchio \cite{otazu:plosone}, we decompose the input signal into signal at different scales. This reflect single-opponent and double-opponent cells' spatial frequency selectivity derived from their receptive fields. While this confers a level of scale invariance to the model, the primate visual cortex is not completely scale invariant and nor should our model be. Both image transformation methods presented in Stage I inherently represent activity at lower spatial frequencies with higher response.
+As in Penacchio \cite{penacchio:2013}, we decompose the input signal into signal at different scales. This reflect single-opponent and double-opponent cells' spatial frequency selectivity derived from their receptive fields. While this confers a level of scale invariance to the model, the primate visual cortex is not completely scale invariant and nor should our model be. Both image transformation methods presented in Stage I inherently represent activity at lower spatial frequencies with higher response.
 
 \subsubsection*{Color ($\gamma$)}
-We introduce a novel concept to the neurodynamical model framework developed by Li \cite{li:1999} and Penacchio \cite{otazu:plosone}: color. Unfortunately, the structural organization of color preferring cells and the connections between them is not well understood and leading theories are still quite controversial \cite{shapley:2011}. We herein define a set of \textit{logical} rules of interaction opponent color cells (including achromatic cells).
+We introduce a novel concept to the neurodynamical model framework developed by Li \cite{li:1999} and Penacchio \cite{penacchio:2013}: color. Unfortunately, the structural organization of color preferring cells and the connections between them is not well understood and leading theories are still quite controversial \cite{shapley:2011}. We herein define a set of \textit{logical} rules of interaction opponent color cells (including achromatic cells).
 
 If a cell is stimulated, it excites nearby cells of the same orientation and scale preference, in any color channel other than its opponent. Conversely, a stimulated cell will inhibit nearby cells of the same orientation and scale preference, only in its opponent color channel. For example, stimulation of a DO cell preferring 'yellow' vertical edges will excite a DO cell preferring 'red' vertical edges at the same location. It will equally excite 'green', 'light', and 'dark' cells preferring the same orientation in the same location. It will not, however, excite cells of its opponent color 'blue'. In fact, it will inhibit activity in 'blue' cells preferring this same orientation in the same location.
 
 We propose that these rules of interaction are logical as only opponent colors are mutually exclusive. While a bluish yellow line is not permissible in the opponent colorspace, a bluish green, bluish red, bright blue, or dark blue line is entirely plausible. Each of the possible combinations are equally probable and so the excitatory-excitatory connections between cells of these color preferences are equally weighed. These excitatory and inhibitory rules are encoded in $J$ and $W$, respectively.
 
 \subsubsection*{Activity Normalization ($I_0$)}
-The general and local normalization of activities \cite{heeger:1992} has been extended from its used by Li \cite{li:1999} and Penacchio \cite{otazu:plosone}. We normalize excitatory membrane potentials within double-opponent cells of similar location ($i$), color ($\gamma$), scale ($\sigma$), and orientation ($\theta$) preferences. Likewise we normalize single-opponent cells of similar location ($i$), color ($\gamma$), scale ($\sigma$). We found it important to normalize the activity of these two classes of neurons independently as the information encoded by each is radically different: localized edge information by double-opponent cells, and extensive surface information by single-opponent cells.
+The general and local normalization of activities \cite{heeger:1992} has been extended from its used by Li \cite{li:1999} and Penacchio \cite{penacchio:2013}. We normalize excitatory membrane potentials within double-opponent cells of similar location ($i$), color ($\gamma$), scale ($\sigma$), and orientation ($\theta$) preferences. Likewise we normalize single-opponent cells of similar location ($i$), color ($\gamma$), scale ($\sigma$). We found it important to normalize the activity of these two classes of neurons independently as the information encoded by each is radically different: localized edge information by double-opponent cells, and extensive surface information by single-opponent cells.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1116,20 +1116,11 @@ The general and local normalization of activities \cite{heeger:1992} has been ex
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{1}
 
-\bibitem{chualupa:encyclopedia}
-  Shapley, Robert, Michael Hawken, and Elizabeth Johnson.
-  \emph{Color in the Primary Visual Cortex}.
-  The Visual Neurosciences. Vol. 2.
-  Cambridge, Mass.: MIT, 2004.
-  568-86.
-  Print.
-
-\bibitem{otazu:plosone}
-  Olivier Penacchio, Xavier Otazu, and Laura Dempere-Marco.
-  \emph{A Neurodynamical Model of Brightness Induction in V1}.
-  PLoS ONE 8.5 (2013): E64086.
-  Web.
-
+\bibitem{itti:1998}
+    Laurent Itti, Christof Koch, and Ernst Niebur.
+    \emph{A Model of Saliency-Based Visual Attention for Rapid Scene Analysis}.
+    IEEE Transactions on Pattern Analysis and Machine Intelligence, 20.11 (1999). 1254-1259.
+  
 \bibitem{li:1998}
   Zhaoping Li.
   \emph{A Neural Model of Contour Integration in the Primary Visual Cortex}.
@@ -1140,6 +1131,28 @@ The general and local normalization of activities \cite{heeger:1992} has been ex
   \emph{Visual Segmentation by Contextual Influences via Intra-cortical Interactions in the Primary Visual Cortex}.
   Network: Computation in Neural Systems 10.2 (1999): 187-212.
 
+\bibitem{penacchio:2013}
+  Olivier Penacchio, Xavier Otazu, and Laura Dempere-Marco.
+  \emph{A Neurodynamical Model of Brightness Induction in V1}.
+  PLoS ONE 8.5 (2013): E64086.
+
+\bibitem{chualupa:encyclopedia}
+  Shapley, Robert, Michael Hawken, and Elizabeth Johnson.
+  \emph{Color in the Primary Visual Cortex}.
+  The Visual Neurosciences. Vol. 2.
+  Cambridge, Mass.: MIT, 2004.
+  568-86.
+
+\bibitem{spitzer:2005}
+    Hedva Spitzer, Yuval Barkan.
+    \emph{Computational adaptation model and its predictions for color induction of first and second orders}.
+    Vision Research 45.27 (2005). 3323–3342.
+
+\bibitem{zhang:2012}
+    Jun Zhang, Youssef Barhomi, and Thomas Serre.
+    \emph{A new biologically inspired color image descriptor}.
+    Computer Vision – ECCV 2012
+    Lecture Notes in Computer Science Volume 7576, 2012, pp 312-324.
     
 \end{thebibliography}
 
