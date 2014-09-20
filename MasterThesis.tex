@@ -794,7 +794,7 @@ It is important to note that the L \& D opponent channels do not incorporate sur
     \end{itemize}
     \item PRO: more receptive field control (explicit RF definitions)
     \item CON: requires tweaking of receptive fields
-    \item PRO: more true to biology (combination of signal rather than numeric transformation of color space)
+    \item PRO: more true to biology (combination of signal rather than numeric transformation of colorspace)
     \item CON: requires decision on meaningful RGB combination (should be elucidated from biology)
     \begin{itemize}
         \item Pre-transformation to LMS might be valuable/meaningful.
@@ -811,7 +811,7 @@ This first of two approaches to color representation aims to be true to the biol
 
 \subsection{Discrete Wavelet Transform in Opponent Colorspace}
 
-Previous work by Penacchio \textit{et al.} \cite{otazu:plosive} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edge components, at scales. In the context of our current research, this could be thought of as representing achromatic double-opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent color space and examine its applicability as a replacement of the previously detailed \textit{Opponent Processing of Neural Receptive Fields}.
+Previous work by Penacchio \textit{et al.} \cite{otazu:plosive} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edge components, at scales. In the context of our current research, this could be thought of as representing achromatic double-opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent colorspace and examine its applicability as a replacement of the previously detailed \textit{Opponent Processing of Neural Receptive Fields}.
 
 \subsubsection*{Opponent Colorspace}
 This transformation begins, not with the convolution step, but instead with a colorspace transformation. We convert the image from RGB to \textit{CIE} $L^*a^*b^*$. This colorspace separates luminance from it's two opponent color channels. The two color channels are $0$ centered, with both positive and negative values possible. The luminance channel, $L^*$, scales from $0$ to $100$, $0$ being total darkness, $100$ being pure brightness. We subtract $50$ from this channel to obtain a $0$ centered range of luminance. We consider positive values to define 'lightness' and negative values 'darkness'. From the opponent color channels, we take positive values in the $a^*$ channel as denoting 'redness' and negative values 'greenness', while positive values in the $b^*$ channel indicate 'blueness' and negative values 'yellowness'.
@@ -864,7 +864,7 @@ We introduce a novel concept to the neurodynamical model framework developed by 
 
 If a cell is stimulated, it excites nearby cells of the same orientation and scale preference, in any color channel other than its opponent. Conversely, a stimulated cell will inhibit nearby cells of the same orientation and scale preference, only in its opponent color channel. For example, stimulation of a DO cell preferring 'yellow' vertical edges will excite a DO cell preferring 'red' vertical edges at the same location. It will equally excite 'green', 'light', and 'dark' cells preferring the same orientation in the same location. It will not, however, excite cells of its opponent color 'blue'. In fact, it will inhibit activity in 'blue' cells preferring this same orientation in the same location.
 
-We propose that these rules of interaction are logical as only opponent colors are mutually exclusive. While a bluish yellow line cannot be perceived by humans, a bluish green, bluish red, bright blue, or dark blue line is entirely plausible. Each of the possible combinations are equally probable and so the excitatory-excitatory connections between cells of these color preferences are equally weighed. These excitatory and inhibitory rules are encoded in $J$ and $W$, respectively.
+We propose that these rules of interaction are logical as only opponent colors are mutually exclusive. While a bluish yellow line is not permissible in the opponent colorspace, a bluish green, bluish red, bright blue, or dark blue line is entirely plausible. Each of the possible combinations are equally probable and so the excitatory-excitatory connections between cells of these color preferences are equally weighed. These excitatory and inhibitory rules are encoded in $J$ and $W$, respectively.
 
 \begin{align}
     \dot{x}_{i\gamma\sigma\theta} &= \begin{aligned}[t]
