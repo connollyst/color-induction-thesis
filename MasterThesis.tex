@@ -478,7 +478,9 @@ With respect to cells in the early visual system, we specifically use opponency 
 
 \subsection*{Single-Opponent Neurons}
 
-Single-opponent neurons are built using the classical center/surround receptive fields. The ON receptive field exciting the cell when presented with a particular color in the center, the OFF receptive field inhibiting the cell when another color is present in the surround, or exciting it when that color is \textit{removed} from the surround. This other color is called its opponent, and thus colors come in \textit{opponent pairs}. In the human visual system, we recognize three axes of color opponency: red vs. green, blue vs. yellow, and light vs. dark. To construct such concepts of color, we contrast activity of our three types of cone cells, each having its own specific spectral response function. By contrasting relative activity with neighboring cones, the retina can already begin to construct signal resembling psychological concepts of color. \textbf{//TODO} \textit{What a mess.. see how others explain this.}
+Single-opponent cells are a class of neurons in the early visual system which respond best to large areas of color and/or luminance. Their behavior is achieved by constructing classical center-surround receptive fields. The center receptive field serves as the \textit{on} input, exciting the cell when presented with a particular color, while the surround receptive field serves as the \textit{off} input, inhibiting the cell when another color is present or exciting it when that color is \textit{removed}. These center and surround receptive fields may involve very few retinal cones, or may span many degrees of vision [cite Haake].
+
+In so called color preferring single-opponent cells, the cone inputs to the center and surround come from cones with different spectral response functions. By arranging input from different cones into antagonistic  receptive fields, we get a neuron which is sensitive to a particular 'opponent color'. In the human visual system, we recognize three axes of color opponency: redness vs. greenness, blueness vs. yellowness, and lightness vs. darkness. To construct such concepts of color, neurons in the visual pathway contrast activity of the three types of cone cells: those sensitive to long (L) wavelength light, those sensitive to medium (M) wavelength light, and those sensitive to short (S) wavelength light. By contrasting relative activity with neighboring L, M, and S cones, the retina itself can already begin to construct signal resembling psychological concepts of 'color'.
 
 \textbf{//TODO} \textit{add image of simple behavior: gradient response to isoluminant chromatic boundary}
 
@@ -494,17 +496,15 @@ Single-opponent neurons are built using the classical center/surround receptive 
     \label{fig:rf-so}
 \end{figure}
 
-\subsubsection*{Achromatic Single-Opponent Neurons}
 
-Sometimes called non-opponent cells, they have no chromatic nor spatial opponency. Instead, they amalgamate all color input in a balanced manner so as to only respond to changes in luminosity. Technically, we can consider non-opponent cells to be a special case of single-opponent cells.
-
-\textbf{//TODO} are NO cells the same as SO cells? What about achromatic double-opponent cells?
+As mentioned, one of the three axes of the opponent process theory is lightness vs darkness. This is achieved by single-opponent cells by balancing the inputs into the \textit{on} center and the \textit{off} surround. By including equal input of L, M, and S cones into the center and surround, the cells becomes 'color blind' and instead only responds to changes in luminosity. Sometimes incorrectly labeled as non-opponent cells, these neurons are, indeed, single-opponent cells.
 
 \textbf{//TODO} \textit{add image depicting example receptive field(s)}
 
 \textbf{//TODO} \textit{add image of simple behavior: gradient response to ((mono)chromatic) intensity changes}
 
 \textbf{//TODO} \textit{add image of simple behavior: no response to isoluminant chromatic boundaries}
+
 
 \subsection*{Double-Opponent Neurons}
 
