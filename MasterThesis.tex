@@ -435,7 +435,7 @@ primary visual cortex, striate cortex, V1, receptive field, single-opponent, dou
 
 % TODO perhaps the distinction between physical color and perception color is valuable here?
 
-\IEEEPARstart{C}{odor} induction and contrast are two related, opposing, perceptual phenomena. The former is a change in perceived color "toward" a nearby color, while the latter is a change of one color "away" from the nearby color. Neurophysiological research suggests that these phenomena may arise as early in primate vision as the primary visual cortex (V1). It is proposed that the boundaries between two colored regions drive these effects. Specifically, research in the field describes neurons which fire selectively to boundaries between certain colors, so called double-opponent cells, and identifies them as being critically related to the color perceived.
+\IEEEPARstart{C}{olor} induction and contrast are two related, opposing, perceptual phenomena. The former is a change in perceived color "toward" a nearby color, while the latter is a change of one color "away" from the nearby color. Neurophysiological research suggests that these phenomena may arise as early in primate vision as the primary visual cortex (V1). It is proposed that the boundaries between two colored regions drive these effects. Specifically, research in the field describes neurons which fire selectively to boundaries between certain colors, so called double-opponent cells, and identifies them as being critically related to the color perceived.
 
 Within, we propose a computational model designed around the current understanding of this biology. We present two implementations, one more biologically accurate, and another more computationally elegant. We explore the behavior of these models with respect to what they can teach us about the assumed biological theories, as well as their application to the field of computer vision.
 
@@ -452,13 +452,9 @@ Within, we propose a computational model designed around the current understandi
 
 \subsection{Neurobiology}
 
-
-\textbf{//TODO} This understanding treats color and shape as intrinsically connected and, as a consequence, predicts perceptual phenomena such as color induction to arise very early in visual processing.
-
 Historically, it was widely believed that color and shape are two distinct aspects of visual perception. Truly, this line of though is intuitive: one can perceive the color of a flat surface which occupies our full field of vision, despite its lack of 'shape', likewise we can see the shape of achromatic objects, as in black and white film. This theory of perception innervated neurophysiological understanding and was supported by neurobiological findings, such as that the lateral geniculate nucleus (LGN), the pathway which carries information from the retina to the primary visual cortex (V1), consists of three entirely distinct layers; two (the parvicellular and konicellular) carrying only color information, and one (the magnocellular) dealing purely in achromatic contrast (edge) information. Based on early anatomical observations, it was proposed that these three LGN pathways for color and contrast are then processed into two separate streams in V1, one for color and the other for form. This separate handling of color and form confirmed for researchers that, as suspected, these two perceptual concepts are processed separately in the brain.
 
-
-Research in the past decade or so has seen a shift from this thinking, however. Psychophysical observations, such as those in Figure \ref{fig:blur-effect}, influenced researchers to consider that color and form are more intrinsically related than previously thought. In these examples, we see that the perceived color of the inner square is highly dependent on the background and, most importantly, how the inner square \textit{contacts} the background. The color perceived is not just determined by the physical properties of the surface, but also by the context in which the surface is viewed. Furthermore, we can observe that this contextual influence comes largely from the boundary edges of the surface: in example (c), the dulling color assimilation effect witnessed in (b) is almost entirely negated by simply adding a thin border. That is, by removing contact between the inner square and the background, the effect of the context is significantly reduced. In fact, "the color appearance of a region may be more dependent on color contrast at the boundary of the region than it is on the spectral reflectance of the region's interior." \cite[p.572]{chualupa:encyclopedia}
+Research in the past decade or so has seen a shift from this thinking, however. Psychophysical observations, such as those in Figure \ref{fig:blur-effect}, influenced researchers to consider that color and form are more intrinsically related than previously thought. In these examples, we see that the perceived color of the inner square is highly dependent on the background and, most importantly, how the inner square \textit{contacts} the background. That is to say, the color perceived is not just determined by the physical properties of the surface itself, but also by the context in which the surface is viewed. Furthermore, we can observe that this contextual influence comes largely from the boundary edges of the surface: in example (c), the dulling color assimilation effect witnessed in (b) is almost entirely negated by simply adding a thin border. That is, by removing contact between the inner square and the background, the effect of the context is significantly reduced. In fact, "the color appearance of a region may be more dependent on color contrast at the boundary of the region than it is on the spectral reflectance of the region's interior." \cite[p.572]{chualupa:encyclopedia}
 
 \begin{figure}[H]
     \centering
@@ -473,14 +469,11 @@ Research in the past decade or so has seen a shift from this thinking, however. 
     \label{fig:blur-effect}
 \end{figure}
 
-With these psychophysical observations in mind, much research has been devoted to elucidating the exact neurobiological mechanisms behind the perception of color. The current view holds that while the LGN does indeed carry color and contrast information through distinct pathways to the striate cortex (V1), once there, color and form become deeply intertwined as they are processed further. To explain the simultaneous processing of color and form in V1, the literature proposes two broad classifications of neurons: single-opponent cells, \& double-opponent cells (Johnson et al. Color and Orientation in V1).
+With these psychophysical observations in mind, much research has been devoted to elucidating the exact neurobiological mechanisms behind the perception of color, and the influence of form in it. The current view holds that while the LGN does indeed carry color and contrast information through separate pathways to V1, once there, color and form become deeply intertwined as they are processed further. To explain the simultaneous processing of color and form in V1, the literature proposes two broad classifications of neurons: single-opponent cells, \& double-opponent cells (Johnson et al. Color and Orientation in V1).
 
-Opponency, in neurobiology, refers to antagonistic inputs of information: one source of input excits the neuron, while another inhibits it. If the two sources provide equal input, for example, they would cancel out and the neuron would not fire. 
-Furthermore, removal of stimuli from the antagonist input also excites the neuron. \textbf{//TODO} \textit{Discuss how this is ON/OFF.}
+Opponency, in neurobiology, refers to antagonistic inputs of information: one source of input excites the neuron, while another inhibits it. These two antagonistic components of opponency are commonly referred to as the \textit{on} and \textit{off} inputs to a neuron. One can think of these two inputs as being what the cell is 'looking for', \textit{on}, and what the cell is 'not looking for', \textit{off}. Intuitively, stimuli from the \textit{on} input excites the neuron, while stimuli from the \textit{off} input inhibits it. Perhaps less intuitively, removal of stimuli from the \textit{off} input also excites the neuron. This behavior is logical when you consider that the two antagonistic inputs typically represent mutually exclusive features. In this way, removal of the negative stimuli often means much the same as presence of the positive stimuli and thus, removal of such stimuli can contribute to excitation of the neuron. Of course, if equal stimuli are provided from both the \textit{on} and \textit{off} inputs, excitation is cancelled out by inhibition and the neuron does not fire. Lastly, recognize that any one neuron usually receives antagonistic input from, in fact, many other neurons. The aggregate stimuli from these excitatory and inhibitory input determines if the cell fires.
 
-\textbf{//TODO} \textit{Include examples of ON/OFF center surround}
-
-With respect to cells in the early visual system, we are here specifically referring to chromatic and spatial opponency, as will be detailed below. Briefly, single-opponent cells respond best to large areas of color, while double-opponent cells respond only to the boundaries between such areas.
+With respect to cells in the early visual system, we specifically use opponency to refer to chromatic and spatial opponency. We will now detail what this means, with specific examples of neurons' expected responses to various stimuli, as well as the implications of such response patterns. Briefly, however, consider that single-opponent cells respond best to large areas of color, while double-opponent cells respond only to the boundaries between such areas.
 
 
 \subsection*{Single-Opponent Neurons}
@@ -578,12 +571,6 @@ The implication is that for each retinal position, in V1 it is necessary to have
 \textbf{//TODO} \textit{PARAGRAPH ON PROPOSED CONNECTIONS BETWEEN DO \& SO}
 
 
-\subsection*{Neurobiology Summary}
-
-\textbf{//TODO} \textit{Summarize the key points from all THAT.}
-
-To recapitulate: single-opponent neurons fire best to full field stimulation while double-opponent neurons fire only at the boundaries between particular colors. Both cell types can be found in color preferring and achromatic flavors.
-
 \subsection{Computational Modeling:}
 
 The model described in this research is an extension of that presented by Penacchio \textit{et al.} \cite{otazu:plosive}, itself based on work by Z. Li \cite{li:1998, li:1999}. Before detailing our implementation, it is important to review prior art, these works and others. As our goal is to model the behavior of color preferring and achromatic single-opponent and double-opponent neurons, we will also review other computational endeavors tackling the issue of color and/or form from a biologically inspired perspective.
@@ -648,10 +635,11 @@ Their research was focused on observing brightness induction (BI) arising from s
 \end{itemize}
 
 \subsection*{Comparison of Models}
-Our current work is a direct continuation of the research presented in the first two of these computational models. The latter three represent but a small selection of the wealth of effort being put into computationally describing color in a biologically plausible manner. It is important to recognize that these five models each had different specific research goals and so do not intend to be directly compared to one another. We present them here to frame our current work. Table \ref{tab:model-comparison} describes how these vwe lay out the features which are implemented in our Proposed Model, and we contrast and compare the implementation of features in prior art. Here it is easy to see that the goal of our work is to combine the dynamical processing of Li and Penacchio with descriptions of color at scale and orientation inspired by the works of Itti, Zhang, and Spitzer.
+Our current work is a direct continuation of the research presented in the first two of these computational models. The latter three represent but a small selection of the wealth of effort being put into computationally describing color in a biologically plausible manner. It is important to recognize that these five models each had different specific research goals and so do not intend to be directly compared to one another. We present them here to frame our current work. Table \ref{tab:model-comparison} presents the features implemented in these models with respect to the goals of our work. This comparison elucidates our intentions: to bring biologically inspired descriptions of color to the neurodynamical processing model developed by Penacchio \cite{penacchio:2013} and Li \cite{li:1999}.
 
-\begin{table}
+\begin{table}[H] \label{tab:model-comparison}
     \centering
+    \caption{Comparison of computational models relevant to our current work.}
     \begin{threeparttable}
     \begin{tabular}{rcccccc}
         \multicolumn{1}{r|}{}             & Proposed Model   & Penacchio \cite{penacchio:2013} & Li \cite{li:1999} & Itti \cite{itti:1998} & Zhang \cite{zhang:2012} & Spitzer \cite{spitzer:2005} \\ \cline{1-7}
@@ -665,8 +653,6 @@ Our current work is a direct continuation of the research presented in the first
         \multicolumn{1}{r|}{DO RF}        & Gabor-like / DWT & DWT                             & N/A               & Gaussian Pyramid      & None                    & Gabor           \\
         \multicolumn{1}{r|}{Goal}         & Color Induction  & Brightness Induction            & Saliency          & Saliency              & Color Descriptor        & Color Induction
     \end{tabular}
-    \label{tab:model-comparison}
-    \caption{Comparison of computational models relevant to our current work.}
     \begin{tablenotes}
         \item In the interest of clarity, the categories are defined below.
         \begin{tabular}{p{1.5cm} r l}
@@ -684,15 +670,23 @@ Our current work is a direct continuation of the research presented in the first
     \end{threeparttable}
 \end{table}
 
-To summarize, the purpose of this project is to \textbf{feed opponent color information into a neurodynamical model} sensitive to edges \& surfaces in a biologically inspired manner.
+
+\subsection{State of the Art Summary}
 
 \textbf{//TODO} \textit{We need to properly summarize the State of the Art before proceeding.}
 \begin{itemize}
-    \item What does the biology predict?
-    \item What have computational models done?
-    \item Where do computational models fall short? (A: no dynamical color model)
-    \item Thus, where does our work fit into the field?
+    \item bleh
+    \begin{itemize}
+        \item What does the biology predict?
+        \item What have computational models done?
+        \item Where do computational models fall short? (A: no dynamical color model)
+        \item Thus, where does our work fit into the field?
+    \end{itemize}
+    \item To recapitulate: single-opponent neurons fire best to full field stimulation while double-opponent neurons fire only at the boundaries between particular colors. Both cell types can be found in color preferring and achromatic flavors.
+    \item \textbf{//TODO} This understanding treats color and shape as intrinsically connected and, as a consequence, predicts perceptual phenomena such as color induction to arise very early in visual processing.
+    \item The purpose of this project is to \textbf{feed opponent color information into a neurodynamical model} sensitive to edges \& surfaces in a biologically inspired manner.
 \end{itemize}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
