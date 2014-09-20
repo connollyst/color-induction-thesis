@@ -520,7 +520,7 @@ Double-opponent neurons are edge detectors.
 \textbf{Story:}
 Double-opponent neurons are a topic of confusion in the field of neurobiology. All researchers on the topic seem to agree that the input to the neuron is that of two single-opponent neurons itself. In this sense, the term "double-opponent" can be thought of as indicating that the dimensionality of color opponency has been doubled. However, another camp of researchers take the definition a step further and suggest that the two SO inputs are spatially offset. By this definition, the term "double-opponent" is thought to indicate that the cell is sensitive to opponency in two \textit{different} dimensions, color and space.
 
-The distinction is non-trivial as the response patterns differ, and thus the interpretation of their role in vision differs. Truely, both types of cells may, and likely do [\textbf{// TODO} \textit{Cite studies which find these cells}], exist in the primate visual system. However, for the purpose of our work we only consider the latter definition; double-opponent cells' receptive fields are both chromatically and spatially antagonistic.
+The distinction is non-trivial as the response patterns differ, and thus the interpretation of their role in vision differs. Truly, both types of cells may, and likely do [\textbf{// TODO} \textit{Cite studies which find these cells}], exist in the primate visual system. However, for the purpose of our work we only consider the latter definition; double-opponent cells' receptive fields are both chromatically and spatially antagonistic.
 
 \textbf{// TODO} \textbf{present the differences between the two DO configurations}
 
@@ -535,22 +535,19 @@ The distinction is non-trivial as the response patterns differ, and thus the int
 
 \subsubsection*{Orientation Selectivity}
 
-By the definition of double-opponent cells accepted here, they inherently response best to specific orientations. By arranging the components of the receptive field in a spatially antagonistic organization, there will be one orientation of edge which best stimulates the cell, and a perpendicular (\textbf{//TODO} \textit{correct term?}) orientation which least stimulates it.
+Research shows that cells identified as double-opponent are orientation selective. That is, they respond most strongly when stimulated by a border of particular orientation, less so with variation from that preferred orientation, and weekly, if at all, to borders orthogonal to the preferred orientation. This is intuitive given the organization of the receptive field as previously defined. By arranging the components of the receptive field to be spatially antagonistic, there will be one orientation of border which best separates the two components, and another orientation, precisely perpendicular (\textbf{//TODO} \textit{correct term?}), which does not separate the two components at all. This can be easily visualized, as in Figure \ref{fig:do-orient}.
 
-\textbf{//TODO} \textit{add image depicting vertical vs. diagonal vs. horizontal activity}
-
-Research shows that cells identified as double-opponent are orientation selective. That is, they respond most strongly when stimulated by a border of particular orientation, less so with variation from that preferred orientation, and weekly, if at all, to borders orthogonal to the preferred orientation. This is intuitive given the organization of the receptive field as previously defined.
-
-\textbf{// TODO} \textbf{describe Orientation Selectivity}
-
-\textbf{// TODO} \textit{add image depicting example receptive field(s)}
+\textbf{//TODO} \textit{add image depicting vertical vs. diagonal vs. horizontal receptive fields \& ideal vs. unideal stimuli}
 
 \textbf{// TODO} \textit{add image of simple behavior: peak activity AT sharp edge}
 
+\textbf{// TODO} \textit{PARAGRAPH ON SINGLE OPPONENT ORIENTATION SELECTIVITY (possible but not considered here)}
 
 \subsubsection*{Spatial Frequency Selectivity}
 
-It is recognized that
+Another important feature of double-opponent cells is that they are inherently sensitive to borders of specific size, or scale. Technically, we refer to such preference of 'scale' as a cell's spatial frequency selectivity. Each double-opponent neuron will be selective to a particular spatial frequency and excited less so by stimuli of spatial frequency deviating from this preference. Again, this is quite intuitively a product of the design of the neuron's receptive field and easily visualized, as in Figure \ref{fig:do-scale}.
+
+\textbf{// TODO} \textit{CONTRAST WITH SINGLE-OPPONENT'S LACK OF SPATIAL FREQ. SELECTIVITY (show Shapley's graphs)}
 
 
 \subsubsection*{Achromatic Double-Opponent Neurons}
@@ -568,7 +565,7 @@ To recapitulate: single-opponent neurons fire best to full field stimulation whi
 
 \subsection{Computational Modeling:}
 
-The model described in this research is an extension of that presented by Penacchio \textit{et al.} \cite{otazu:plosone}, itself based on work by Z. Li \cite{li:1998, li:1999}. Before detailing our implementation, it is important to review prior art, these works and others. As our goal is to model the behavior of color preferring and achromatic single-opponent and double-opponent neurons, we will also review other computational endeavors tackling the issue of color and/or form from a biologically inspired perspective.
+The model described in this research is an extension of that presented by Penacchio \textit{et al.} \cite{otazu:plosive}, itself based on work by Z. Li \cite{li:1998, li:1999}. Before detailing our implementation, it is important to review prior art, these works and others. As our goal is to model the behavior of color preferring and achromatic single-opponent and double-opponent neurons, we will also review other computational endeavors tackling the issue of color and/or form from a biologically inspired perspective.
 
 
 \subsection*{Li's Neurodynamical Model for Segmentation (1999)}
@@ -598,7 +595,7 @@ Their research was focused on observing brightness induction (BI) arising from s
     \item Extension of Z. Li's edge detection work
     \item Uses DWT to extract oriented edges in grayscale
     \begin{itemize}
-        \item ..in our context, it's essentially a luminence sensitive double-opponent cell.
+        \item ..in our context, it's essentially a luminance sensitive double-opponent cell.
     \end{itemize}
 \end{itemize}
 
@@ -702,7 +699,7 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
 
 Processing starts by convoluting each of the L, M, and S cone spectral response functions with two different gaussian filters. These convolutions simulate integration of information in a neuron's receptive field. One convolution is used to build the excitatory component of the receptive field (referred to as the center), the other convolution, the inhibitory (referred to as the surround).
 
-Single-opponent cells' receptive fields are the classical center-surround configuration: symmetric, centered, circular gaussians. Typically, the center is smaller and weighed significantly more heavily than the surround, as in Figure \ref{fig:rf-so} (c). Double-opponent receptive fields are markedly more complex: asymmetrical, off-center, elongated gaussian filters. Similarly, these filters can be adjusted to different sizes, shapes, and weights. For our tests we worked with symmetric balanced receptive fields, as in Figure \ref{fig:rf-do} (a).
+Single-opponent cells' receptive fields are the classical center-surround configuration: symmetric, centered, circular gaussians. Typically, the center is smaller and weighed significantly more heavily than the surround, as in Figure \ref{fig:rd-so} (c). Double-opponent receptive fields are markedly more complex: asymmetrical, off-center, elongated gaussian filters. Similarly, these filters can be adjusted to different sizes, shapes, and weights. For our tests we worked with symmetric balanced receptive fields, as in Figure \ref{fig:rd-do} (a).
 
 In our implementation, for convenience, we utilize the R, G, and B channels of the raw image as an approximation of L, M, and S cone activity, respectively. It should be noted that a preprocessing step could be performed to better match RGB to LMS so as to be more biologically consistent. The impact is likely negligible.
 
@@ -763,7 +760,7 @@ It is important to note that the L \& D opponent channels do not incorporate sur
 
 \subsection{Discrete Wavelet Transform in Opponent Colorspace}
 
-Previous work by Penacchio \textit{et al.} \cite{otazu:plosone} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edges at scale. In the context of our current research, this could be thought of as representing achromatic double-opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent color space and examine its applicability as a replacement of the previously detailed \textit{Opponent Processing of Neural Receptive Fields}.
+Previous work by Penacchio \textit{et al.} \cite{otazu:plosive} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edges at scale. In the context of our current research, this could be thought of as representing achromatic double-opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent color space and examine its applicability as a replacement of the previously detailed \textit{Opponent Processing of Neural Receptive Fields}.
 
 \textbf{// TODO} \textit{PARAGRAPH ON LAB OPPONENT COLOR SPACE}
 This transformation begins, not with the convolution step, but instead with a colorspace transformation. We convert the image from RGB to \textit{CIE} $L^*a^*b^*$. This colorspace separates luminance from it's two opponent color channels. The two color channels are $0$ centered, with both positive and negative values possible. The luminance channel, $L^*$, scales from $0$ to $100$, $0$ being total darkness, $100$ being pure brightness. We subtract $50$ from this channel to obtain a $0$ centered range of luminance. We consider positive values to define 'lightness' and negative values 'darkness'. From the opponent color channels, we take positive values in the $a^*$ channel as denoting 'redness' and negative values 'greenness', while positive values in the $b^*$ channel indicate 'blueness' and negative values 'yellowness'.
@@ -1048,7 +1045,7 @@ The model processes input in a retinotopic manner. That is, neurons are laid out
 
 
 % Can use something like this to put references on a page
-% by themselves when using endfloat and the captionsoff option.
+% by themselves when using end float and the captions off option.
 \ifCLASSOPTIONcaptionsoff
   \newpage
 \fi
@@ -1108,7 +1105,7 @@ The model processes input in a retinotopic manner. That is, neurons are laid out
 
 % biography section
 % 
-% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% If you have an EPS/PDF photo (graphics package needed) extra braces are
 % needed around the contents of the optional argument to biography to prevent
 % the LaTeX parser from getting confused when it sees the complicated
 % \includegraphics command within an optional argument. (You could create
