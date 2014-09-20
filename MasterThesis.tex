@@ -648,27 +648,25 @@ Their research was focused on observing brightness induction (BI) arising from s
 \end{itemize}
 
 \subsection*{Comparison of Models}
-These models, though approaching different problems in different ways, can be compared to each other in terms of our current work. In Table \ref{tab:model-comparison} we lay out the features which are implemented in our Proposed Model, and we contrast and compare the implementation of features in prior art. Here it is easy to see that the goal of our work is to combine the dynamical processing of Li and Penacchio with descriptions of color at scale and orientation inspired by the works of Itti, Zhang, and Spitzer.
-
-\textbf{//TODO} \textit{describe what exactly qualifies for 'colors', 'scales', and 'orientations' in this general comparison}
+Our current work is a direct continuation of the research presented in the first two of these computational models. The latter three represent but a small selection of the wealth of effort being put into computationally describing color in a biologically plausible manner. It is important to recognize that these five models each had different specific research goals and so do not intend to be directly compared to one another. We present them here to frame our current work. Table \ref{tab:model-comparison} describes how these vwe lay out the features which are implemented in our Proposed Model, and we contrast and compare the implementation of features in prior art. Here it is easy to see that the goal of our work is to combine the dynamical processing of Li and Penacchio with descriptions of color at scale and orientation inspired by the works of Itti, Zhang, and Spitzer.
 
 \begin{table}
-    \label{tab:model-comparison}
     \centering
     \begin{threeparttable}
-    \caption{Comparison of some of the relevant models. Each has very different goals, and thus takes a very different approach.}
     \begin{tabular}{rcccccc}
-        \multicolumn{1}{r|}{}                 & Proposed Model        & Li \cite{li:1999}     & Penacchio \cite{penacchio:2013} & Itti \cite{itti:1998} & Zhang \cite{zhang:2012} & Spitzer \cite{spitzer:2005} \\ \cline{1-7}
-        \multicolumn{1}{r|}{Dynamical}        & Y                      & Y                    & Y                              & N                     & N                       & N               \\
-        \multicolumn{1}{r|}{Colors}           & Y                      & N                    & N                              & Y                     & Y                       & Y               \\
-        \multicolumn{1}{r|}{Scales}           & Y                      & N                    & Y                              & Y                     & N                       & N               \\
-        \multicolumn{1}{r|}{Orientations}     & Y                      & Y                    & Y                              & Y                     & N                       & N               \\
-        \multicolumn{1}{r|}{SO}               & Y                      & N                    & N                              & Y                     & Y                       & Y               \\
-        \multicolumn{1}{r|}{DO}               & Y                      & N                    & Y (achromatic)                 & Y                     & Y                       & Y               \\
-        \multicolumn{1}{r|}{SO RF}            & Gaussian / DWT         & N/A                  & N/A                            & Gaussian Pyramid      & None                    & Gaussian        \\
-        \multicolumn{1}{r|}{DO RF}            & Gabor-like / DWT       & N/A                  & DWT                            & Gaussian Pyramid      & None                    & Gabor           \\
-        \multicolumn{1}{r|}{Goal}             & Color Induction        & Saliency             & Brightness Induction           & Saliency              & Color Descriptor        & Color Induction
+        \multicolumn{1}{r|}{}             & Proposed Model   & Penacchio \cite{penacchio:2013} & Li \cite{li:1999} & Itti \cite{itti:1998} & Zhang \cite{zhang:2012} & Spitzer \cite{spitzer:2005} \\ \cline{1-7}
+        \multicolumn{1}{r|}{Dynamical}    & Y                & Y                               & Y                 & N                     & N                       & N               \\
+        \multicolumn{1}{r|}{Colors}       & Y                & N                               & N                 & Y                     & Y                       & Y               \\
+        \multicolumn{1}{r|}{Scales}       & Y                & Y                               & N                 & Y                     & N                       & N               \\
+        \multicolumn{1}{r|}{Orientations} & Y                & Y                               & Y                 & Y                     & N                       & N               \\
+        \multicolumn{1}{r|}{SO}           & Y                & N                               & N                 & Y                     & Y                       & Y               \\
+        \multicolumn{1}{r|}{DO}           & Y                & Y \textit{(achromatic)}         & N                 & Y                     & Y                       & Y               \\
+        \multicolumn{1}{r|}{SO RF}        & Gaussian / DWT   & N/A                             & N/A               & Gaussian Pyramid      & None                    & Gaussian        \\
+        \multicolumn{1}{r|}{DO RF}        & Gabor-like / DWT & DWT                             & N/A               & Gaussian Pyramid      & None                    & Gabor           \\
+        \multicolumn{1}{r|}{Goal}         & Color Induction  & Brightness Induction            & Saliency          & Saliency              & Color Descriptor        & Color Induction
     \end{tabular}
+    \label{tab:model-comparison}
+    \caption{Comparison of computational models relevant to our current work.}
     \begin{tablenotes}
         \item In the interest of clarity, the categories are defined below.
         \begin{tabular}{p{1.5cm} r l}
