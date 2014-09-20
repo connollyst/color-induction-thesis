@@ -414,7 +414,7 @@ We present a computational model of color description \& processing in the prima
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-primary visual cortex, striate cortex, V1, receptive field, single opponent, double opponent, color assimilation, color induction
+primary visual cortex, striate cortex, V1, receptive field, single-opponent, double-opponent, color assimilation, color induction
 \end{IEEEkeywords}
 
 
@@ -434,7 +434,7 @@ primary visual cortex, striate cortex, V1, receptive field, single opponent, dou
 
 % TODO perhaps the distinction between physical color and perception color is valuable here?
 
-\IEEEPARstart{C}{olor} induction and contrast are two related, opposing, perceptual phenomena. The former is a change in perceived color "toward" a nearby color, while the latter is a change of one color "away" from the nearby color. Neurophysiological research suggests that these phenomena may arise as early in primate vision as the primary visual cortex (V1). It is proposed that the boundaries between two colored regions drive these effects. Specifically, research in the field describes neurons which fire selectively to boundaries between certain colors, so called double opponent cells, and identifies them as being critically related to the color perceived.
+\IEEEPARstart{C}{olor} induction and contrast are two related, opposing, perceptual phenomena. The former is a change in perceived color "toward" a nearby color, while the latter is a change of one color "away" from the nearby color. Neurophysiological research suggests that these phenomena may arise as early in primate vision as the primary visual cortex (V1). It is proposed that the boundaries between two colored regions drive these effects. Specifically, research in the field describes neurons which fire selectively to boundaries between certain colors, so called double-opponent cells, and identifies them as being critically related to the color perceived.
 
 Within, we propose a computational model designed around the current understanding of this biology. We present two implementations, one more biologically accurate, and another more computationally elegant. We explore the behavior of these models with respect to what they can teach us about the assumed biological theories, as well as their application to the field of computer vision.
 
@@ -472,17 +472,19 @@ Research in the past decade or so has seen a shift from this thinking, however. 
     \label{fig:blur-effect}
 \end{figure}
 
-With these psychophysical observations in mind, much research has been devoted to elucidating the exact neurobiological mechanisms behind the perception of color. The current view holds that while the LGN does indeed carry color and contrast information through distinct pathways to the striate cortex (V1), once there, color and form become deeply intertwined as they are processed further. To explain the simultaneous processing of color and form in V1, the literature proposes two broad classifications of neurons: single opponent cells, \& double opponent cells (Johnson et al. Color and Orientation in V1).
+With these psychophysical observations in mind, much research has been devoted to elucidating the exact neurobiological mechanisms behind the perception of color. The current view holds that while the LGN does indeed carry color and contrast information through distinct pathways to the striate cortex (V1), once there, color and form become deeply intertwined as they are processed further. To explain the simultaneous processing of color and form in V1, the literature proposes two broad classifications of neurons: single-opponent cells, \& double-opponent cells (Johnson et al. Color and Orientation in V1).
 
 Opponency, in neurobiology, refers to antagonistic inputs of information: one source of input excits the neuron, while another inhibits it. If the two sources provide equal input, for example, they would cancel out and the neuron would not fire. 
-\textit{furthermore, the removal of an antagonist can excite!}
-With respect to cells in the early visual system, we are here specifically referring to chromatic and spatial opponency, as will be detailed below. Briefly, single opponent cells respond best to large areas of color, while double opponent cells respond only to the boundaries between such areas.
+Furthermore, removal of stimuli from the antagonist input also excites the neuron. \textbf{//TODO} \textit{Discuss how this is ON/OFF.}
+
+\textbf{//TODO} \textit{Include examples of ON/OFF center surround}
+
+With respect to cells in the early visual system, we are here specifically referring to chromatic and spatial opponency, as will be detailed below. Briefly, single-opponent cells respond best to large areas of color, while double-opponent cells respond only to the boundaries between such areas.
 
 
-\subsection*{Single Opponent Neurons}
+\subsection*{Single-Opponent Neurons}
 
-Single opponent neurons are built using the classical center/surround receptive fields. The ON receptive field exciting the cell when presented with a particular color in the center, the OFF receptive field exciting the cell when another color is \textit{removed} from the surround. This other color is called its opponent, and thus colors come in opponent pairs. In the human visual system, we recognize three axes of color opponency: red vs. green, blue vs. yellow, and light vs. dark. To construct such concepts of color from the three cones we possess, limited in their ability to discriminate stimuli, ..? By contrasting relative activity with neighboring cones,  the retina can construct signal representative of psychological concepts of color.
-
+Single-opponent neurons are built using the classical center/surround receptive fields. The ON receptive field exciting the cell when presented with a particular color in the center, the OFF receptive field inhibiting the cell when another color is present in the surround, or exciting it when that color is \textit{removed} from the surround. This other color is called its opponent, and thus colors come in \textit{opponent pairs}. In the human visual system, we recognize three axes of color opponency: red vs. green, blue vs. yellow, and light vs. dark. To construct such concepts of color, we contrast activity of our three types of cone cells, each having its own specific spectral response function. By contrasting relative activity with neighboring cones, the retina can already begin to construct signal resembling psychological concepts of color. \textbf{// TODO} \textit{What a mess.. see how others explain this.}
 
 \textbf{// TODO} \textit{add image of simple behavior: gradient response to isoluminant chromatic boundary}
 
@@ -494,15 +496,15 @@ Single opponent neurons are built using the classical center/surround receptive 
     \subfloat[Symmetric Balanced]  {\includegraphics[width=160pt]{rf_so_1}}
     \subfloat[Symmetric Unbalanced]{\includegraphics[width=160pt]{rf_so_2}}
     \subfloat[Center/Surround]     {\includegraphics[width=160pt]{rf_so_3}}
-    \caption{Visualization of a variety of single opponent (SO) receptive fields.}
+    \caption{Visualization of a variety of single-opponent (SO) receptive fields.}
     \label{fig:rf-so}
 \end{figure}
 
-\subsubsection*{Achromatic Single Opponent Neurons}
+\subsubsection*{Achromatic Single-Opponent Neurons}
 
-Sometimes called non-opponent cells, they have no chromatic nor spatial opponency. Instead, they amalgamate all color input in a balanced manner so as to only respond to changes in luminosity. Technically, we can consider non-opponent cells to be a special case of single opponent cells.
+Sometimes called non-opponent cells, they have no chromatic nor spatial opponency. Instead, they amalgamate all color input in a balanced manner so as to only respond to changes in luminosity. Technically, we can consider non-opponent cells to be a special case of single-opponent cells.
 
-\textbf{// TODO} are NO cells the same as SO cells? What about achromatic double opponent cells?
+\textbf{// TODO} are NO cells the same as SO cells? What about achromatic double-opponent cells?
 
 \textbf{// TODO} \textit{add image depicting example receptive field(s)}
 
@@ -510,15 +512,15 @@ Sometimes called non-opponent cells, they have no chromatic nor spatial opponenc
 
 \textbf{// TODO} \textit{add image of simple behavior: no response to isoluminant chromatic boundaries}
 
-\subsection*{Double Opponent Neurons}
+\subsection*{Double-Opponent Neurons}
 
 \textbf{Point:}
-Double opponent neurons are edge detectors. 
+Double-opponent neurons are edge detectors. 
 
 \textbf{Story:}
-Double opponent neurons are a topic of confusion in the field of neurobiology. All researchers on the topic seem to agree that the input to the neuron is that of two single opponent neurons itself. In this sense, the term "double opponent" can be thought of as indicating that the dimensionality of color opponency has been doubled. However, another camp of researchers take the definition a step further and suggest that the two SO inputs are spatially offset. By this definition, the term "double opponent" is thought to indicate that the cell is sensitive to opponency in two \textit{different} dimensions, color and space.
+Double-opponent neurons are a topic of confusion in the field of neurobiology. All researchers on the topic seem to agree that the input to the neuron is that of two single-opponent neurons itself. In this sense, the term "double-opponent" can be thought of as indicating that the dimensionality of color opponency has been doubled. However, another camp of researchers take the definition a step further and suggest that the two SO inputs are spatially offset. By this definition, the term "double-opponent" is thought to indicate that the cell is sensitive to opponency in two \textit{different} dimensions, color and space.
 
-The distinction is non-trivial as the response patterns differ, and thus the interpretation of their role in vision differs.
+The distinction is non-trivial as the response patterns differ, and thus the interpretation of their role in vision differs. Truely, both types of cells may, and likely do [\textbf{// TODO} \textit{Cite studies which find these cells}], exist in the primate visual system. However, for the purpose of our work we only consider the latter definition; double-opponent cells' receptive fields are both chromatically and spatially antagonistic.
 
 \textbf{// TODO} \textbf{present the differences between the two DO configurations}
 
@@ -526,13 +528,18 @@ The distinction is non-trivial as the response patterns differ, and thus the int
     \subfloat[Symmetric Balanced]  {\includegraphics[width=160pt]{rf_do_1}}
     \subfloat[Symmetric Unbalanced]{\includegraphics[width=160pt]{rf_do_2}}
     \subfloat[Center/Surround]     {\includegraphics[width=160pt]{rf_do_4}}
-    \caption{Visualization of a variety of double opponent (DO) receptive fields.}
+    \caption{Visualization of a variety of double-opponent (DO) receptive fields.}
     \label{fig:rf-do}
 \end{figure}
 
+
 \subsubsection*{Orientation Selectivity}
 
-Research shows that cells identified as double opponent are orientation selective. That is, they respond most strongly when stimulated by a border of particular orientation, less so with variation from that preferred orientation, and weekly, if at all, to borders orthogonal to the preferred orientation. This is intuitive given the organization of the receptive field as previously defined.
+By the definition of double-opponent cells accepted here, they inherently response best to specific orientations. By arranging the components of the receptive field in a spatially antagonistic organization, there will be one orientation of edge which best stimulates the cell, and a perpendicular (\textbf{//TODO} \textit{correct term?}) orientation which least stimulates it.
+
+\textbf{//TODO} \textit{add image depicting vertical vs. diagonal vs. horizontal activity}
+
+Research shows that cells identified as double-opponent are orientation selective. That is, they respond most strongly when stimulated by a border of particular orientation, less so with variation from that preferred orientation, and weekly, if at all, to borders orthogonal to the preferred orientation. This is intuitive given the organization of the receptive field as previously defined.
 
 \textbf{// TODO} \textbf{describe Orientation Selectivity}
 
@@ -546,9 +553,9 @@ Research shows that cells identified as double opponent are orientation selectiv
 It is recognized that
 
 
-\subsubsection*{Achromatic Double Opponent Neurons}
+\subsubsection*{Achromatic Double-Opponent Neurons}
 
-\textbf{// TODO} \textbf{describe achromatic double opponent cells}
+\textbf{// TODO} \textbf{describe achromatic double-opponent cells}
 
 
 
@@ -556,18 +563,18 @@ It is recognized that
 
 \textbf{// TODO} \textit{mention relative abundance of NO, SO, \& DO}
 
-To recapitulate: single opponent neurons fire best to full field stimulation while double opponent neurons fire only at the boundaries between particular colors. Both cell types can be found in color preferring and achromatic flavors.
+To recapitulate: single-opponent neurons fire best to full field stimulation while double-opponent neurons fire only at the boundaries between particular colors. Both cell types can be found in color preferring and achromatic flavors.
 
 
 \subsection{Computational Modeling:}
 
-The model described in this research is an extension of that presented by Penacchio \textit{et al.} \cite{otazu:plosone}, itself based on work by Z. Li \cite{li:1998, li:1999}. Before detailing our implementation, it is important to review prior art, these works and others. As our goal is to model the behavior of color preferring and achromatic single opponent and double opponent neurons, we will also review other computational endeavors tackling the issue of color and/or form from a biologically inspired perspective.
+The model described in this research is an extension of that presented by Penacchio \textit{et al.} \cite{otazu:plosone}, itself based on work by Z. Li \cite{li:1998, li:1999}. Before detailing our implementation, it is important to review prior art, these works and others. As our goal is to model the behavior of color preferring and achromatic single-opponent and double-opponent neurons, we will also review other computational endeavors tackling the issue of color and/or form from a biologically inspired perspective.
 
 
 \subsection*{Li's Neurodynamical Model for Segmentation (1999)}
 In Li's original work, a neurodynamical model was presented which focused on the global region segmentation using only local interactions between neurons. In the interest of simplicity, Li's implementation dealt only with the nature of these interactions, ignoring where the stimulus, or information, might be coming from. Conceptually, Li defined neurons by the physical position in the image and the 'feature' to which they are sensitive. She then defined the connections between these neurons such that those physically close to each other, and sensitive to similar features, interacted most strongly. Stimulation of one neuron, then, positively stimulated (excited) similar neurons nearby, and negatively stimulated (inhibited) dissimilar neurons nearby. Such excitation and inhibition cascades through the network naturally, producing a large scale response pattern defined by local stimuli.
 
-In the model presented, Li used oriented bars as features, though expressed that any logical feature could be reasonably considered in its place. This choice was biologically inspired by neurons sensitive to specifically oriented bars, the aforementioned double opponent cells. When considering such features, inter-neuronal connections can be logically deduced: two neurons positively interact most when both 1) are sensitive to similarly oriented bars and 2) are co-located along that same orientation. Two neurons negatively interact most when either of these two conditions is not met.
+In the model presented, Li used oriented bars as features, though expressed that any logical feature could be reasonably considered in its place. This choice was biologically inspired by neurons sensitive to specifically oriented bars, the aforementioned double-opponent cells. When considering such features, inter-neuronal connections can be logically deduced: two neurons positively interact most when both 1) are sensitive to similarly oriented bars and 2) are co-located along that same orientation. Two neurons negatively interact most when either of these two conditions is not met.
 
 \textbf{//TODO} \textit{include graphic or oriented bars which positively \& negatively interact}
 
@@ -591,7 +598,7 @@ Their research was focused on observing brightness induction (BI) arising from s
     \item Extension of Z. Li's edge detection work
     \item Uses DWT to extract oriented edges in grayscale
     \begin{itemize}
-        \item ..in our context, it's essentially a luminence sensitive double opponent cell.
+        \item ..in our context, it's essentially a luminence sensitive double-opponent cell.
     \end{itemize}
 \end{itemize}
 
@@ -608,7 +615,7 @@ Their research was focused on observing brightness induction (BI) arising from s
 
 \subsection*{Zhang, Barhomi, \& Serre's Biologically Inspired Color Descriptor (2013)}
 \begin{itemize}
-    \item Single \& double opponent color using weights
+    \item Single \& double-opponent color using weights
     \item Has center/surround (Gabor filters for DO, gaussians for SO?)
     \item No scales
     \item \textit{No dynamical processing}
@@ -617,7 +624,7 @@ Their research was focused on observing brightness induction (BI) arising from s
 
 \subsection*{Spitzer \& Barkan's Model of Color Induction (2005)}
 \begin{itemize}
-    \item Single \& double opponent color transformations using receptive fields
+    \item Single \& double-opponent color transformations using receptive fields
     \item Center \& surround receptive fields
     \item \textit{No dynamical processing}
 \end{itemize}
@@ -756,7 +763,7 @@ It is important to note that the L \& D opponent channels do not incorporate sur
 
 \subsection{Discrete Wavelet Transform in Opponent Colorspace}
 
-Previous work by Penacchio \textit{et al.} \cite{otazu:plosone} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edges at scale. In the context of our current research, this could be thought of as representing achromatic double opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent color space and examine its applicability as a replacement of the previously detailed \textit{Opponent Processing of Neural Receptive Fields}.
+Previous work by Penacchio \textit{et al.} \cite{otazu:plosone} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edges at scale. In the context of our current research, this could be thought of as representing achromatic double-opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent color space and examine its applicability as a replacement of the previously detailed \textit{Opponent Processing of Neural Receptive Fields}.
 
 \textbf{// TODO} \textit{PARAGRAPH ON LAB OPPONENT COLOR SPACE}
 This transformation begins, not with the convolution step, but instead with a colorspace transformation. We convert the image from RGB to CIE L*a*b*. This colorspace separates luminance from it's two opponent color channels. The two color channels are 0 centered, with both positive and negative values possible. The luminance channel scales from 0 to 100, 0 being total darkness, 100 being pure brightness. We subtract 50 from this channel to obtain a 0 centered range of luminance. We consider positive values to define 'lightness' and negative values 'darkness'. From the opponent color channels, we take positive values in the \textit{a*} channel as denoting 'redness' and negative values 'greenness', while positive values in the \textit{b*} channel indicate 'blueness' and negative values 'yellowness'.
@@ -1018,10 +1025,10 @@ The model processes input in a retinotopic manner. That is, neurons are laid out
             \item Spatial opponency
                 \begin{itemize}
                     \item LGN information upgraded to include spatial opponency
-                    \item Double opponent cells: color \& spatially opponent
+                    \item Double-opponent cells: color \& spatially opponent
                     \item Spatial frequency sensitivity
                     \item Orientation sensitivity
-                    \item Shapley shows most V1 cells are double opponent
+                    \item Shapley shows most V1 cells are double-opponent
                     \item DOUBLE OPPONENT CELLS RESPOND BEST TO COLOR BOUNDARIES
                 \end{itemize}
             \item DO \& SO roles
