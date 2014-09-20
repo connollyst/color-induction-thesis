@@ -866,26 +866,26 @@ If a cell is stimulated, it excites nearby cells of the same orientation and sca
 
 We propose that these rules of interaction are logical as only opponent colors are mutually exclusive. While a bluish yellow line cannot be perceived by humans, a bluish green, bluish red, bright blue, or dark blue line is entirely plausible. Each of the possible combinations are equally probable and so the excitatory-excitatory connections between cells of these color preferences are equally weighed. These excitatory and inhibitory rules are encoded in $J$ and $W$, respectively.
 
-
-\begin{equation}
-\begin{cases} 
-\dot{x}_{i\gamma\sigma\theta} = - \alpha_{x}x_{i\gamma\sigma\theta} \\
-    & - g_y(y_{i\gamma\sigma\theta}) \\
-    & - \sum\nolimits_{\gamma' \neq \text{opp($\gamma$)},\Delta_{\sigma},\Delta_{\theta} \neq 0}
-        \Psi(\gamma',\Delta_{\sigma},\Delta_{\theta})
-        g_y(y_{i\gamma\sigma + \Delta_{\sigma\theta} + \Delta_{\theta}})
-        + J_0(g_x(x_{i\gamma\sigma\theta})) \\
-    & + \sum\nolimits_{j \neq i,\gamma',\sigma'\theta'}
-        J_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}g_x(x_{j\gamma'\sigma'\theta'})) \\
-    & + I^\tau_{i\gamma\sigma\theta} \\
-    & + I_0 \\
-\dot{y}_{i\gamma\sigma\theta} = - \alpha_{y}Y_{i\gamma\sigma\theta} \\
-    & + g_x(X_{i\gamma\sigma\theta}) \\
-    & + \sum\nolimits_{j \neq i, \gamma'\sigma'\theta'}
-        W_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}g_x(x_{j\gamma'\sigma'\theta'}) \\
-    & + I_{c}
-\end{cases}
-\end{equation}
+\begin{align}
+    \dot{x}_{i\gamma\sigma\theta} &= \begin{aligned}[t]
+        & - \alpha_{x}x_{i\gamma\sigma\theta} \\
+        & - g_y(y_{i\gamma\sigma\theta}) \\
+        & - \sum\nolimits_{\gamma' \neq \text{opp($\gamma$)},\Delta_{\sigma},\Delta_{\theta} \neq 0}
+            \Psi(\gamma',\Delta_{\sigma},\Delta_{\theta})
+            g_y(y_{i\gamma\sigma + \Delta_{\sigma\theta} + \Delta_{\theta}})
+            + J_0(g_x(x_{i\gamma\sigma\theta})) \\
+        & + \sum\nolimits_{j \neq i,\gamma',\sigma'\theta'}
+            J_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}g_x(x_{j\gamma'\sigma'\theta'})) \\
+        & + I^\tau_{i\gamma\sigma\theta} + I_0
+        \end{aligned} \\
+    \dot{y}_{i\gamma\sigma\theta} &= \begin{aligned}[t]
+        & - \alpha_{y}Y_{i\gamma\sigma\theta} \\
+        & + g_x(X_{i\gamma\sigma\theta}) \\
+        & + \sum\nolimits_{j \neq i, \gamma'\sigma'\theta'}
+            W_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}g_x(x_{j\gamma'\sigma'\theta'}) \\
+        & + I_{c}
+       \end{aligned}
+\end{align}
 
 \textbf{//TODO} \textit{PARAGRAPH ON OTHER PARAMETERS (eg: $I_{c}$)}
 
