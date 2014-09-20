@@ -848,27 +848,13 @@ As all color channels are $0$ centered, we can easily split them into independen
 
 \subsection*{Neurodynamical Processing}
 
-Stage I of the proposed method focuses on the description of color in a biologically meaningful form, of which we've described two distinct approaches. Stage II is to further process this data in an iterative computational model of neurodynamical processes. The input to Stage II is the output of Stage I, normalized.
+Stage I of the proposed method focuses on the description of color in a biologically meaningful form, of which we've described two distinct approaches. Stage II is to further process this data in an iterative computational model of neurodynamical processes, as defined in Equations \ref{eq:delta-x} and \ref{eq:delta-y}. The input stimulus, from Stage I, at time $\tau$, $I^\tau_{i\gamma\sigma\theta}$ drives the model and mainly determines its response. The normalization of the stimulus at each time step is extended from that proposed by Li \cite{li:1999} and Penacchio \cite{otazu:plosone}. We normalize within each color channel ($\gamma$), scale ($\sigma$), and orientation ($\theta$). At the first time step, $I^1_{i\gamma\sigma\theta}$ is used to bootstrap the model and set as the initial excitation response, $x_{i\gamma\sigma\theta}$.
 
-The input stimulus at time $\tau$, $I^\tau_{i\gamma\sigma\theta}$ drives the model and mainly determines its response. The normalization of the stimulus at each time step is extended from that proposed by Li \cite{li:1999} and Penacchio \cite{otazu:plosone}. We normalize within each color channel ($\gamma$), scale ($\sigma$), and orientation ($\theta$). At the first time step, $I^1_{i\gamma\sigma\theta}$ is used to bootstrap the model and set as the initial excitation response, $x_{i\gamma\sigma\theta}$.
-
-$x_{i\gamma\sigma\theta}$ can be viewed as a representation of retinotopic excitation hypercolumns in V1, $i$ defining the retinotopic location of the hypercolumn. Similarly, $y_{i\gamma\sigma\theta}$ may be interpreted as its retinotopic inhibitory counterpart. Any cell can interact with another by exciting it or inhibiting it, via monosynaptic excitation through excitatory-excitatory horizontal connections, or disynaptic inhibition through excitatory-inhibitory connections, respectively. Such interactions are modeled between cells within and across hypercolumns; color, scale, and orientation, as well as between cells within and across cell classes; double-opponent and single-opponent.
-
-These cellular interactions are defined by $J_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}$ (excitatory) and $W_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}$ (inhibitory). The excitatory and inhibitory interactions between double-opponent cells are exactly as those defined by Penacchio \cite{otazu:plosone} and Li \cite{li:1999}. Single-opponent cells, introduced in our work, are non-directional; they have no preferred orientation $\theta$. $\Delta\theta$ is thus not computable and so they do not \textit{inhibit} the activity of other cells; single-opponent cells do not contribute to $W$. In order to explore 'fill in' effects, however, we support parameterization of \textit{excitatory} weights to and from single-opponent and double-opponent cells. These interactions are modeled by a circular-symmetric gaussian in $J$.
-
-\subsubsection*{Scale} In both proposed 
-\textbf{//TODO} \textit{PARAGRAPH ON $\sigma$}
-
-\subsubsection*{Color}
-We introduce a novel concept to the neurodynamical model framework developed by Li \cite{li:1999} and Penacchio \cite{otazu:plosone}: color. Unfortunately, the structural organization of color preferring cells and the connections between them is not well understood and leading theories are still quite controversial \cite{shapley:2011}. We herein define a set of \textit{logical} rules of interaction opponent color cells (including achromatic cells).
-
-If a cell is stimulated, it excites nearby cells of the same orientation and scale preference, in any color channel other than its opponent. Conversely, a stimulated cell will inhibit nearby cells of the same orientation and scale preference, only in its opponent color channel. For example, stimulation of a DO cell preferring 'yellow' vertical edges will excite a DO cell preferring 'red' vertical edges at the same location. It will equally excite 'green', 'light', and 'dark' cells preferring the same orientation in the same location. It will not, however, excite cells of its opponent color 'blue'. In fact, it will inhibit activity in 'blue' cells preferring this same orientation in the same location.
-
-We propose that these rules of interaction are logical as only opponent colors are mutually exclusive. While a bluish yellow line is not permissible in the opponent colorspace, a bluish green, bluish red, bright blue, or dark blue line is entirely plausible. Each of the possible combinations are equally probable and so the excitatory-excitatory connections between cells of these color preferences are equally weighed. These excitatory and inhibitory rules are encoded in $J$ and $W$, respectively.
+$x_{i\gamma\sigma\theta}$ can be viewed as a representation of retinotopic excitation hypercolumns in V1, $i$ defining the retinotopic location of the hypercolumn. Similarly, $y_{i\gamma\sigma\theta}$ may be interpreted as its retinotopic inhibitory counterpart. $\dot{x}_{i\gamma\sigma\theta}$ and $\dot{y}_{i\gamma\sigma\theta}$, then, are the change in excitatory and inhibitory membrane potentials as defined in Equations \ref{eq:delta-x} and \ref{eq:delta-y}, respectively:
 
 \begin{align}
     \dot{x}_{i\gamma\sigma\theta} &= \begin{aligned}[t]
-        & - \alpha_{x}x_{i\gamma\sigma\theta} \\
+        & - \alpha_{x}x_{i\gamma\sigma\theta} \label{eq:delta-x} \\
         & - g_y(y_{i\gamma\sigma\theta}) \\
         & - \sum\nolimits_{\gamma' \neq \text{opp($\gamma$)},\Delta_{\sigma},\Delta_{\theta} \neq 0}
             \Psi(\gamma',\Delta_{\sigma},\Delta_{\theta})
@@ -879,7 +865,7 @@ We propose that these rules of interaction are logical as only opponent colors a
         & + I^\tau_{i\gamma\sigma\theta} + I_0
         \end{aligned} \\
     \dot{y}_{i\gamma\sigma\theta} &= \begin{aligned}[t]
-        & - \alpha_{y}Y_{i\gamma\sigma\theta} \\
+        & - \alpha_{y}Y_{i\gamma\sigma\theta} \label{eq:delta-y} \\
         & + g_x(X_{i\gamma\sigma\theta}) \\
         & + \sum\nolimits_{j \neq i, \gamma'\sigma'\theta'}
             W_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}g_x(x_{j\gamma'\sigma'\theta'}) \\
@@ -889,7 +875,25 @@ We propose that these rules of interaction are logical as only opponent colors a
 
 \textbf{//TODO} \textit{PARAGRAPH ON OTHER PARAMETERS (eg: $I_{c}$)}
 
-\subsubsection{Notes}
+\subsubsection*{Orientation ($\theta$)}
+Any cell can interact with another by exciting it or inhibiting it, via monosynaptic excitation through excitatory-excitatory horizontal connections, or disynaptic inhibition through excitatory-inhibitory connections, respectively. Such interactions are modeled between cells within and across hypercolumns; color, scale, and orientation, as well as between cells within and across cell classes; double-opponent and single-opponent.
+
+These cellular interactions are defined by $J_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}$ (excitatory) and $W_{[i\gamma\sigma\theta, j\gamma'\sigma'\theta']}$ (inhibitory). The excitatory and inhibitory interactions between double-opponent cells are exactly as those defined by Penacchio \cite{otazu:plosone} and Li \cite{li:1999}. Single-opponent cells, introduced in our work, are non-directional; they have no preferred orientation $\theta$. $\Delta\theta$ is thus not computable and so they do not \textit{inhibit} the activity of other cells; single-opponent cells do not contribute to $W$. In order to explore 'fill in' effects, however, we support parameterization of \textit{excitatory} weights to and from single-opponent and double-opponent cells. These interactions are modeled by a circular-symmetric gaussian in $J$.
+
+
+\subsubsection*{Scale ($\sigma$)}
+As in Penacchio \cite{otazu:plosone}, we decompose the input signal into signal at different scales. This confers a level of scale invariance to the model.
+
+
+\subsubsection*{Color ($\gamma$)}
+We introduce a novel concept to the neurodynamical model framework developed by Li \cite{li:1999} and Penacchio \cite{otazu:plosone}: color. Unfortunately, the structural organization of color preferring cells and the connections between them is not well understood and leading theories are still quite controversial \cite{shapley:2011}. We herein define a set of \textit{logical} rules of interaction opponent color cells (including achromatic cells).
+
+If a cell is stimulated, it excites nearby cells of the same orientation and scale preference, in any color channel other than its opponent. Conversely, a stimulated cell will inhibit nearby cells of the same orientation and scale preference, only in its opponent color channel. For example, stimulation of a DO cell preferring 'yellow' vertical edges will excite a DO cell preferring 'red' vertical edges at the same location. It will equally excite 'green', 'light', and 'dark' cells preferring the same orientation in the same location. It will not, however, excite cells of its opponent color 'blue'. In fact, it will inhibit activity in 'blue' cells preferring this same orientation in the same location.
+
+We propose that these rules of interaction are logical as only opponent colors are mutually exclusive. While a bluish yellow line is not permissible in the opponent colorspace, a bluish green, bluish red, bright blue, or dark blue line is entirely plausible. Each of the possible combinations are equally probable and so the excitatory-excitatory connections between cells of these color preferences are equally weighed. These excitatory and inhibitory rules are encoded in $J$ and $W$, respectively.
+
+
+\subsubsection*{Notes}
 \begin{itemize}
     \item An extension of X. Otazu's PLoS One model
     \begin{itemize}
