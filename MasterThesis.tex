@@ -766,18 +766,18 @@ It is important to note that the L \& D opponent channels do not incorporate sur
 Previous work by Penacchio \textit{et al.} \cite{otazu:plosone} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edges at scale. In the context of our current research, this could be thought of as representing achromatic double-opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent color space and examine its applicability as a replacement of the previously detailed \textit{Opponent Processing of Neural Receptive Fields}.
 
 \textbf{// TODO} \textit{PARAGRAPH ON LAB OPPONENT COLOR SPACE}
-This transformation begins, not with the convolution step, but instead with a colorspace transformation. We convert the image from RGB to CIE L*a*b*. This colorspace separates luminance from it's two opponent color channels. The two color channels are 0 centered, with both positive and negative values possible. The luminance channel scales from 0 to 100, 0 being total darkness, 100 being pure brightness. We subtract 50 from this channel to obtain a 0 centered range of luminance. We consider positive values to define 'lightness' and negative values 'darkness'. From the opponent color channels, we take positive values in the \textit{a*} channel as denoting 'redness' and negative values 'greenness', while positive values in the \textit{b*} channel indicate 'blueness' and negative values 'yellowness'.
+This transformation begins, not with the convolution step, but instead with a colorspace transformation. We convert the image from RGB to \textit{CIE} $L^*a^*b^*$. This colorspace separates luminance from it's two opponent color channels. The two color channels are $0$ centered, with both positive and negative values possible. The luminance channel, $L^*$, scales from $0$ to $100$, $0$ being total darkness, $100$ being pure brightness. We subtract $50$ from this channel to obtain a $0$ centered range of luminance. We consider positive values to define 'lightness' and negative values 'darkness'. From the opponent color channels, we take positive values in the $a^*$ channel as denoting 'redness' and negative values 'greenness', while positive values in the $b^*$ channel indicate 'blueness' and negative values 'yellowness'.
 
 \textbf{// TODO} \textit{PARAGRAPH ON DISCRETE WAVELET TRANSFORM}
 
 Similar to the aforementioned use of gaussian filters, the application of the discrete wavelet transform can be interpreted as representative of the processing of a cell's receptive field. That is, the activity of a particular cell is defined not just by its own activity, but also of the activity of the cells around it.
 
-As all color channels are 0 centered, we can easily split them into independent opponent components:
+As all color channels are $0$ centered, we can easily split them into independent opponent components:
 \begin{align}
-    Li_{do} &=   max(0, DWT(L^*))              \\
-    Li_{so} &=   max(0, DWT(L^*)_{residual})   \\
-    Da_{do} &= | min(0, DWT(L^*)) |            \\
-    Da_{so} &= | min(0, DWT(L^*)_{residual}) | \\
+    Li_{do} &=   max(0, DWT(L^*-50))              \\
+    Li_{so} &=   max(0, DWT(L^*-50)_{residual})   \\
+    Da_{do} &= | min(0, DWT(L^*-50)) |            \\
+    Da_{so} &= | min(0, DWT(L^*-50)_{residual}) | \\
     R_{do}  &=   max(0, DWT(a^*))              \\
     R_{so}  &=   max(0, DWT(a^*)_{residual})   \\
     G_{do}  &= | min(0, DWT(a^*)) |            \\
