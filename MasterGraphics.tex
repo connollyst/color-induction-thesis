@@ -1,5 +1,6 @@
 \documentclass{article}
 
+\usepackage[cmex10]{amsmath}
 \usepackage{subcaption}
 
 \usepackage{tikz}
@@ -13,7 +14,7 @@
 \begin{document}
 
 % FIGURE: horizontal red/green double-opponent cell on horizontal red/green border
-\begin{figure}[h]
+\begin{figure}[h] \label{fig:do-orient-h}
     \begin{subfigure}{0.3\textwidth}
         \centering
         \begin{tikzpicture}
@@ -26,7 +27,7 @@
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -40,7 +41,7 @@
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 1}
+        \caption{Maximum Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -54,7 +55,7 @@
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}%
     \par \bigskip
     \begin{subfigure}{0.3\textwidth}
@@ -69,7 +70,7 @@
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -83,7 +84,7 @@
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{No Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -97,13 +98,13 @@
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}
-    \caption{A double opponent cell selective to horizontally oriented borders with red above and green below; only responsive to that particular stimulus. In Figure (b), the neuron is presented with its ideal stimulus: its $R_{on}$ and $G_{on}$ receptive fields are fully activated while its $R_{off}$ and $G_{off}$ receptive fields are completely unactivated. Figure (e) presents the neuron with the exact opposite stimulus, neither its $R_{on}$ nor $G_{on}$ receptive fields are activate at all, and both its $R_{off}$ and $G_{off}$ receptive fields are fully activated, ensuring no response possible from the cell. While its $R_{on}$ receptive field might be strongly stimulated in (a) and (f), it's $R_{off}$ receptive field cancels it out. Similarly, in (c) and (d) its $G_{on}$ receptive field is stimulated but cancelled out by activity in its $G_{off}$ receptive field.}
+    \caption{A double opponent cell selective to horizontally oriented borders with red above and green below; only responsive to that particular stimulus. In Figure (b), the neuron is presented with its ideal stimulus: its $R_{\text{on}}$ and $G_{\text{on}}$ receptive fields are fully activated while its $R_{\text{off}}$ and $G_{\text{off}}$ receptive fields are completely unactivated. Figure (e) presents the neuron with the exact opposite stimulus, neither its $R_{\text{on}}$ nor $G_{\text{on}}$ receptive fields are activate at all, and both its $R_{\text{off}}$ and $G_{\text{off}}$ receptive fields are fully activated, ensuring no response possible from the cell. While its $R_{\text{on}}$ receptive field might be strongly stimulated in (a) and (f), it's $R_{\text{off}}$ receptive field cancels it out. Similarly, in (c) and (d) its $G_{\text{on}}$ receptive field is stimulated but cancelled out by activity in its $G_{\text{off}}$ receptive field.}
 \end{figure}
 
 % FIGURE: vertical red/green double-opponent cell on horizontal red/green border
-\begin{figure}[h]
+\begin{figure}[h] \label{fig:do-orient-v}
     \begin{subfigure}{0.3\textwidth}
         \centering
         \begin{tikzpicture}
@@ -116,7 +117,7 @@
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -130,7 +131,7 @@
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
             \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minimal Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -144,7 +145,7 @@
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
             \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}%
     \par \bigskip
     \begin{subfigure}{0.3\textwidth}
@@ -159,7 +160,7 @@
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -173,7 +174,7 @@
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
             \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minimal Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -187,9 +188,9 @@
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
             \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}
-    \caption{A double opponent cell selective to vertically oriented borders with red to the right and green on the left; completely unresponsive to a horizontal border. While its $R_{on}$ receptive field might be strongly stimulated in (a) and (f), it's $R_{off}$ receptive field cancels it out. Similarly, in (c) and (d) its $G_{on}$ receptive field is stimulated but cancelled out by activity in its $G_{off}$ receptive field. In (b) and (e) both of its $R_{on}$ and $G_{on}$ receptive fields are moderately activated, but again, cancelled out by activation in its $R_{off}$ and $G_{off}$ receptive fields, respectively.}
+    \caption{A double opponent cell selective to vertically oriented borders with red to the right and green on the left; completely unresponsive to a horizontal border. While its $R_{\text{on}}$ receptive field might be strongly stimulated in (a) and (f), it's $R_{\text{off}}$ receptive field cancels it out. Similarly, in (c) and (d) its $G_{\text{on}}$ receptive field is stimulated but cancelled out by activity in its $G_{\text{off}}$ receptive field. In (b) and (e) both of its $R_{\text{on}}$ and $G_{\text{on}}$ receptive fields are moderately activated, but again, cancelled out by activation in its $R_{\text{off}}$ and $G_{\text{off}}$ receptive fields, respectively.}
 \end{figure}
 
 \end{document}
