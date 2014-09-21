@@ -16,6 +16,7 @@
 \begin{figure}[h]
     \centering
     \captionsetup{justification=centering}
+    % 3 SUBFIGURES: Cross sections of double-opponent receptive fields
     \begin{subfigure}{0.3\textwidth}
         \centering
         \resizebox{\textwidth}{!}{%
@@ -43,10 +44,9 @@
             % Reference line & point
             \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
-            % Frame to ensure alignment
+            % Frame to ensure alignment:
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}}
-        \caption{Symmetric \\ balanced \\ double-opponent \\ receptive field}
     \end{subfigure}
     \begin{subfigure}{0.3\textwidth}
         \resizebox{\textwidth}{!}{%
@@ -74,10 +74,9 @@
             % Reference line & point
             \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
-            % Frame to ensure alignment
+            % Frame to ensure alignment:
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}}
-        \caption{Symmetric \\ imbalanced \\ double-opponent \\ receptive field}
     \end{subfigure}
     \begin{subfigure}{0.3\textwidth}
         \resizebox{\textwidth}{!}{%
@@ -105,18 +104,61 @@
             % Reference line & point
             \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
-            % Frame to ensure alignment
+            % Frame to ensure alignment:
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}}
+    \end{subfigure}%
+    \par \bigskip
+    % 3 SUBFIGURES: Top-down view of double-opponent receptive fields
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.37, 0.00) ellipse   (0.33 and 0.90);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick](-0.37, 0.00) ellipse   (0.33 and 0.90);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
+        \end{tikzpicture}
+        \caption{Symmetric \\ balanced \\ double-opponent \\ receptive field}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.37, 0.00) ellipse   (0.33 and 0.90);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick](-0.37, 0.00) ellipse   (0.33 and 0.90);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
+        \end{tikzpicture}
+        \caption{Symmetric \\ imbalanced \\ double-opponent \\ receptive field}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            % Frame to ensure alignment:
+            \draw[color=white]                                            (-2.00, 0.00) --        (2.00, 0.00);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.43, 0.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick](-0.43, 0.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
+        \end{tikzpicture}
         \caption{Center/ \\ surround \\ double-opponent \\ receptive field}
-    \end{subfigure}
-    \caption{Schematic of various possible double-opponent receptive field configurations.}
+    \end{subfigure}%
+    \caption{Examples of various possible double-opponent receptive field configurations, many others could be designed. All function to describe color properties of borders, though their response patterns to similar stimuli vary slightly.}
 \end{figure}
         
 % FIGURE: Single-opponent recpetive field cross section
 \begin{figure}[h]
     \centering
     \captionsetup{justification=centering}
+    % 3 SUBFIGURES: Cross sections of single-opponent receptive fields
     \begin{subfigure}{0.3\textwidth}
         \centering
         \resizebox{\textwidth}{!}{%
@@ -134,10 +176,9 @@
             % Reference line & point
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
-            % Frame to ensure alignment
+            % Frame to ensure alignment:
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}}
-        \caption{Symmetric \\ balanced \\ single-opponent \\ receptive field}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -156,10 +197,9 @@
             % Reference line & point
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
-            % Frame to ensure alignment
+            % Frame to ensure alignment:
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}}
-        \caption{Symmetric \\ imbalanced \\ single-opponent \\ receptive field}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -178,12 +218,48 @@
             % Reference line & point
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
-            % Frame to ensure alignment
+            % Frame to ensure alignment:
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}}
-        \caption{Center/ \\ surround \\ single-opponent \\ receptive field}
     \end{subfigure}%
-    \caption{Schematic of various possible single-opponent receptive field configurations.}
+    \par \bigskip
+    % 3 SUBFIGURES: Top-down view of double-opponent receptive fields
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            % Frame to ensure alignment:
+            \draw[color=white]                                         ( 0.00, -1.00) --     (0.00, 1.00);
+            \filldraw[color=greensea,    fill=alizarin!70,  very thick]( 0.00,  0.00) circle (0.70)
+                 node[color=black,       anchor=south] {$\scriptstyle R_{\text{on}}$}
+                 node[color=black,       anchor=north] {$\scriptstyle G_{\text{off}}$};
+            \filldraw[color=black,       fill=gray]                    ( 0.00,  0.00) circle (1pt);
+        \end{tikzpicture}
+        \caption{Symmetric \\ balanced \\ single-opponent \\ receptive field}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            % Frame to ensure alignment:
+            \draw[color=white]                                         ( 0.00, -1.00) --     (0.00, 1.00);
+            \filldraw[color=greensea,    fill=alizarin!70,  very thick]( 0.00,  0.00) circle (0.70)
+                 node[color=black,       anchor=south] {$\scriptstyle R_{\text{on}}$}
+                 node[color=black,       anchor=north] {$\scriptstyle G_{\text{off}}$};
+            \filldraw[color=black,       fill=gray]                    ( 0.00,  0.00) circle (1pt);
+        \end{tikzpicture}
+        \caption{Symmetric \\ imbalanced \\ single-opponent \\ receptive field}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \filldraw[color=greensea,    fill=turquoise!80, very thick]( 0.00,  0.00) circle (1.00);
+            \filldraw[color=alizarin!90, fill=alizarin!70,  very thick]( 0.00,  0.00) circle (0.70)
+                 node[color=black,       anchor=south] {$\scriptstyle R_{\text{on}}$}
+                 node[color=black,       anchor=north] {$\scriptstyle G_{\text{off}}$};
+            \filldraw[color=black,       fill=gray]                    ( 0.00,  0.00) circle (1pt);
+        \end{tikzpicture}
+        \caption{Classic \\ center/surround \\ single-opponent \\ receptive field}
+    \end{subfigure}%
+    \caption{Examples of various possible single-opponent receptive field configurations, many others could be designed. All function to describe color properties of surfaces, though their response patterns to similar stimuli vary slightly.}
 \end{figure}
 
 
