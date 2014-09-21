@@ -29,29 +29,109 @@ connection/.style={thick, dotted},
 
 \begin{document}
 
-% Plot of DWT function
 \begin{figure}[!htbp]
-\centering
-    \begin{tikzpicture}
-        \begin{axis}[
-            axis lines=left,
-            xmin=-2.5,
-            xmax= 2.5,
-            xtick={-3,...,3},
-            ymin=0,
-            ymax=0.5,
-            thick,
-            grid=both
-            ]
-        \addplot[smooth,thick] plot coordinates {
-            (-2, 0.0625)
-            (-1, 0.2500)
-            ( 0, 0.3750)
-            ( 1, 0.2500)
-            ( 2, 0.0625)
-        };
-    \end{axis}
-\end{tikzpicture}
+    \centering
+    \captionsetup{justification=centering}
+    \begin{subfigure}{0.33\textwidth}
+        \centering
+        \resizebox{0.8\textwidth}{!}{%
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis lines=none,
+                xmin=-2.5,
+                xmax= 2.5,
+                ymin=-0.5,
+                ymax= 1.0,
+                thick
+                ]
+            \addplot[smooth,thick] plot coordinates {
+                (-3.0,  0.0)
+                (-2.0,  0.0)
+                (-1.0,  0.1)
+                ( 0.0,  1.0)
+                ( 1.0,  0.1)
+                ( 2.0,  0.0)
+                ( 3.0,  0.0)
+            };
+            \addplot[smooth,thick] plot coordinates {
+                (-3.0,  0.0)
+                (-2.1,  0.0)
+                (-1.2, -0.1)
+                ( 0.0, -0.3)
+                ( 1.2, -0.1)
+                ( 2.1,  0.0)
+                ( 3.0,  0.0)
+            };
+            \addplot[thin] plot coordinates {
+                (-3.0,  0.0)
+                ( 3.0,  0.0)
+            };
+            \end{axis}
+            \node[align=center] at (3.4, 4.0) {\LARGE +};
+            \node[align=center] at (3.4, 1.5) {\Huge  -};
+        \end{tikzpicture}
+        }
+        \caption{\\ Opponent Receptive Field Model}
+    \end{subfigure}%
+    \begin{subfigure}{0.33\textwidth}
+        \centering
+        % Plot of DoG function
+        \resizebox{0.8\textwidth}{!}{%
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis lines=none,
+                xmin=-2.5,
+                xmax= 2.5,
+                ymin=-0.5,
+                ymax= 1.0,
+                thick
+                ]
+            \addplot[smooth,thick] plot coordinates {
+                (-3,  0.0)
+                (-2,  0.0)
+                (-1, -0.1)
+                ( 0,  1.0)
+                ( 1, -0.1)
+                ( 2,  0.0)
+                ( 3,  0.0)
+            };
+            \end{axis}
+        \end{tikzpicture}
+        }
+        \caption{\\ Classical Difference of Gaussians (DoG)}
+    \end{subfigure}%
+    \begin{subfigure}{0.33\textwidth}
+        \centering
+        % Plot of DWT function
+        \resizebox{0.8\textwidth}{!}{%
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis lines=none,
+                xmin=-2.5,
+                xmax= 2.5,
+                ymin=-0.5,
+                ymax= 1.0,
+                thick
+                ]
+            \addplot[thick] plot coordinates {
+                (-2.0, 0.0)
+                (-1.1, 0.3)
+            };
+            \addplot[smooth,thick] plot coordinates {
+                (-1.1, 0.3)
+                ( 0.0, 0.6)
+                ( 1.1, 0.3)
+            };
+            \addplot[thick] plot coordinates {
+                ( 1.1, 0.3)
+                ( 2.0, 0.0)
+            };
+            \end{axis}
+        \end{tikzpicture}
+        }
+        \caption{\\ Discrete Wavelet Tranformation Filter}
+    \end{subfigure}
+    \caption{\textbf{//TODO} \textit{DoG and DWT are edge detectors, they should be compared to DO cells.}}
 \end{figure}
 
 
