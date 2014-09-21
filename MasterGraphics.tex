@@ -13,6 +13,72 @@
 
 \begin{document}
 
+
+% FIGURE: Single-opponent recpetive field cross section
+\begin{figure}[h]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            % ON Center
+            \draw[color=pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[color=pomegranate!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[color=pomegranate!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00);
+            % OFF Surround
+            \draw[color=greensea, very thick] (-1.00, 0.00) .. controls (-0.30,-0.05) .. (-0.05,-2.00);
+            \draw[color=greensea, very thick] (-0.05,-2.00) .. controls ( 0.00,-2.10) .. ( 0.05,-2.00);
+            \draw[color=greensea, very thick] ( 1.00, 0.00) .. controls ( 0.30,-0.05) .. ( 0.05,-2.00);
+            % Reference line & point
+            \draw (-1,0) -- (1,0);
+            \filldraw[color=black, fill=gray] ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment
+            \draw[color=white] (-1.5, 2.5) rectangle (1.5, -2.5);
+        \end{tikzpicture}
+        \caption{Symmetric balanced single opponent receptive field}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            % ON Center
+            \draw[color=pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[color=pomegranate!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[color=pomegranate!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00);
+            % OFF Surround
+            \draw[color=greensea,       very thick] (-1.00, 0.00) .. controls (-0.30,-0.05) .. (-0.05,-1.00);
+            \draw[color=greensea,       very thick] (-0.05,-1.00) .. controls ( 0.00,-1.10) .. ( 0.05,-1.00);
+            \draw[color=greensea,       very thick] ( 1.00, 0.00) .. controls ( 0.30,-0.05) .. ( 0.05,-1.00);
+            % Reference line & point
+            \draw (-1,0) -- (1,0);
+            \filldraw[color=black, fill=gray] ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment
+            \draw[color=white] (-1.5, 2.5) rectangle (1.5, -2.5);
+        \end{tikzpicture}
+        \caption{Symmetric imbalanced single opponent receptive field}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            % ON Center
+            \draw[color=pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[color=pomegranate!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[color=pomegranate!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00);
+            % OFF Surround
+            \draw[color=greensea,       very thick] (-1.50, 0.00) .. controls (-0.30,-0.2) .. (-0.05,-0.50);
+            \draw[color=greensea,       very thick] (-0.05,-0.50) .. controls ( 0.00,-0.5) .. ( 0.05,-0.50);
+            \draw[color=greensea,       very thick] ( 1.50, 0.00) .. controls ( 0.30,-0.2) .. ( 0.05,-0.50);
+            % Reference line & point
+            \draw (-1.5,0) -- (1.5,0);
+            \filldraw[color=black, fill=gray]       ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment
+            \draw[color=white]                      (-1.5, 2.5) rectangle (1.5, -2.5);
+        \end{tikzpicture}
+        \caption{Center/surround single opponent receptive field}
+    \end{subfigure}%
+\end{figure}
+
+
+% FIGURE: Oriented double-opponent receptive fields
 \begin{figure}[h] \label{fig:dos}
     \centering
     \captionsetup{justification=centering}
