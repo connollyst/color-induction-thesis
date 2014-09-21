@@ -1423,6 +1423,249 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
     \caption{Diagram of \textit{Opponent Processing of Receptive Fields} workflow. The L, M, and S channels are convoluted with center and surround gaussians and then combined to build opponent colors, here exemplified by single-opponent cell receptive fields. The process is similar for double-opponent cells.}
 \end{figure}
 
+% FIGURE: Colored Double Opponent Receptive Fields
+\begin{figure}
+    \centering
+    \captionsetup{justification=centering}
+    % 3 SUBFIGURES: Cross sections of single-opponent receptive fields
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$L^+M^+$};
+            % OFF Surround
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$L^-M^-$};
+            % ON Center
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$L^+M^+$};
+            % OFF Surround
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$L^-M^-$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    }
+    \caption{Light DO \\ Receptive Field}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$L^+M^+$};
+            % OFF Surround
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$L^-M^-$};
+            % ON Center
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$L^+M^+$};
+            % OFF Surround
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$L^-M^-$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    }
+    \caption{Dark DO \\ Receptive Field}
+    \end{subfigure}%
+    \par \bigskip
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$L^+$};
+            % OFF Surround
+            \draw[greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$M^-$};
+            % ON Center
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$M^+$};
+            % OFF Surround
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$L^-$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    }
+    \caption{Red DO \\ Receptive Field}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
+            % ON Center
+            \draw[greensea, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[greensea, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[greensea, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$M^+$};
+            % OFF Surround
+            \draw[pomegranate!80,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[pomegranate!80,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[pomegranate!80,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$L^-$};
+            % ON Center
+            \draw[pomegranate!80,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[pomegranate!80,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[pomegranate!80,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$L^+$};
+            % OFF Surround
+            \draw[greensea, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[greensea, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[greensea, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$M^-$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    }
+    \caption{Green DO \\ Receptive Field}
+    \end{subfigure}%
+    \par \bigskip
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
+            % ON Center
+            \draw[color=peter!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[color=peter!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[color=peter!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$S^+$};
+            % OFF Surround
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$L^-M^-$};
+            % ON Center
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$L^+M^+$};
+            % OFF Surround
+            \draw[color=peter!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[color=peter!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[color=peter!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$S^-$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    }
+    \caption{Blue DO \\ Receptive Field}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$L^+M^+$};
+            % OFF Surround
+            \draw[color=peter,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[color=peter,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[color=peter,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$S^-$};
+            % ON Center
+            \draw[color=peter,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[color=peter,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[color=peter,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$S^+$};
+            % OFF Surround
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick]                 ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$L^-M^-$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    }
+    \caption{Yellow DO \\ Receptive Field}
+    \end{subfigure}%
+\end{figure}
+
 \subsubsection*{Neural Receptive Fields}
 
 \textbf{//TODO} \textit{REFACTOR INTO PARAGRAPH ON RECEPTIVE FIELDS}
@@ -1430,7 +1673,6 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
 \subsubsection*{Opponent Processing}
 
 \textbf{//TODO} \textit{REFACTOR INTO PARAGRAPH ON OPPONENT PROCESSING}
-
 
 Processing starts by convoluting each of the L, M, and S cone spectral response functions with two different gaussian filters. These convolutions simulate integration of information in a neuron's receptive field. One convolution is used to build the excitatory component of the receptive field (referred to as the center), the other convolution, the inhibitory (referred to as the surround).
 
