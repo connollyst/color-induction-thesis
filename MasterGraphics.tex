@@ -23,40 +23,73 @@
     \resizebox{\textwidth}{!}{%
     \begin{tikzpicture}[auto, >=latex']
     % RGB Input
-    \draw ( 0.0, 2.0) node(r)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {L Channel};
-    \draw ( 0.0, 0.0) node(g)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {M Channel};
-    \draw ( 0.0,-2.0) node(b)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {S Channel};
+    \draw ( -4.0,  20) node(r)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {L Channel};
+    \draw (  0.0,  20) node(g)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {M Channel};
+    \draw (  4.0,  20) node(b)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {S Channel};
     % Gaussian Convolutions
-    \draw ( 4.0, 1.5) node(c)[draw, shape=circle, text width=2cm, align=center] {CENTER \\ Convolution};
-    \draw ( 4.0,-1.5) node(s)[draw, shape=circle, text width=2cm, align=center] {SURROUND \\ Convolution};
+    \draw ( -3.0,  15) node(c)[draw, shape=circle, text width=2cm, align=center] {CENTER \\ Convolution};
+    \draw (  3.0,  15) node(s)[draw, shape=circle, text width=2cm, align=center] {SURROUND \\ Convolution};
     % RGB Centers & Surrounds
-    \draw ( 8.0, 3.2) node(rc)[draw, shape=rectangle, minimum height=1cm, align=center] {L Center};
-    \draw ( 8.0, 2.0) node(gc)[draw, shape=rectangle, minimum height=1cm, align=center] {M Center};
-    \draw ( 8.0, 0.8) node(bc)[draw, shape=rectangle, minimum height=1cm, align=center] {S Center};
-    \draw ( 8.0,-0.8) node(rs)[draw, shape=rectangle, minimum height=1cm, align=center] {L Surround};
-    \draw ( 8.0,-2.0) node(gs)[draw, shape=rectangle, minimum height=1cm, align=center] {M Surround};
-    \draw ( 8.0,-3.2) node(bs)[draw, shape=rectangle, minimum height=1cm, align=center] {S Surround};
-    % RGB Centers & Surrounds
-    \draw (15.0, 13.75) node(L)[draw, shape=rectangle, minimum height=1cm, align=center] {$LM_{\text{on}}ML_{\text{off}}$};
-    \draw (15.0,  8.25) node(D)[draw, shape=rectangle, minimum height=1cm, align=center] {$LM_{\text{on}}LM_{\text{off}}$};
-    \draw (15.0,  2.75) node(R)[draw, shape=rectangle, minimum height=1cm, align=center] {$L_{\text{on}}G_{\text{off}}$};
-    \draw (15.0, -2.75) node(G)[draw, shape=rectangle, minimum height=1cm, align=center] {$M_{\text{on}}R_{\text{off}}$};
-    \draw (15.0, -8.25) node(B)[draw, shape=rectangle, minimum height=1cm, align=center] {$S_{\text{on}}LM_{\text{off}}$};
-    \draw (15.0,-13.75) node(Y)[draw, shape=rectangle, minimum height=1cm, align=center] {$LM_{\text{on}}B_{\text{off}}$};
-    \node (Lon)  at (L.north west) [left] {+};
-    \node (Loff) at (L.south west) [left] {-};
-    \node (Don)  at (D.north west) [left] {+};
-    \node (Doff) at (D.south west) [left] {-};
-    \node (Ron)  at (R.north west) [left] {+};
-    \node (Roff) at (R.south west) [left] {-};
-    \node (Gon)  at (G.north west) [left] {+};
-    \node (Goff) at (G.south west) [left] {-};
-    \node (Bon)  at (B.north west) [left] {+};
-    \node (Boff) at (B.south west) [left] {-};
-    \node (Yon)  at (Y.north west) [left] {+};
-    \node (Yoff) at (Y.south west) [left] {-};
+    \draw ( -9.0,   8) node(rc)[draw, shape=rectangle, minimum height=1cm, align=center] {L Center};
+    \draw ( -6.0,  10) node(gc)[draw, shape=rectangle, minimum height=1cm, align=center] {M Center};
+    \draw ( -3.0,  12) node(bc)[draw, shape=rectangle, minimum height=1cm, align=center] {S Center};
+    \draw (  3.0,  12) node(rs)[draw, shape=rectangle, minimum height=1cm, align=center] {L Surround};
+    \draw (  6.0,  10) node(gs)[draw, shape=rectangle, minimum height=1cm, align=center] {M Surround};
+    \draw (  9.0,   8) node(bs)[draw, shape=rectangle, minimum height=1cm, align=center] {S Surround};
+    % Colors
+    \draw (-16.25,  0) node(L)[shape=rectangle, minimum height=1cm, align=center] {Light};
+    \draw ( -9.75,  0) node(D)[shape=rectangle, minimum height=1cm, align=center] {Dark};
+    \draw ( -3.25,  0) node(R)[shape=rectangle, minimum height=1cm, align=center] {Red};
+    \draw (  3.25,  0) node(G)[shape=rectangle, minimum height=1cm, align=center] {Green};
+    \draw (  9.75,  0) node(B)[shape=rectangle, minimum height=1cm, align=center] {Blue};
+    \draw ( 16.25,  0) node(Y)[shape=rectangle, minimum height=1cm, align=center] {Yellow};
+    \node (Lon)  at (L.north) [above left]  {+};
+    \node (Don)  at (D.north) [above left]  {+};
+    \node (Ron)  at (R.north) [above left]  {+};
+    \node (Gon)  at (G.north) [above left]  {+};
+    \node (Bon)  at (B.north) [above left]  {+};
+    \node (Yon)  at (Y.north) [above left]  {+};
+    \node (Loff) at (L.north) [above right] {-};
+    \node (Doff) at (D.north) [above right] {-};
+    \node (Roff) at (R.north) [above right] {-};
+    \node (Goff) at (G.north) [above right] {-};
+    \node (Boff) at (B.north) [above right] {-};
+    \node (Yoff) at (Y.north) [above right] {-};
+    % Paths A
+    \draw [->, pomegranate] (r)  to[bend right] (c);
+    \draw [->, greensea]    (g)  to             (c);
+    \draw [->, peter]       (b)  to             (c);
+    \draw [->, pomegranate] (r)  to             (s);
+    \draw [->, greensea]    (g)  to             (s);
+    \draw [->, peter]       (b)  to[bend left]  (s);
+    % Paths B
+    \draw [->, pomegranate] (c)  to[bend right] (rc);
+    \draw [->, greensea]    (c)  to             (gc);
+    \draw [->, peter]       (c)  to             (bc);
+    \draw [->, pomegranate] (s)  to             (rs);
+    \draw [->, greensea]    (s)  to             (gs);
+    \draw [->, peter]       (s)  to[bend left]  (bs);
+    % Paths C
+    \draw [->, pomegranate] (rc) to[bend right] (Lon);
+    \draw [->, greensea]    (gc) to[bend right] (Lon);
+    \draw [->, pomegranate] (rs) to             (Loff);
+    \draw [->, greensea]    (gs) to             (Loff);
+    \draw [->, pomegranate] (rs) to[bend right] (Don);
+    \draw [->, greensea]    (gs) to[bend right] (Don);
+    \draw [->, pomegranate] (rc) to[bend left]  (Doff);
+    \draw [->, greensea]    (gc) to[bend left]  (Doff);
+    \draw [->, pomegranate] (rc) to             (Ron);
+    \draw [->, greensea]    (gs) to             (Roff);
+    \draw [->, greensea]    (gc) to             (Gon);
+    \draw [->, pomegranate] (rs) to             (Goff);
+    \draw [->, peter]       (bc) to             (Bon);
+    \draw [->, greensea]    (gs) to             (Boff);
+    \draw [->, pomegranate] (rs) to             (Boff);
+    \draw [->, greensea]    (gc) to             (Yon);
+    \draw [->, pomegranate] (rc) to             (Yon);
+    \draw [->, peter]       (bs) to[bend left]  (Yoff);
     % Example SO and DO receptive fields
-    \node[right of=L, node distance=1.75in] (Lso) {
+    \node[below of=L, node distance=1.5in] (Lso) {
         \begin{tikzpicture}
             % ON Center
             \draw[greensea,       dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
@@ -81,7 +114,7 @@
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
-    \node[right of=D, node distance=1.75in] (Dso) {
+    \node[below of=D, node distance=1.5in] (Dso) {
         \begin{tikzpicture}
             % OFF Center
             \draw[greensea,       dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
@@ -106,7 +139,7 @@
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
-    \node[right of=R, node distance=1.75in] (Rso) {
+    \node[below of=R, node distance=1.5in] (Rso) {
         \begin{tikzpicture}
             % ON Center
             \draw[pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
@@ -125,7 +158,7 @@
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
-    \node[right of=G, node distance=1.75in] (Gso) {
+    \node[below of=G, node distance=1.5in] (Gso) {
         \begin{tikzpicture}
             % ON Center
             \draw[greensea,       very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
@@ -144,7 +177,7 @@
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
-    \node[right of=B, node distance=1.75in] (Bso) {
+    \node[below of=B, node distance=1.5in] (Bso) {
         \begin{tikzpicture}
             % ON Center
             \draw[peter,          very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
@@ -166,7 +199,7 @@
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
-    \node[right of=Y, node distance=1.75in] (Yso) {
+    \node[below of=Y, node distance=1.5in] (Yso) {
         \begin{tikzpicture}
             % ON Center
             \draw[greensea,       dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
@@ -188,7 +221,7 @@
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
-    \node[right of=Lso, node distance=2.5in] (Ldo) {
+    \node[below of=Lso, node distance=2in] (Ldo) {
         \begin{tikzpicture}
             % ON Center
             \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
@@ -217,7 +250,7 @@
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
-    \node[right of=Dso, node distance=2.5in] (Ddo) {
+    \node[below of=Dso, node distance=2in] (Ddo) {
         \begin{tikzpicture}
             % ON Center
             \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
@@ -246,7 +279,7 @@
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
-    \node[right of=Rso, node distance=2.5in] (Rdo) {
+    \node[below of=Rso, node distance=2in] (Rdo) {
         \begin{tikzpicture}
             % ON Center
             \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
@@ -275,7 +308,7 @@
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
-    \node[right of=Gso, node distance=2.5in] (Gdo) {
+    \node[below of=Gso, node distance=2in] (Gdo) {
         \begin{tikzpicture}
             % ON Center
             \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
@@ -304,7 +337,7 @@
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
-    \node[right of=Bso, node distance=2.5in] (Bdo) {
+    \node[below of=Bso, node distance=2in] (Bdo) {
         \begin{tikzpicture}
             % ON Center
             \draw[color=peter!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
@@ -333,7 +366,7 @@
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
-    \node[right of=Yso, node distance=2.5in] (Ydo) {
+    \node[below of=Yso, node distance=2in] (Ydo) {
         \begin{tikzpicture}
             % ON Center
             \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
@@ -362,35 +395,6 @@
             \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
-    % Paths A
-    \draw [->, pomegranate] (r)  to[bend left]  (c);
-    \draw [->, greensea]    (g)  to             (c);
-    \draw [->, peter]       (b)  to             (c);
-    \draw [->, pomegranate] (r)  to             (s);
-    \draw [->, greensea]    (g)  to             (s);
-    \draw [->, peter]       (b)  to[bend right] (s);
-    % Paths B
-    \draw [->, pomegranate] (c)  to[bend left]  (rc);
-    \draw [->, greensea]    (c)  to             (gc);
-    \draw [->, peter]       (c)  to[bend right] (bc);
-    \draw [->, pomegranate] (s)  to[bend left]  (rs);
-    \draw [->, greensea]    (s)  to             (gs);
-    \draw [->, peter]       (s)  to[bend right] (bs);
-    % Paths C
-    \draw [->, pomegranate] (rc) to[bend left]  (Lon);
-    \draw [->, greensea]    (gc) to[bend right] (Lon);
-    \draw [->, pomegranate] (rs) to             (Loff);
-    \draw [->, greensea]    (gs) to[bend right] (Loff);
-    \draw [->, pomegranate] (rc) to             (Ron);
-    \draw [->, greensea]    (gs) to[bend left]  (Roff);
-    \draw [->, greensea]    (gc) to             (Gon);
-    \draw [->, pomegranate] (rs) to             (Goff);
-    \draw [->, peter]       (bc) to             (Bon);
-    \draw [->, greensea]    (gs) to             (Boff);
-    \draw [->, pomegranate] (rs) to             (Boff);
-    \draw [->, greensea]    (gc) to[bend left]  (Yon);
-    \draw [->, pomegranate] (rc) to[bend left]  (Yon);
-    \draw [->, peter]       (bs) to[bend right] (Yoff);
     \end{tikzpicture}
     }
     \caption{Sean is the coolest!}
