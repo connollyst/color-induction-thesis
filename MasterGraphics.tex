@@ -12,149 +12,8 @@
 \definecolor{greensea}{RGB}{22, 160, 133}
 
 \begin{document}
-
-\begin{figure}[h]
-    \centering
-    \captionsetup{justification=centering}
-    % 3 SUBFIGURES: Cross sections of double-opponent receptive fields
-    \begin{subfigure}{0.3\textwidth}
-        \centering
-        \resizebox{\textwidth}{!}{%
-        \begin{tikzpicture}
-            % ON Center
-            \draw[color=pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
-            \draw[color=pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
-            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
-                 node[color=black, anchor=south west] {$R_{\text{on}}$};
-            % OFF Surround
-            \draw[color=greensea,       very thick] (-2.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-2.00);
-            \draw[color=greensea,       very thick] (-1.05,-2.00) .. controls (-1.00,-2.10) .. (-0.95,-2.00);
-            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-2.00)
-                 node[color=black, anchor=north west] {$G_{\text{on}}$};
-            % ON Center
-            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 2.00);
-            \draw[color=greensea,       very thick] ( 1.05, 2.00) .. controls ( 1.00, 2.10) .. ( 0.95, 2.00);
-            \draw[color=greensea,       very thick] ( 2.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 2.00)
-                 node[color=black, anchor=south west] {$G_{\text{on}}$};
-            % OFF Surround
-            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
-            \draw[color=pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
-            \draw[color=pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
-                 node[color=black, anchor=north west] {$R_{\text{on}}$};
-            % Reference line & point
-            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
-            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
-            % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
-        \end{tikzpicture}}
-    \end{subfigure}
-    \begin{subfigure}{0.3\textwidth}
-        \resizebox{\textwidth}{!}{%
-        \begin{tikzpicture}
-            % ON Center
-            \draw[color=pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
-            \draw[color=pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
-            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
-                 node[color=black, anchor=south west] {$R_{\text{on}}$};
-            % OFF Surround
-            \draw[color=greensea,       very thick] (-2.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-1.00);
-            \draw[color=greensea,       very thick] (-1.05,-1.00) .. controls (-1.00,-1.10) .. (-0.95,-1.00);
-            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-1.00)
-                 node[color=black, anchor=north west] {$G_{\text{on}}$};
-            % ON Center
-            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 1.00);
-            \draw[color=greensea,       very thick] ( 1.05, 1.00) .. controls ( 1.00, 1.10) .. ( 0.95, 1.00);
-            \draw[color=greensea,       very thick] ( 2.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 1.00)
-                 node[color=black, anchor=south west] {$G_{\text{on}}$};
-            % OFF Surround
-            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
-            \draw[color=pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
-            \draw[color=pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
-                 node[color=black, anchor=north west] {$R_{\text{on}}$};
-            % Reference line & point
-            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
-            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
-            % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
-        \end{tikzpicture}}
-    \end{subfigure}
-    \begin{subfigure}{0.3\textwidth}
-        \resizebox{\textwidth}{!}{%
-        \begin{tikzpicture}
-            % ON Center
-            \draw[color=pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
-            \draw[color=pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
-            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
-                 node[color=black, anchor=south west] {$R_{\text{on}}$};
-            % OFF Surround
-            \draw[color=greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
-            \draw[color=greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
-            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
-                 node[color=black, anchor=north west] {$G_{\text{on}}$};
-            % ON Center
-            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
-            \draw[color=greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
-            \draw[color=greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
-                 node[color=black, anchor=south west] {$G_{\text{on}}$};
-            % OFF Surround
-            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
-            \draw[color=pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
-            \draw[color=pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
-                 node[color=black, anchor=north west] {$R_{\text{on}}$};
-            % Reference line & point
-            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
-            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
-            % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
-        \end{tikzpicture}}
-    \end{subfigure}%
-    \par \bigskip
-    % 3 SUBFIGURES: Top-down view of double-opponent receptive fields
-    \begin{subfigure}{0.3\textwidth}
-        \centering
-        \begin{tikzpicture}
-            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.37, 0.00) ellipse   (0.33 and 0.90);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick](-0.37, 0.00) ellipse   (0.33 and 0.90);
-            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
-                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
-                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
-        \end{tikzpicture}
-        \caption{Symmetric \\ balanced \\ double-opponent \\ receptive field}
-    \end{subfigure}%
-    \begin{subfigure}{0.3\textwidth}
-        \centering
-        \begin{tikzpicture}
-            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.37, 0.00) ellipse   (0.33 and 0.90);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick](-0.37, 0.00) ellipse   (0.33 and 0.90);
-            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
-                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
-                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
-        \end{tikzpicture}
-        \caption{Symmetric \\ imbalanced \\ double-opponent \\ receptive field}
-    \end{subfigure}%
-    \begin{subfigure}{0.3\textwidth}
-        \centering
-        \begin{tikzpicture}
-            % Frame to ensure alignment:
-            \draw[color=white]                                            (-2.00, 0.00) --        (2.00, 0.00);
-            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.43, 0.00) ellipse   (0.38 and 0.90);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick](-0.43, 0.00) ellipse   (0.38 and 0.90);
-            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
-                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
-                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
-        \end{tikzpicture}
-        \caption{Center/ \\ surround \\ double-opponent \\ receptive field}
-    \end{subfigure}%
-    \caption{Examples of various possible double-opponent receptive field configurations, many others could be designed. All function to describe color properties of borders, though their response patterns to similar stimuli vary slightly.}
-\end{figure}
         
-% FIGURE: Single-opponent recpetive field cross section
+% FIGURE: Single-opponent receptive field schematics
 \begin{figure}[h]
     \centering
     \captionsetup{justification=centering}
@@ -260,6 +119,145 @@
         \caption{Classic \\ center/surround \\ single-opponent \\ receptive field}
     \end{subfigure}%
     \caption{Examples of various possible single-opponent receptive field configurations, many others could be designed. All function to describe color properties of surfaces, though their response patterns to similar stimuli vary slightly.}
+\end{figure}
+
+
+% FIGURE: Double-opponent receptive field schematics
+\begin{figure}[h]
+    \centering
+    \captionsetup{justification=centering}
+    % 3 SUBFIGURES: Cross sections of double-opponent receptive fields
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
+            % ON Center
+            \draw[color=pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[color=pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$R_{\text{on}}$};
+            % OFF Surround
+            \draw[color=greensea,       very thick] (-2.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-2.00);
+            \draw[color=greensea,       very thick] (-1.05,-2.00) .. controls (-1.00,-2.10) .. (-0.95,-2.00);
+            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-2.00)
+                 node[color=black, anchor=north west] {$G_{\text{on}}$};
+            % ON Center
+            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 2.00);
+            \draw[color=greensea,       very thick] ( 1.05, 2.00) .. controls ( 1.00, 2.10) .. ( 0.95, 2.00);
+            \draw[color=greensea,       very thick] ( 2.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 2.00)
+                 node[color=black, anchor=south west] {$G_{\text{on}}$};
+            % OFF Surround
+            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[color=pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[color=pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$R_{\text{on}}$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
+            % ON Center
+            \draw[color=pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[color=pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$R_{\text{on}}$};
+            % OFF Surround
+            \draw[color=greensea,       very thick] (-2.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-1.00);
+            \draw[color=greensea,       very thick] (-1.05,-1.00) .. controls (-1.00,-1.10) .. (-0.95,-1.00);
+            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-1.00)
+                 node[color=black, anchor=north west] {$G_{\text{on}}$};
+            % ON Center
+            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 1.00);
+            \draw[color=greensea,       very thick] ( 1.05, 1.00) .. controls ( 1.00, 1.10) .. ( 0.95, 1.00);
+            \draw[color=greensea,       very thick] ( 2.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 1.00)
+                 node[color=black, anchor=south west] {$G_{\text{on}}$};
+            % OFF Surround
+            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[color=pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[color=pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$R_{\text{on}}$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
+            % ON Center
+            \draw[color=pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[color=pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$R_{\text{on}}$};
+            % OFF Surround
+            \draw[color=greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[color=greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$G_{\text{on}}$};
+            % ON Center
+            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[color=greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[color=greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$G_{\text{on}}$};
+            % OFF Surround
+            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[color=pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[color=pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$R_{\text{on}}$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}}
+    \end{subfigure}%
+    \par \bigskip
+    % 3 SUBFIGURES: Top-down view of double-opponent receptive fields
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \filldraw[color=pomegranate!80,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
+            \filldraw[color=greensea, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
+        \end{tikzpicture}
+        \caption{Symmetric \\ balanced \\ double-opponent \\ receptive field}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \filldraw[color=pomegranate!80,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
+            \filldraw[color=greensea, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
+        \end{tikzpicture}
+        \caption{Symmetric \\ imbalanced \\ double-opponent \\ receptive field}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            % Frame to ensure alignment:
+            \draw[color=white]                                            (-2.00, 0.00) --        (2.00, 0.00);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.43, 0.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick](-0.43, 0.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
+        \end{tikzpicture}
+        \caption{Center/ \\ surround \\ double-opponent \\ receptive field}
+    \end{subfigure}%
+    \caption{Examples of various possible double-opponent receptive field configurations, many others could be designed. All function to describe color properties of borders, though their response patterns to similar stimuli vary slightly.}
 \end{figure}
 
 
