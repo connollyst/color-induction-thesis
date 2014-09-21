@@ -157,8 +157,11 @@
 \usepackage{tikz}
 % TikZ enabled us to draw graphics directly in LaTeX
 \usepackage{color}
-\definecolor{sunset}{rgb}{0.96, 0.28, 0.28}
-\definecolor{gossip}{rgb}{0.54, 0.83, 0.48}
+\definecolor{alizarin}{RGB}{231, 76, 60}
+\definecolor{pomegranate}{RGB}{192, 57, 43}
+\definecolor{emerald}{RGB}{46, 204, 113}
+\definecolor{turquoise}{RGB}{26, 188, 156}
+\definecolor{greensea}{RGB}{22, 160, 133}
 
 
 
@@ -232,11 +235,11 @@
 
 
 % *** SUBFIGURE PACKAGES ***
-\ifCLASSOPTIONcompsoc
-  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
-\else
-  \usepackage[caption=false,font=footnotesize]{subfig}
-\fi
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
 % subfig.sty, written by Steven Douglas Cochran, is the modern replacement
 % for subfigure.sty, the latter of which is no longer maintained and is
 % incompatible with some LaTeX packages including fixltx2e. However,
@@ -253,7 +256,8 @@
 %
 % The latest version and documentation of subfig.sty can be obtained at:
 % http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
-
+\usepackage{subcaption}
+% Use subcaption instead of subfig (deprecated)
 
 
 
@@ -463,13 +467,22 @@ Research in the past decade or so has seen a shift from this thinking, however. 
 
 \begin{figure}[H]
     \centering
-    \subfloat[] {\includegraphics[width=100pt]{example_1a}}
-    ~
-    \subfloat[] {\includegraphics[width=100pt]{example_1b}}
-    ~
-    \subfloat[] {\includegraphics[width=100pt]{example_1c}}
-    ~
-    \subfloat[] {\includegraphics[width=100pt]{example_1d}}
+    \begin{subfigure}{0.25\textwidth}
+        \centering
+        \includegraphics[width=100pt]{example_1a}
+    \end{subfigure}%
+    \begin{subfigure}{0.25\textwidth}
+        \centering
+        \includegraphics[width=100pt]{example_1b}
+    \end{subfigure}%
+    \begin{subfigure}{0.25\textwidth}
+        \centering
+        \includegraphics[width=100pt]{example_1c}
+    \end{subfigure}%
+    \begin{subfigure}{0.25\textwidth}
+        \centering
+        \includegraphics[width=100pt]{example_1d}
+    \end{subfigure}%
     \caption{Psychophysical example emphasizing the effect of edge contrast in color perception. In all cases, the center square is the same physical color. On (a) the green background, however, it appears much brighter than it does on (b) the red background. (c) Adding a thin black border negates the assimilation effect, increasing the perceived brightness of the center square. (d) Blurring the background, on the other hand, seems to enhance assimilation, lowering the perceived brightness at the center.}
     \label{fig:blur-effect}
 \end{figure}
@@ -494,57 +507,27 @@ In so called color preferring single-opponent cells, the cone inputs to the cent
 \textbf{//TODO} \textit{add image of ON/OFF differences: R-G cell responds to fullscreen green light removed (not red removed)}
 
 \begin{figure}[H]
-    \subfloat[Symmetric Balanced]  {\includegraphics[width=160pt]{rf_so_1}}
-    \subfloat[Symmetric Imbalanced]{\includegraphics[width=160pt]{rf_so_2}}
-    \subfloat[Center/Surround]     {\includegraphics[width=160pt]{rf_so_3}}
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=160pt]{rf_so_1}
+        \caption{Symmetric Balanced}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=160pt]{rf_so_2}
+        \caption{Symmetric Imbalanced}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=160pt]{rf_so_3}
+        \caption{Center/Surround}
+    \end{subfigure}
     \caption{Visualization of a variety of single-opponent (SO) receptive fields.}
     \label{fig:rf-so}
 \end{figure}
 
 
 As mentioned, one of the three axes of the opponent process theory is lightness vs darkness. This is achieved by single-opponent cells by balancing the inputs into the \textit{on} center and the \textit{off} surround. By including equal input of L, M, and S cones into the center and surround, the cells becomes 'color blind' and instead only responds to changes in luminosity. Sometimes incorrectly labeled as non-opponent cells, these neurons are, indeed, single-opponent cells.
-
-\setlength{\unitlength}{0.8cm}
-\begin{figure}[H]
-\subfloat[Symmetric Balanced]  {
-\begin{picture}(5,10)(0,-5)
-    \thicklines
-    % Upper Gaussian
-    \color{sunset}
-    \qbezier(0,0)(1,0)(1.25,2)
-    \qbezier(1.25,2)(1.5,3.5)(1.75,2)
-    \qbezier(1.75,2)(2,0)(3,0)
-    % Lower Gaussian
-    \color{gossip}
-    \qbezier(0,0)(1,0)(1.25,-2)
-    \qbezier(1.25,-2)(1.5,-3.5)(1.75,-2)
-    \qbezier(1.75,-2)(2,0)(3,0)
-    \color{black}
-    \put(0,0){\line(1,0){3}}
-\end{picture}}
-\subfloat[Symmetric Balanced]  {
-\begin{picture}(5,10)(0,-5)
-    \thicklines
-    % Upper Gaussian
-    \color{sunset}
-    \qbezier(0,0)(1,0)(1.25,2)
-    \qbezier(1.25,2)(1.5,3.5)(1.75,2)
-    \qbezier(1.75,2)(2,0)(3,0)
-    % Lower Gaussian
-    \color{gossip}
-    \qbezier(0,0)(1,0)(1.25,-0.75)
-    \qbezier(1.25,-0.75)(1.5,-1)(1.75,-0.75)
-    \qbezier(1.75,-0.75)(2,0)(3,0)
-    \color{black}
-    \put(0,0){\line(1,0){3}}
-\end{picture}}
-\end{figure}
-
-\begin{tikzpicture}
-    \filldraw[blue, very thick]                        (0.0,0.0) rectangle (3, 2);
-    \filldraw[color=red!60,   fill=red!5,   very thick](0.0,0.7) ellipse   (1 and 0.3);
-    \filldraw[color=green!60, fill=green!5, very thick](0.0,0.0) ellipse   (1 and 0.3);
-\end{tikzpicture}
 
 \textbf{//TODO} \textit{add image depicting example receptive field(s)}
 
@@ -566,11 +549,23 @@ The distinction is non-trivial as the response patterns differ, and thus the int
 \textbf{//TODO} \textbf{present the differences between the two DO configurations}
 
 \begin{figure}[H]
-    \subfloat[Symmetric Balanced]  {\includegraphics[width=160pt]{rf_do_1}}
-    \subfloat[Symmetric Imbalanced]{\includegraphics[width=160pt]{rf_do_2}}
-    \subfloat[Center/Surround]     {\includegraphics[width=160pt]{rf_do_4}}
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=160pt]{rf_do_1}
+        \caption{Symmetric Balanced}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=160pt]{rf_do_2}
+        \caption{Symmetric Imbalanced}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=160pt]{rf_do_4}
+        \caption{Center/Surround}
+    \end{subfigure}
     \caption{Visualization of a variety of double-opponent (DO) receptive fields.}
-    \label{fig:rf-do}
+    \label{fig:rf-so}
 \end{figure}
 
 
@@ -578,7 +573,185 @@ The distinction is non-trivial as the response patterns differ, and thus the int
 
 Research shows that cells identified as double-opponent are orientation selective. That is, they respond most strongly when stimulated by a border of particular orientation, less so with variation from that preferred orientation, and weekly, if at all, to borders orthogonal to the preferred orientation. This is intuitive given the organization of the receptive field as previously defined. By arranging the components of the receptive field to be spatially antagonistic, there will be one orientation of border which best separates the two components, and another orientation, precisely perpendicular (\textbf{//TODO} \textit{correct term?}), which does not separate the two components at all. This can be easily visualized, as in Figure \ref{fig:do-orient}.
 
-\textbf{//TODO} \textit{add image depicting vertical vs. diagonal vs. horizontal receptive fields \& ideal vs. unideal stimuli}
+% FIGURE: horizontal red/green double-opponent cell on horizontal red/green border
+\begin{figure}[h]
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
+            \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.00, 1.43) ellipse   (0.90 and 0.38);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00, 0.58) ellipse   (0.90 and 0.38);
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 1.35) ellipse   (0.90 and 0.30);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.00, 0.65) ellipse   (0.90 and 0.30);
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
+            \draw (current bounding box.north east) rectangle (current bounding box.south west);
+        \end{tikzpicture}
+        \caption{Response = 0}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
+            \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.00, 0.43) ellipse   (0.90 and 0.38);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00,-0.43) ellipse   (0.90 and 0.38);
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 0.35) ellipse   (0.90 and 0.30);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.00,-0.35) ellipse   (0.90 and 0.30);
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
+        \draw (current bounding box.north east) rectangle (current bounding box.south west);
+        \end{tikzpicture}
+        \caption{Response = 1}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
+            \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.00,-0.58) ellipse   (0.90 and 0.38);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00,-1.43) ellipse   (0.90 and 0.38);
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.00,-0.65) ellipse   (0.90 and 0.30);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.00,-1.35) ellipse   (0.90 and 0.30);
+            \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
+        \draw (current bounding box.north east) rectangle (current bounding box.south west);
+        \end{tikzpicture}
+        \caption{Response = 0}
+    \end{subfigure}%
+    \par \bigskip
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
+            \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.00, 1.43) ellipse   (0.90 and 0.38);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00, 0.58) ellipse   (0.90 and 0.38);
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 1.35) ellipse   (0.90 and 0.30);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.00, 0.65) ellipse   (0.90 and 0.30);
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
+            \draw (current bounding box.north east) rectangle (current bounding box.south west);
+        \end{tikzpicture}
+        \caption{Response = 0}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
+            \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.00, 0.43) ellipse   (0.90 and 0.38);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00,-0.43) ellipse   (0.90 and 0.38);
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 0.35) ellipse   (0.90 and 0.30);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.00,-0.35) ellipse   (0.90 and 0.30);
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
+        \draw (current bounding box.north east) rectangle (current bounding box.south west);
+        \end{tikzpicture}
+        \caption{Response = 0}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
+            \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.00,-0.58) ellipse   (0.90 and 0.38);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00,-1.43) ellipse   (0.90 and 0.38);
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.00,-0.65) ellipse   (0.90 and 0.30);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.00,-1.35) ellipse   (0.90 and 0.30);
+            \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
+        \draw (current bounding box.north east) rectangle (current bounding box.south west);
+        \end{tikzpicture}
+        \caption{Response = 0}
+    \end{subfigure}
+    \caption{A double opponent cell selective to horizontally oriented borders with red above and green below; only responsive to that particular stimulus. In Figure (b), the neuron is presented with its ideal stimulus: its $R_{on}$ and $G_{on}$ receptive fields are fully activated while its $R_{off}$ and $G_{off}$ receptive fields are completely unactivated. Figure (e) presents the neuron with the exact opposite stimulus, neither its $R_{on}$ nor $G_{on}$ receptive fields are activate at all, and both its $R_{off}$ and $G_{off}$ receptive fields are fully activated, ensuring no response possible from the cell. While its $R_{on}$ receptive field might be strongly stimulated in (a) and (f), it's $R_{off}$ receptive field cancels it out. Similarly, in (c) and (d) its $G_{on}$ receptive field is stimulated but cancelled out by activity in its $G_{off}$ receptive field.}
+\end{figure}
+
+% FIGURE: vertical red/green double-opponent cell on horizontal red/green border
+\begin{figure}[h]
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
+            \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43, 1.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick](-0.43, 1.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.35, 1.00) ellipse   (0.30 and 0.90);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick](-0.35, 1.00) ellipse   (0.30 and 0.90);
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
+            \draw (current bounding box.north east) rectangle (current bounding box.south west);
+        \end{tikzpicture}
+        \caption{Response = 0}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+            \begin{tikzpicture}
+            \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
+            \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43, 0.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick](-0.43, 0.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick](-0.35, 0.00) ellipse   (0.30 and 0.90);
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
+            \draw (current bounding box.north east) rectangle (current bounding box.south west);
+            \end{tikzpicture}
+        \caption{Response = 0}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+            \begin{tikzpicture}
+            \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
+            \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43,-1.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick](-0.43,-1.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.35,-1.00) ellipse   (0.30 and 0.90);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick](-0.35,-1.00) ellipse   (0.30 and 0.90);
+            \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
+            \draw (current bounding box.north east) rectangle (current bounding box.south west);
+            \end{tikzpicture}
+        \caption{Response = 0}
+    \end{subfigure}%
+    \par \bigskip
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
+            \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43, 1.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick](-0.43, 1.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.35, 1.00) ellipse   (0.30 and 0.90);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick](-0.35, 1.00) ellipse   (0.30 and 0.90);
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
+            \draw (current bounding box.north east) rectangle (current bounding box.south west);
+        \end{tikzpicture}
+        \caption{Response = 0}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+            \begin{tikzpicture}
+            \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
+            \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43, 0.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick](-0.43, 0.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick](-0.35, 0.00) ellipse   (0.30 and 0.90);
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
+            \draw (current bounding box.north east) rectangle (current bounding box.south west);
+            \end{tikzpicture}
+        \caption{Response = 0}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+            \begin{tikzpicture}
+            \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
+            \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
+            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43,-1.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick](-0.43,-1.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.35,-1.00) ellipse   (0.30 and 0.90);
+            \filldraw[color=greensea,       fill=turquoise!80, very thick](-0.35,-1.00) ellipse   (0.30 and 0.90);
+            \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
+            \draw (current bounding box.north east) rectangle (current bounding box.south west);
+            \end{tikzpicture}
+        \caption{Response = 0}
+    \end{subfigure}
+    \caption{A double opponent cell selective to vertically oriented borders with red to the right and green on the left; completely unresponsive to a horizontal border. While its $R_{on}$ receptive field might be strongly stimulated in (a) and (f), it's $R_{off}$ receptive field cancels it out. Similarly, in (c) and (d) its $G_{on}$ receptive field is stimulated but cancelled out by activity in its $G_{off}$ receptive field. In (b) and (e) both of its $R_{on}$ and $G_{on}$ receptive fields are moderately activated, but again, cancelled out by activation in its $R_{off}$ and $G_{off}$ receptive fields, respectively.}
+\end{figure}
 
 \textbf{//TODO} \textit{add image of simple behavior: peak activity AT sharp edge}
 
