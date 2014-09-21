@@ -1178,53 +1178,16 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
 
 \subsection{Opponent Processing of Neural Receptive Fields}
 
-\subsubsection*{Neural Receptive Fields}
-
-\textbf{//TODO} \textit{REFACTOR INTO PARAGRAPH ON RECEPTIVE FIELDS}
-
-\subsubsection*{Opponent Processing}
-
-\textbf{//TODO} \textit{REFACTOR INTO PARAGRAPH ON OPPONENT PROCESSING}
-
-
-Processing starts by convoluting each of the L, M, and S cone spectral response functions with two different gaussian filters. These convolutions simulate integration of information in a neuron's receptive field. One convolution is used to build the excitatory component of the receptive field (referred to as the center), the other convolution, the inhibitory (referred to as the surround).
-
-Single-opponent cells' receptive fields are the classical center-surround configuration: symmetric, centered, circular gaussians. Typically, the center is smaller and weighed significantly more heavily than the surround, as in Figure \ref{fig:rd-so} (c). Double-opponent receptive fields are markedly more complex: asymmetrical, off-center, elongated gaussian filters. Similarly, these filters can be adjusted to different sizes, shapes, and weights. For our tests we worked with symmetric balanced receptive fields, as in Figure \ref{fig:rd-do} (a).
-
-In our implementation, for convenience, we utilize the R, G, and B channels of the raw image as an approximation of L, M, and S cone activity, respectively. It should be noted that a preprocessing step could be performed to better match RGB to LMS so as to be more biologically consistent. The impact is likely negligible.
-
-To construct opponent color channels, we contrast center $(c)$ and surround $(s)$ convolutions of the L, M, and S channels into three pairs: two color \cite{spitzer:2005} and one achromatic.
-
-\begin{flalign}
-    R(c, s, \sigma) &= max(0, L(c, \sigma) - M(s, \sigma)) \\
-    G(c, s, \sigma) &= max(0, M(c, \sigma) - L(s, \sigma)) \\
-    B(c, s, \sigma) &= max(0, S(c, \sigma) - \frac{L(s, \sigma) + M(s, \sigma)}{2}) \\
-    Y(c, s, \sigma) &= max(0, \frac{L(c, \sigma) + M(c, \sigma)}{2} - S(s, \sigma))
-\end{flalign}
-
-We also introduce two new opponent channels, lightness (L) and darkness (D):
-
-\begin{flalign}
-    L(c, s, \sigma) &= max(0, \frac{L(c, \sigma) + M(c, \sigma) + S(c, \sigma)}{3} - 0.5) \\
-    D(c, s, \sigma) &= | min(0, \frac{L(c, \sigma) + M(c, \sigma) + S(c, \sigma)}{3} - 0.5) |
-\end{flalign}
-
-\textbf{//TODO} \textit{consider} $\frac{L(c) + M(c) + S(c)}{3} - \frac{L(s) + M(s) + S(s)}{3})$
-
-\textbf{//TODO} \textit{consider} $(L(c) + M(c)) - (L(s) + M(s))$ \textit{(Rolf \& Deco)}
-
-It is important to note that the L \& D opponent channels do not incorporate surround effects as the color opponent channels do. More work can be done in this regard.
-
 % FIGURE: Opponent Processing Diagram
-\begin{figure}[h] \label{fig:rf-workflow}
+\begin{figure}[h] \label{fig:opp-workflow}
     \centering
     \captionsetup{justification=centering}
     \resizebox{\textwidth}{!}{%
     \begin{tikzpicture}[auto, >=latex']
     % RGB Input
-    \draw ( -4.0,  25) node(r)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {L Channel};
-    \draw (  0.0,  25) node(g)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {M Channel};
-    \draw (  4.0,  25) node(b)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {S Channel};
+    \draw ( -4.0,  25) node(r)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {L};
+    \draw (  0.0,  25) node(g)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {M};
+    \draw (  4.0,  25) node(b)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {S};
     % Gaussian Convolutions
     \draw ( -3.0,  18) node(c)[draw, shape=circle, minimum height=5cm, minimum width=5cm, align=center] {};
     \draw (  3.0,  18) node(s)[draw, shape=circle, minimum height=5cm, minimum width=5cm, align=center] {};
@@ -1240,12 +1203,12 @@ It is important to note that the L \& D opponent channels do not incorporate sur
     \draw (  6.0,  10) node(gs)[draw, shape=rectangle, minimum height=1cm, align=center] {M Surround};
     \draw (  9.0,   8) node(bs)[draw, shape=rectangle, minimum height=1cm, align=center] {S Surround};
     % Colors
-    \draw (-16.25,  0) node(L)[shape=rectangle, minimum height=1cm, align=center] {Light};
-    \draw ( -9.75,  0) node(D)[shape=rectangle, minimum height=1cm, align=center] {Dark};
-    \draw ( -3.25,  0) node(R)[shape=rectangle, minimum height=1cm, align=center] {Red};
-    \draw (  3.25,  0) node(G)[shape=rectangle, minimum height=1cm, align=center] {Green};
-    \draw (  9.75,  0) node(B)[shape=rectangle, minimum height=1cm, align=center] {Blue};
-    \draw ( 16.25,  0) node(Y)[shape=rectangle, minimum height=1cm, align=center] {Yellow};
+    \draw (-16.25,  0) node(L)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Light};
+    \draw ( -9.75,  0) node(D)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Dark};
+    \draw ( -3.25,  0) node(R)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Red};
+    \draw (  3.25,  0) node(G)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Green};
+    \draw (  9.75,  0) node(B)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Blue};
+    \draw ( 16.25,  0) node(Y)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Yellow};
     \node (Lon)  at (L.north) [above left]  {+};
     \node (Don)  at (D.north) [above left]  {+};
     \node (Ron)  at (R.north) [above left]  {+};
@@ -1318,7 +1281,7 @@ It is important to note that the L \& D opponent channels do not incorporate sur
             \draw[opacity=0]                                                   (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
-    % Example SO and DO receptive fields
+    % Example Single Opponent Receptive Fields
     \node[below of=L, node distance=1.5in] (Lso) {
         \begin{tikzpicture}
             % ON Center
@@ -1346,6 +1309,7 @@ It is important to note that the L \& D opponent channels do not incorporate sur
     };
     \node[below of=D, node distance=1.5in] (Dso) {
         \begin{tikzpicture}
+            \begin{scope}[rotate=180]
             % OFF Center
             \draw[greensea,       dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
             \draw[greensea,       dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
@@ -1353,7 +1317,7 @@ It is important to note that the L \& D opponent channels do not incorporate sur
             \draw[pomegranate!80, dash pattern= on 3pt off 5pt, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
             \draw[pomegranate!80, dash pattern= on 3pt off 5pt, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
             \draw[pomegranate!80, dash pattern= on 3pt off 5pt, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00)
-                 node[color=black, anchor=south west] {$LM_{\text{off}}$};
+                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
             % ON Surround
             \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-1.50, 0.00) .. controls (-0.30,-0.20) .. (-0.05,-0.48);
             \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-0.05,-0.48) .. controls ( 0.00,-0.49) .. ( 0.05,-0.48);
@@ -1361,12 +1325,13 @@ It is important to note that the L \& D opponent channels do not incorporate sur
             \draw[greensea,       dash pattern= on 3pt off 5pt, very thick] (-1.50, 0.00) .. controls (-0.30,-0.20) .. (-0.05,-0.48);
             \draw[greensea,       dash pattern= on 3pt off 5pt, very thick] (-0.05,-0.48) .. controls ( 0.00,-0.49) .. ( 0.05,-0.48);
             \draw[greensea,       dash pattern= on 3pt off 5pt, very thick] ( 1.50, 0.00) .. controls ( 0.30,-0.20) .. ( 0.05,-0.48)
-                 node[color=black, anchor=north west] {$LM_{\text{on}}$};
+                 node[color=black, anchor=south west] {$LM_{\text{on}}$};
             % Reference line & point
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
             \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
+            \end{scope}
         \end{tikzpicture}
     };
     \node[below of=R, node distance=1.5in] (Rso) {
@@ -1451,184 +1416,48 @@ It is important to note that the L \& D opponent channels do not incorporate sur
             \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
-    \node[below of=Lso, node distance=2in] (Ldo) {
-        \begin{tikzpicture}
-            % ON Center
-            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
-            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
-            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
-                 node[color=black, anchor=south west] {$LM_{\text{on}}$};
-            % OFF Surround
-            \draw[greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
-            \draw[greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
-            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
-                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
-            % ON Center
-            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
-            \draw[greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
-            \draw[greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
-                 node[color=black, anchor=south west] {$LM_{\text{on}}$};
-            % OFF Surround
-            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
-            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
-            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
-                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
-            % Reference line & point
-            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
-            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
-            % Frame to ensure alignment:
-            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
-        \end{tikzpicture}
-    };
-    \node[below of=Dso, node distance=2in] (Ddo) {
-        \begin{tikzpicture}
-            % ON Center
-            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
-            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
-            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
-                 node[color=black, anchor=south west] {$LM_{\text{on}}$};
-            % OFF Surround
-            \draw[greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
-            \draw[greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
-            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
-                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
-            % ON Center
-            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
-            \draw[greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
-            \draw[greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
-                 node[color=black, anchor=south west] {$LM_{\text{on}}$};
-            % OFF Surround
-            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
-            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
-            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
-                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
-            % Reference line & point
-            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
-            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
-            % Frame to ensure alignment:
-            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
-        \end{tikzpicture}
-    };
-    \node[below of=Rso, node distance=2in] (Rdo) {
-        \begin{tikzpicture}
-            % ON Center
-            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
-            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
-            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
-                 node[color=black, anchor=south west] {$L_{\text{on}}$};
-            % OFF Surround
-            \draw[greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
-            \draw[greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
-            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
-                 node[color=black, anchor=north west] {$M_{\text{off}}$};
-            % ON Center
-            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
-            \draw[greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
-            \draw[greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
-                 node[color=black, anchor=south west] {$M_{\text{on}}$};
-            % OFF Surround
-            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
-            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
-            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
-                 node[color=black, anchor=north west] {$L_{\text{off}}$};
-            % Reference line & point
-            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
-            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
-            % Frame to ensure alignment:
-            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
-        \end{tikzpicture}
-    };
-    \node[below of=Gso, node distance=2in] (Gdo) {
-        \begin{tikzpicture}
-            % ON Center
-            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
-            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
-            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
-                 node[color=black, anchor=south west] {$M_{\text{on}}$};
-            % OFF Surround
-            \draw[greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
-            \draw[greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
-            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
-                 node[color=black, anchor=north west] {$L_{\text{off}}$};
-            % ON Center
-            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
-            \draw[greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
-            \draw[greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
-                 node[color=black, anchor=south west] {$L_{\text{on}}$};
-            % OFF Surround
-            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
-            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
-            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
-                 node[color=black, anchor=north west] {$M_{\text{off}}$};
-            % Reference line & point
-            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
-            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
-            % Frame to ensure alignment:
-            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
-        \end{tikzpicture}
-    };
-    \node[below of=Bso, node distance=2in] (Bdo) {
-        \begin{tikzpicture}
-            % ON Center
-            \draw[color=peter!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
-            \draw[color=peter!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
-            \draw[color=peter!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
-                 node[color=black, anchor=south west] {$S_{\text{on}}$};
-            % OFF Surround
-            \draw[greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
-            \draw[greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
-            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
-                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
-            % ON Center
-            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
-            \draw[greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
-            \draw[greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
-                 node[color=black, anchor=south west] {$S_{\text{on}}$};
-            % OFF Surround
-            \draw[color=peter!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
-            \draw[color=peter!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
-            \draw[color=peter!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
-                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
-            % Reference line & point
-            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
-            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
-            % Frame to ensure alignment:
-            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
-        \end{tikzpicture}
-    };
-    \node[below of=Yso, node distance=2in] (Ydo) {
-        \begin{tikzpicture}
-            % ON Center
-            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
-            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
-            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
-                 node[color=black, anchor=south west] {$LM_{\text{on}}$};
-            % OFF Surround
-            \draw[color=peter,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
-            \draw[color=peter,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
-            \draw[color=peter,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
-                 node[color=black, anchor=north west] {$S_{\text{off}}$};
-            % ON Center
-            \draw[color=peter,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
-            \draw[color=peter,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
-            \draw[color=peter,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
-                 node[color=black, anchor=south west] {$S_{\text{on}}$};
-            % OFF Surround
-            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
-            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
-            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
-                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
-            % Reference line & point
-            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
-            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
-            % Frame to ensure alignment:
-            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
-        \end{tikzpicture}
-    };
     \end{tikzpicture}
     }
-    \caption{Sean is the coolest!}
+    \caption{Diagram of \textit{Opponent Processing of Receptive Fields} workflow. The L, M, and S channels are convoluted with center and surround gaussians and then combined to build opponent colors, here exemplified by single-opponent cell receptive fields.}
 \end{figure}
+
+\subsubsection*{Neural Receptive Fields}
+
+\textbf{//TODO} \textit{REFACTOR INTO PARAGRAPH ON RECEPTIVE FIELDS}
+
+\subsubsection*{Opponent Processing}
+
+\textbf{//TODO} \textit{REFACTOR INTO PARAGRAPH ON OPPONENT PROCESSING}
+
+
+Processing starts by convoluting each of the L, M, and S cone spectral response functions with two different gaussian filters. These convolutions simulate integration of information in a neuron's receptive field. One convolution is used to build the excitatory component of the receptive field (referred to as the center), the other convolution, the inhibitory (referred to as the surround).
+
+Single-opponent cells' receptive fields are the classical center-surround configuration: symmetric, centered, circular gaussians. Typically, the center is smaller and weighed significantly more heavily than the surround, as in Figure \ref{fig:rd-so} (c). Double-opponent receptive fields are markedly more complex: asymmetrical, off-center, elongated gaussian filters. Similarly, these filters can be adjusted to different sizes, shapes, and weights. For our tests we worked with symmetric balanced receptive fields, as in Figure \ref{fig:rd-do} (a).
+
+In our implementation, for convenience, we utilize the R, G, and B channels of the raw image as an approximation of L, M, and S cone activity, respectively. It should be noted that a preprocessing step could be performed to better match RGB to LMS so as to be more biologically consistent. The impact is likely negligible.
+
+To construct opponent color channels, we contrast center $(c)$ and surround $(s)$ convolutions of the L, M, and S channels into three pairs: two color \cite{spitzer:2005} and one achromatic.
+
+\begin{flalign}
+    R(c, s, \sigma) &= max(0, L(c, \sigma) - M(s, \sigma)) \\
+    G(c, s, \sigma) &= max(0, M(c, \sigma) - L(s, \sigma)) \\
+    B(c, s, \sigma) &= max(0, S(c, \sigma) - \frac{L(s, \sigma) + M(s, \sigma)}{2}) \\
+    Y(c, s, \sigma) &= max(0, \frac{L(c, \sigma) + M(c, \sigma)}{2} - S(s, \sigma))
+\end{flalign}
+
+We also introduce two new opponent channels, lightness (L) and darkness (D):
+
+\begin{flalign}
+    L(c, s, \sigma) &= max(0, \frac{L(c, \sigma) + M(c, \sigma) + S(c, \sigma)}{3} - 0.5) \\
+    D(c, s, \sigma) &= | min(0, \frac{L(c, \sigma) + M(c, \sigma) + S(c, \sigma)}{3} - 0.5) |
+\end{flalign}
+
+\textbf{//TODO} \textit{consider} $\frac{L(c) + M(c) + S(c)}{3} - \frac{L(s) + M(s) + S(s)}{3})$
+
+\textbf{//TODO} \textit{consider} $(L(c) + M(c)) - (L(s) + M(s))$ \textit{(Rolf \& Deco)}
+
+It is important to note that the L \& D opponent channels do not incorporate surround effects as the color opponent channels do. More work can be done in this regard.
+
 
 \textbf{//TODO} \textit{ADD L \& D to Figure \ref{fig:opponent-process}}
 
