@@ -571,10 +571,14 @@ The distinction is non-trivial as the response patterns differ, and thus the int
 
 \subsubsection*{Orientation Selectivity}
 
-Research shows that cells identified as double-opponent are orientation selective. That is, they respond most strongly when stimulated by a border of particular orientation, less so with variation from that preferred orientation, and weekly, if at all, to borders orthogonal to the preferred orientation. This is intuitive given the organization of the receptive field as previously defined. By arranging the components of the receptive field to be spatially antagonistic, there will be one orientation of border which best separates the two components, and another orientation, precisely perpendicular (\textbf{//TODO} \textit{correct term?}), which does not separate the two components at all. This can be easily visualized, as in Figure \ref{fig:do-orient}.
+Research shows that cells identified as double-opponent are orientation selective. That is, they respond most strongly when stimulated by a border of particular orientation, less so with variation from that preferred orientation, and weekly, if at all, to borders orthogonal to the preferred orientation. This is intuitive given the organization of the receptive field as previously defined. By arranging the components of the receptive field to be spatially antagonistic, there will be one orientation of border which best separates the two components, and another orientation, precisely orthogonal, which does not separate the two components at all. This can be easily visualized, as in Figure \ref{fig:do-orient-h} and Figure \ref{fig:do-orient-v}.
+
+\textbf{//TODO} \textit{add image of simple behavior: peak activity AT sharp edge}
+
+It's worth noting that a single-opponent neuron can also be selective to specific orientations. These cells have been identified in biology, though their relative abundance appears minimal. To achieve orientation selectivity, the center and/or surround receptive fields simply need be made non-circular. However, without the balanced asymmetric \textit{on} and \textit{off} receptive fields from each opponent cone(s), an orientation specific single-opponent cell could never be as selective as a double-opponent cell.
 
 % FIGURE: horizontal red/green double-opponent cell on horizontal red/green border
-\begin{figure}[h]
+\begin{figure}[h] \label{fig:do-orient-h}
     \begin{subfigure}{0.3\textwidth}
         \centering
         \begin{tikzpicture}
@@ -587,7 +591,7 @@ Research shows that cells identified as double-opponent are orientation selectiv
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -601,7 +605,7 @@ Research shows that cells identified as double-opponent are orientation selectiv
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 1}
+        \caption{Maximum Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -615,7 +619,7 @@ Research shows that cells identified as double-opponent are orientation selectiv
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}%
     \par \bigskip
     \begin{subfigure}{0.3\textwidth}
@@ -630,7 +634,7 @@ Research shows that cells identified as double-opponent are orientation selectiv
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -644,7 +648,7 @@ Research shows that cells identified as double-opponent are orientation selectiv
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{No Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -658,13 +662,13 @@ Research shows that cells identified as double-opponent are orientation selectiv
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}
     \caption{A double opponent cell selective to horizontally oriented borders with red above and green below; only responsive to that particular stimulus. In Figure (b), the neuron is presented with its ideal stimulus: its $R_{on}$ and $G_{on}$ receptive fields are fully activated while its $R_{off}$ and $G_{off}$ receptive fields are completely unactivated. Figure (e) presents the neuron with the exact opposite stimulus, neither its $R_{on}$ nor $G_{on}$ receptive fields are activate at all, and both its $R_{off}$ and $G_{off}$ receptive fields are fully activated, ensuring no response possible from the cell. While its $R_{on}$ receptive field might be strongly stimulated in (a) and (f), it's $R_{off}$ receptive field cancels it out. Similarly, in (c) and (d) its $G_{on}$ receptive field is stimulated but cancelled out by activity in its $G_{off}$ receptive field.}
 \end{figure}
 
 % FIGURE: vertical red/green double-opponent cell on horizontal red/green border
-\begin{figure}[h]
+\begin{figure}[h] \label{fig:do-orient-v}
     \begin{subfigure}{0.3\textwidth}
         \centering
         \begin{tikzpicture}
@@ -677,7 +681,7 @@ Research shows that cells identified as double-opponent are orientation selectiv
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -691,7 +695,7 @@ Research shows that cells identified as double-opponent are orientation selectiv
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
             \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minimal Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -705,7 +709,7 @@ Research shows that cells identified as double-opponent are orientation selectiv
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
             \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}%
     \par \bigskip
     \begin{subfigure}{0.3\textwidth}
@@ -720,7 +724,7 @@ Research shows that cells identified as double-opponent are orientation selectiv
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -734,7 +738,7 @@ Research shows that cells identified as double-opponent are orientation selectiv
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
             \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minimal Response}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -748,14 +752,10 @@ Research shows that cells identified as double-opponent are orientation selectiv
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
             \end{tikzpicture}
-        \caption{Response = 0}
+        \caption{Minor Response}
     \end{subfigure}
     \caption{A double opponent cell selective to vertically oriented borders with red to the right and green on the left; completely unresponsive to a horizontal border. While its $R_{on}$ receptive field might be strongly stimulated in (a) and (f), it's $R_{off}$ receptive field cancels it out. Similarly, in (c) and (d) its $G_{on}$ receptive field is stimulated but cancelled out by activity in its $G_{off}$ receptive field. In (b) and (e) both of its $R_{on}$ and $G_{on}$ receptive fields are moderately activated, but again, cancelled out by activation in its $R_{off}$ and $G_{off}$ receptive fields, respectively.}
 \end{figure}
-
-\textbf{//TODO} \textit{add image of simple behavior: peak activity AT sharp edge}
-
-\textbf{//TODO} \textit{PARAGRAPH ON SINGLE OPPONENT ORIENTATION SELECTIVITY (possible but not considered here)}
 
 
 \subsubsection*{Spatial Frequency Selectivity}
