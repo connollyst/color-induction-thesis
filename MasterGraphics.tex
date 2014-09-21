@@ -1,11 +1,24 @@
 \documentclass{article}
 
 \usepackage[cmex10]{amsmath}
+
 \usepackage{subcaption}
 
+\usepackage{pgfplots}
+
 \usepackage{tikz}
+\usetikzlibrary{calc}
 \usetikzlibrary{arrows}
 \usetikzlibrary{positioning}
+\tikzset{
+%Define standard arrow tip
+>=stealth',
+%Define style for different line styles
+help lines/.style={dashed, thick},
+axis/.style={<->},
+important line/.style={thick},
+connection/.style={thick, dotted},
+}
 
 \definecolor{alizarin}{RGB}{231, 76, 60}
 \definecolor{pomegranate}{RGB}{192, 57, 43}
@@ -15,6 +28,31 @@
 \definecolor{peter}{RGB}{52, 152, 219}
 
 \begin{document}
+
+% Plot of DWT function
+\begin{figure}[!htbp]
+\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines=left,
+            xmin=-2.5,
+            xmax= 2.5,
+            xtick={-3,...,3},
+            ymin=0,
+            ymax=0.5,
+            thick,
+            grid=both
+            ]
+        \addplot[smooth,thick] plot coordinates {
+            (-2, 0.0625)
+            (-1, 0.2500)
+            ( 0, 0.3750)
+            ( 1, 0.2500)
+            ( 2, 0.0625)
+        };
+    \end{axis}
+\end{tikzpicture}
+\end{figure}
 
 
 % FIGURE: Opponent Processing Diagram
