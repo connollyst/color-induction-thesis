@@ -4,15 +4,386 @@
 \usepackage{subcaption}
 
 \usepackage{tikz}
+\usetikzlibrary{arrows}
 
 \definecolor{alizarin}{RGB}{231, 76, 60}
 \definecolor{pomegranate}{RGB}{192, 57, 43}
 \definecolor{emerald}{RGB}{46, 204, 113}
 \definecolor{turquoise}{RGB}{26, 188, 156}
 \definecolor{greensea}{RGB}{22, 160, 133}
+\definecolor{peter}{RGB}{52, 152, 219}
 
 \begin{document}
-        
+
+
+% FIGURE: Opponent Processing Diagram
+\begin{figure}[h] \label{fig:rf-workflow}
+    \centering
+    \captionsetup{justification=centering}
+    \resizebox{\textwidth}{!}{%
+    \begin{tikzpicture}[auto, >=latex']
+    % RGB Input
+    \draw ( 0.0, 2.0) node(r)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {L Channel};
+    \draw ( 0.0, 0.0) node(g)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {M Channel};
+    \draw ( 0.0,-2.0) node(b)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {S Channel};
+    % Gaussian Convolutions
+    \draw ( 4.0, 1.5) node(c)[draw, shape=circle, text width=2cm, align=center] {CENTER \\ Convolution};
+    \draw ( 4.0,-1.5) node(s)[draw, shape=circle, text width=2cm, align=center] {SURROUND \\ Convolution};
+    % RGB Centers & Surrounds
+    \draw ( 8.0, 3.2) node(rc)[draw, shape=rectangle, minimum height=1cm, align=center] {L Center};
+    \draw ( 8.0, 2.0) node(gc)[draw, shape=rectangle, minimum height=1cm, align=center] {M Center};
+    \draw ( 8.0, 0.8) node(bc)[draw, shape=rectangle, minimum height=1cm, align=center] {S Center};
+    \draw ( 8.0,-0.8) node(rs)[draw, shape=rectangle, minimum height=1cm, align=center] {L Surround};
+    \draw ( 8.0,-2.0) node(gs)[draw, shape=rectangle, minimum height=1cm, align=center] {M Surround};
+    \draw ( 8.0,-3.2) node(bs)[draw, shape=rectangle, minimum height=1cm, align=center] {S Surround};
+    % RGB Centers & Surrounds
+    \draw (15.0, 13.75) node(L)[draw, shape=rectangle, minimum height=1cm, align=center] {$LM_{\text{on}}ML_{\text{off}}$};
+    \draw (15.0,  8.25) node(D)[draw, shape=rectangle, minimum height=1cm, align=center] {$LM_{\text{on}}LM_{\text{off}}$};
+    \draw (15.0,  2.75) node(R)[draw, shape=rectangle, minimum height=1cm, align=center] {$L_{\text{on}}G_{\text{off}}$};
+    \draw (15.0, -2.75) node(G)[draw, shape=rectangle, minimum height=1cm, align=center] {$M_{\text{on}}R_{\text{off}}$};
+    \draw (15.0, -8.25) node(B)[draw, shape=rectangle, minimum height=1cm, align=center] {$S_{\text{on}}LM_{\text{off}}$};
+    \draw (15.0,-13.75) node(Y)[draw, shape=rectangle, minimum height=1cm, align=center] {$LM_{\text{on}}B_{\text{off}}$};
+    \node (Lon)  at (L.north west) [left] {+};
+    \node (Loff) at (L.south west) [left] {-};
+    \node (Don)  at (D.north west) [left] {+};
+    \node (Doff) at (D.south west) [left] {-};
+    \node (Ron)  at (R.north west) [left] {+};
+    \node (Roff) at (R.south west) [left] {-};
+    \node (Gon)  at (G.north west) [left] {+};
+    \node (Goff) at (G.south west) [left] {-};
+    \node (Bon)  at (B.north west) [left] {+};
+    \node (Boff) at (B.south west) [left] {-};
+    \node (Yon)  at (Y.north west) [left] {+};
+    \node (Yoff) at (Y.south west) [left] {-};
+    % Example SO and DO receptive fields
+    \node[right of=L, node distance=1.75in] (Lso) {
+        \begin{tikzpicture}
+            % ON Center
+            \draw[greensea,       dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00)
+                 node[color=black, anchor=south west] {$LM_{\text{on}}$};
+            % OFF Surround
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-1.50, 0.00) .. controls (-0.30,-0.20) .. (-0.05,-0.48);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] (-0.05,-0.48) .. controls ( 0.00,-0.49) .. ( 0.05,-0.48);
+            \draw[pomegranate!80, dash pattern= on 3pt off 5pt, dash phase=4pt, very thick] ( 1.50, 0.00) .. controls ( 0.30,-0.20) .. ( 0.05,-0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick] (-1.50, 0.00) .. controls (-0.30,-0.20) .. (-0.05,-0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick] (-0.05,-0.48) .. controls ( 0.00,-0.49) .. ( 0.05,-0.48);
+            \draw[greensea,       dash pattern= on 3pt off 5pt, very thick] ( 1.50, 0.00) .. controls ( 0.30,-0.20) .. ( 0.05,-0.48)
+                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
+            % Reference line & point
+            \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    };
+    \node[right of=Lso, node distance=2.5in] (Ldo) {
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$LM_{\text{on}}$};
+            % OFF Surround
+            \draw[greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
+            % ON Center
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$LM_{\text{on}}$};
+            % OFF Surround
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    };
+    \node[right of=D, node distance=1.75in] (Dso) {
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[pomegranate!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[pomegranate!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00)
+                 node[color=black, anchor=south west] {$LM_{\text{on}}$};
+            % OFF Surround
+            \draw[greensea,       very thick] (-1.50, 0.00) .. controls (-0.30,-0.20) .. (-0.05,-0.48);
+            \draw[greensea,       very thick] (-0.05,-0.48) .. controls ( 0.00,-0.49) .. ( 0.05,-0.48);
+            \draw[greensea,       very thick] ( 1.50, 0.00) .. controls ( 0.30,-0.20) .. ( 0.05,-0.48)
+                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
+            % Reference line & point
+            \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    };
+    \node[right of=Dso, node distance=2.5in] (Ddo) {
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$LM_{\text{on}}$};
+            % OFF Surround
+            \draw[greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
+            % ON Center
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$LM_{\text{on}}$};
+            % OFF Surround
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    };
+    \node[right of=R, node distance=1.75in] (Rso) {
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[pomegranate!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[pomegranate!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00)
+                 node[color=black, anchor=south west] {$L_{\text{on}}$};
+            % OFF Surround
+            \draw[greensea,       very thick] (-1.50, 0.00) .. controls (-0.30,-0.20) .. (-0.05,-0.48);
+            \draw[greensea,       very thick] (-0.05,-0.48) .. controls ( 0.00,-0.49) .. ( 0.05,-0.48);
+            \draw[greensea,       very thick] ( 1.50, 0.00) .. controls ( 0.30,-0.20) .. ( 0.05,-0.48)
+                 node[color=black, anchor=north west] {$M_{\text{off}}$};
+            % Reference line & point
+            \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    };
+    \node[right of=Rso, node distance=2.5in] (Rdo) {
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$L_{\text{on}}$};
+            % OFF Surround
+            \draw[greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$M_{\text{off}}$};
+            % ON Center
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$M_{\text{on}}$};
+            % OFF Surround
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$L_{\text{off}}$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    };
+    \node[right of=G, node distance=1.75in] (Gso) {
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[pomegranate!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[pomegranate!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00)
+                 node[color=black, anchor=south west] {$M_{\text{on}}$};
+            % OFF Surround
+            \draw[greensea,       very thick] (-1.50, 0.00) .. controls (-0.30,-0.20) .. (-0.05,-0.48);
+            \draw[greensea,       very thick] (-0.05,-0.48) .. controls ( 0.00,-0.49) .. ( 0.05,-0.48);
+            \draw[greensea,       very thick] ( 1.50, 0.00) .. controls ( 0.30,-0.20) .. ( 0.05,-0.48)
+                 node[color=black, anchor=north west] {$L_{\text{off}}$};
+            % Reference line & point
+            \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    };
+    \node[right of=Gso, node distance=2.5in] (Gdo) {
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$M_{\text{on}}$};
+            % OFF Surround
+            \draw[greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$L_{\text{off}}$};
+            % ON Center
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$L_{\text{on}}$};
+            % OFF Surround
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$M_{\text{off}}$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    };
+    \node[right of=B, node distance=1.75in] (Bso) {
+        \begin{tikzpicture}
+            % ON Center
+            \draw[color=peter!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[color=peter!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[color=peter!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00)
+                 node[color=black, anchor=south west] {$S_{\text{on}}$};
+            % OFF Surround
+            \draw[greensea,       very thick] (-1.50, 0.00) .. controls (-0.30,-0.20) .. (-0.05,-0.48);
+            \draw[greensea,       very thick] (-0.05,-0.48) .. controls ( 0.00,-0.49) .. ( 0.05,-0.48);
+            \draw[greensea,       very thick] ( 1.50, 0.00) .. controls ( 0.30,-0.20) .. ( 0.05,-0.48)
+                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
+            % Reference line & point
+            \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    };
+    \node[right of=Bso, node distance=2.5in] (Bdo) {
+        \begin{tikzpicture}
+            % ON Center
+            \draw[color=peter!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[color=peter!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[color=peter!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$S_{\text{on}}$};
+            % OFF Surround
+            \draw[greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
+            % ON Center
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$S_{\text{on}}$};
+            % OFF Surround
+            \draw[color=peter!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[color=peter!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[color=peter!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    };
+    \node[right of=Y, node distance=1.75in] (Yso) {
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[pomegranate!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[pomegranate!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00)
+                 node[color=black, anchor=south west] {$LM_{\text{on}}$};
+            % OFF Surround
+            \draw[color=peter,       very thick] (-1.50, 0.00) .. controls (-0.30,-0.20) .. (-0.05,-0.48);
+            \draw[color=peter,       very thick] (-0.05,-0.48) .. controls ( 0.00,-0.49) .. ( 0.05,-0.48);
+            \draw[color=peter,       very thick] ( 1.50, 0.00) .. controls ( 0.30,-0.20) .. ( 0.05,-0.48)
+                 node[color=black, anchor=north west] {$S_{\text{off}}$};
+            % Reference line & point
+            \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    };
+    \node[right of=Yso, node distance=2.5in] (Ydo) {
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$LM_{\text{on}}$};
+            % OFF Surround
+            \draw[color=peter,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[color=peter,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[color=peter,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$S_{\text{off}}$};
+            % ON Center
+            \draw[color=peter,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[color=peter,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[color=peter,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$S_{\text{on}}$};
+            % OFF Surround
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$LM_{\text{off}}$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    };
+    % Paths A
+    \draw [->, pomegranate] (r)  to[bend left]  (c);
+    \draw [->, greensea]    (g)  to             (c);
+    \draw [->, peter]       (b)  to             (c);
+    \draw [->, pomegranate] (r)  to             (s);
+    \draw [->, greensea]    (g)  to             (s);
+    \draw [->, peter]       (b)  to[bend right] (s);
+    % Paths B
+    \draw [->, pomegranate] (c)  to[bend left]  (rc);
+    \draw [->, greensea]    (c)  to             (gc);
+    \draw [->, peter]       (c)  to[bend right] (bc);
+    \draw [->, pomegranate] (s)  to[bend left]  (rs);
+    \draw [->, greensea]    (s)  to             (gs);
+    \draw [->, peter]       (s)  to[bend right] (bs);
+    % Paths C
+    \draw [->, pomegranate] (rc) to[bend left]  (Lon);
+    \draw [->, greensea]    (gc) to[bend right] (Lon);
+    \draw [->, pomegranate] (rs) to             (Loff);
+    \draw [->, greensea]    (gs) to[bend right] (Loff);
+    \draw [->, pomegranate] (rc) to             (Ron);
+    \draw [->, greensea]    (gs) to[bend left]  (Roff);
+    \draw [->, greensea]    (gc) to             (Gon);
+    \draw [->, pomegranate] (rs) to             (Goff);
+    \draw [->, peter]       (bc) to             (Bon);
+    \draw [->, greensea]    (gs) to             (Boff);
+    \draw [->, pomegranate] (rs) to             (Boff);
+    \draw [->, greensea]    (gc) to[bend left]  (Yon);
+    \draw [->, pomegranate] (rc) to[bend left]  (Yon);
+    \draw [->, peter]       (bs) to[bend right] (Yoff);
+    \end{tikzpicture}
+    }
+    \caption{Sean is the coolest!}
+\end{figure}
+
 % FIGURE: Single-opponent receptive field schematics
 \begin{figure}[h] \label{fig:so-rf-schematic}
     \centering
@@ -23,15 +394,15 @@
         \resizebox{\textwidth}{!}{%
         \begin{tikzpicture}
             % ON Center
-            \draw[color=pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
-            \draw[color=pomegranate!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
-            \draw[color=pomegranate!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00)
-                 node[color=black, anchor=south west] {$R_{\text{on}}$};
+            \draw[pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[pomegranate!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[pomegranate!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00)
+                 node[color=black, anchor=south west] {$L_{\text{on}}$};
             % OFF Surround
-            \draw[color=greensea,       very thick] (-1.00, 0.00) .. controls (-0.30,-0.05) .. (-0.05,-2.00);
-            \draw[color=greensea,       very thick] (-0.05,-2.00) .. controls ( 0.00,-2.10) .. ( 0.05,-2.00);
-            \draw[color=greensea,       very thick] ( 1.00, 0.00) .. controls ( 0.30,-0.05) .. ( 0.05,-2.00)
-                 node[color=black, anchor=north west] {$G_{\text{off}}$};
+            \draw[greensea,       very thick] (-1.00, 0.00) .. controls (-0.30,-0.05) .. (-0.05,-2.00);
+            \draw[greensea,       very thick] (-0.05,-2.00) .. controls ( 0.00,-2.10) .. ( 0.05,-2.00);
+            \draw[greensea,       very thick] ( 1.00, 0.00) .. controls ( 0.30,-0.05) .. ( 0.05,-2.00)
+                 node[color=black, anchor=north west] {$M_{\text{off}}$};
             % Reference line & point
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
@@ -44,15 +415,15 @@
         \resizebox{\textwidth}{!}{%
         \begin{tikzpicture}
             % ON Center
-            \draw[color=pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
-            \draw[color=pomegranate!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
-            \draw[color=pomegranate!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00)
-                 node[color=black, anchor=south west] {$R_{\text{on}}$};
+            \draw[pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[pomegranate!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[pomegranate!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00)
+                 node[color=black, anchor=south west] {$L_{\text{on}}$};
             % OFF Surround
-            \draw[color=greensea,       very thick] (-1.00, 0.00) .. controls (-0.30,-0.05) .. (-0.05,-1.00);
-            \draw[color=greensea,       very thick] (-0.05,-1.00) .. controls ( 0.00,-1.10) .. ( 0.05,-1.00);
-            \draw[color=greensea,       very thick] ( 1.00, 0.00) .. controls ( 0.30,-0.05) .. ( 0.05,-1.00)
-                 node[color=black, anchor=north west] {$G_{\text{off}}$};
+            \draw[greensea,       very thick] (-1.00, 0.00) .. controls (-0.30,-0.05) .. (-0.05,-1.00);
+            \draw[greensea,       very thick] (-0.05,-1.00) .. controls ( 0.00,-1.10) .. ( 0.05,-1.00);
+            \draw[greensea,       very thick] ( 1.00, 0.00) .. controls ( 0.30,-0.05) .. ( 0.05,-1.00)
+                 node[color=black, anchor=north west] {$M_{\text{off}}$};
             % Reference line & point
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
@@ -65,15 +436,15 @@
         \resizebox{\textwidth}{!}{%
         \begin{tikzpicture}
             % ON Center
-            \draw[color=pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
-            \draw[color=pomegranate!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
-            \draw[color=pomegranate!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00)
-                 node[color=black, anchor=south west] {$R_{\text{on}}$};
+            \draw[pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[pomegranate!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[pomegranate!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00)
+                 node[color=black, anchor=south west] {$L_{\text{on}}$};
             % OFF Surround
-            \draw[color=greensea,       very thick] (-1.50, 0.00) .. controls (-0.30,-0.20) .. (-0.05,-0.48);
-            \draw[color=greensea,       very thick] (-0.05,-0.48) .. controls ( 0.00,-0.49) .. ( 0.05,-0.48);
-            \draw[color=greensea,       very thick] ( 1.50, 0.00) .. controls ( 0.30,-0.20) .. ( 0.05,-0.48)
-                 node[color=black, anchor=north west] {$G_{\text{off}}$};
+            \draw[greensea,       very thick] (-1.50, 0.00) .. controls (-0.30,-0.20) .. (-0.05,-0.48);
+            \draw[greensea,       very thick] (-0.05,-0.48) .. controls ( 0.00,-0.49) .. ( 0.05,-0.48);
+            \draw[greensea,       very thick] ( 1.50, 0.00) .. controls ( 0.30,-0.20) .. ( 0.05,-0.48)
+                 node[color=black, anchor=north west] {$M_{\text{off}}$};
             % Reference line & point
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
@@ -88,7 +459,7 @@
         \begin{tikzpicture}
             % Frame to ensure alignment:
             \draw[color=white]                                         ( 0.00, -1.00) --     (0.00, 1.00);
-            \filldraw[color=greensea,    fill=alizarin!70,  very thick]( 0.00,  0.00) circle (0.70)
+            \filldraw[greensea,    fill=alizarin!70,  very thick]( 0.00,  0.00) circle (0.70)
                  node[color=black,       anchor=south] {$\scriptstyle R_{\text{on}}$}
                  node[color=black,       anchor=north] {$\scriptstyle G_{\text{off}}$};
             \filldraw[color=black,       fill=gray]                    ( 0.00,  0.00) circle (1pt);
@@ -100,7 +471,7 @@
         \begin{tikzpicture}
             % Frame to ensure alignment:
             \draw[color=white]                                         ( 0.00, -1.00) --     (0.00, 1.00);
-            \filldraw[color=greensea,    fill=alizarin!70,  very thick]( 0.00,  0.00) circle (0.70)
+            \filldraw[greensea,    fill=alizarin!70,  very thick]( 0.00,  0.00) circle (0.70)
                  node[color=black,       anchor=south] {$\scriptstyle R_{\text{on}}$}
                  node[color=black,       anchor=north] {$\scriptstyle G_{\text{off}}$};
             \filldraw[color=black,       fill=gray]                    ( 0.00,  0.00) circle (1pt);
@@ -110,7 +481,7 @@
     \begin{subfigure}{0.3\textwidth}
         \centering
         \begin{tikzpicture}
-            \filldraw[color=greensea,    fill=turquoise!80, very thick]( 0.00,  0.00) circle (1.00);
+            \filldraw[greensea,    fill=turquoise!80, very thick]( 0.00,  0.00) circle (1.00);
             \filldraw[color=alizarin!90, fill=alizarin!70,  very thick]( 0.00,  0.00) circle (0.70)
                  node[color=black,       anchor=south] {$\scriptstyle R_{\text{on}}$}
                  node[color=black,       anchor=north] {$\scriptstyle G_{\text{off}}$};
@@ -132,25 +503,25 @@
         \resizebox{\textwidth}{!}{%
         \begin{tikzpicture}
             % ON Center
-            \draw[color=pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
-            \draw[color=pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
-            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
-                 node[color=black, anchor=south west] {$R_{\text{on}}$};
+            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$L_{\text{on}}$};
             % OFF Surround
-            \draw[color=greensea,       very thick] (-2.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-2.00);
-            \draw[color=greensea,       very thick] (-1.05,-2.00) .. controls (-1.00,-2.10) .. (-0.95,-2.00);
-            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-2.00)
-                 node[color=black, anchor=north west] {$G_{\text{on}}$};
+            \draw[greensea,       very thick] (-2.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-2.00);
+            \draw[greensea,       very thick] (-1.05,-2.00) .. controls (-1.00,-2.10) .. (-0.95,-2.00);
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-2.00)
+                 node[color=black, anchor=north west] {$M_{\text{off}}$};
             % ON Center
-            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 2.00);
-            \draw[color=greensea,       very thick] ( 1.05, 2.00) .. controls ( 1.00, 2.10) .. ( 0.95, 2.00);
-            \draw[color=greensea,       very thick] ( 2.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 2.00)
-                 node[color=black, anchor=south west] {$G_{\text{on}}$};
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 2.00);
+            \draw[greensea,       very thick] ( 1.05, 2.00) .. controls ( 1.00, 2.10) .. ( 0.95, 2.00);
+            \draw[greensea,       very thick] ( 2.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 2.00)
+                 node[color=black, anchor=south west] {$M_{\text{on}}$};
             % OFF Surround
-            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
-            \draw[color=pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
-            \draw[color=pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
-                 node[color=black, anchor=north west] {$R_{\text{on}}$};
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$L_{\text{off}}$};
             % Reference line & point
             \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
@@ -162,25 +533,25 @@
         \resizebox{\textwidth}{!}{%
         \begin{tikzpicture}
             % ON Center
-            \draw[color=pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
-            \draw[color=pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
-            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
-                 node[color=black, anchor=south west] {$R_{\text{on}}$};
+            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$L_{\text{on}}$};
             % OFF Surround
-            \draw[color=greensea,       very thick] (-2.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-1.00);
-            \draw[color=greensea,       very thick] (-1.05,-1.00) .. controls (-1.00,-1.10) .. (-0.95,-1.00);
-            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-1.00)
-                 node[color=black, anchor=north west] {$G_{\text{on}}$};
+            \draw[greensea,       very thick] (-2.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-1.00);
+            \draw[greensea,       very thick] (-1.05,-1.00) .. controls (-1.00,-1.10) .. (-0.95,-1.00);
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-1.00)
+                 node[color=black, anchor=north west] {$M_{\text{off}}$};
             % ON Center
-            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 1.00);
-            \draw[color=greensea,       very thick] ( 1.05, 1.00) .. controls ( 1.00, 1.10) .. ( 0.95, 1.00);
-            \draw[color=greensea,       very thick] ( 2.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 1.00)
-                 node[color=black, anchor=south west] {$G_{\text{on}}$};
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 1.00);
+            \draw[greensea,       very thick] ( 1.05, 1.00) .. controls ( 1.00, 1.10) .. ( 0.95, 1.00);
+            \draw[greensea,       very thick] ( 2.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 1.00)
+                 node[color=black, anchor=south west] {$M_{\text{on}}$};
             % OFF Surround
-            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
-            \draw[color=pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
-            \draw[color=pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
-                 node[color=black, anchor=north west] {$R_{\text{on}}$};
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$L_{\text{off}}$};
             % Reference line & point
             \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
@@ -192,25 +563,25 @@
         \resizebox{\textwidth}{!}{%
         \begin{tikzpicture}
             % ON Center
-            \draw[color=pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
-            \draw[color=pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
-            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
-                 node[color=black, anchor=south west] {$R_{\text{on}}$};
+            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$L_{\text{on}}$};
             % OFF Surround
-            \draw[color=greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
-            \draw[color=greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
-            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
-                 node[color=black, anchor=north west] {$G_{\text{on}}$};
+            \draw[greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$M_{\text{off}}$};
             % ON Center
-            \draw[color=greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
-            \draw[color=greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
-            \draw[color=greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
-                 node[color=black, anchor=south west] {$G_{\text{on}}$};
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$M_{\text{on}}$};
             % OFF Surround
-            \draw[color=pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
-            \draw[color=pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
-            \draw[color=pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
-                 node[color=black, anchor=north west] {$R_{\text{on}}$};
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$L_{\text{off}}$};
             % Reference line & point
             \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
@@ -223,9 +594,9 @@
     \begin{subfigure}{0.3\textwidth}
         \centering
         \begin{tikzpicture}
-            \filldraw[color=pomegranate!80,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
+            \filldraw[pomegranate!80,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=-90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
-            \filldraw[color=greensea, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
+            \filldraw[greensea, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=-90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
         \end{tikzpicture}
@@ -234,9 +605,9 @@
     \begin{subfigure}{0.3\textwidth}
         \centering
         \begin{tikzpicture}
-            \filldraw[color=pomegranate!80,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
+            \filldraw[pomegranate!80,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=-90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
-            \filldraw[color=greensea, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
+            \filldraw[greensea, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=-90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
         \end{tikzpicture}
@@ -248,10 +619,10 @@
             % Frame to ensure alignment:
             \draw[color=white]                                            (-2.00, 0.00) --        (2.00, 0.00);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.43, 0.00) ellipse   (0.38 and 0.90);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick](-0.43, 0.00) ellipse   (0.38 and 0.90);
-            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
+            \filldraw[greensea!80,    fill=turquoise!70, very thick](-0.43, 0.00) ellipse   (0.38 and 0.90);
+            \filldraw[greensea,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=-90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=-90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
         \end{tikzpicture}
@@ -269,11 +640,11 @@
     \begin{subfigure}{0.5\textwidth}
         \centering
         \begin{tikzpicture}
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.00, 1.43) ellipse   (0.90 and 0.38);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.00, 1.43) ellipse   (0.90 and 0.38);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00, 0.58) ellipse   (0.90 and 0.38);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 1.35) ellipse   (0.90 and 0.30)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 1.35) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.00, 0.65) ellipse   (0.90 and 0.30)
+            \filldraw[greensea,       fill=turquoise!80, very thick]( 0.00, 0.65) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
         \end{tikzpicture}
@@ -283,10 +654,10 @@
         \centering
         \begin{tikzpicture}
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00, 1.43) ellipse   (0.90 and 0.38);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.00, 0.58) ellipse   (0.90 and 0.38);
-            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.00, 1.35) ellipse   (0.90 and 0.30)
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.00, 0.58) ellipse   (0.90 and 0.38);
+            \filldraw[greensea,       fill=turquoise!80, very thick]( 0.00, 1.35) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 0.65) ellipse   (0.90 and 0.30)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 0.65) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
         \end{tikzpicture}
@@ -297,11 +668,11 @@
     \begin{subfigure}{0.5\textwidth}
         \centering
         \begin{tikzpicture}
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick, rotate=45]( 1.16, 0.70) ellipse   (0.38 and 0.90);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick, rotate=45]( 1.16, 0.70) ellipse   (0.38 and 0.90);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick, rotate=45]( 0.33, 0.70) ellipse   (0.38 and 0.90);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick, rotate=45]( 1.08, 0.70) ellipse   (0.30 and 0.90)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick, rotate=45]( 1.08, 0.70) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=-45] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick, rotate=45]( 0.40, 0.70) ellipse   (0.30 and 0.90)
+            \filldraw[greensea,       fill=turquoise!80, very thick, rotate=45]( 0.40, 0.70) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=-45] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
         \end{tikzpicture}
@@ -311,10 +682,10 @@
         \centering
         \begin{tikzpicture}
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick, rotate=45]( 1.16, 0.70) ellipse   (0.38 and 0.90);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick, rotate=45]( 0.33, 0.70) ellipse   (0.38 and 0.90);
-            \filldraw[color=greensea,       fill=turquoise!80, very thick, rotate=45]( 1.08, 0.70) ellipse   (0.30 and 0.90)
+            \filldraw[greensea!80,    fill=turquoise!70, very thick, rotate=45]( 0.33, 0.70) ellipse   (0.38 and 0.90);
+            \filldraw[greensea,       fill=turquoise!80, very thick, rotate=45]( 1.08, 0.70) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=-45] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick, rotate=45]( 0.40, 0.70) ellipse   (0.30 and 0.90)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick, rotate=45]( 0.40, 0.70) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=-45] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
         \end{tikzpicture}
@@ -325,11 +696,11 @@
     \begin{subfigure}{0.5\textwidth}
         \centering
         \begin{tikzpicture}
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43, 1.00) ellipse   (0.38 and 0.90);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.43, 1.00) ellipse   (0.38 and 0.90);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick](-0.43, 1.00) ellipse   (0.38 and 0.90);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.35, 1.00) ellipse   (0.30 and 0.90)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.35, 1.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=-90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick](-0.35, 1.00) ellipse   (0.30 and 0.90)
+            \filldraw[greensea,       fill=turquoise!80, very thick](-0.35, 1.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=-90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
         \end{tikzpicture}
@@ -339,10 +710,10 @@
         \centering
         \begin{tikzpicture}
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.43, 1.00) ellipse   (0.38 and 0.90);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick](-0.43, 1.00) ellipse   (0.38 and 0.90);
-            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.35, 1.00) ellipse   (0.30 and 0.90)
+            \filldraw[greensea!80,    fill=turquoise!70, very thick](-0.43, 1.00) ellipse   (0.38 and 0.90);
+            \filldraw[greensea,       fill=turquoise!80, very thick]( 0.35, 1.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=-90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick](-0.35, 1.00) ellipse   (0.30 and 0.90)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick](-0.35, 1.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=-90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
         \end{tikzpicture}
@@ -354,10 +725,10 @@
         \centering
         \begin{tikzpicture}
             \filldraw[color=alizarin!90,    fill=alizarin!70, very thick, rotate=45]( 0.70, 1.16) ellipse   (0.90 and 0.38);
-            \filldraw[color=greensea!80,    fill=turquoise!70,  very thick, rotate=45]( 0.70, 0.28) ellipse   (0.90 and 0.38);
-            \filldraw[color=greensea,       fill=turquoise!80,  very thick, rotate=45]( 0.70, 1.08) ellipse   (0.90 and 0.30)
+            \filldraw[greensea!80,    fill=turquoise!70,  very thick, rotate=45]( 0.70, 0.28) ellipse   (0.90 and 0.38);
+            \filldraw[greensea,       fill=turquoise!80,  very thick, rotate=45]( 0.70, 1.08) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center, rotate=45] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
-            \filldraw[color=pomegranate!80, fill=alizarin!80, very thick, rotate=45]( 0.70, 0.36) ellipse   (0.90 and 0.30)
+            \filldraw[pomegranate!80, fill=alizarin!80, very thick, rotate=45]( 0.70, 0.36) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center, rotate=45] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
         \end{tikzpicture}
@@ -366,11 +737,11 @@
     \begin{subfigure}{0.5\textwidth}
         \centering
         \begin{tikzpicture}
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick, rotate=45]( 0.70, 1.16) ellipse   (0.90 and 0.38);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick, rotate=45]( 0.70, 1.16) ellipse   (0.90 and 0.38);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick, rotate=45]( 0.70, 0.28) ellipse   (0.90 and 0.38);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick, rotate=45]( 0.70, 1.08) ellipse   (0.90 and 0.30)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick, rotate=45]( 0.70, 1.08) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center, rotate=45] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick, rotate=45]( 0.70, 0.36) ellipse   (0.90 and 0.30)
+            \filldraw[greensea,       fill=turquoise!80, very thick, rotate=45]( 0.70, 0.36) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center, rotate=45] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
         \end{tikzpicture}
@@ -387,11 +758,11 @@
         \begin{tikzpicture}
             \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.00, 1.43) ellipse   (0.90 and 0.38);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.00, 1.43) ellipse   (0.90 and 0.38);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00, 0.58) ellipse   (0.90 and 0.38);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 1.35) ellipse   (0.90 and 0.30)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 1.35) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.00, 0.65) ellipse   (0.90 and 0.30)
+            \filldraw[greensea,       fill=turquoise!80, very thick]( 0.00, 0.65) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
@@ -403,11 +774,11 @@
         \begin{tikzpicture}
             \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.00, 0.43) ellipse   (0.90 and 0.38);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.00, 0.43) ellipse   (0.90 and 0.38);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00,-0.43) ellipse   (0.90 and 0.38);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 0.35) ellipse   (0.90 and 0.30)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 0.35) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.00,-0.35) ellipse   (0.90 and 0.30)
+            \filldraw[greensea,       fill=turquoise!80, very thick]( 0.00,-0.35) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
@@ -419,11 +790,11 @@
         \begin{tikzpicture}
             \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.00,-0.58) ellipse   (0.90 and 0.38);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.00,-0.58) ellipse   (0.90 and 0.38);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00,-1.43) ellipse   (0.90 and 0.38);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.00,-0.65) ellipse   (0.90 and 0.30)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.00,-0.65) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.00,-1.35) ellipse   (0.90 and 0.30)
+            \filldraw[greensea,       fill=turquoise!80, very thick]( 0.00,-1.35) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
@@ -436,11 +807,11 @@
         \begin{tikzpicture}
             \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.00, 1.43) ellipse   (0.90 and 0.38);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.00, 1.43) ellipse   (0.90 and 0.38);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00, 0.58) ellipse   (0.90 and 0.38);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 1.35) ellipse   (0.90 and 0.30)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 1.35) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.00, 0.65) ellipse   (0.90 and 0.30)
+            \filldraw[greensea,       fill=turquoise!80, very thick]( 0.00, 0.65) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
@@ -452,11 +823,11 @@
         \begin{tikzpicture}
             \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.00, 0.43) ellipse   (0.90 and 0.38);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.00, 0.43) ellipse   (0.90 and 0.38);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00,-0.43) ellipse   (0.90 and 0.38);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 0.35) ellipse   (0.90 and 0.30)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 0.35) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.00,-0.35) ellipse   (0.90 and 0.30)
+            \filldraw[greensea,       fill=turquoise!80, very thick]( 0.00,-0.35) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
@@ -468,18 +839,18 @@
         \begin{tikzpicture}
             \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.00,-0.58) ellipse   (0.90 and 0.38);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.00,-0.58) ellipse   (0.90 and 0.38);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00,-1.43) ellipse   (0.90 and 0.38);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.00,-0.65) ellipse   (0.90 and 0.30)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.00,-0.65) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick]( 0.00,-1.35) ellipse   (0.90 and 0.30)
+            \filldraw[greensea,       fill=turquoise!80, very thick]( 0.00,-1.35) ellipse   (0.90 and 0.30)
                  node[color=black, anchor=center] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
         \caption{Minor Response}
     \end{subfigure}
-    \caption{A double-opponent cell selective to horizontally oriented borders with red above and green below; only responsive to that particular stimulus. In Figure (b), the neuron is presented with its ideal stimulus: its $R_{\text{on}}$ and $G_{\text{on}}$ receptive fields are fully activated while its $R_{\text{off}}$ and $G_{\text{off}}$ receptive fields are completely unactivated. Figure (e) presents the neuron with the exact opposite stimulus, neither its $R_{\text{on}}$ nor $G_{\text{on}}$ receptive fields are activate at all, and both its $R_{\text{off}}$ and $G_{\text{off}}$ receptive fields are fully activated, ensuring no response possible from the cell. While its $R_{\text{on}}$ receptive field might be strongly stimulated in (a) and (f), it's $R_{\text{off}}$ receptive field cancels it out. Similarly, in (c) and (d) its $G_{\text{on}}$ receptive field is stimulated but cancelled out by activity in its $G_{\text{off}}$ receptive field.}
+    \caption{A double-opponent cell selective to horizontally oriented borders with red above and green below; only responsive to that particular stimulus. In Figure (b), the neuron is presented with its ideal stimulus: its $L_{\text{on}}$ and $M_{\text{on}}$ receptive fields are fully activated while its $L_{\text{off}}$ and $M_{\text{off}}$ receptive fields are completely unactivated. Figure (e) presents the neuron with the exact opposite stimulus, neither its $L_{\text{on}}$ nor $M_{\text{on}}$ receptive fields are activate at all, and both its $L_{\text{off}}$ and $M_{\text{off}}$ receptive fields are fully activated, ensuring no response possible from the cell. While its $L_{\text{on}}$ receptive field might be strongly stimulated in (a) and (f), it's $L_{\text{off}}$ receptive field cancels it out. Similarly, in (c) and (d) its $M_{\text{on}}$ receptive field is stimulated but cancelled out by activity in its $M_{\text{off}}$ receptive field.}
 \end{figure}
 
 
@@ -490,11 +861,11 @@
         \begin{tikzpicture}
             \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43, 1.00) ellipse   (0.38 and 0.90);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.43, 1.00) ellipse   (0.38 and 0.90);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick](-0.43, 1.00) ellipse   (0.38 and 0.90);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.35, 1.00) ellipse   (0.30 and 0.90)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.35, 1.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick](-0.35, 1.00) ellipse   (0.30 and 0.90)
+            \filldraw[greensea,       fill=turquoise!80, very thick](-0.35, 1.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
@@ -506,11 +877,11 @@
             \begin{tikzpicture}
             \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43, 0.00) ellipse   (0.38 and 0.90);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.43, 0.00) ellipse   (0.38 and 0.90);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick](-0.43, 0.00) ellipse   (0.38 and 0.90);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
+            \filldraw[greensea,       fill=turquoise!80, very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
@@ -522,11 +893,11 @@
             \begin{tikzpicture}
             \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43,-1.00) ellipse   (0.38 and 0.90);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.43,-1.00) ellipse   (0.38 and 0.90);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick](-0.43,-1.00) ellipse   (0.38 and 0.90);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.35,-1.00) ellipse   (0.30 and 0.90)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.35,-1.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick](-0.35,-1.00) ellipse   (0.30 and 0.90)
+            \filldraw[greensea,       fill=turquoise!80, very thick](-0.35,-1.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
@@ -539,11 +910,11 @@
         \begin{tikzpicture}
             \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43, 1.00) ellipse   (0.38 and 0.90);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.43, 1.00) ellipse   (0.38 and 0.90);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick](-0.43, 1.00) ellipse   (0.38 and 0.90);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.35, 1.00) ellipse   (0.30 and 0.90)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.35, 1.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick](-0.35, 1.00) ellipse   (0.30 and 0.90)
+            \filldraw[greensea,       fill=turquoise!80, very thick](-0.35, 1.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
@@ -555,11 +926,11 @@
             \begin{tikzpicture}
             \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43, 0.00) ellipse   (0.38 and 0.90);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.43, 0.00) ellipse   (0.38 and 0.90);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick](-0.43, 0.00) ellipse   (0.38 and 0.90);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
+            \filldraw[greensea,       fill=turquoise!80, very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
@@ -571,18 +942,18 @@
             \begin{tikzpicture}
             \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
-            \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43,-1.00) ellipse   (0.38 and 0.90);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.43,-1.00) ellipse   (0.38 and 0.90);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick](-0.43,-1.00) ellipse   (0.38 and 0.90);
-            \filldraw[color=pomegranate!80, fill=alizarin!80,  very thick]( 0.35,-1.00) ellipse   (0.30 and 0.90)
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.35,-1.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle R_{\text{on}}G_{\text{off}}$};
-            \filldraw[color=greensea,       fill=turquoise!80, very thick](-0.35,-1.00) ellipse   (0.30 and 0.90)
+            \filldraw[greensea,       fill=turquoise!80, very thick](-0.35,-1.00) ellipse   (0.30 and 0.90)
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle G_{\text{on}}R_{\text{off}}$};
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
             \end{tikzpicture}
         \caption{Minor Response}
     \end{subfigure}
-    \caption{A double-opponent cell selective to vertically oriented borders with red to the right and green on the left; completely unresponsive to a horizontal border. While its $R_{\text{on}}$ receptive field might be strongly stimulated in (a) and (f), it's $R_{\text{off}}$ receptive field cancels it out. Similarly, in (c) and (d) its $G_{\text{on}}$ receptive field is stimulated but cancelled out by activity in its $G_{\text{off}}$ receptive field. In (b) and (e) both of its $R_{\text{on}}$ and $G_{\text{on}}$ receptive fields are moderately activated, but again, cancelled out by activation in its $R_{\text{off}}$ and $G_{\text{off}}$ receptive fields, respectively.}
+    \caption{A double-opponent cell selective to vertically oriented borders with red to the right and green on the left; completely unresponsive to a horizontal border. While its $L_{\text{on}}$ receptive field might be strongly stimulated in (a) and (f), it's $L_{\text{off}}$ receptive field cancels it out. Similarly, in (c) and (d) its $M_{\text{on}}$ receptive field is stimulated but cancelled out by activity in its $M_{\text{off}}$ receptive field. In (b) and (e) both of its $L_{\text{on}}$ and $M_{\text{on}}$ receptive fields are moderately activated, but again, cancelled out by activation in its $L_{\text{off}}$ and $M_{\text{off}}$ receptive fields, respectively.}
 \end{figure}
 
 \end{document}
