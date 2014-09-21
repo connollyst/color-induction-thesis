@@ -5,6 +5,7 @@
 
 \usepackage{tikz}
 \usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
 
 \definecolor{alizarin}{RGB}{231, 76, 60}
 \definecolor{pomegranate}{RGB}{192, 57, 43}
@@ -23,12 +24,16 @@
     \resizebox{\textwidth}{!}{%
     \begin{tikzpicture}[auto, >=latex']
     % RGB Input
-    \draw ( -4.0,  20) node(r)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {L Channel};
-    \draw (  0.0,  20) node(g)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {M Channel};
-    \draw (  4.0,  20) node(b)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {S Channel};
+    \draw ( -4.0,  25) node(r)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {L Channel};
+    \draw (  0.0,  25) node(g)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {M Channel};
+    \draw (  4.0,  25) node(b)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {S Channel};
     % Gaussian Convolutions
-    \draw ( -3.0,  15) node(c)[draw, shape=circle, text width=2cm, align=center] {CENTER \\ Convolution};
-    \draw (  3.0,  15) node(s)[draw, shape=circle, text width=2cm, align=center] {SURROUND \\ Convolution};
+    \draw ( -3.0,  18) node(c)[draw, shape=circle, minimum height=5cm, minimum width=5cm, align=center] {};
+    \draw (  3.0,  18) node(s)[draw, shape=circle, minimum height=5cm, minimum width=5cm, align=center] {};
+    \node at (c.north) [below=0.4cm] {CENTER};
+    \node at (c.north) [below=0.9cm] {Convolution};
+    \node at (s.north) [below=0.4cm] {SURROUND};
+    \node at (s.north) [below=0.9cm] {Convolution};
     % RGB Centers & Surrounds
     \draw ( -9.0,   8) node(rc)[draw, shape=rectangle, minimum height=1cm, align=center] {L Center};
     \draw ( -6.0,  10) node(gc)[draw, shape=rectangle, minimum height=1cm, align=center] {M Center};
@@ -88,6 +93,33 @@
     \draw [->, greensea]    (gc) to             (Yon);
     \draw [->, pomegranate] (rc) to             (Yon);
     \draw [->, peter]       (bs) to[bend left]  (Yoff);
+    % Example Gaussian Convolutions
+    \node[below of=c] {
+        \begin{tikzpicture}
+            % ON Center
+            \draw[gray, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[gray, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[gray, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00);
+            % Reference line & point
+            \draw                                                              (-1.50, 0.00) -- ( 1.50, 0.00);
+            \filldraw[color=black, fill=gray]                                  ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                                   (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    };
+    \node[below of=s] {
+        \begin{tikzpicture}
+            % OFF Surround
+            \draw[gray, very thick] (-1.50, 0.00) .. controls (-0.30,-0.20) .. (-0.05,-0.48);
+            \draw[gray, very thick] (-0.05,-0.48) .. controls ( 0.00,-0.49) .. ( 0.05,-0.48);
+            \draw[gray, very thick] ( 1.50, 0.00) .. controls ( 0.30,-0.20) .. ( 0.05,-0.48);
+            % Reference line & point
+            \draw                                                              (-1.50, 0.00) -- ( 1.50, 0.00);
+            \filldraw[color=black, fill=gray]                                  ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                                   (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}
+    };
     % Example SO and DO receptive fields
     \node[below of=L, node distance=1.5in] (Lso) {
         \begin{tikzpicture}
@@ -111,7 +143,7 @@
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
     \node[below of=D, node distance=1.5in] (Dso) {
@@ -136,7 +168,7 @@
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
     \node[below of=R, node distance=1.5in] (Rso) {
@@ -155,7 +187,7 @@
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
     \node[below of=G, node distance=1.5in] (Gso) {
@@ -174,7 +206,7 @@
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
     \node[below of=B, node distance=1.5in] (Bso) {
@@ -196,7 +228,7 @@
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
     \node[below of=Y, node distance=1.5in] (Yso) {
@@ -218,7 +250,7 @@
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
     \node[below of=Lso, node distance=2in] (Ldo) {
@@ -247,7 +279,7 @@
             \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
     \node[below of=Dso, node distance=2in] (Ddo) {
@@ -276,7 +308,7 @@
             \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
     \node[below of=Rso, node distance=2in] (Rdo) {
@@ -305,7 +337,7 @@
             \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
     \node[below of=Gso, node distance=2in] (Gdo) {
@@ -334,7 +366,7 @@
             \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
     \node[below of=Bso, node distance=2in] (Bdo) {
@@ -363,7 +395,7 @@
             \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
     \node[below of=Yso, node distance=2in] (Ydo) {
@@ -392,7 +424,7 @@
             \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     };
     \end{tikzpicture}
@@ -423,7 +455,7 @@
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
@@ -444,7 +476,7 @@
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
@@ -465,7 +497,7 @@
             \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}}
     \end{subfigure}%
     \par \bigskip
@@ -474,7 +506,7 @@
         \centering
         \begin{tikzpicture}
             % Frame to ensure alignment:
-            \draw[color=white]                                         ( 0.00, -1.00) --     (0.00, 1.00);
+            \draw[opacity=0]                                           ( 0.00, -1.00) --     (0.00, 1.00);
             \filldraw[greensea,    fill=alizarin!70,  very thick]( 0.00,  0.00) circle (0.70)
                  node[color=black,       anchor=south] {$\scriptstyle R_{\text{on}}$}
                  node[color=black,       anchor=north] {$\scriptstyle G_{\text{off}}$};
@@ -486,7 +518,7 @@
         \centering
         \begin{tikzpicture}
             % Frame to ensure alignment:
-            \draw[color=white]                                         ( 0.00, -1.00) --     (0.00, 1.00);
+            \draw[opacity=0]                                           ( 0.00, -1.00) --     (0.00, 1.00);
             \filldraw[greensea,    fill=alizarin!70,  very thick]( 0.00,  0.00) circle (0.70)
                  node[color=black,       anchor=south] {$\scriptstyle R_{\text{on}}$}
                  node[color=black,       anchor=north] {$\scriptstyle G_{\text{off}}$};
@@ -542,7 +574,7 @@
             \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}}
     \end{subfigure}
     \begin{subfigure}{0.3\textwidth}
@@ -572,7 +604,7 @@
             \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}}
     \end{subfigure}
     \begin{subfigure}{0.3\textwidth}
@@ -602,7 +634,7 @@
             \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
             \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
             % Frame to ensure alignment:
-            \draw[color=white]                                                (-3.00, 2.50) rectangle (3.00, -2.50);
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}}
     \end{subfigure}%
     \par \bigskip
@@ -633,7 +665,7 @@
         \centering
         \begin{tikzpicture}
             % Frame to ensure alignment:
-            \draw[color=white]                                            (-2.00, 0.00) --        (2.00, 0.00);
+            \draw[opacity=0]                                              (-2.00, 0.00) --        (2.00, 0.00);
             \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.43, 0.00) ellipse   (0.38 and 0.90);
             \filldraw[greensea!80,    fill=turquoise!70, very thick](-0.43, 0.00) ellipse   (0.38 and 0.90);
             \filldraw[greensea,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
