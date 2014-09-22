@@ -1530,34 +1530,159 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
 \begin{figure}[h]
     \centering
     \begin{subfigure}{0.3\textwidth}
+        \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-original}}
-    \end{subfigure}
-    \par \bigskip
+        \caption{Original}
+    \end{subfigure}%
+    \par \bigskip% SINGLE OPPONENT
     \begin{subfigure}{0.15\textwidth}
         \centering
+        \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-l}}
+        \caption{\\ Light\\ Single-Opponent}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
+        \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-d}}
+        \caption{\\ Dark\\ Single-Opponent}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
+        \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-r}}
+        \caption{\\ Red\\ Single-Opponent}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
+        \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-g}}
+        \caption{\\ Green\\ Single-Opponent}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
+        \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-b}}
+        \caption{\\ Blue\\ Single-Opponent}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
+        \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-y}}
+        \caption{\\ Yellow\\ Single-Opponent}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - HORIZONTAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-l}}
+        \caption{\\ Light Horizontal\\ Double-Opponent}
     \end{subfigure}
-    \caption{Example of single-opponent response to a test image following the \textit{Opponent Processing of Receptive Fields} workflow.}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-d}}
+        \caption{\\ Dark Horizontal\\ Double-Opponent}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-r}}
+        \caption{\\ Red Horizontal\\ Double-Opponent}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-g}}
+        \caption{\\ Green Horizontal\\ Double-Opponent}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-b}}
+        \caption{\\ Blue Horizontal\\ Double-Opponent}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-y}}
+        \caption{\\ Yellow Vertical\\ Double-Opponent}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - DIAGONAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-l}}
+        \caption{\\ Light Diagonal\\ Double-Opponent}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-d}}
+        \caption{\\ Dark Diagonal\\ Double-Opponent}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-r}}
+        \caption{\\ Red Diagonal\\ Double-Opponent}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-g}}
+        \caption{\\ Green Diagonal\\ Double-Opponent}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-b}}
+        \caption{\\ Blue Diagonal\\ Double-Opponent}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-y}}
+        \caption{\\ Yellow Diagonal\\ Double-Opponent}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - VERTICAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-l}}
+        \caption{\\ Light Vertical\\ Double-Opponent}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-d}}
+        \caption{\\ Dark Vertical\\ Double-Opponent}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-r}}
+        \caption{\\ Red Vertical\\ Double-Opponent}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-g}}
+        \caption{\\ Green Vertical\\ Double-Opponent}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-b}}
+        \caption{\\ Blue Vertical\\ Double-Opponent}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-y}}
+        \caption{\\ Yellow Vertical\\ Double-Opponent}
+    \end{subfigure}%
+    \caption{Example of single-opponent and double-opponent (scale=1) response to a test image following the \textit{Opponent Processing of Receptive Fields} workflow.}
     \label{fig:blur-effect}
 \end{figure}
 
