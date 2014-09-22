@@ -154,11 +154,15 @@
 %
 % You can find documentation about the pdfTeX application at:
 % http://www.tug.org/applications/pdftex
+
+\usepackage[export]{adjustbox}
+% adjustbox used as a convenience tool for drawing frames around images
+
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 \usetikzlibrary{positioning}
-
 % TikZ enabled us to draw graphics directly in LaTeX
+
 \usepackage{color}
 \definecolor{alizarin}{RGB}{231, 76, 60}
 \definecolor{pomegranate}{RGB}{192, 57, 43}
@@ -469,7 +473,7 @@ Historically, it was widely believed that color and shape are two distinct aspec
 
 Research in the past decade or so has seen a shift from this thinking, however. Psychophysical observations, such as those in Figure \ref{fig:blur-effect}, influenced researchers to consider that color and form are more intrinsically related than previously thought. In these examples, we see that the perceived color of the inner square is highly dependent on the background and, most importantly, how the inner square \textit{contacts} the background. That is to say, the color perceived is not just determined by the physical properties of the surface itself, but also by the context in which the surface is viewed. Furthermore, we can observe that this contextual influence comes largely from the boundary edges of the surface: in example (c), the dulling color assimilation effect witnessed in (b) is almost entirely negated by simply adding a thin border. That is, by removing contact between the inner square and the background, the effect of the context is significantly reduced. In fact, "the color appearance of a region may be more dependent on color contrast at the boundary of the region than it is on the spectral reflectance of the region's interior." \cite[p.572]{chualupa:encyclopedia}
 
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
     \begin{subfigure}{0.25\textwidth}
         \centering
@@ -1522,6 +1526,41 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
     \caption{Diagram of \textit{Opponent Processing of Receptive Fields} workflow. The L, M, and S channels are convoluted with center and surround gaussians and then combined to build opponent colors, here exemplified by single-opponent cell receptive fields. The process is similar for double-opponent cells.}
 \end{figure}
 
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-original}}
+    \end{subfigure}
+    \par \bigskip
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-l}}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-d}}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-r}}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-g}}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-b}}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-y}}
+    \end{subfigure}
+    \caption{Example of single-opponent response to a test image following the \textit{Opponent Processing of Receptive Fields} workflow.}
+    \label{fig:blur-effect}
+\end{figure}
+
 % FIGURE: Colored Double Opponent Receptive Fields
 \begin{figure}
     \centering
@@ -2154,19 +2193,19 @@ The general and local normalization of activities \cite{heeger:1992} has been ex
     \centering
         \begin{subfigure}[b]{0.2\textwidth}
                 \centering
-                \frame{\includegraphics[width=.85\linewidth]{crisp_1}}
+                \includegraphics[width=.85\linewidth, frame]{crisp_1}
                 \caption{}
                 \label{fig:crispening-effect-a}
         \end{subfigure}%
         \begin{subfigure}[b]{0.2\textwidth}
                 \centering
-                \frame{\includegraphics[width=.85\linewidth]{crisp_2}}
+                \includegraphics[width=.85\linewidth, frame]{crisp_2}
                 \caption{}
                 \label{fig:crispening-effect-b}
         \end{subfigure}%
         \begin{subfigure}[b]{0.2\textwidth}
                 \centering
-                \frame{\includegraphics[width=.85\linewidth]{crisp_3}}
+                \includegraphics[width=.85\linewidth, frame]{crisp_3}
                 \caption{}
                 \label{fig:crispening-effect-c}
         \end{subfigure}
