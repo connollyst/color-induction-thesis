@@ -1144,7 +1144,9 @@ In the model presented, Li used oriented bars as features, though expressed that
 
 By defining the neuronal connectivity in this manner, patterns of neurons sensitive to co-located and co-aligned bars positively interact with each other to enhance their collective response to the stimuli. Similarly, isolated stimuli negatively interact with their neighbors and are silenced. From these local interactions, global features are enhanced if they satisfy the neuronal connectivity rules, and noise is suppressed. Li showed that this method can be used to enhance contours and identify boundaries between regions for which normal segmentation methods struggle.
 
+
 \subsection*{Penacchio, Otazu, \& Dempere-Marco's Neurodynamical Model for Brightness Induction (2013)}
+
 Li's work laid the foundation for Penacchio \textit{et al.} who extended the model to a usable framework which:
 \begin{enumerate}
     \item Uses real black \& white images /movies as input.
@@ -2001,13 +2003,13 @@ As all color channels are $0$ centered, we can easily split them into independen
     Li_{so} &=   max(0, DWT(L^*-50)_{residual})   \\
     Da_{do} &= | min(0, DWT(L^*-50)) |            \\
     Da_{so} &= | min(0, DWT(L^*-50)_{residual}) | \\
-    R_{do}  &=   max(0, DWT(a^*))              \\
-    R_{so}  &=   max(0, DWT(a^*)_{residual})   \\
-    G_{do}  &= | min(0, DWT(a^*)) |            \\
-    G_{so}  &= | min(0, DWT(a^*)_{residual}) | \\
-    B_{do}  &=   max(0, DWT(b^*))              \\
-    B_{so}  &=   max(0, DWT(b^*)_{residual})   \\
-    Y_{do}  &= | min(0, DWT(b^*)) |            \\
+    R_{do}  &=   max(0, DWT(a^*))                 \\
+    R_{so}  &=   max(0, DWT(a^*)_{residual})      \\
+    G_{do}  &= | min(0, DWT(a^*)) |               \\
+    G_{so}  &= | min(0, DWT(a^*)_{residual}) |    \\
+    B_{do}  &=   max(0, DWT(b^*))                 \\
+    B_{so}  &=   max(0, DWT(b^*)_{residual})      \\
+    Y_{do}  &= | min(0, DWT(b^*)) |               \\
     Y_{so}  &= | min(0, DWT(b^*)_{residual}) |
 \end{align}
 
