@@ -504,11 +504,15 @@ Single-opponent cells are a class of neurons in the early visual system which re
 
 In so called color preferring single-opponent cells, the cone inputs to the center and surround come from cones with different spectral response functions. By arranging input from different cones into antagonistic  receptive fields, we get a neuron which is sensitive to a particular 'opponent color'. In the human visual system, we recognize three axes of color opponency: redness vs. greenness, blueness vs. yellowness, and lightness vs. darkness. To construct such concepts of color, neurons in the visual pathway contrast activity of the three types of cone cells: those sensitive to long (L) wavelength light, those sensitive to medium (M) wavelength light, and those sensitive to short (S) wavelength light. By contrasting relative activity with neighboring L, M, and S cones, the retina itself can already begin to construct signal resembling psychological concepts of 'color'.
 
+\bigskip
+
 \textbf{//TODO} \textit{add image of simple behavior: gradient response to isoluminant chromatic boundary}
 
 \textbf{//TODO} \textit{add image of simple behavior: no response to intensity changes}
 
 \textbf{//TODO} \textit{add image of ON/OFF differences: R-G cell responds to fullscreen green light removed (not red removed)}
+
+\bigskip
 
 % FIGURE: Single-opponent receptive field schematics
 \begin{figure}[H] \label{fig:so-rf-schematic}
@@ -621,6 +625,8 @@ In so called color preferring single-opponent cells, the cone inputs to the cent
 
 As mentioned, one of the three axes of the opponent process theory is lightness vs darkness. This is achieved by single-opponent cells by balancing the inputs into the \textit{on} center and the \textit{off} surround. By including equal input of L, M, and S cones into the center and surround, the cells becomes 'color blind' and instead only responds to changes in luminosity. Sometimes incorrectly labeled as non-opponent cells, these neurons are, indeed, single-opponent cells.
 
+\bigskip
+
 \textbf{//TODO} \textit{add image depicting example receptive field(s)}
 
 \textbf{//TODO} \textit{add image of simple behavior: gradient response to ((mono)chromatic) intensity changes}
@@ -638,7 +644,11 @@ Double-opponent neurons are a topic of confusion in the field of neurobiology. A
 
 The distinction is non-trivial as the response patterns differ, and thus the interpretation of their role in vision differs. Truly, both types of cells may, and likely do [\textbf{//TODO} \textit{Cite studies which find these cells}], exist in the primate visual system. However, for the purpose of our work we only consider the latter definition; double-opponent cells' receptive fields are both chromatically and spatially antagonistic.
 
+\bigskip
+
 \textbf{//TODO} \textbf{present the differences between the two DO configurations}
+
+\bigskip
 
 % FIGURE: Double-opponent receptive field schematics
 \begin{figure}[H] \label{fig:do-rf-schematic}
@@ -783,7 +793,11 @@ The distinction is non-trivial as the response patterns differ, and thus the int
 
 Research shows that cells identified as double-opponent are orientation selective. That is, they respond most strongly when stimulated by a border of particular orientation, less so with variation from that preferred orientation, and weekly, if at all, to borders orthogonal to the preferred orientation. This is intuitive given the organization of the receptive field as previously defined. By arranging the components of the receptive field to be spatially antagonistic, there will be one orientation of border which best separates the two components, and another orientation, precisely orthogonal, which does not separate the two components at all. This can be easily visualized, as in Figure \ref{fig:do-orient-h} and Figure \ref{fig:do-orient-v}.
 
+\bigskip
+
 \textbf{//TODO} \textit{add image of simple behavior: peak activity AT sharp edge}
+
+\bigskip
 
 It's worth noting that a single-opponent neuron can also be selective to specific orientations. These cells have been identified in biology, though their relative abundance appears minimal. To achieve orientation selectivity, the center and/or surround receptive fields simply need be made non-circular. However, without the balanced asymmetric \textit{on} and \textit{off} receptive fields from each opponent cone(s), an orientation specific single-opponent cell could never be as selective as a double-opponent cell.
 
@@ -1070,8 +1084,13 @@ Another important feature of double-opponent cells is that they are inherently s
     \caption{A double opponent cell tuned to a particular spatial frequency. Either a (b) lower or a (c) higher spatial frequency than preferred lowers the response of the cell.} \label{fig:do-scale}
 \end{figure}
 
-\textbf{//TODO} \textit{CONTRAST WITH SINGLE-OPPONENT'S LACK OF SPATIAL FREQ. SELECTIVITY (show Shapley's graphs) [erm.. don't we have spatial frequency for SO??]}
+\bigskip
 
+\textbf{//TODO} \textit{CONTRAST WITH SINGLE-OPPONENT'S LACK OF SPATIAL FREQ. SELECTIVITY (show Shapley's graphs)}
+
+\textit{[erm.. don't we have spatial frequency for SO also??]}
+
+\bigskip
 
 \subsubsection*{Achromatic Double-Opponent Neurons}
 
@@ -1087,6 +1106,8 @@ Thus far we have defined two broad classes of neurons in the primate visual syst
 Furthermore, as may be obvious, the receptive field of a neuron in V1 is directly \textbf{connected/related/tied \textit{(???)}} to a set of neurons in the retina. That is, neurons in V1 are sensitive only to activity at a particular physical location on the retina; V1 is \textit{retinotopic}, or retinally mapped.
 
 The implication is that for each retinal position, in V1 it is necessary to have a large number of both single-opponent and double-opponent cells, selective to the full gamut of parameters possible for each type of cell. Biologically, these collections of cells are organized in \textit{hypercolumns}, a physical grouping of cells in which neuronal connections 'up' and 'down' within the column are much more dense than extensions to cells in other columns. Within a single hypercolumn, all cells are sensitive to a specific retinal location, but together express sensitivity to the full range of parameters.
+
+\bigskip
 
 \textbf{//TODO} \textit{mention relative abundance of SO, \& DO}
 
@@ -1111,7 +1132,11 @@ In Li's original work, a neurodynamical model was presented which focused on the
 
 In the model presented, Li used oriented bars as features, though expressed that any logical feature could be reasonably considered in its place. This choice was biologically inspired by neurons sensitive to specifically oriented bars, the aforementioned double-opponent cells. When considering such features, inter-neuronal connections can be logically deduced: two neurons positively interact most when both 1) are sensitive to similarly oriented bars and 2) are co-located along that same orientation. Two neurons negatively interact most when either of these two conditions is not met.
 
+\bigskip
+
 \textbf{//TODO} \textit{include graphic or oriented bars which positively \& negatively interact}
+
+\bigskip
 
 By defining the neuronal connectivity in this manner, patterns of neurons sensitive to co-located and co-aligned bars positively interact with each other to enhance their collective response to the stimuli. Similarly, isolated stimuli negatively interact with their neighbors and are silenced. From these local interactions, global features are enhanced if they satisfy the neuronal connectivity rules, and noise is suppressed. Li showed that this method can be used to enhance contours and identify boundaries between regions for which normal segmentation methods struggle.
 
@@ -1771,18 +1796,23 @@ We also introduce two new opponent channels, lightness (L) and darkness (D):
     D(c, s, \sigma) &= | min(0, \frac{L(c, \sigma) + M(c, \sigma) + S(c, \sigma)}{3} - 0.5) |
 \end{flalign}
 
+\bigskip
+
 \textbf{//TODO} \textit{consider} $\frac{L(c) + M(c) + S(c)}{3} - \frac{L(s) + M(s) + S(s)}{3})$
 
 \textbf{//TODO} \textit{consider} $(L(c) + M(c)) - (L(s) + M(s))$ \textit{(Rolf \& Deco)}
 
+\bigskip
+
 It is important to note that the L \& D opponent channels do not incorporate surround effects as the color opponent channels do. More work can be done in this regard.
 
-
-\textbf{//TODO} \textit{ADD L \& D to Figure \ref{fig:opponent-process}}
+\bigskip
 
 \textbf{//TODO} \textit{PARAGRAPH ON DOUBLE-OPPONENT ORIENTATIONS}
 
 \textbf{//TODO} \textit{PARAGRAPH ON SCALE}
+
+\bigskip
 
 \subsubsection{Considerations}
 \begin{itemize}
@@ -1801,8 +1831,11 @@ It is important to note that the L \& D opponent channels do not incorporate sur
     \end{itemize}
 \end{itemize}
 
+\bigskip
+
 \textbf{//TODO} \textit{show original \& decomposed image}
 
+\bigskip
 
 \subsection*{Summary}
 
@@ -1835,6 +1868,8 @@ As all color channels are $0$ centered, we can easily split them into independen
     Y_{so}  &= | min(0, DWT(b^*)_{residual}) |
 \end{align}
 
+\bigskip
+
 \textbf{//TODO} \textit{FIGURE: show diagram of oriented DWT filter (use TikZ)}
 
 \textbf{//TODO} \textit{FIGURE: show original \& decomposed image}
@@ -1845,6 +1880,7 @@ As all color channels are $0$ centered, we can easily split them into independen
 
 \textbf{//TODO} \textit{PARAGRAPH ON PROS/CONS}
 
+\bigskip
 
 \subsection*{Neurodynamical Processing}
 
@@ -2188,7 +2224,7 @@ The general and local normalization of activities \cite{heeger:1992} has been ex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 
-\textit{TODO}
+\textbf{//TODO}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2202,12 +2238,13 @@ The general and local normalization of activities \cite{heeger:1992} has been ex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
 
-\textit{TODO}
+\textbf{//TODO}
 
 
 \appendices
 \section{Appendix title}
-\textit{TODO}
+
+\textbf{//TODO}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
