@@ -996,8 +996,10 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
 
 \subsubsection*{Spatial Frequency Selectivity}
 
+Another important feature of double-opponent cells is that they are inherently sensitive to borders of specific size, or scale. Technically, we refer to such preference of 'scale' as a cell's spatial frequency selectivity. Each double-opponent neuron will be selective to a particular spatial frequency and excited less so by stimuli of spatial frequency deviating from this preference. Again, this is quite intuitively a product of the design of the neuron's receptive field and easily visualized, as in Figure \ref{fig:do-scale}.
+
 % FIGURE: horizontal red/green double-opponent cell on horizontal red/green border of different spatial frequencies
-\begin{figure}[H] \label{fig:do-orient-h}
+\begin{figure}[h]
     \centering
     \begin{subfigure}{0.2\textwidth}
         \centering
@@ -1065,19 +1067,18 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
         \end{tikzpicture}
         \caption{Maximum Response}
     \end{subfigure}%
-    \caption{A double opponent cell tuned to a particular spatial frequency. Either a (b) lower or a (c) higher spatial frequency than preferred lowers the response of the cell.}
+    \caption{A double opponent cell tuned to a particular spatial frequency. Either a (b) lower or a (c) higher spatial frequency than preferred lowers the response of the cell.} \label{fig:do-scale}
 \end{figure}
-
-Another important feature of double-opponent cells is that they are inherently sensitive to borders of specific size, or scale. Technically, we refer to such preference of 'scale' as a cell's spatial frequency selectivity. Each double-opponent neuron will be selective to a particular spatial frequency and excited less so by stimuli of spatial frequency deviating from this preference. Again, this is quite intuitively a product of the design of the neuron's receptive field and easily visualized, as in Figure \ref{fig:do-scale}.
 
 \textbf{//TODO} \textit{CONTRAST WITH SINGLE-OPPONENT'S LACK OF SPATIAL FREQ. SELECTIVITY (show Shapley's graphs) [erm.. don't we have spatial frequency for SO??]}
 
 
 \subsubsection*{Achromatic Double-Opponent Neurons}
 
-As we saw with single-opponent cells, while we frequently discuss opponency as being a thing of 'color', one of the axes of the opponent process theory is 'lightness' vs 'darkness'. This is easily achieved by balancing cone inputs into the neuron's antagonistic receptive fields. Such a cell is often referred to as an \textit{achromatic double-opponent} cell. It behaves just as the previously described double-opponent cells, with specific orientation and spatial frequency selectivity, but responds to luminosity borders rather than chromatic borders. For more details on achromatic receptive fields, please refer back to the section on \textit{Achromatic Single-Opponent Neurons}.
+As with single-opponent cells, one of the axes of the opponent process theory is 'lightness' vs 'darkness'. While we frequently discuss opponency as being a thing of 'color', we find double-opponent cells which are specifically sensitive to luminance borders.
+Such achromatic sensitivity is easily achieved by balancing cone inputs into the neuron's antagonistic receptive fields, as in single-opponent cells. It behaves just as the previously described double-opponent cells, with specific orientation and spatial frequency selectivity, but responds best to luminosity borders rather than chromatic borders. For more details on achromatic receptive fields, please refer back to the section on \textit{Achromatic Single-Opponent Neurons}.
+It is important to reiterate here that the \textit{on} and \textit{off} inputs to light and dark sensitive single-opponent cells are balanced, whereas their chromatic sensitive counterparts are imbalanced in inputs (\textbf{//TODO} \textit{incorrect terminology, we use 'imbalanced' differently in SO graphics}). This has the implication at the double-opponent level that light and dark double-opponent cells are redundant, as can be seen in Figures \ref{fig:do-rf-inputs-light} and \ref{fig:do-rf-inputs-dark}. This is in contrast to the chromatic double-opponent cells depictied in Figure \ref{fig:do-rf-inputs} which differentiate themselves from their opponent pair by imbalanced inputs from the same cones.
 
-\textbf{//TODO} \textit{add image of Shapley response curves for SO, \& DO}
 
 \subsection*{Hypercolumns}
 
@@ -1089,6 +1090,7 @@ The implication is that for each retinal position, in V1 it is necessary to have
 
 \textbf{//TODO} \textit{mention relative abundance of SO, \& DO}
 
+\textbf{//TODO} \textit{add image of Shapley response curves for SO, \& DO}
 
 \subsection*{CO Blobs}
 
@@ -1543,7 +1545,7 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
             \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     }
-    \caption{Light DO \\ Receptive Field}
+    \caption{Light DO \\ Receptive Field} \label{fig:do-rf-inputs-light}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -1588,7 +1590,7 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
             \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     }
-    \caption{Dark DO \\ Receptive Field}
+    \caption{Dark DO \\ Receptive Field} \label{fig:do-rf-inputs-dark}
     \end{subfigure}%
     \par \bigskip
     \begin{subfigure}{0.3\textwidth}
@@ -1622,7 +1624,7 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
             \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     }
-    \caption{Red DO \\ Receptive Field}
+    \caption{Red DO \\ Receptive Field} \label{fig:do-rf-inputs-red}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -1655,7 +1657,7 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
             \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     }
-    \caption{Green DO \\ Receptive Field}
+    \caption{Green DO \\ Receptive Field} \label{fig:do-rf-inputs-green}
     \end{subfigure}%
     \par \bigskip
     \begin{subfigure}{0.3\textwidth}
@@ -1695,7 +1697,7 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
             \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     }
-    \caption{Blue DO \\ Receptive Field}
+    \caption{Blue DO \\ Receptive Field} \label{fig:do-rf-inputs-blue}
     \end{subfigure}%
     \begin{subfigure}{0.3\textwidth}
         \centering
@@ -1734,8 +1736,9 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
             \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
         \end{tikzpicture}
     }
-    \caption{Yellow DO \\ Receptive Field}
+    \caption{Yellow DO \\ Receptive Field} \label{fig:do-rf-inputs-yellow}
     \end{subfigure}%
+    \caption{}  \label{fig:do-rf-inputs}
 \end{figure}
 
 \subsubsection*{Neural Receptive Fields}
