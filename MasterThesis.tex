@@ -1944,31 +1944,16 @@ Single-opponent cells' receptive fields are the classical center-surround config
 
 In our implementation, for convenience, we utilize the R, G, and B channels of the raw image as an approximation of L, M, and S cone activity, respectively. It should be noted that a preprocessing step could be performed to better match RGB to LMS so as to be more biologically consistent. The impact is likely negligible.
 
-To construct opponent color channels, we contrast center $(c)$ and surround $(s)$ convolutions of the L, M, and S channels into three pairs: two color \cite{spitzer:2005} and one achromatic.
+To construct opponent color channels, we contrast center ($c$) and surround ($s$) convolutions of the L, M, and S channels into three pairs: two color \cite{spitzer:2005} and one achromatic.
 
 \begin{flalign}
+    L(c, s, \sigma) &= max(0, (\frac{L(c, \sigma) + M(c, \sigma)}{2} - 0.5) - (\frac{L(s, \sigma) + M(s, \sigma)}{2} - 0.5)) \\
+    D(c, s, \sigma) &= max(0, (\frac{L(s, \sigma) + M(s, \sigma)}{2} - 0.5) - (\frac{L(c, \sigma) + M(c, \sigma)}{2} - 0.5)) \\
     R(c, s, \sigma) &= max(0, L(c, \sigma) - M(s, \sigma)) \\
     G(c, s, \sigma) &= max(0, M(c, \sigma) - L(s, \sigma)) \\
     B(c, s, \sigma) &= max(0, S(c, \sigma) - \frac{L(s, \sigma) + M(s, \sigma)}{2}) \\
     Y(c, s, \sigma) &= max(0, \frac{L(c, \sigma) + M(c, \sigma)}{2} - S(s, \sigma))
 \end{flalign}
-
-We also introduce two new opponent channels, lightness (L) and darkness (D):
-
-\begin{flalign}
-    L(c, s, \sigma) &= max(0, \frac{L(c, \sigma) + M(c, \sigma) + S(c, \sigma)}{3} - 0.5) \\
-    D(c, s, \sigma) &= | min(0, \frac{L(c, \sigma) + M(c, \sigma) + S(c, \sigma)}{3} - 0.5) |
-\end{flalign}
-
-\bigskip
-
-\textbf{//TODO} \textit{consider} $\frac{L(c) + M(c) + S(c)}{3} - \frac{L(s) + M(s) + S(s)}{3})$
-
-\textbf{//TODO} \textit{consider} $(L(c) + M(c)) - (L(s) + M(s))$ \textit{(Rolf \& Deco)}
-
-\bigskip
-
-It is important to note that the L \& D opponent channels do not incorporate surround effects as the color opponent channels do. More work can be done in this regard.
 
 \bigskip
 
