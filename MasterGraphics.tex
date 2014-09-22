@@ -7,6 +7,7 @@
 \usepackage{pgfplots}
 
 \usepackage{tikz}
+\usetikzlibrary{fit}
 \usetikzlibrary{calc}
 \usetikzlibrary{arrows}
 \usetikzlibrary{positioning}
@@ -29,6 +30,40 @@ connection/.style={thick, dotted},
 
 \begin{document}
 
+
+% FIGURE: Workflow Diagram
+\begin{figure}
+    \resizebox{\textwidth}{!}{%
+    \begin{tikzpicture}
+        \draw ( 0.0, 0.0) node (in) [draw, shape=rectangle, minimum height=2cm, minimum width=2cm, align=center] {RGB};
+        \draw ( 3.0, 0.0) node (or) [draw, shape=circle,    minimum height=1cm, minimum width=1cm, align=center] {or};
+        
+        \draw ( 7.0, 3.5) node (a1) [draw, shape=rectangle, dash pattern= on 3pt off 5pt, minimum height=3cm, minimum width=4cm, align=center] {Gaussian\\ Convolution};
+        \draw (12.0, 3.5) node (a2) [draw, shape=rectangle, dash pattern= on 3pt off 5pt, minimum height=3cm, minimum width=4cm, align=center] {Opponent\\ Processing};
+        
+        \draw ( 7.0,-3.5) node (b1) [draw, shape=rectangle, dash pattern= on 3pt off 5pt, minimum height=3cm, minimum width=4cm, align=center] {L*a*b*\\ Transform};
+        \draw (12.0,-3.5) node (b2) [draw, shape=rectangle, dash pattern= on 3pt off 5pt, minimum height=3cm, minimum width=4cm, align=center] {DWT};
+        
+        \draw (20.0, 0.0) node (c) [draw, shape=rectangle, minimum height=10cm, minimum width=6cm, align=center] {Neurodynamical Model};
+        
+        \node                  (a)  [draw=gray, fit=(a1)(a2), inner sep=0.75cm] {};
+        \node                  (b)  [draw=gray, fit=(b1)(b2), inner sep=0.75cm] {};
+        
+        \node at               (a.north) [above]  {\textit{A. Opponent Processing of Receptive Fields}};
+        \node at               (b.north) [above]  {\textit{B. Discrete Wavelet Transform in Opponent Colorspace}};
+                
+        \draw [-]             (in) to             (or);
+        \draw [->]             (or) to[bend left]  (a1);
+        \draw [->]             (or) to[bend right] (b1);
+        \draw [->]             (a1) to             (a2);
+        \draw [->]             (b1) to             (b2);
+    \end{tikzpicture}
+    }
+\end{figure}
+
+
+
+% FIGURE: Opponent, vs DoG, vs DWT filters
 \begin{figure}[!htbp]
     \centering
     \captionsetup{justification=centering}
