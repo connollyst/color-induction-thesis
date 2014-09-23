@@ -1184,7 +1184,7 @@ Color is included in this model by treating the color channels of the RGB image 
 
 Each of the $r$, $g$, and $b$ channels are normalized by $I$ in order to decouple hue from intensity.
 
-These derived color components (and intensity) are computed for a set of images convoluted in a \textit{Gaussian pyramid} and contrasted across scales to obtain center/surround opponent color (and intensity) channels:
+These derived color components (and intensity) are computed for a set of images convolved in a \textit{Gaussian pyramid} and contrasted across scales to obtain center/surround opponent color (and intensity) channels:
 
 \begin{flalign}
     I(c, s)  &= |I(c) \ominus I(s)| \\
@@ -1192,7 +1192,7 @@ These derived color components (and intensity) are computed for a set of images 
     BY(c, s) &= |(B(c) - Y(s)) \ominus (Y(s) - B(s))|
 \end{flalign}
 
-Itti \textit{et al.} also compute orientation features by deconvoluting $I$ with oriented \textit{Gabor pyramids} at scale ($O(\sigma, \theta)$). These responses are then contrasted across scales to obtain orientation feature maps ($O(c, s, \theta)$):
+Itti \textit{et al.} also compute orientation features by deconvolving $I$ with oriented \textit{Gabor pyramids} at scale ($O(\sigma, \theta)$). These responses are then contrasted across scales to obtain orientation feature maps ($O(c, s, \theta)$):
 
 \begin{flalign}
     O(c, s, \theta)  &= |O(c, \theta) \ominus O(s, \theta)|
@@ -1206,12 +1206,27 @@ This set of 42 feature maps; intensity at 6 scales, 2 opponent colors at 6 scale
 
 
 \subsection*{Zhang, Barhomi, \& Serre's Biologically Inspired Color Descriptor (2013)}
-\begin{itemize}
-    \item Single \& double-opponent color using weights
-    \item Has center/surround (Gabor filters for DO, gaussians for SO?)
-    \item No scales
-    \item \textit{No dynamical processing}
-\end{itemize}
+
+Zhang \textit{et al.} introduce a computational color descriptor which integrates color and form. They specifically aim to model the behavior of single-opponent and double-opponent cells in the primate visual system. To do so, they consider the three classical opponent axes (Red-Green, Blue-Yellow, Light-Dark), as well as a fourth (Red-Cyan), omitted here.
+
+Single-opponent cells' responses are modeled by first convolving the RGB input with a center ($c$) surround ($s$) filters, and then applying the following transformations:
+
+\begin{flalign}
+    R(c, s) &= \tfrac{1}{\sqrt{2}}r(c)  + \tfrac{-1}{\sqrt{2}}g(s) \\
+    G(c, s) &= \tfrac{-1}{\sqrt{2}}r(s) + \tfrac{1}{\sqrt{2}}g(c)  \\
+    B(c, s) &= \tfrac{2}{\sqrt{6}}b(c)  + \tfrac{-1}{\sqrt{6}}r(s) + \tfrac{-1}{\sqrt{6}}g(s) \\
+    Y(c, s) &= \tfrac{1}{\sqrt{6}}r(c)  + \tfrac{1}{\sqrt{6}}g(c)  + \tfrac{-2}{\sqrt{6}}b(s) \\
+    L(c, s) &= \tfrac{1}{\sqrt{3}}r(c)  + \tfrac{1}{\sqrt{3}}g(c)  + \tfrac{-1}{\sqrt{3}}b(s) \\
+    D(c, s) &= \tfrac{1}{\sqrt{3}}b(c)  + \tfrac{-1}{\sqrt{3}}r(s) + \tfrac{-1}{\sqrt{3}}g(s)
+\end{flalign}
+
+In this work the team explored three means of modeling single-opponent centers and surrounds: gradient operator, Gabor filters, and Gaussian derivatives. It is important to note that each of these models of receptive fields were oriented, and thus the models of single-opponent neurons presenter were, at least weakly, oriented themselves
+
+To model double-opponent cell responses, single-opponent cell responses are further convolved with a number of oriented filters. These convolutions are then summed over phase and opponent pairs to yield three spatially and chromatically opponent channels; L-D, R-G, and B-Y (as well as R-Cyan in their work).
+
+The output of their model is a set of feature maps representing the response patterns of single-opponent and double-opponent neurons selective to specific orientations.
+
+\textbf{//TODO} \textit{Review significance of this work on ours (why do we care?)}
 
 
 \subsection*{Spitzer \& Barkan's Model of Color Induction (2005)}
@@ -1551,7 +1566,7 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
     };
     \end{tikzpicture}
     }
-    \caption{Diagram of \textit{Opponent Processing of Receptive Fields} workflow. The L, M, and S channels are convoluted with center and surround gaussians and then combined to build opponent colors, here exemplified by single-opponent cell receptive fields. The process is similar for double-opponent cells.}
+    \caption{Diagram of \textit{Opponent Processing of Receptive Fields} workflow. The L, M, and S channels are convolved with center and surround gaussians and then combined to build opponent colors, here exemplified by single-opponent cell receptive fields. The process is similar for double-opponent cells.}
 \end{figure}
 
 
@@ -1966,7 +1981,7 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
 
 \textbf{//TODO} \textit{REFACTOR INTO PARAGRAPH ON OPPONENT PROCESSING}
 
-Processing starts by convoluting each of the L, M, and S cone spectral response functions with two different gaussian filters. These convolutions simulate integration of information in a neuron's receptive field. One convolution is used to build the excitatory component of the receptive field (referred to as the center), the other convolution, the inhibitory (referred to as the surround).
+Processing starts by convolving each of the L, M, and S cone spectral response functions with two different gaussian filters. These convolutions simulate integration of information in a neuron's receptive field. One convolution is used to build the excitatory component of the receptive field (referred to as the center), the other convolution, the inhibitory (referred to as the surround).
 
 Single-opponent cells' receptive fields are the classical center-surround configuration: symmetric, centered, circular gaussians. Typically, the center is smaller and weighed significantly more heavily than the surround, as in Figure \ref{fig:rd-so} (c). Double-opponent receptive fields are markedly more complex: asymmetrical, off-center, elongated gaussian filters. Similarly, these filters can be adjusted to different sizes, shapes, and weights. For our tests we worked with symmetric balanced receptive fields, as in Figure \ref{fig:rd-do} (a).
 
