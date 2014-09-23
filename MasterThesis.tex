@@ -1269,21 +1269,23 @@ Our current work is a direct continuation of the research presented in the first
     \resizebox{\columnwidth}{!}{%
     \begin{threeparttable}
     \begin{tabular}{rccccccc}
-        \multicolumn{1}{r|}{}             & Proposed Model             & Penacchio \cite{penacchio:2013} & Li \cite{li:1999} & Itti \cite{itti:1998} & Yang \cite{yang:2013} & Spitzer \cite{spitzer:2005} & Zhang \cite{zhang:2012} \\ \cline{1-8}
-        \multicolumn{1}{r|}{Dynamical}    & Y                          & Y                               & Y                 & Y                     & N                     & N                           & N                       \\
-        \multicolumn{1}{r|}{Colors}       & Y                          & N                               & N                 & Y                     & Y                     & Y                           & Y                       \\
-        \multicolumn{1}{r|}{Scales}       & Y                          & Y                               & N                 & Y                     & Y                     & N                           & N                       \\
-        \multicolumn{1}{r|}{Orientations} & Y                          & Y                               & Y                 & Y                     & Y                     & N                           & N                       \\
-        \multicolumn{1}{r|}{SO}           & Y                          & N                               & N                 & Y                     & Y                     & Y                           & Y                       \\
-        \multicolumn{1}{r|}{DO}           & Y                          & Y \textit{(achromatic)}         & N                 & Y                     & Y                     & Y                           & Y                       \\
-        \multicolumn{1}{r|}{SO RF}        & Gaussian / DWT             & N/A                             & N/A               & Gaussian Pyramid      & Gaussian              & Gaussian                    & None                    \\
-        \multicolumn{1}{r|}{DO RF}        & Gabor-like Gaussians / DWT & DWT                             & N/A               & Gabor Pyramid         & Gabor-like Gaussians  & Gabor                       & None                    \\
-        \multicolumn{1}{r|}{Goal}         & Color Induction            & Brightness Induction            & Saliency          & Saliency              & Edge Detection        & Color Induction             & Color Descriptor                     
+        \multicolumn{1}{r|}{}             & Proposed Model             & Penacchio \cite{penacchio:2013} & Li \cite{li:1999} & Itti \cite{itti:1998} & Spitzer \cite{spitzer:2005} & Yang \cite{yang:2013}  & Zhang \cite{zhang:2012} \\ \cline{1-8}
+        \multicolumn{1}{r|}{Dynamical}    & Y                          & Y                               & Y                 & Y                     & Y                           & N                      & N                       \\
+        \multicolumn{1}{r|}{Intensity}    & Y                          & Y                               & ?                 & Y                     & N                           & N                      & Y                       \\
+        \multicolumn{1}{r|}{Colors}       & Y                          & N                               & N                 & Y                     & Y                           & Y                      & Y                       \\
+        \multicolumn{1}{r|}{Scales}       & Y                          & Y                               & N                 & Y                     & N                           & Y                      & N                       \\
+        \multicolumn{1}{r|}{Orientations} & Y                          & Y                               & Y                 & Y                     & N                           & Y                      & N                       \\
+        \multicolumn{1}{r|}{SO}           & Y                          & N                               & N                 & Y                     & Y                           & Y                      & Y                       \\
+        \multicolumn{1}{r|}{DO}           & Y                          & Y \textit{(achromatic)}         & N                 & Y                     & Y \textit{(concentric)}     & Y                      & Y                       \\
+        \multicolumn{1}{r|}{SO RF}        & Gaussian / DWT             & N/A                             & N/A               & Gaussian Pyramid      & Gaussian                    & Gaussian               & Difference of Gaussians \\
+        \multicolumn{1}{r|}{DO RF}        & Gabor-like Gaussians / DWT & DWT                             & N/A               & Gabor Pyramid         & Gabor                       & Gabor-like Gaussians   & Difference of Gaussians \\
+        \multicolumn{1}{r|}{Goal}         & Color Induction            & Brightness Induction            & Saliency          & Saliency              & Color Induction             & Edge Detection         & Color Descriptor                     
     \end{tabular}
     \begin{tablenotes}
         \item In the interest of clarity, the categories are defined below.
         \begin{tabular}{p{1.5cm} r l}
             & Dynamical:    & Does the work attempt to model neurodynamical processes? \\
+            & Intensity:    & Does the work consider achromatic differences as features? \\
             & Colors:       & Does the work consider chromatic differences as features? \\
             & Scales:       & Does the work separate information at different scales? \\
             & Orientations: & If incorporating edge/boundary features, does the work distinguish between orientations? \\
