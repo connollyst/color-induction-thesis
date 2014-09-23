@@ -1222,6 +1222,10 @@ Single-opponent cells' responses are modeled by first convolving the RGB input w
 
 In this work the team explored three means of modeling single-opponent centers and surrounds: gradient operator, Gabor filters, and Gaussian derivatives. It is important to note that each of these models of receptive fields were oriented, and thus the models of single-opponent neurons presenter were, at least weakly, oriented themselves
 
+\bigskip
+\textbf{//TODO} \textit{Mention half-squaring ($Inorm$?)}
+\bigskip
+
 To model double-opponent cell responses, single-opponent cell responses are further convolved with a number of oriented filters. These convolutions are then summed over phase and opponent pairs to yield three spatially and chromatically opponent channels; L-D, R-G, and B-Y (as well as R-Cyan in their work).
 
 The output of their model is a set of feature maps representing the response patterns of single-opponent and double-opponent neurons selective to specific orientations.
@@ -1236,6 +1240,14 @@ The output of their model is a set of feature maps representing the response pat
     \item \textit{No dynamical processing}
 \end{itemize}
 
+\subsection*{Yang, Gao, Li \& Li's Model of Boundary Detection (2013)}
+\begin{itemize}
+    \item Single \& double-opponent color transformations using receptive fields
+    \item Center \& surround receptive fields
+    \item \textit{No dynamical processing}
+\end{itemize}
+
+
 \subsection*{Comparison of Models}
 Our current work is a direct continuation of the research presented in the first two of these computational models. The latter three represent but a small selection of the wealth of effort being put into computationally describing color in a biologically plausible manner. It is important to recognize that these five models each had different specific research goals and so do not intend to be directly compared to one another. We present them here to frame our current work. Table \ref{tab:model-comparison} presents the features implemented in these models with respect to the goals of our work. This comparison elucidates our intentions: to bring biologically inspired descriptions of color to the neurodynamical processing model developed by Penacchio \cite{penacchio:2013} and Li \cite{li:1999}.
 
@@ -1243,17 +1255,17 @@ Our current work is a direct continuation of the research presented in the first
     \centering
     \caption{Comparison of computational models relevant to our current work.}
     \begin{threeparttable}
-    \begin{tabular}{rcccccc}
-        \multicolumn{1}{r|}{}             & Proposed Model   & Penacchio \cite{penacchio:2013} & Li \cite{li:1999} & Itti \cite{itti:1998} & Zhang \cite{zhang:2012} & Spitzer \cite{spitzer:2005} \\ \cline{1-7}
-        \multicolumn{1}{r|}{Dynamical}    & Y                & Y                               & Y                 & Y                     & N                       & N               \\
-        \multicolumn{1}{r|}{Colors}       & Y                & N                               & N                 & Y                     & Y                       & Y               \\
-        \multicolumn{1}{r|}{Scales}       & Y                & Y                               & N                 & Y                     & N                       & N               \\
-        \multicolumn{1}{r|}{Orientations} & Y                & Y                               & Y                 & Y                     & N                       & N               \\
-        \multicolumn{1}{r|}{SO}           & Y                & N                               & N                 & Y                     & Y                       & Y               \\
-        \multicolumn{1}{r|}{DO}           & Y                & Y \textit{(achromatic)}         & N                 & Y                     & Y                       & Y               \\
-        \multicolumn{1}{r|}{SO RF}        & Gaussian / DWT   & N/A                             & N/A               & Gaussian Pyramid      & None                    & Gaussian        \\
-        \multicolumn{1}{r|}{DO RF}        & Gabor-like / DWT & DWT                             & N/A               & Gaussian Pyramid      & None                    & Gabor           \\
-        \multicolumn{1}{r|}{Goal}         & Color Induction  & Brightness Induction            & Saliency          & Saliency              & Color Descriptor        & Color Induction
+    \begin{tabular}{rccccccc}
+        \multicolumn{1}{r|}{}             & Proposed Model             & Penacchio \cite{penacchio:2013} & Li \cite{li:1999} & Yang \cite{yang:2013} & Itti \cite{itti:1998} & Spitzer \cite{spitzer:2005} & Zhang \cite{zhang:2012} \\ \cline{1-8}
+        \multicolumn{1}{r|}{Dynamical}    & Y                          & Y                               & Y                 & Y                     & Y                     & N                           & N                       \\
+        \multicolumn{1}{r|}{Colors}       & Y                          & N                               & N                 & Y                     & Y                     & Y                           & Y                       \\
+        \multicolumn{1}{r|}{Scales}       & Y                          & Y                               & N                 & Y                     & Y                     & N                           & N                       \\
+        \multicolumn{1}{r|}{Orientations} & Y                          & Y                               & Y                 & Y                     & Y                     & N                           & N                       \\
+        \multicolumn{1}{r|}{SO}           & Y                          & N                               & N                 & Y                     & Y                     & Y                           & Y                       \\
+        \multicolumn{1}{r|}{DO}           & Y                          & Y \textit{(achromatic)}         & N                 & Y                     & Y                     & Y                           & Y                       \\
+        \multicolumn{1}{r|}{SO RF}        & Gaussian / DWT             & N/A                             & N/A               & Gaussian              & Gaussian Pyramid      & Gaussian                    & None                    \\
+        \multicolumn{1}{r|}{DO RF}        & Gabor-like Gaussians / DWT & DWT                             & N/A               & Gabor-like Gaussians  & Gabor Pyramid         & Gabor                       & None                    \\
+        \multicolumn{1}{r|}{Goal}         & Color Induction            & Brightness Induction            & Saliency          & Edge Detection        & Saliency              & Color Induction             & Color Descriptor                     
     \end{tabular}
     \begin{tablenotes}
         \item In the interest of clarity, the categories are defined below.
