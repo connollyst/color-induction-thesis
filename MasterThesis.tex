@@ -1167,8 +1167,7 @@ Their research was focused on observing brightness induction (BI) arising from s
     \end{itemize}
 \end{itemize}
 
-
-\subsection*{Itti, Koch, \& Niebur's Model for Saliency (1999)}
+\subsection*{Itti, Koch, \& Niebur's Model for Saliency \cite{itti:1998}}
 
 Itti \textit{et al.} implemented a biologically inspired model of visual attention, or saliency. This work included opponent processing of color, center/surround receptive fields at scales, and orientation selectivity. Because of these features, and their overlap with our own goals, we consider it an important work to consider.
 
@@ -1205,7 +1204,27 @@ This set of 42 feature maps; intensity at 6 scales, 2 opponent colors at 6 scale
 \textbf{//TODO} \textit{Review significance of this work on ours (why do we care?)}
 
 
-\subsection*{Zhang, Barhomi, \& Serre's Biologically Inspired Color Descriptor (2013)}
+\subsection*{Yang, Gao, Li \& Li's Model of Boundary Detection \cite{yang:2013}}
+
+Yang \textit{et al.} developed a biologically inspired system of edge detection. To this end, they implemented a model of chromatic double-opponent receptive fields constructed from asymmetric gaussian filters. The first step in their algorithm is to transform the RGB input image to red, green, blue, and yellow opponent color channels. Their approach simply utilizes the red, green, and blue color channels as they are, and define yellow to be the average of red and green input.
+
+\begin{flalign}
+    R &= r \\
+    G &= g \\
+    B &= b \\
+    Y &= \frac{r + g}{2}
+\end{flalign}
+
+These four color components are then convolved with centered, circular gaussian filters. This can be interpreted as modeling the receptive fields of chromatic single-opponent cells. These single-opponent cell responses are then combined in spatially opponent pairs to derive models of chromatic double-opponent cells.
+
+\textbf{//TODO} \textit{DESCRIBE THEIR USE OF SCALE (GAUSSIAN $\sigma)$}
+
+\textbf{//TODO} \textit{DESCRIBE THEIR HANDLING OF ORIENTATION (abs, max, mean?)}
+
+For their purposes of boundary detection, they evaluate their modeling of double-opponent cells only, discarding single-opponent cell responses. However, their implementation of single-opponent cells is perfectly reasonable and taken as inspiration in our work. The primary shortcoming of the research by Zhang \textit{et al.} lies in the description of color itself; while convenient, it is not supported by biology thus needs to be rethought.
+
+
+\subsection*{Zhang, Barhomi, \& Serre's Biologically Inspired Color Descriptor \cite{zhang:2012}}
 
 Zhang \textit{et al.} introduce a computational color descriptor which integrates color and form. They specifically aim to model the behavior of single-opponent and double-opponent cells in the primate visual system. To do so, they consider the three classical opponent axes (Red-Green, Blue-Yellow, Light-Dark), as well as a fourth (Red-Cyan), omitted here.
 
@@ -1233,14 +1252,7 @@ The output of their model is a set of feature maps representing the response pat
 \textbf{//TODO} \textit{Review significance of this work on ours (why do we care?)}
 
 
-\subsection*{Spitzer \& Barkan's Model of Color Induction (2005)}
-\begin{itemize}
-    \item Single \& double-opponent color transformations using receptive fields
-    \item Center \& surround receptive fields
-    \item \textit{No dynamical processing}
-\end{itemize}
-
-\subsection*{Yang, Gao, Li \& Li's Model of Boundary Detection (2013)}
+\subsection*{Spitzer \& Barkan's Model of Color Induction \cite{spitzer:2005}}
 \begin{itemize}
     \item Single \& double-opponent color transformations using receptive fields
     \item Center \& surround receptive fields
@@ -1254,18 +1266,19 @@ Our current work is a direct continuation of the research presented in the first
 \begin{table}[H] \label{tab:model-comparison}
     \centering
     \caption{Comparison of computational models relevant to our current work.}
+    \resizebox{\columnwidth}{!}{%
     \begin{threeparttable}
     \begin{tabular}{rccccccc}
-        \multicolumn{1}{r|}{}             & Proposed Model             & Penacchio \cite{penacchio:2013} & Li \cite{li:1999} & Yang \cite{yang:2013} & Itti \cite{itti:1998} & Spitzer \cite{spitzer:2005} & Zhang \cite{zhang:2012} \\ \cline{1-8}
-        \multicolumn{1}{r|}{Dynamical}    & Y                          & Y                               & Y                 & Y                     & Y                     & N                           & N                       \\
+        \multicolumn{1}{r|}{}             & Proposed Model             & Penacchio \cite{penacchio:2013} & Li \cite{li:1999} & Itti \cite{itti:1998} & Yang \cite{yang:2013} & Spitzer \cite{spitzer:2005} & Zhang \cite{zhang:2012} \\ \cline{1-8}
+        \multicolumn{1}{r|}{Dynamical}    & Y                          & Y                               & Y                 & Y                     & N                     & N                           & N                       \\
         \multicolumn{1}{r|}{Colors}       & Y                          & N                               & N                 & Y                     & Y                     & Y                           & Y                       \\
         \multicolumn{1}{r|}{Scales}       & Y                          & Y                               & N                 & Y                     & Y                     & N                           & N                       \\
         \multicolumn{1}{r|}{Orientations} & Y                          & Y                               & Y                 & Y                     & Y                     & N                           & N                       \\
         \multicolumn{1}{r|}{SO}           & Y                          & N                               & N                 & Y                     & Y                     & Y                           & Y                       \\
         \multicolumn{1}{r|}{DO}           & Y                          & Y \textit{(achromatic)}         & N                 & Y                     & Y                     & Y                           & Y                       \\
-        \multicolumn{1}{r|}{SO RF}        & Gaussian / DWT             & N/A                             & N/A               & Gaussian              & Gaussian Pyramid      & Gaussian                    & None                    \\
-        \multicolumn{1}{r|}{DO RF}        & Gabor-like Gaussians / DWT & DWT                             & N/A               & Gabor-like Gaussians  & Gabor Pyramid         & Gabor                       & None                    \\
-        \multicolumn{1}{r|}{Goal}         & Color Induction            & Brightness Induction            & Saliency          & Edge Detection        & Saliency              & Color Induction             & Color Descriptor                     
+        \multicolumn{1}{r|}{SO RF}        & Gaussian / DWT             & N/A                             & N/A               & Gaussian Pyramid      & Gaussian              & Gaussian                    & None                    \\
+        \multicolumn{1}{r|}{DO RF}        & Gabor-like Gaussians / DWT & DWT                             & N/A               & Gabor Pyramid         & Gabor-like Gaussians  & Gabor                       & None                    \\
+        \multicolumn{1}{r|}{Goal}         & Color Induction            & Brightness Induction            & Saliency          & Saliency              & Edge Detection        & Color Induction             & Color Descriptor                     
     \end{tabular}
     \begin{tablenotes}
         \item In the interest of clarity, the categories are defined below.
@@ -1282,6 +1295,7 @@ Our current work is a direct continuation of the research presented in the first
         \end{tabular}
     \end{tablenotes}
     \end{threeparttable}
+    }
 \end{table}
 
 
