@@ -1253,12 +1253,26 @@ The output of their model is a set of feature maps representing the response pat
 
 
 \subsection*{Spitzer \& Barkan's Model of Color Induction \cite{spitzer:2005}}
-\begin{itemize}
-    \item Single \& double-opponent color transformations using receptive fields
-    \item Center \& surround receptive fields
-    \item \textit{No dynamical processing}
-\end{itemize}
 
+Spitzer \textit{et al.} implemented a computational model of color induction by processing center and surround receptive fields of single and double-opponent neurons. While we also aim to model color induction, as well as brightness induction, our approach differs significantly from theirs. Our model seeks to introduce induction effects primarily through it's neurodynamical component, while theirs relies mostly on center and surround (and remote) effects introduced by the cells' receptive fields, as well as the addition of a temporal adaptation function.
+
+
+Their implementation, however, considered double-opponent cells to be circular concentric. That is, they accepted the definition of double-opponent cells which we discarded in our research. Using this definition of double-opponent cells, Spitzer \textit{et al.} were able to model well chromatic induction and simultaneous contrast effects, though their model was not sensitive to oriented edges.
+
+\bigskip
+\textbf{//TODO} \textit{REFERENCE DIAGRAM OF RECEPTIVE FIELD DIFFERENCE}
+\bigskip
+
+
+
+
+
+\begin{flalign}
+    R(c, s) &= r(c) - g(s) \\
+    G(c, s) &= g(c) - r(s) \\
+    B(c, s) &= b(c) - \frac{r(s) - g(s)}{2} \\
+    Y(c, s) &= \frac{r(c) - g(c)}{2} - b(s)
+\end{flalign}
 
 \subsection*{Comparison of Models}
 Our current work is a direct continuation of the research presented in the first two of these computational models. The latter three represent but a small selection of the wealth of effort being put into computationally describing color in a biologically plausible manner. It is important to recognize that these five models each had different specific research goals and so do not intend to be directly compared to one another. We present them here to frame our current work. Table \ref{tab:model-comparison} presents the features implemented in these models with respect to the goals of our work. This comparison elucidates our intentions: to bring biologically inspired descriptions of color to the neurodynamical processing model developed by Penacchio \cite{penacchio:2013} and Li \cite{li:1999}.
