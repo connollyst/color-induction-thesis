@@ -32,33 +32,114 @@ connection/.style={thick, dotted},
 
 
 % FIGURE: Workflow Diagram
-\begin{figure}
+\begin{figure} \label{fig:diagram-full}
     \resizebox{\textwidth}{!}{%
     \begin{tikzpicture}
-        \draw ( 0.0, 0.0) node (in) [draw, shape=rectangle, minimum height=2cm, minimum width=2cm, align=center] {RGB};
+        \draw ( 0.0, 0.0) node (in) [draw, shape=rectangle, minimum height=2cm, minimum width=2cm, align=center] {LMS};
         \draw ( 3.0, 0.0) node (or) [draw, shape=circle,    minimum height=1cm, minimum width=1cm, align=center] {or};
         
-        \draw ( 7.0, 3.5) node (a1) [draw, shape=rectangle, dash pattern= on 3pt off 5pt, minimum height=3cm, minimum width=4cm, align=center] {Gaussian\\ Convolution};
-        \draw (12.0, 3.5) node (a2) [draw, shape=rectangle, dash pattern= on 3pt off 5pt, minimum height=3cm, minimum width=4cm, align=center] {Opponent\\ Processing};
+        \draw ( 7.0, 3.5) node (a1) [draw, shape=rectangle, dash pattern= on 3pt off 5pt, minimum height=4cm, minimum width=4cm, align=center] {};
+        \draw (12.0, 3.5) node (a2) [draw, shape=rectangle, dash pattern= on 3pt off 5pt, minimum height=4cm, minimum width=4cm, align=center] {Opponent\\ Processing};
+        \node at (a1.north) [below=0.4cm] {Gaussian};
+        \node at (a1.north) [below=0.9cm] {Convolution};
         
-        \draw ( 7.0,-3.5) node (b1) [draw, shape=rectangle, dash pattern= on 3pt off 5pt, minimum height=3cm, minimum width=4cm, align=center] {L*a*b*\\ Transform};
-        \draw (12.0,-3.5) node (b2) [draw, shape=rectangle, dash pattern= on 3pt off 5pt, minimum height=3cm, minimum width=4cm, align=center] {DWT};
-        
-        \draw (20.0, 0.0) node (c) [draw, shape=rectangle, minimum height=10cm, minimum width=6cm, align=center] {Neurodynamical Model};
+        \draw ( 7.0,-3.5) node (b1) [draw, shape=rectangle, dash pattern= on 3pt off 5pt, minimum height=4cm, minimum width=4cm, align=center] {L*a*b*\\ Transform};
+        \draw (12.0,-3.5) node (b2) [draw, shape=rectangle, dash pattern= on 3pt off 5pt, minimum height=4cm, minimum width=4cm, align=center] {};
+        \node at (b2.north) [below=0.4cm] {Discrete};
+        \node at (b2.north) [below=0.9cm] {Wavelet};
+        \node at (b2.north) [below=1.4cm] {Transform};
         
         \node                  (a)  [draw=gray, fit=(a1)(a2), inner sep=0.75cm] {};
         \node                  (b)  [draw=gray, fit=(b1)(b2), inner sep=0.75cm] {};
         
+        \draw (19.0, 0.0) node (c) [draw, shape=rectangle, minimum height=12.5cm, minimum width=5cm, align=center] {};
+        \node at (c.north) [below=4.4cm] {Neurodynamical};
+        \node at (c.north) [below=4.9cm] {Model};
+        \draw[thick, ->] (20.0,-1.0) arc (0:350:1);
+        
+        \draw (24.0, 0.0) node (out) [draw, shape=rectangle, minimum height=2cm, minimum width=2cm, align=center] {Neuronal\\ Activity};
+        
         \node at               (a.north) [above]  {\textit{A. Opponent Processing of Receptive Fields}};
         \node at               (b.north) [above]  {\textit{B. Discrete Wavelet Transform in Opponent Colorspace}};
                 
-        \draw [-]             (in) to             (or);
+        \draw [-]              (in) to             (or);
         \draw [->]             (or) to[bend left]  (a1);
         \draw [->]             (or) to[bend right] (b1);
         \draw [->]             (a1) to             (a2);
         \draw [->]             (b1) to             (b2);
+        \draw [->]             (a) to              (c);
+        \draw [->]             (b) to              (c);
+        \draw [->]             (c) to              (out);
+        
+        
+        \node[below of=a1, node distance=0.33in] {
+        \resizebox{1in}{!}{%
+            \begin{tikzpicture}
+            \begin{axis}[
+                axis lines=none,
+                xmin=-2.5,
+                xmax= 2.5,
+                ymin=-0.5,
+                ymax= 1.0,
+                thick
+                ]
+            \addplot[smooth,thick] plot coordinates {
+                (-3.0,  0.0)
+                (-2.0,  0.0)
+                (-1.0,  0.1)
+                ( 0.0,  1.0)
+                ( 1.0,  0.1)
+                ( 2.0,  0.0)
+                ( 3.0,  0.0)
+            };
+            \addplot[smooth,thick] plot coordinates {
+                (-3.0,  0.0)
+                (-2.1,  0.0)
+                (-1.2, -0.1)
+                ( 0.0, -0.3)
+                ( 1.2, -0.1)
+                ( 2.1,  0.0)
+                ( 3.0,  0.0)
+            };
+            \addplot[thin] plot coordinates {
+                (-3.0,  0.0)
+                ( 3.0,  0.0)
+            };
+            \end{axis}
+            \node[align=center] at (3.4, 4.0) {\LARGE +};
+            \node[align=center] at (3.4, 1.5) {\Huge  -};
+            \end{tikzpicture}
+        }};
+        \node[below of=b2, node distance=0.33in] {
+        \resizebox{1in}{!}{%
+            \begin{tikzpicture}
+            \begin{axis}[
+                axis lines=none,
+                xmin=-2.5,
+                xmax= 2.5,
+                ymin=-0.5,
+                ymax= 1.0,
+                thick
+                ]
+            \addplot[thick] plot coordinates {
+                (-2.0, 0.0)
+                (-1.1, 0.3)
+            };
+            \addplot[smooth,thick] plot coordinates {
+                (-1.1, 0.3)
+                ( 0.0, 0.6)
+                ( 1.1, 0.3)
+            };
+            \addplot[thick] plot coordinates {
+                ( 1.1, 0.3)
+                ( 2.0, 0.0)
+            };
+            \end{axis}
+            \end{tikzpicture}
+        }};
     \end{tikzpicture}
     }
+    \caption{Workflow diagram of algorithm at its highest level. Data can be processed through either \textit{A. Opponent Processing of Receptive Fields} or \textit{Discrete Wavelet Transform in Opponent Colorspace}. This is then fed into the neurodynamical model which outputs a map of neuronal activity.}
 \end{figure}
 
 
