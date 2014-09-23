@@ -1288,7 +1288,7 @@ Our current work is a direct continuation of the research presented in the first
     \begin{tabular}{rccccccc}
         \multicolumn{1}{r|}{}             & Proposed Model             & Penacchio \cite{penacchio:2013} & Li \cite{li:1999} & Itti \cite{itti:1998} & Spitzer \cite{spitzer:2005} & Yang \cite{yang:2013}  & Zhang \cite{zhang:2012} \\ \cline{1-8}
         \multicolumn{1}{r|}{Dynamical}    & Y                          & Y                               & Y                 & Y                     & Y                           & N                      & N                       \\
-        \multicolumn{1}{r|}{Intensity}    & Y                          & Y                               & ?                 & Y                     & N                           & N                      & Y                       \\
+        \multicolumn{1}{r|}{Intensity}    & Y                          & Y                               & N                 & Y                     & N                           & N                      & Y                       \\
         \multicolumn{1}{r|}{Colors}       & Y                          & N                               & N                 & Y                     & Y                           & Y                      & Y                       \\
         \multicolumn{1}{r|}{Scales}       & Y                          & Y                               & N                 & Y                     & N                           & Y                      & N                       \\
         \multicolumn{1}{r|}{Orientations} & Y                          & Y                               & Y                 & Y                     & N                           & Y                      & N                       \\
@@ -1299,7 +1299,7 @@ Our current work is a direct continuation of the research presented in the first
         \multicolumn{1}{r|}{Goal}         & Color Induction            & Brightness Induction            & Saliency          & Saliency              & Color Induction             & Edge Detection         & Color Descriptor                     
     \end{tabular}
     \begin{tablenotes}
-        \item Where..
+        \item Definition of criteria:
         \begin{tabular}{p{1.5cm} r l}
             & Dynamical:    & Does the work attempt to model neurodynamical processes? \\
             & Intensity:    & Does the work consider achromatic differences as features? \\
@@ -1318,22 +1318,11 @@ Our current work is a direct continuation of the research presented in the first
 \end{table}
 
 
-\subsection{State of the Art Summary}
+\subsection{Summary}
 
-\textbf{//TODO} \textit{We need to properly summarize the State of the Art before proceeding.}
-\begin{itemize}
-    \item bleh
-    \begin{itemize}
-        \item What does the biology predict?
-        \item What have computational models done?
-        \item Where do computational models fall short? (A: no dynamical color model)
-        \item Thus, where does our work fit into the field?
-    \end{itemize}
-    \item To recapitulate: single-opponent neurons fire best to full field stimulation while double-opponent neurons fire only at the boundaries between particular colors. Both cell types can be found in color preferring and achromatic flavors.
-    \item \textbf{//TODO} This understanding treats color and shape as intrinsically connected and, as a consequence, predicts perceptual phenomena such as color induction to arise very early in visual processing.
-    \item The purpose of this project is to \textbf{feed opponent color information into a neurodynamical model} sensitive to edges \& surfaces in a biologically inspired manner.
-\end{itemize}
+We define single-opponent neurons to possess classical center/surround receptive fields for processing cone input into opponent colors. We define double-opponent neurons to be spatially opposed combinations of single-opponent neurons. We recognize both achromatic and chromatic flavors of these cells, explaining the three axes of the opponent colorspace. By these definitions, we expect single-opponent neurons to respond best to fill field stimulation while double-opponent neurons fire only at boundaries. This understanding treats color and shape as intrinsically connected and, as a consequence, predicts perceptual phenomena such as color induction to arise very early in visual processing.
 
+The purpose of this project is to feed opponent color information into a neurodynamical model sensitive to edges and surfaces in a biologically inspired manner. The neurodynamical presented within is an extension of work done by Penacchio \textit{et al.} \cite{penacchio:2013} and Li \cite{li:1999}. To incorporate color into this model, we consider some of the previous work of biologically inspired color description. We find prior art to observe encouraging results when modeling the receptive fields of single and/or double-opponent neurons.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
