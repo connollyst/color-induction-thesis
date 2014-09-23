@@ -1169,13 +1169,40 @@ Their research was focused on observing brightness induction (BI) arising from s
 
 
 \subsection*{Itti, Koch, \& Niebur's Model for Saliency (1999)}
-\begin{itemize}
-    \item Opponent color transformations
-    \item No double-opponent cells
-    \item Center \& surround using scales
-    \item Has scales, but collapses them into one (right?)
-    \item \textit{No dynamical processing}
-\end{itemize}
+
+Itti \textit{et al.} implemented a biologically inspired model of visual attention, or saliency. This work included opponent processing of color, center/surround receptive fields at scales, and orientation selectivity. Because of these features, and their overlap with our own goals, we consider it an important work to consider.
+
+Color is included in this model by treating the color channels of the RGB image as analogous for L, M, and S cone activity. From this, red, green, blue, and yellow color components, as well as a single intensity components are derived, using the following formulae:
+
+\begin{flalign}
+    I &= \frac{(r + g + b)}{3} \\
+    R &= max(0, r - \frac{(g + b)}{2}) \\
+    G &= max(0, g - \frac{(r + b)}{2}) \\
+    B &= max(0, b - \frac{(r + g)}{2}) \\
+    Y &= max(0, \frac{(r + g)}{2} - \frac{|(r + g)|}{2} - b)
+\end{flalign}
+
+Each of the $r$, $g$, and $b$ channels are normalized by $I$ in order to decouple hue from intensity.
+
+These derived color components (and intensity) are computed for a set of images convoluted in a \textit{Gaussian pyramid} and contrasted across scales to obtain center/surround opponent color (and intensity) channels:
+
+\begin{flalign}
+    I(c, s)  &= |I(c) \ominus I(s)| \\
+    RG(c, s) &= |(R(c) - I(s)) \ominus (G(s) - R(s))| \\
+    BY(c, s) &= |(B(c) - Y(s)) \ominus (Y(s) - B(s))|
+\end{flalign}
+
+Itti \textit{et al.} also compute orientation features by deconvoluting $I$ with oriented \textit{Gabor pyramids} at scale ($O(\sigma, \theta)$). These responses are then contrasted across scales to obtain orientation feature maps ($O(c, s, \theta)$):
+
+\begin{flalign}
+    O(c, s, \theta)  &= |O(c, \theta) \ominus O(s, \theta)|
+\end{flalign}
+
+Biologically, such features could be considered representative of achromatic double-opponent cells. Similar to the features obtained by Penacchio \textit{et al.} use of discrete wavelet transforms (DWT), they include information about the intensity, position, and orientation of edges.
+
+This set of 42 feature maps; intensity at 6 scales, 2 opponent colors at 6 scales each, and 4 orientations at 6 scales each, provide input for a dynamical neural network. In their neurodynamical model of saliency, each point of the feature maps represents activity of a neuron and interactions between neurons ensure that only the most active locations remain, while all others are suppressed.
+
+\textbf{//TODO} \textit{Review significance of this work on ours (why do we care?)}
 
 
 \subsection*{Zhang, Barhomi, \& Serre's Biologically Inspired Color Descriptor (2013)}
@@ -1203,7 +1230,7 @@ Our current work is a direct continuation of the research presented in the first
     \begin{threeparttable}
     \begin{tabular}{rcccccc}
         \multicolumn{1}{r|}{}             & Proposed Model   & Penacchio \cite{penacchio:2013} & Li \cite{li:1999} & Itti \cite{itti:1998} & Zhang \cite{zhang:2012} & Spitzer \cite{spitzer:2005} \\ \cline{1-7}
-        \multicolumn{1}{r|}{Dynamical}    & Y                & Y                               & Y                 & N                     & N                       & N               \\
+        \multicolumn{1}{r|}{Dynamical}    & Y                & Y                               & Y                 & Y                     & N                       & N               \\
         \multicolumn{1}{r|}{Colors}       & Y                & N                               & N                 & Y                     & Y                       & Y               \\
         \multicolumn{1}{r|}{Scales}       & Y                & Y                               & N                 & Y                     & N                       & N               \\
         \multicolumn{1}{r|}{Orientations} & Y                & Y                               & Y                 & Y                     & N                       & N               \\
