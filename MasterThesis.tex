@@ -452,10 +452,7 @@ primary visual cortex, striate cortex, V1, receptive field, single-opponent, dou
 \IEEEpeerreviewmaketitle
 
 
-
 \section{Introduction}
-
-% TODO perhaps the distinction between physical color and perception color is valuable here?
 
 \IEEEPARstart{C}{olor} induction and contrast are two related, opposing, perceptual phenomena. The former is a change in perceived color "toward" a nearby color, while the latter is a change of one color "away" from the nearby color. Neurophysiological research suggests that these phenomena may arise as early in primate vision as the primary visual cortex (V1). It is proposed that the boundaries between two colored regions drive these effects. Specifically, research in the field describes neurons which fire selectively to boundaries between certain colors, so called double-opponent cells, and identifies them as being critically related to the color perceived.
 
@@ -615,13 +612,7 @@ As mentioned, one of the three axes of the opponent process theory is lightness 
 
 We have defined single-opponent cells to best respond to large areas of light/color. We now define double-opponent cells to respond only to the boundaries between such areas. In this regard, it is fair to think of double-opponent cells as biological 'edge detectors'. However, the precise definition of these cells is a topic of confusion in the field of neurobiology. All involved seem to agree that the input to the neuron is that of two single-opponent neurons itself. In this sense, the term "double-opponent" can be thought of as indicating that the dimensionality of color opponency has been doubled. However, another camp of researchers take the definition a step further and suggest that the two SO inputs are spatially offset. By this definition, the term "double-opponent" is thought to indicate that the cell is sensitive to opponency in two \textit{different} dimensions: color and space.
 
-The distinction is non-trivial as the response patterns differ significantly, and thus the interpretation of their role in vision differs. Truly, both types of cells may, and likely do exist in the primate visual system [\textbf{//TODO} \textit{Cite studies which find these cells}]. However, for the purpose of our work we only consider the latter definition: double-opponent cells' receptive fields are both chromatically and spatially antagonistic.
-
-\bigskip
-
-\textbf{//TODO} \textbf{FIGURE: present the differences between the two DO configurations}
-
-\bigskip
+The distinction is non-trivial as the response patterns differ significantly, and thus the interpretation of their role in vision differs. Truly, both types of cells may, and likely do exist in the primate visual system. However, for the purpose of our work we only consider the latter definition: double-opponent cells' receptive fields are both chromatically and spatially antagonistic.
 
 % FIGURE: Double-opponent receptive field schematics
 \begin{figure}[H]
@@ -1080,19 +1071,12 @@ Another important feature of double-opponent cells is that they are inherently s
     \caption{A double opponent cell tuned to a particular spatial frequency. Either a (b) lower or a (c) higher spatial frequency than preferred lowers the response of the cell.} \label{fig:do-scale}
 \end{figure}
 
-\bigskip
-
-\textbf{//TODO} \textit{CONTRAST WITH SINGLE-OPPONENT'S LACK OF SPATIAL FREQ. SELECTIVITY (show Shapley's graphs)}
-
-\textit{[erm.. don't we have spatial frequency for SO also??]}
-
-\bigskip
 
 \subsubsection*{Achromatic Double-Opponent Neurons}
 
 As with single-opponent cells, one of the axes of the opponent process theory is 'lightness' vs 'darkness'. While we frequently discuss opponency as being a thing of 'color', we find double-opponent cells which are specifically sensitive to luminance borders.
 Such achromatic sensitivity is easily achieved by balancing cone inputs into the neuron's antagonistic receptive fields, as in single-opponent cells. It behaves just as the previously described double-opponent cells, with specific orientation and spatial frequency selectivity, but responds best to luminance borders rather than chromatic borders. For more details on achromatic receptive fields, please refer back to the section on \textit{Achromatic Single-Opponent Neurons}.
-It is important to reiterate here that the \textit{on} and \textit{off} inputs to light and dark sensitive single-opponent cells are balanced, whereas their chromatic sensitive counterparts are imbalanced in inputs (\textbf{//TODO} \textit{incorrect terminology, we use 'imbalanced' differently in SO graphics}). This has the implication at the double-opponent level that light and dark double-opponent cells are redundant, as can be seen in Figures \ref{fig:do-rf-inputs-light} and \ref{fig:do-rf-inputs-dark}. This is in contrast to the chromatic double-opponent cells depictied in Figure \ref{fig:do-rf-inputs} which differentiate themselves from their opponent pair by imbalanced inputs from the same cones.
+It is important to reiterate here that the \textit{on} and \textit{off} inputs to light and dark sensitive single-opponent cells are balanced, whereas their chromatic sensitive counterparts are imbalanced in inputs. This has the implication at the double-opponent level that light and dark double-opponent cells are redundant, as can be seen in Figures \ref{fig:do-rf-inputs-light} and \ref{fig:do-rf-inputs-dark}. This is in contrast to the chromatic double-opponent cells depictied in Figure \ref{fig:do-rf-inputs} which differentiate themselves from their opponent pair by imbalanced inputs from the same cones.
 
 
 \subsection*{Hypercolumns}
@@ -1141,26 +1125,24 @@ Their research was focused on observing brightness induction (BI) arising from s
 
 \subsection*{Itti, Koch, \& Niebur's Model for Saliency \cite{itti:1998}}
 
-Itti \textit{et al.} implemented a biologically inspired model of visual attention, or saliency. This work included opponent processing of color, center/surround receptive fields at scales, and orientation selectivity. Because of these features, and their overlap with our own goals, we consider it an important work to consider.
+Itti \textit{et al.} implemented a biologically inspired model of visual attention, or saliency. This work included opponent processing of color, center/surround receptive fields at scales, and orientation selectivity. Because of these features, and their overlap with our own goals, we acknowledge it as an influential work.
 
-Color is included in this model by treating the color channels of the RGB image as analogous for L, M, and S cone activity. From this, red, green, blue, and yellow color components, as well as a single intensity components are derived, using the following formulae:
+In this model color is included by treating the RGB image as analogous for L, M, and S cone activity. From this Red, Green, Blue, and Yellow color components, as well as a single Intensity component is derived, using the following formulae:
 
 \begin{flalign}
-    I &= \frac{(r + g + b)}{3} \\
-    R &= max(0, r - \frac{(g + b)}{2}) \\
-    G &= max(0, g - \frac{(r + b)}{2}) \\
-    B &= max(0, b - \frac{(r + g)}{2}) \\
-    Y &= max(0, \frac{(r + g)}{2} - \frac{|(r + g)|}{2} - b)
+    Intensity &= \frac{(L + M + S)}{3} \\
+    Red       &= max(0, L - \frac{(M + S)}{2}) \\
+    Green     &= max(0, M - \frac{(L + S)}{2}) \\
+    Blue      &= max(0, S - \frac{(L + M)}{2}) \\
+    Yellow    &= max(0, \frac{(L + M)}{2} - \frac{|(L + M)|}{2} - S)
 \end{flalign}
 
-Each of the $r$, $g$, and $b$ channels are normalized by $I$ in order to decouple hue from intensity.
-
-These derived color components (and intensity) are computed for a set of images convolved in a \textit{Gaussian pyramid} and contrasted across scales to obtain center/surround opponent color (and intensity) channels:
+Each of the $L$, $M$, and $S$ (RGB) channels are normalized by $I$ in order to decouple hue from intensity. These derived color components (and intensity) are computed for a set of images convolved in a \textit{Gaussian pyramid} and contrasted across scales to obtain center/surround opponent color (and intensity) channels:
 
 \begin{flalign}
-    I(c, s)  &= |I(c) \ominus I(s)| \\
-    RG(c, s) &= |(R(c) - I(s)) \ominus (G(s) - R(s))| \\
-    BY(c, s) &= |(B(c) - Y(s)) \ominus (Y(s) - B(s))|
+    Intensity(c, s)  &= |I(c) \ominus I(s)| \\
+    RedGreen(c, s)   &= |(R(c) - I(s)) \ominus (G(s) - R(s))| \\
+    BlueYellow(c, s) &= |(B(c) - Y(s)) \ominus (Y(s) - B(s))|
 \end{flalign}
 
 Itti \textit{et al.} also compute orientation features by deconvolving $I$ with oriented \textit{Gabor pyramids} at scale ($O(\sigma, \theta)$). These responses are then contrasted across scales to obtain orientation feature maps ($O(c, s, \theta)$):
@@ -1169,11 +1151,9 @@ Itti \textit{et al.} also compute orientation features by deconvolving $I$ with 
     O(c, s, \theta)  &= |O(c, \theta) \ominus O(s, \theta)|
 \end{flalign}
 
-Biologically, such features could be considered representative of achromatic double-opponent cells. Similar to the features obtained by Penacchio \textit{et al.} use of discrete wavelet transforms (DWT), they include information about the intensity, position, and orientation of edges.
+Biologically, such features could be considered representative of achromatic double-opponent cells. Similar to the features obtained by Penacchio \textit{et al.}'s use of discrete wavelet transforms (DWT), they include information about the intensity, position, and orientation of edges.
 
 This set of 42 feature maps; intensity at 6 scales, 2 opponent colors at 6 scales each, and 4 orientations at 6 scales each, provide input for a dynamical neural network. In their neurodynamical model of saliency, each point of the feature maps represents activity of a neuron and interactions between neurons ensure that only the most active locations remain, while all others are suppressed.
-
-\textbf{//TODO} \textit{Review significance of this work on ours (why do we care?)}
 
 
 \subsection*{Yang, Gao, Li \& Li's Model of Boundary Detection \cite{yang:2013}}
@@ -1188,10 +1168,6 @@ Yang \textit{et al.} developed a biologically inspired system of edge detection.
 \end{flalign}
 
 These four color components are then convolved with centered, circular gaussian filters. This can be interpreted as modeling the receptive fields of chromatic single-opponent cells. These single-opponent cell responses are then combined in spatially opponent pairs to derive models of chromatic double-opponent cells.
-
-\textbf{//TODO} \textit{DESCRIBE THEIR USE OF SCALE (GAUSSIAN $\sigma)$}
-
-\textbf{//TODO} \textit{DESCRIBE THEIR HANDLING OF ORIENTATION (abs, max, mean?)}
 
 For their purposes of boundary detection, they evaluate their modeling of double-opponent cells only, discarding single-opponent cell responses. However, their implementation of single-opponent cells is perfectly reasonable and taken as inspiration in our work. The primary shortcoming of the research by Zhang \textit{et al.} lies in the description of color itself; while convenient, it is not supported by biology thus needs to be rethought.
 
@@ -1211,11 +1187,7 @@ Single-opponent cells' responses are modeled by first convolving the RGB input w
     Yellow(c, s) &= \tfrac{1}{\sqrt{6}}L(c)  + \tfrac{1}{\sqrt{6}}M(c)  + \tfrac{-2}{\sqrt{6}}S(s)
 \end{flalign}
 
-In this work the team explored three means of modeling single-opponent centers and surrounds: gradient operator, Gabor filters, and Gaussian derivatives. It is important to note that each of these models of receptive fields were oriented, and thus the models of single-opponent neurons presenter were, at least weakly, oriented themselves
-
-\bigskip
-\textbf{//TODO} \textit{Mention half-squaring ($Inorm$?)}
-\bigskip
+In this work the team explored three means of modeling single-opponent centers and surrounds: gradient operator, Gabor filters, and Gaussian derivatives. It is important to note that each of these models of receptive fields were oriented, and thus the models of single-opponent neurons presented were, at least weakly, oriented.
 
 To model double-opponent cell responses, the output from single-opponent cells are further convolved with a number of oriented filters. These convolutions are then summed over phase and opponent pairs to yield three spatially and chromatically opponent channels; L-D, R-G, and B-Y (as well as R-Cyan in their work).
 
@@ -1228,12 +1200,7 @@ Spitzer \textit{et al.} implemented a computational model of color induction by 
 
 Another important difference is that their implementation considered double-opponent cells to be circular concentric. That is, they accepted the definition of double-opponent cells which we discarded in our research (see \textit{Double-Opponent Neurons} above). Using this definition of double-opponent cells, Spitzer \textit{et al.} were able to model well chromatic induction and simultaneous contrast effects, though their model was not sensitive to oriented edges.
 
-\bigskip
-\textbf{//TODO} \textit{REFERENCE DIAGRAM OF RECEPTIVE FIELD DIFFERENCE}
-\bigskip
-
 In their model they defined four opponent color components; red, green, blue, and yellow:
-
 \begin{flalign}
     Red(c, s)    &= r(c) - g(s) \\
     Green(c, s)  &= g(c) - r(s) \\
@@ -1242,10 +1209,6 @@ In their model they defined four opponent color components; red, green, blue, an
 \end{flalign}
 
 This definition of the opponent color process seems, to us, more biologically plausible than those presented by Itti \textit{et al.} \cite{itti:1998}, Yang \textit{et al.} \cite{yang:2013}, or Zhang \textit{et al.} \cite{zhang:2012}. Thusly, it will form the basis for our opponent color transformation, presented in the \textit{Method} section below.
-
-\bigskip
-\textbf{//TODO} \textit{MORE DETAIL?}
-\bigskip
 
 
 \subsection*{Comparison of Models}
@@ -1293,7 +1256,7 @@ Our current work is a direct continuation of the research presented in the first
 
 We define single-opponent neurons to possess classical center/surround receptive fields for processing cone input into opponent colors. We define double-opponent neurons to be spatially opposed combinations of single-opponent neurons. We recognize both achromatic and chromatic flavors of these cells, explaining the three axes of the opponent colorspace. By these definitions, we expect single-opponent neurons to respond best to fill field stimulation while double-opponent neurons fire only at boundaries. This understanding treats color and shape as intrinsically connected and, as a consequence, predicts perceptual phenomena such as color induction to arise very early in visual processing.
 
-The purpose of this project is to feed opponent color information into a neurodynamical model sensitive to edges and surfaces in a biologically inspired manner. The neurodynamical presented within is an extension of work done by Penacchio \textit{et al.} \cite{penacchio:2013} and Li \cite{li:1999}. To incorporate color into this model, we consider some of the previous work of biologically inspired color description. We find prior art to observe encouraging results when modeling the receptive fields of single and/or double-opponent neurons.
+In the \textit{Method} section which follows, we describe two means by which we incorporate a biologically plausible descriptor of opponent color information into a neurodynamical model. Further still, we extend the model developed by Penacchio \textit{et al.} \cite{penacchio:2013} to include logical interactions between single-opponent and double-opponent neurons of individual specificities; color, orientation, and spatial frequency.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1334,8 +1297,8 @@ We present a computational model designed to be representative of the aforementi
         \node                  (b)  [draw=gray, fit=(b1)(b2), inner sep=0.75cm] {};
         
         \draw (19.0, 0.0) node (c) [draw, shape=rectangle, minimum height=8cm, minimum width=5cm, align=center] {};
-        \node at (c.north) [below=4.4cm] {Neurodynamical};
-        \node at (c.north) [below=4.9cm] {Model};
+        \node at (c.north) [below=1.7cm] {Neurodynamical};
+        \node at (c.north) [below=2.2cm] {Model};
         \draw[thick, ->] (20.0,-1.0) arc (0:350:1);
         
         \draw (24.0, 0.0) node (out) [draw, shape=rectangle, minimum height=2cm, minimum width=2cm, align=center] {Neuronal\\ Activity};
@@ -1348,9 +1311,9 @@ We present a computational model designed to be representative of the aforementi
         \draw [-]              (or) to[bend right] (b1);
         \draw [-]             (a1) to             (a2);
         \draw [-]             (b1) to             (b2);
-        \draw [->]             (a) to              (c);
-        \draw [->]             (b) to              (c);
-        \draw [->]             (c) to              (out);
+        \draw [-]             (a) to              (c);
+        \draw [-]             (b) to              (c);
+        \draw [-]             (c) to              (out);
         
         
         \node[below of=a1, node distance=0.33in] {
@@ -2075,15 +2038,11 @@ To summarize, this first of two approaches to color description aims to be true 
 
 \subsection{Discrete Wavelet Transform in Opponent Colorspace}
 
-Previous work by Penacchio \textit{et al.} \cite{penacchio:2013} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edge components, at scales. In the context of our current research, this could be thought of as representing achromatic double-opponent cells; the response is greatest at luminance boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent colorspace and examine its applicability as a replacement of the previously detailed \textit{Opponent Processing of Neural Receptive Fields}.
+Previous work by Penacchio \textit{et al.} \cite{penacchio:2013} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edge components, at scales. In the context of our current research, this could be thought of as representing achromatic double-opponent cells; the response is greatest at luminance boundaries and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent colorspace and examine its applicability as a replacement of the previously detailed \textit{Opponent Processing of Neural Receptive Fields}.
 
-Unlike the previously presented color descriptor, this transformation begins, not with the convolution step, but instead with a colorspace transformation. We convert the image from RGB to \textit{CIE} $L^*a^*b^*$. This colorspace separates luminance from it's two opponent color channels. The two color channels are $0$ centered; with positive and negative values in $a^*$ denoting redness and greenness, respectively, while positive and negative values in the $b^*$ channel indicate blueness and yellowness, respectively. The luminance channel, $L^*$, scales from $0$ to $100$, $0$ being total darkness, $100$ being pure brightness. We subtract $50$ from this channel to obtain a $0$ centered range of luminance. We consider positive values to define lightness and negative values darkness.
+Unlike the previously presented color descriptor, this transformation begins not with the convolution step, but instead with a colorspace transformation. We convert the image from RGB to \textit{CIE} $L^*a^*b^*$. This colorspace separates luminance from it's two opponent color channels. The two color channels are $0$ centered; with positive and negative values in $a^*$ denoting redness and greenness, respectively, while positive and negative values in the $b^*$ channel indicate blueness and yellowness, respectively. The luminance channel, $L^*$, scales from $0$ to $100$, $0$ being total darkness, $100$ being pure brightness. We subtract $50$ from this channel to obtain a $0$ centered range of luminance. We consider positive values to define lightness and negative values darkness.
 
-We then apply the DWT to this modified \textit{CIE} $L^*a^*b^*$ colorspace. Similar to the gaussian convolutions in the previous method, this transformation can be interpreted as representing processing in a cell's receptive field. That is, the activity of a particular cell is now defined, not just by its own activity, but also of the activity of the cells around it.
-
-At each scale we further decompose the image into it's oriented signal components, our orientation and scale selective double-opponent cell activity. At each scale, we retain the residual 
-
-The key difference here being that the DWT is applied \textit{in} the opponent colorspace, while in our previous approach the convolutions are applied to the raw L, M, and S input, in order to obtain the opponent colors.
+We then obtain the DWT in this modified \textit{CIE} $L^*a^*b^*$ colorspace. Similar to the gaussian convolutions in the previous method, this transformation can be interpreted as representing processing in a cell's receptive field. That is, the activity of a particular cell is now defined not just by its own activity, but also of the activity of the cells around it.
 
 Following multiresolution and orientation decomposition, all wavelet and residual planes are $0$ centered, thus we can easily split them into independent opponent components:
 \begin{align}
@@ -2097,10 +2056,6 @@ Following multiresolution and orientation decomposition, all wavelet and residua
 
 The result of this process can be seen in the Appendix, Figure \ref{fig:transform-dwt}.
 
-\bigskip
-\textbf{//TODO} \textit{SUMMARY PARAGRAPH ON PROS/CONS}
-\bigskip
-
 
 \subsection*{Neurodynamical Processing}
 
@@ -2108,7 +2063,7 @@ Stage I of the proposed method focuses on the description of color in a biologic
 
 $x_{i\gamma\sigma\theta}$ can be viewed as a model of retinotopic excitation hypercolumns in V1, with $i$ specifying the retinally mapped location of the hypercolumn. Similarly, $y_{i\gamma\sigma\theta}$ may be interpreted as its retinotopic inhibitory counterpart. $\dot{x}_{i\gamma\sigma\theta}$ and $\dot{y}_{i\gamma\sigma\theta}$, then, are the change in excitatory and inhibitory membrane potentials over time, respectively, and follow the equations:
 \begin{align}
-    \dot{x}_{i\gamma\sigma\theta} &= \begin{aligned}[t]
+    \dot{x}^\tau_{i\gamma\sigma\theta} &= \begin{aligned}[t]
         & - \alpha_{x}x_{i\gamma\sigma\theta} \label{eq:delta-x} \\
         & - g_y(y_{i\gamma\sigma\theta}) \\
         & - \sum\nolimits_{\gamma' \neq \text{opp($\gamma$)},\Delta_{\sigma},\Delta_{\theta} \neq 0}
@@ -2120,7 +2075,7 @@ $x_{i\gamma\sigma\theta}$ can be viewed as a model of retinotopic excitation hyp
         & + I^\tau_{i\gamma\sigma\theta} \\
         & + I_0
         \end{aligned} \\
-    \dot{y}_{i\gamma\sigma\theta} &= \begin{aligned}[t]
+    \dot{y}^\tau_{i\gamma\sigma\theta} &= \begin{aligned}[t]
         & - \alpha_{y}Y_{i\gamma\sigma\theta} \label{eq:delta-y} \\
         & + g_x(X_{i\gamma\sigma\theta}) \\
         & + \sum\nolimits_{j \neq i, \gamma'\sigma'\theta'}
@@ -2145,7 +2100,7 @@ If a cell is stimulated, it excites nearby cells of the same orientation and sca
 We propose that these rules of interaction are logical as only opponent colors are mutually exclusive. While a bluish yellow line is not permissible in the opponent colorspace, a bluish green, bluish red, bright blue, or dark blue line is entirely plausible. Each of the possible combinations are equally probable and so the excitatory-excitatory connections between cells of these color preferences are equally weighed. These excitatory and inhibitory rules are encoded in $J$ and $W$, respectively.
 
 \subsubsection*{Activity Normalization ($I_0$)}
-The general and local normalization of activities \cite{heeger:1993} has been extended from its used by Li \cite{li:1999} and Penacchio \cite{penacchio:2013}. We normalize excitatory membrane potentials within double-opponent cells of similar location ($i$), color ($\gamma$), scale ($\sigma$), and orientation ($\theta$) preferences. Likewise we normalize single-opponent cells of similar location ($i$), color ($\gamma$), scale ($\sigma$). We found it important to normalize the activity of these two classes of neurons independently as the information encoded by each is radically different: localized edge information by double-opponent cells, and extensive surface information by single-opponent cells.
+The general and local normalization of activities \cite{heeger:1993} has been extended from its use by Li \cite{li:1999} and Penacchio \cite{penacchio:2013}. We normalize excitatory membrane potentials within double-opponent cells of similar location ($i$), color ($\gamma$), scale ($\sigma$), and orientation ($\theta$) preferences. Likewise we normalize single-opponent cells of similar location ($i$), color ($\gamma$), scale ($\sigma$). We found it important to normalize the activity of these two classes of neurons independently as the information encoded by each is radically different: localized edge information by double-opponent cells, and extensive surface information by single-opponent cells.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -2162,11 +2117,7 @@ We evaluated the performance of our model by applying it to a number of test ima
 
 All experiments involved two or more test stimuli in which human observers can describe a difference between them. For example, most would describe the left inner ring in Figure \ref{fig:example} as being green and the right inner ring as being blue. As is shown, however, the two rings are physically identical; they have the exact same pixel values.
 
- All test images were paired such that the effects caused two physically similar regions to appear to be different colors. The output of the model was the retinotopic neural activity in each of the opponent channels. For each pair of test patches, we compared the activity to 1) identify differences in activity and 2) to observe differences in the \textit{direction} of activity. For example, in Figure \ref{fig:test-circle-neon} we expect to see neural activity to the left inner circle move toward green on the red-green axis, and the right inner circle move toward blue on the blue-yellow axis. Because the unit of neuronal activity is arbitrary, it cannot be used to generate a color image of what the model predicts, a so called 'perceptual image'. However, the unit is self-consistent and so can be compared between stimuli to evaluate magnitude and direction of activity.
-
-\textbf{//TODO} \textit{REWORK THIS PARAGRAPH.. IT'S NOT GREAT}
-
-The perceived color is defined by the true color of the ring, the color(s) of the surrounding ring(s), and the interaction between them all.
+All test images were paired such that the effects caused two physically similar regions to appear to be different. The output of the model was the retinotopic neural activity in each of the opponent channels. For each pair of test patches, we compared the activity to 1) identify differences in activity and 2) to observe differences in the direction of activity. For example, in Figure \ref{fig:example} we expect to see activity in the Red-Green channel toward green for the left inner ring, and Blue-Yellow activity toward blue for the right inner ring. Because the unit of neuronal activity is arbitrary, it cannot be used to generate a color image of what the model predicts, a so called 'perceptual image'. However, the unit is self-consistent and so can be compared between the two stimuli to evaluate magnitude and direction of activity.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2178,6 +2129,11 @@ The perceived color is defined by the true color of the ring, the color(s) of th
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
+
+Below we present the response of each of the two models described. We averaged activity at each time step so as to obtain an overall behavior of the model. In each of the results below we present output from both the \textit{Opponent Processing of Receptive Fields} and \textit{Discrete Wavelet Transform in Opponent Colorspace} models. For both we obtain models of neural activity in each of the axes of opponent color: Light-Dark, Red-Green, and Blue-Yellow; all axes are zero centered. Higher values are represented as lighter, and lower values as darker, though each experiment is presented on its own scale so as to emphasize detail.
+In some experiments we isolate and enhance the region of the test stimuli in which we expect 
+
+\newpage
 
 \afterpage{%
 \begin{figure}[H] \label{fig:test-circle-a-opp-results}
@@ -2623,7 +2579,6 @@ The perceived color is defined by the true color of the ring, the color(s) of th
 \clearpage
 }
 
-
 \afterpage{%
 \begin{figure}[H] \label{fig:test-bars-opp-results}
     \centering
@@ -2901,6 +2856,7 @@ The second approach, which we referred to as \textit{Discrete Wavelet Transform 
 That said, the performance of the model tells us that much work is needed. In some experiments we see the predicted results for both methods of color description. For example, in Figures \ref{fig:test-bars-opp} and \ref{fig:test-bars-dwt} we see both express higher blue activity for the bars which are perceived as blue (Figures \ref{fig:test-bars-opp-by-mask} and \ref{fig:test-bars-dwt-by-mask}), though in the \textit{Opponent Processing of Receptive Fields} method the blue bars also elicit higher green activity (Figures \ref{fig:test-bars-opp-rg-mask}). Other results are less consistent between the two methods. In Figures \ref{fig:test-gradient-opp} and \ref{fig:test-gradient-dwt} the left rectangles are perceived as green and those to the right, yellow. The \textit{Discrete Wavelet Transform in Opponent Colorspace} method excels, predicting both the green extreme on the left (Figure \ref{fig:test-gradient-dwt-rg-mask}) and the yellow extreme on the right (Figure \ref{fig:test-gradient-dwt-by-mask}). However, \textit{Opponent Processing of Receptive Fields} method predicts the opposite.
 
 \newpage
+
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page
 % adjust value as needed - may need to be readjusted if
