@@ -1443,7 +1443,7 @@ To construct opponent color channels, we contrast center ($c$) and surround ($s$
 
 A schematic of this workflow is presented in Figure \ref{fig:opp-workflow}. It is clear from this schematic, and the equations above, that L and M input are significantly overrepresented. This reflects the biological overrepresentation of the evolutionarily older L and M pathways in human vision, and is more in line with, say, work by Spitzer \textit{et al.} \cite{spitzer:2005} than Itti \textit{et al.} \cite{itti:1998}. Our equations for Light and Dark, however, are novel.
 
-Because the inputs to the Light and Dark receptive fields come from the same cones (L and M), classical opponent center/surround receptive fields will not function to capture both Light and Dark. This can be easily seen in Figure \ref{fig:opp-workflow}; while the Light, Red, Green, Blue, and Yellow all have \textit{on} centers and \textit{off} surrounds, Dark has an \textit{on} surround and an \textit{off} center. This is supported by literature \cite{chualupa:encyclopedia} but introduces issues. For example, by having Light and Dark activity be almost completely complementary, we find double-opponent activity in these channels to be almost completely redundant, as can be seen in the Supplemental Material Figure \ref{fig:transform-opp}.
+Because the inputs to the Light and Dark receptive fields come from the same cones (L and M), classical opponent center/surround receptive fields will not function to capture both Light and Dark. This can be easily seen in Figure \ref{fig:opp-workflow}; while the Light, Red, Green, Blue, and Yellow all have \textit{on} centers and \textit{off} surrounds, Dark has an \textit{on} surround and an \textit{off} center. This is supported by literature \cite{chualupa:encyclopedia} but introduces issues. For example, by having Light and Dark activity be almost completely complementary, we find double-opponent activity in these channels to be almost completely redundant, as can be seen in the Appendix, Figure \ref{fig:transform-opp}.
 
 Double-opponent cells' responses constructed along the same workflow as single-opponent cells', though their receptive fields are different, Figure \ref{fig:do-rf-inputs}. Different responses are obtained for each preferred orientation by convolving the image with oriented receptive fields. In this work we considered only three basic orientations: horizontal, vertical, and diagonal.
 
@@ -1950,39 +1950,30 @@ To summarize, this first of two approaches to color description aims to be true 
 
 Previous work by Penacchio \textit{et al.} \cite{otazu:plosive} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edge components, at scales. In the context of our current research, this could be thought of as representing achromatic double-opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent colorspace and examine its applicability as a replacement of the previously detailed \textit{Opponent Processing of Neural Receptive Fields}.
 
-\subsubsection*{Opponent Colorspace}
-This transformation begins, not with the convolution step, but instead with a colorspace transformation. We convert the image from RGB to \textit{CIE} $L^*a^*b^*$. This colorspace separates luminance from it's two opponent color channels. The two color channels are $0$ centered, with both positive and negative values possible. The luminance channel, $L^*$, scales from $0$ to $100$, $0$ being total darkness, $100$ being pure brightness. We subtract $50$ from this channel to obtain a $0$ centered range of luminance. We consider positive values to define 'lightness' and negative values 'darkness'. From the opponent color channels, we take positive values in the $a^*$ channel as denoting 'redness' and negative values 'greenness', while positive values in the $b^*$ channel indicate 'blueness' and negative values 'yellowness'.
+Unlike the previously presented color descriptor, this transformation begins, not with the convolution step, but instead with a colorspace transformation. We convert the image from RGB to \textit{CIE} $L^*a^*b^*$. This colorspace separates luminance from it's two opponent color channels. The two color channels are $0$ centered; with positive and negative values in $a^*$ denoting redness and greenness, respectively, while positive and negative values in the $b^*$ channel indicate blueness and yellowness, respectively. The luminance channel, $L^*$, scales from $0$ to $100$, $0$ being total darkness, $100$ being pure brightness. We subtract $50$ from this channel to obtain a $0$ centered range of luminance. We consider positive values to define lightness and negative values darkness.
 
-\subsubsection*{Discrete Wavelet Transform}
-Similar to the aforementioned use of gaussian filters, the application of the DWT can be interpreted as representative of the processing in a cell's receptive field. That is, the activity of a particular cell is defined not just by its own activity, but also of the activity of the cells around it. The key difference here being that the DWT is applied \textit{in} the opponent colorspace, while in our previous approach the convolutions are applied to the raw L, M, and S input, before deriving opponent colors.
+We then apply the DWT to this modified \textit{CIE} $L^*a^*b^*$ colorspace. Similar to the gaussian convolutions in the previous method, this transformation can be interpreted as representing processing in a cell's receptive field. That is, the activity of a particular cell is now defined, not just by its own activity, but also of the activity of the cells around it.
 
-As all color channels are $0$ centered, we can easily split them into independent opponent components:
+At each scale we further decompose the image into it's oriented signal components, our orientation and scale selective double-opponent cell activity. At each scale, we retain the residual 
+
+The key difference here being that the DWT is applied \textit{in} the opponent colorspace, while in our previous approach the convolutions are applied to the raw L, M, and S input, in order to obtain the opponent colors.
+
+Following multiresolution and orientation decomposition, all wavelet and residual planes are $0$ centered, thus we can easily split them into independent opponent components:
 \begin{align}
-    Li_{do} &=   max(0, DWT(L^*-50))              \\
-    Li_{so} &=   max(0, DWT(L^*-50)_{residual})   \\
-    Da_{do} &= | min(0, DWT(L^*-50)) |            \\
-    Da_{so} &= | min(0, DWT(L^*-50)_{residual}) | \\
-    R_{do}  &=   max(0, DWT(a^*))                 \\
-    R_{so}  &=   max(0, DWT(a^*)_{residual})      \\
-    G_{do}  &= | min(0, DWT(a^*)) |               \\
-    G_{so}  &= | min(0, DWT(a^*)_{residual}) |    \\
-    B_{do}  &=   max(0, DWT(b^*))                 \\
-    B_{so}  &=   max(0, DWT(b^*)_{residual})      \\
-    Y_{do}  &= | min(0, DWT(b^*)) |               \\
-    Y_{so}  &= | min(0, DWT(b^*)_{residual}) |
+    Light  &=   max(0, L^*-50)   \\
+    Dark   &= | min(0, L^*-50) | \\
+    Red    &=   max(0, a^*)      \\
+    Green  &= | min(0, a^*) |    \\
+    Blue   &=   max(0, b^*)      \\
+    Yellow &= | min(0, b^*) |
 \end{align}
 
-\bigskip
-
-\textbf{//TODO} \textit{FIGURE: show diagram of oriented DWT filter (use TikZ)}
-
-\textbf{//TODO} \textit{PARAGRAPH ON INTERPRETATION OF COMPONENTS (DO \& SO)}
-
-\textbf{//TODO} \textit{PARAGRAPH ON WORKFLOW: RGB $\rightarrow$ L*a*b* (-50) $\rightarrow$ DWT $\rightarrow$ ON/OFF}
-
-\textbf{//TODO} \textit{PARAGRAPH ON PROS/CONS}
+The result of this process can be seen in the Appendix, Figure \ref{fig:transform-dwt}.
 
 \bigskip
+\textbf{//TODO} \textit{SUMMARY PARAGRAPH ON PROS/CONS}
+\bigskip
+
 
 \subsection*{Neurodynamical Processing}
 
@@ -3008,11 +2999,126 @@ That said, the performance of the model tells us that much work is needed. In so
 % The "triggered" command can be changed if desired:
 %\IEEEtriggercmd{\enlargethispage{-5in}}
 
-\appendix
-\section{Supplemental Material}
+% references section
 
-\afterpage{%
-\begin{figure}[h]
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+\begin{thebibliography}{1}
+
+\bibitem{conway:2010}
+    Conway, B. R., S. Chatterjee, G. D. Field, G. D. Horwitz, E. N. Johnson, K. Koida, and K. Mancuso.
+    \emph{Advances in Color Science: From Retina to Behavior}.
+    Journal of Neuroscience 30.45 (2010): 14955-4963.
+
+\bibitem{heeger:1993}
+    Heeger, D.
+    \emph{Modeling simple-cell direction selectivity with normalized, half-squared, linear operators}
+    Neurophysiology 70.5 (1993): 1885-1898.
+
+\bibitem{itti:1998}
+    Itti L., Koch C., and Niebur E.
+    \emph{A Model of Saliency-Based Visual Attention for Rapid Scene Analysis}.
+    IEEE Transactions on Pattern Analysis and Machine Intelligence, 20.11 (1999). 1254-1259.
+
+\bibitem{johnson:2008}
+    Johnson, E., Hawken, M., and Shapley, R.
+    \emph{The Orientation Selectivity of Color-Responsive Neurons in Macaque V1}.
+    Journal of Neuroscience 28.32 (2008): 8096-106
+
+\bibitem{lennie:1991}
+    Lennie, P., Haake, W., and Williams, D.
+    \emph{Color in the Primary Visual Cortex}.
+    Computational Models of Visual Processing.
+    Cambridge, Mass.: MIT, (1991): 71-82.
+
+\bibitem{li:1998}
+  Zhaoping Li.
+  \emph{A Neural Model of Contour Integration in the Primary Visual Cortex}.
+  Neural Computation 10.4 (1998): 903-40.
+
+\bibitem{li:1999}
+  Zhaoping Li.
+  \emph{Visual Segmentation by Contextual Influences via Intra-cortical Interactions in the Primary Visual Cortex}.
+  Network: Computation in Neural Systems 10.2 (1999): 187-212.
+
+\bibitem{otazu:2010}
+    Otazu, X., Parraga, C., and Vanrell, M.
+    \emph{Toward a Unified Chromatic Induction Model}.
+    Journal of Vision 10.12 (2010): 5.
+
+\bibitem{penacchio:2013}
+    Penacchio O., Otazu, X., and Dempere-Marco, L.
+    \emph{A Neurodynamical Model of Brightness Induction in V1}.
+    PLoS ONE 8.5 (2013): E64086.
+
+\bibitem{mallat:1989}
+    Mallat, S.
+    \emph{A Theory for Multiresolution Signal Decomposition: The Wavelet Representation}."
+    IEEE Transactions on Pattern Analysis and Machine Intelligence 11.7 (1989): 674-93
+
+\bibitem{ramirez:2013}
+    Ramirez-Villegas, J., and Ramirez-Moreno, D.
+    \emph{Color Coding in the Cortex: A Modified Approach to Bottom-up Visual Attention}.
+    Biological Cybernetics 107.1 (2013): 39-47.
+
+\bibitem{chualupa:encyclopedia}
+    Robert, S., Hawken, M., and Johnson, E.
+    \emph{Color in the Primary Visual Cortex}.
+    The Visual Neurosciences. Vol. 2.
+    Cambridge, Mass.: MIT, (2004): 568-86.
+
+\bibitem{schluppeck:2002}
+    Schluppeck, D., and S. A. Engel.
+    \emph{Color Opponent Neurons in V1: A Review and Model Reconciling Results from Imaging and Single-Unit Recording}.
+    Journal of Vision 2.6 (2002): 480-492.
+
+\bibitem{shapley:2011}
+    Shapley R. and Hawken M.
+    \emph{Color in the Cortex: Single- and Double-opponent Cells}.
+    Vision Research 51.7 (2011): 701-17.
+
+\bibitem{sincich:2005}
+    Sincich, Lawrence C., and Jonathan C. Horton.
+    \emph{THE CIRCUITRY OF V1 AND V2: Integration of Color, Form, and Motion}.
+    Annual Review of Neuroscience 28.1 (2005): 303-26.
+    
+\bibitem{solomon:2007}
+    Solomon, Samuel G., and Peter Lennie.
+    \emph{The Machinery of Colour Vision}.
+    Nature Reviews Neuroscience 8.4 (2007): 276-86.
+
+\bibitem{spitzer:2005}
+    Hedva Spitzer, Yuval Barkan.
+    \emph{Computational adaptation model and its predictions for color induction of first and second orders}.
+    Vision Research 45.27 (2005). 3323–3342.
+
+\bibitem{yang:2012}
+    Yang K., Gao S., Li C, and Li Y.
+    \emph{Efficient Color Boundary Detection with Color-opoonent Mechanisms}.
+    Computer Vision and Pattern Recognition (CVPR), (2013), pp 2810-2817.
+
+\bibitem{zhang:2013}
+    Jun Zhang, Youssef Barhomi, and Thomas Serre.
+    \emph{A new biologically inspired color image descriptor}.
+    Computer Vision – ECCV 2012
+    Lecture Notes in Computer Science Volume 7576, (2012): 312-324.
+
+\end{thebibliography}
+
+\newpage
+
+\appendix
+\begin{figure}[H]
     \centering
     \begin{subfigure}{0.3\textwidth}
         \captionsetup{justification=centering}
@@ -3170,11 +3276,8 @@ That said, the performance of the model tells us that much work is needed. In so
     \caption{Example of single-opponent and double-opponent response (scale=1) to a test image following the \textit{Opponent Processing of Receptive Fields} workflow. Strong activity is indicated by black and weak activity by white.}
     \label{fig:transform-opp}
 \end{figure}
-\clearpage
-}
 
-\afterpage{%
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \begin{subfigure}{0.3\textwidth}
         \captionsetup{justification=centering}
@@ -3332,144 +3435,6 @@ That said, the performance of the model tells us that much work is needed. In so
     \caption{Example of single-opponent and double-opponent response (scale=1) to a test image following the \textit{Discrete Wavelet Transform in Opponent Colorspace} workflow. Strong activity is indicated by black and weak activity by white.}
     \label{fig:transform-dwt}
 \end{figure}
-\clearpage
-}
-
-% references section
-
-% can use a bibliography generated by BibTeX as a .bbl file
-% BibTeX documentation can be easily obtained at:
-% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
-% The IEEEtran BibTeX style support page is at:
-% http://www.michaelshell.org/tex/ieeetran/bibtex/
-%\bibliographystyle{IEEEtran}
-% argument is your BibTeX string definitions and bibliography database(s)
-%\bibliography{IEEEabrv,../bib/paper}
-%
-% <OR> manually copy in the resultant .bbl file
-% set second argument of \begin to the number of references
-% (used to reserve space for the reference number labels box)
-\begin{thebibliography}{1}
-
-\bibitem{conway:2010}
-    Conway, B. R., S. Chatterjee, G. D. Field, G. D. Horwitz, E. N. Johnson, K. Koida, and K. Mancuso.
-    \emph{Advances in Color Science: From Retina to Behavior}.
-    Journal of Neuroscience 30.45 (2010): 14955-4963.
-
-\bibitem{heeger:1993}
-    Heeger, D.
-    \emph{Modeling simple-cell direction selectivity with normalized, half-squared, linear operators}
-    Neurophysiology 70.5 (1993): 1885-1898.
-
-\bibitem{itti:1998}
-    Itti L., Koch C., and Niebur E.
-    \emph{A Model of Saliency-Based Visual Attention for Rapid Scene Analysis}.
-    IEEE Transactions on Pattern Analysis and Machine Intelligence, 20.11 (1999). 1254-1259.
-
-\bibitem{johnson:2008}
-    Johnson, E., Hawken, M., and Shapley, R.
-    \emph{The Orientation Selectivity of Color-Responsive Neurons in Macaque V1}.
-    Journal of Neuroscience 28.32 (2008): 8096-106
-
-\bibitem{lennie:1991}
-    Lennie, P., Haake, W., and Williams, D.
-    \emph{Color in the Primary Visual Cortex}.
-    Computational Models of Visual Processing.
-    Cambridge, Mass.: MIT, (1991): 71-82.
-
-\bibitem{li:1998}
-  Zhaoping Li.
-  \emph{A Neural Model of Contour Integration in the Primary Visual Cortex}.
-  Neural Computation 10.4 (1998): 903-40.
-
-\bibitem{li:1999}
-  Zhaoping Li.
-  \emph{Visual Segmentation by Contextual Influences via Intra-cortical Interactions in the Primary Visual Cortex}.
-  Network: Computation in Neural Systems 10.2 (1999): 187-212.
-
-\bibitem{otazu:2010}
-    Otazu, X., Parraga, C., and Vanrell, M.
-    \emph{Toward a Unified Chromatic Induction Model}.
-    Journal of Vision 10.12 (2010): 5.
-
-\bibitem{penacchio:2013}
-    Penacchio O., Otazu, X., and Dempere-Marco, L.
-    \emph{A Neurodynamical Model of Brightness Induction in V1}.
-    PLoS ONE 8.5 (2013): E64086.
-
-\bibitem{ramirez:2013}
-    Ramirez-Villegas, J., and Ramirez-Moreno, D.
-    \emph{Color Coding in the Cortex: A Modified Approach to Bottom-up Visual Attention}.
-    Biological Cybernetics 107.1 (2013): 39-47.
-
-\bibitem{chualupa:encyclopedia}
-    Robert, S., Hawken, M., and Johnson, E.
-    \emph{Color in the Primary Visual Cortex}.
-    The Visual Neurosciences. Vol. 2.
-    Cambridge, Mass.: MIT, (2004): 568-86.
-
-\bibitem{schluppeck:2002}
-    Schluppeck, D., and S. A. Engel.
-    \emph{Color Opponent Neurons in V1: A Review and Model Reconciling Results from Imaging and Single-Unit Recording}.
-    Journal of Vision 2.6 (2002): 480-492.
-
-\bibitem{shapley:2011}
-    Shapley R. and Hawken M.
-    \emph{Color in the Cortex: Single- and Double-opponent Cells}.
-    Vision Research 51.7 (2011): 701-17.
-
-\bibitem{sincich:2005}
-    Sincich, Lawrence C., and Jonathan C. Horton.
-    \emph{THE CIRCUITRY OF V1 AND V2: Integration of Color, Form, and Motion}.
-    Annual Review of Neuroscience 28.1 (2005): 303-26.
-    
-\bibitem{solomon:2007}
-    Solomon, Samuel G., and Peter Lennie.
-    \emph{The Machinery of Colour Vision}.
-    Nature Reviews Neuroscience 8.4 (2007): 276-86.
-
-\bibitem{spitzer:2005}
-    Hedva Spitzer, Yuval Barkan.
-    \emph{Computational adaptation model and its predictions for color induction of first and second orders}.
-    Vision Research 45.27 (2005). 3323–3342.
-
-\bibitem{yang:2012}
-    Yang K., Gao S., Li C, and Li Y.
-    \emph{Efficient Color Boundary Detection with Color-opoonent Mechanisms}.
-    Computer Vision and Pattern Recognition (CVPR), (2013), pp 2810-2817.
-
-\bibitem{zhang:2013}
-    Jun Zhang, Youssef Barhomi, and Thomas Serre.
-    \emph{A new biologically inspired color image descriptor}.
-    Computer Vision – ECCV 2012
-    Lecture Notes in Computer Science Volume 7576, (2012): 312-324.
-
-\end{thebibliography}
-
-% biography section
-% 
-% If you have an EPS/PDF photo (graphics package needed) extra braces are
-% needed around the contents of the optional argument to biography to prevent
-% the LaTeX parser from getting confused when it sees the complicated
-% \includegraphics command within an optional argument. (You could create
-% your own custom macro containing the \includegraphics command to make things
-% simpler here.)
-%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
-% or if you just want to reserve a space for a photo:
-
-% You can push biographies down or up by placing
-% a \vfill before or after them. The appropriate
-% use of \vfill depends on what kind of text is
-% on the last page and whether or not the columns
-% are being equalized.
-
-%\vfill
-
-% Can be used to pull up biographies so that the bottom of the last one
-% is flush with the other column.
-%\enlargethispage{-5in}
 
 % that's all folks
 \end{document}
-
-
