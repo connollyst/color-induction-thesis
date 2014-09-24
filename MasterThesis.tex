@@ -476,7 +476,7 @@ Within, we propose a computational model designed around the current understandi
 
 Historically, it was widely believed that color and shape are two distinct aspects of visual perception. Truly, this line of thinking is intuitive: one can perceive the color of a flat surface which occupies our full field of vision, despite its lack of 'shape', likewise we can see the shape of achromatic objects, as in black and white film. This theory of perception innervated neurophysiological understanding. It was supported by neurobiological findings, such as that the lateral geniculate nucleus (LGN), the pathway which carries information from the retina to the primary visual cortex (V1), consists of three entirely distinct layers; two (the parvicellular and konicellular) carrying only color information, and one (the magnocellular) dealing purely in achromatic contrast (edge) information. Based on early anatomical observations, it was proposed that these three LGN pathways for color and contrast are then processed into two separate streams in V1, one for color and the other for form. This separate handling of color and form confirmed for researchers that, as suspected, these two perceptual concepts are processed separately in the brain.
 
-Research in the past decade or so has seen a shift from this thinking, however. Psychophysical observations, such as those in Figure \ref{fig:blur-effect}, influenced researchers to consider that color and form are more intrinsically related than previously thought. In these examples, we see that the perceived color of the inner square is highly dependent on the background and, most importantly, how the inner square \textit{contacts} the background. That is to say, the color perceived is not just determined by the physical properties of the surface itself, but also by the context in which the surface is viewed. Furthermore, we can observe that this contextual influence comes largely from the boundary edges of the surface: in example (c), the dulling color assimilation effect witnessed in (b) is almost entirely negated by simply adding a thin border. That is, by removing contact between the inner square and the background the effect of the context is significantly reduced. In fact, "the color appearance of a region may be more dependent on color contrast at the boundary of the region than it is on the spectral reflectance of the region's interior." \cite[p.572]{chualupa:encyclopedia}
+Research in the past decade or so has seen a shift from this thinking, however. Psychophysical observations, such as those in Figure \ref{fig:example}, influenced researchers to consider that color and form are more intrinsically related than previously thought. In this example, we see that two physically identical 'turquoise' rings can be perceived as very different, depending entirely on the context in which they are viewed. More so, it is the border between these rings and the neighboring rings that ultimately induce the effect. In fact, "the color appearance of a region may be more dependent on color contrast at the boundary of the region than it is on the spectral reflectance of the region's interior." \cite[p.572]{chualupa:encyclopedia}
 
 \begin{figure}[h]
     \center
@@ -485,7 +485,7 @@ Research in the past decade or so has seen a shift from this thinking, however. 
     \label{fig:example}
 \end{figure}
 
-With these psychophysical observations in mind, much research has been devoted to elucidating the exact neurobiological mechanisms behind the perception of color, and the influence of form in it. The current view holds that while the LGN does indeed carry color and contrast information through separate pathways to V1, once there, color and form become deeply intertwined as they are processed further. To explain this influence of form on color processing in V1, the literature proposes two broad classifications of neurons: single-opponent cells \& double-opponent cells \cite{johnson:2008}.
+With these psychophysical observations in mind, much research has been devoted to elucidating the exact neurobiological mechanisms behind the perception of color, and the influence of context in it. The current view holds that while the LGN does indeed carry color and contrast information through separate pathways to V1, once there, the concepts of color and form become deeply intertwined as they are processed further. To explain this influence of form on color processing in V1, the literature proposes two broad classifications of neurons: single-opponent cells \& double-opponent cells \cite{johnson:2008}.
 
 Opponency, in neurobiology, refers to antagonistic inputs of information: one source of input excites the neuron, while another inhibits it. These two antagonistic components of opponency are commonly referred to as the \textit{on} and \textit{off} inputs to a neuron. One can think of these two inputs as being what the cell is 'looking for', \textit{on}, and what the cell is 'not looking for', \textit{off}. Intuitively, stimuli from the \textit{on} input excites the neuron, while stimuli from the \textit{off} input inhibits it. Perhaps less intuitively, removal of stimuli from the \textit{off} input also excites the neuron. This behavior is logical when you consider that the two antagonistic inputs typically represent mutually exclusive features. In this way, removal of the negative stimuli often means much the same as presence of the positive stimuli and thus, removal of such stimuli contributes to excitation of the neuron. Of course, if equal stimuli are provided from both the \textit{on} and \textit{off} inputs, excitation is cancelled out by inhibition and the neuron does not fire. Lastly, recognize that any one neuron usually receives antagonistic input from, in fact, many other neurons. The aggregate stimuli from these excitatory and inhibitory inputs determines if the cell fires.
 
@@ -767,10 +767,12 @@ Research shows that cells identified as double-opponent tend to be orientation s
 It's worth noting that a single-opponent neuron can also be selective to specific orientations. These cells have been identified in biology, though their relative abundance appears minimal. To achieve orientation selectivity, the center and/or surround receptive fields simply need be made non-circular. However, without the balanced asymmetric \textit{on} and \textit{off} receptive fields from each opponent cone(s), an orientation specific single-opponent cell could never be as selective as a double-opponent cell.
 
 % FIGURE: horizontal red/green double-opponent cell on horizontal red/green border
+\afterpage{%
 \begin{figure}[H] \label{fig:do-orient-h}
     \centering
-    \begin{subfigure}{0.2\textwidth}
+    \begin{subfigure}{0.15\textwidth}
         \centering
+        \resizebox{\textwidth}{!}{%
         \begin{tikzpicture}
             \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
@@ -783,10 +785,12 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Minor Response}
+        }
+        \caption{Weak Response}
     \end{subfigure}%
-    \begin{subfigure}{0.2\textwidth}
+    \begin{subfigure}{0.15\textwidth}
         \centering
+        \resizebox{\textwidth}{!}{%
         \begin{tikzpicture}
             \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
@@ -799,10 +803,12 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Maximum Response}
+        }
+        \caption{Stong Response}
     \end{subfigure}%
-    \begin{subfigure}{0.2\textwidth}
+    \begin{subfigure}{0.15\textwidth}
         \centering
+        \resizebox{\textwidth}{!}{%
         \begin{tikzpicture}
             \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
@@ -815,11 +821,13 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Minor Response}
+        }
+        \caption{Weak Response}
     \end{subfigure}%
     \par \bigskip
-    \begin{subfigure}{0.2\textwidth}
+    \begin{subfigure}{0.15\textwidth}
         \centering
+        \resizebox{\textwidth}{!}{%
         \begin{tikzpicture}
             \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
@@ -832,10 +840,12 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Minor Response}
+        }
+        \caption{Weak Response}
     \end{subfigure}%
-    \begin{subfigure}{0.2\textwidth}
+    \begin{subfigure}{0.15\textwidth}
         \centering
+        \resizebox{\textwidth}{!}{%
         \begin{tikzpicture}
             \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
@@ -848,10 +858,12 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
+        }
         \caption{No Response}
     \end{subfigure}%
-    \begin{subfigure}{0.2\textwidth}
+    \begin{subfigure}{0.15\textwidth}
         \centering
+        \resizebox{\textwidth}{!}{%
         \begin{tikzpicture}
             \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
@@ -864,16 +876,17 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Minor Response}
+        }
+        \caption{Weak Response}
     \end{subfigure}
     \caption{A double opponent cell selective to horizontally oriented borders with red above and green below; only responsive to that particular stimulus. In Figure (b), the neuron is presented with its ideal stimulus: its $L^+$ and $M^+$ receptive fields are fully activated while its $L^-$ and $M^-$ receptive fields are completely unactivated. Figure (e) presents the neuron with the exact opposite stimulus, neither its $L^+$ nor $M^+$ receptive fields are activate at all, and both its $L^-$ and $M^-$ receptive fields are fully activated, ensuring no response possible from the cell. While its $L^+$ receptive field might be strongly stimulated in (a) and (f), it's $L^-$ receptive field cancels it out. Similarly, in (c) and (d) its $M^+$ receptive field is stimulated but cancelled out by activity in its $M^-$ receptive field.}
 \end{figure}
-
 % FIGURE: vertical red/green double-opponent cell on horizontal red/green border
 \begin{figure}[H] \label{fig:do-orient-v}
     \centering
-    \begin{subfigure}{0.2\textwidth}
+    \begin{subfigure}{0.15\textwidth}
         \centering
+        \resizebox{\textwidth}{!}{%
         \begin{tikzpicture}
             \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
@@ -886,11 +899,13 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Minor Response}
+        }
+        \caption{Weak Response}
     \end{subfigure}%
-    \begin{subfigure}{0.2\textwidth}
+    \begin{subfigure}{0.15\textwidth}
         \centering
-            \begin{tikzpicture}
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
             \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
             \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43, 0.00) ellipse   (0.38 and 0.90);
@@ -901,12 +916,14 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle M^+L^-$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
-            \end{tikzpicture}
-        \caption{Minimal Response}
+        \end{tikzpicture}
+        }
+        \caption{Weak Response}
     \end{subfigure}%
-    \begin{subfigure}{0.2\textwidth}
+    \begin{subfigure}{0.15\textwidth}
         \centering
-            \begin{tikzpicture}
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
             \fill[alizarin!60]                                            (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[emerald!60]                                             (-1.50,-2.00) rectangle (1.50, 0.00);
             \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43,-1.00) ellipse   (0.38 and 0.90);
@@ -917,12 +934,14 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle M^+L^-$};
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
-            \end{tikzpicture}
-        \caption{Minor Response}
+        \end{tikzpicture}
+        }
+        \caption{Weak Response}
     \end{subfigure}%
     \par \bigskip
-    \begin{subfigure}{0.2\textwidth}
+    \begin{subfigure}{0.15\textwidth}
         \centering
+        \resizebox{\textwidth}{!}{%
         \begin{tikzpicture}
             \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
@@ -935,11 +954,13 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Minor Response}
+        }
+        \caption{Weak Response}
     \end{subfigure}%
-    \begin{subfigure}{0.2\textwidth}
+    \begin{subfigure}{0.15\textwidth}
         \centering
-            \begin{tikzpicture}
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
             \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
             \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43, 0.00) ellipse   (0.38 and 0.90);
@@ -950,12 +971,14 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle M^+L^-$};
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
-            \end{tikzpicture}
-        \caption{Minimal Response}
+        \end{tikzpicture}
+        }
+        \caption{Weak Response}
     \end{subfigure}%
-    \begin{subfigure}{0.2\textwidth}
+    \begin{subfigure}{0.15\textwidth}
         \centering
-            \begin{tikzpicture}
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
             \fill[emerald!60]                                             (-1.50, 2.00) rectangle (1.50, 0.00);
             \fill[alizarin!60]                                            (-1.50,-2.00) rectangle (1.50, 0.00);
             \filldraw[color=greensea!80,    fill=turquoise!70, very thick]( 0.43,-1.00) ellipse   (0.38 and 0.90);
@@ -966,12 +989,14 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
                  node[color=black, anchor=center, rotate=90] {$\scriptstyle M^+L^-$};
             \filldraw[color=black,          fill=gray]                    ( 0.00,-1.00) circle    (2pt);
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
-            \end{tikzpicture}
-        \caption{Minor Response}
+        \end{tikzpicture}
+        }
+        \caption{Weak Response}
     \end{subfigure}
     \caption{A double opponent cell selective to vertically oriented borders with red to the right and green on the left; completely unresponsive to a horizontal border. While its $L^+$ receptive field might be strongly stimulated in (a) and (f), it's $L^-$ receptive field cancels it out. Similarly, in (c) and (d) its $M^+$ receptive field is stimulated but cancelled out by activity in its $M^-$ receptive field. In (b) and (e) both of its $L^+$ and $M^+$ receptive fields are moderately activated, but again, cancelled out by activation in its $L^-$ and $M^-$ receptive fields, respectively.}
 \end{figure}
-
+\clearpage
+}
 
 \subsubsection*{Spatial Frequency Selectivity}
 
