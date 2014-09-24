@@ -432,7 +432,7 @@
 
 
 \begin{abstract}
-We present a computational model of color description \& processing in the primary visual cortex (V1), inspired by current neurobiological understanding. This understanding posits single and double opponent neurons as fundamental to low level color processing. We offer a novel representation of color by defining these cells' responses and the connections between them, within the framework of a dynamical model of neuronal activity. Our model reproduces perceptual experiences in a number of cases, offering credence to said biological theories.
+We present a computational model of color description \& processing in the primary visual cortex (V1), inspired by current neurobiological understanding. This understanding posits single and double-opponent neurons as fundamental to low level color processing. We offer a novel representation of color by defining these cells' responses and the connections between them, within the framework of a dynamical model of neuronal activity. Our model reproduces perceptual experiences in a number of cases, offering credence to said biological theories.
 \end{abstract}
 
 % Note that keywords are not normally used for peer review papers.
@@ -474,9 +474,9 @@ Within, we propose a computational model designed around the current understandi
 
 \subsection{Neurobiology}
 
-Historically, it was widely believed that color and shape are two distinct aspects of visual perception. Truly, this line of though is intuitive: one can perceive the color of a flat surface which occupies our full field of vision, despite its lack of 'shape', likewise we can see the shape of achromatic objects, as in black and white film. This theory of perception innervated neurophysiological understanding and was supported by neurobiological findings, such as that the lateral geniculate nucleus (LGN), the pathway which carries information from the retina to the primary visual cortex (V1), consists of three entirely distinct layers; two (the parvicellular and konicellular) carrying only color information, and one (the magnocellular) dealing purely in achromatic contrast (edge) information. Based on early anatomical observations, it was proposed that these three LGN pathways for color and contrast are then processed into two separate streams in V1, one for color and the other for form. This separate handling of color and form confirmed for researchers that, as suspected, these two perceptual concepts are processed separately in the brain.
+Historically, it was widely believed that color and shape are two distinct aspects of visual perception. Truly, this line of thinking is intuitive: one can perceive the color of a flat surface which occupies our full field of vision, despite its lack of 'shape', likewise we can see the shape of achromatic objects, as in black and white film. This theory of perception innervated neurophysiological understanding. It was supported by neurobiological findings, such as that the lateral geniculate nucleus (LGN), the pathway which carries information from the retina to the primary visual cortex (V1), consists of three entirely distinct layers; two (the parvicellular and konicellular) carrying only color information, and one (the magnocellular) dealing purely in achromatic contrast (edge) information. Based on early anatomical observations, it was proposed that these three LGN pathways for color and contrast are then processed into two separate streams in V1, one for color and the other for form. This separate handling of color and form confirmed for researchers that, as suspected, these two perceptual concepts are processed separately in the brain.
 
-Research in the past decade or so has seen a shift from this thinking, however. Psychophysical observations, such as those in Figure \ref{fig:blur-effect}, influenced researchers to consider that color and form are more intrinsically related than previously thought. In these examples, we see that the perceived color of the inner square is highly dependent on the background and, most importantly, how the inner square \textit{contacts} the background. That is to say, the color perceived is not just determined by the physical properties of the surface itself, but also by the context in which the surface is viewed. Furthermore, we can observe that this contextual influence comes largely from the boundary edges of the surface: in example (c), the dulling color assimilation effect witnessed in (b) is almost entirely negated by simply adding a thin border. That is, by removing contact between the inner square and the background, the effect of the context is significantly reduced. In fact, "the color appearance of a region may be more dependent on color contrast at the boundary of the region than it is on the spectral reflectance of the region's interior." \cite[p.572]{chualupa:encyclopedia}
+Research in the past decade or so has seen a shift from this thinking, however. Psychophysical observations, such as those in Figure \ref{fig:blur-effect}, influenced researchers to consider that color and form are more intrinsically related than previously thought. In these examples, we see that the perceived color of the inner square is highly dependent on the background and, most importantly, how the inner square \textit{contacts} the background. That is to say, the color perceived is not just determined by the physical properties of the surface itself, but also by the context in which the surface is viewed. Furthermore, we can observe that this contextual influence comes largely from the boundary edges of the surface: in example (c), the dulling color assimilation effect witnessed in (b) is almost entirely negated by simply adding a thin border. That is, by removing contact between the inner square and the background the effect of the context is significantly reduced. In fact, "the color appearance of a region may be more dependent on color contrast at the boundary of the region than it is on the spectral reflectance of the region's interior." \cite[p.572]{chualupa:encyclopedia}
 
 \begin{figure}[h]
     \centering
@@ -507,18 +507,18 @@ Research in the past decade or so has seen a shift from this thinking, however. 
     \label{fig:example}
 \end{figure}
 
-With these psychophysical observations in mind, much research has been devoted to elucidating the exact neurobiological mechanisms behind the perception of color, and the influence of form in it. The current view holds that while the LGN does indeed carry color and contrast information through separate pathways to V1, once there, color and form become deeply intertwined as they are processed further. To explain the simultaneous processing of color and form in V1, the literature proposes two broad classifications of neurons: single-opponent cells, \& double-opponent cells (Johnson et al. Color and Orientation in V1).
+With these psychophysical observations in mind, much research has been devoted to elucidating the exact neurobiological mechanisms behind the perception of color, and the influence of form in it. The current view holds that while the LGN does indeed carry color and contrast information through separate pathways to V1, once there, color and form become deeply intertwined as they are processed further. To explain this influence of form on color processing in V1, the literature proposes two broad classifications of neurons: single-opponent cells \& double-opponent cells \cite{johnson:2008}.
 
-Opponency, in neurobiology, refers to antagonistic inputs of information: one source of input excites the neuron, while another inhibits it. These two antagonistic components of opponency are commonly referred to as the \textit{on} and \textit{off} inputs to a neuron. One can think of these two inputs as being what the cell is 'looking for', \textit{on}, and what the cell is 'not looking for', \textit{off}. Intuitively, stimuli from the \textit{on} input excites the neuron, while stimuli from the \textit{off} input inhibits it. Perhaps less intuitively, removal of stimuli from the \textit{off} input also excites the neuron. This behavior is logical when you consider that the two antagonistic inputs typically represent mutually exclusive features. In this way, removal of the negative stimuli often means much the same as presence of the positive stimuli and thus, removal of such stimuli can contribute to excitation of the neuron. Of course, if equal stimuli are provided from both the \textit{on} and \textit{off} inputs, excitation is cancelled out by inhibition and the neuron does not fire. Lastly, recognize that any one neuron usually receives antagonistic input from, in fact, many other neurons. The aggregate stimuli from these excitatory and inhibitory input determines if the cell fires.
+Opponency, in neurobiology, refers to antagonistic inputs of information: one source of input excites the neuron, while another inhibits it. These two antagonistic components of opponency are commonly referred to as the \textit{on} and \textit{off} inputs to a neuron. One can think of these two inputs as being what the cell is 'looking for', \textit{on}, and what the cell is 'not looking for', \textit{off}. Intuitively, stimuli from the \textit{on} input excites the neuron, while stimuli from the \textit{off} input inhibits it. Perhaps less intuitively, removal of stimuli from the \textit{off} input also excites the neuron. This behavior is logical when you consider that the two antagonistic inputs typically represent mutually exclusive features. In this way, removal of the negative stimuli often means much the same as presence of the positive stimuli and thus, removal of such stimuli contributes to excitation of the neuron. Of course, if equal stimuli are provided from both the \textit{on} and \textit{off} inputs, excitation is cancelled out by inhibition and the neuron does not fire. Lastly, recognize that any one neuron usually receives antagonistic input from, in fact, many other neurons. The aggregate stimuli from these excitatory and inhibitory inputs determines if the cell fires.
 
-With respect to cells in the early visual system, we specifically use opponency to refer to chromatic and spatial opponency. We will now detail what this means, with specific examples of neurons' expected responses to various stimuli, as well as the implications of such response patterns. Briefly, however, consider that single-opponent cells respond best to large areas of color, while double-opponent cells respond only to the boundaries between such areas.
+With respect to cells in the early visual system, we specifically use opponency to refer to chromatic and spatial opponency. We will now detail what exactly this means, with specific examples of neurons' expected patterns of response to various stimuli, as well as the implications of such responses. To frame this explanation, consider that single-opponent cells respond best to \textit{large areas} of light/color, while double-opponent cells respond only to the \textit{boundaries} between such areas.
 
 
 \subsection*{Single-Opponent Neurons}
 
-Single-opponent cells are a class of neurons in the early visual system which respond best to large areas of color and/or luminance. Their behavior is achieved by constructing classical center-surround receptive fields. The center receptive field serves as the \textit{on} input, exciting the cell when presented with a particular color, while the surround receptive field serves as the \textit{off} input, inhibiting the cell when another color is present or exciting it when that color is \textit{removed}. These center and surround receptive fields may involve very few retinal cones, or may span many degrees of vision [cite Haake].
+Single-opponent cells are a class of neurons in the early visual system which respond best to large areas of color and/or luminance. Their behavior is achieved by constructing classical center-surround receptive fields. The center receptive field serves as the \textit{on} input, exciting the cell when presented with a particular color, while the surround receptive field serves as the \textit{off} input, inhibiting the cell when another color is present or exciting it when that color is removed. These center and surround receptive fields may involve very few retinal cones, or may span many degrees of vision \cite{lennie:1991}.
 
-In so called color preferring single-opponent cells, the cone inputs to the center and surround come from cones with different spectral response functions. By arranging input from different cones into antagonistic  receptive fields, we get a neuron which is sensitive to a particular 'opponent color'. In the human visual system, we recognize three axes of color opponency: redness vs. greenness, blueness vs. yellowness, and lightness vs. darkness. To construct such concepts of color, neurons in the visual pathway contrast activity of the three types of cone cells: those sensitive to long (L) wavelength light, those sensitive to medium (M) wavelength light, and those sensitive to short (S) wavelength light. By contrasting relative activity with neighboring L, M, and S cones, the retina itself can already begin to construct signal resembling psychological concepts of 'color'.
+In so called color preferring single-opponent cells, the cone inputs to the center and surround come from cones with different spectral response functions, e.g.: L vs M. By arranging input from different cones into antagonistic  receptive fields, we get a neuron which is sensitive to a particular color, in opposition to another. In the human visual system, we recognize three axes of such color opponency: redness vs. greenness, blueness vs. yellowness, and lightness vs. darkness. To construct these concepts of color, neurons in the visual pathway contrast activity of the three types of cone cells: those sensitive to long (L) wavelength light, those sensitive to medium (M) wavelength light, and those sensitive to short (S) wavelength light. By contrasting relative activity with neighboring L, M, and S cones, the retina itself can already begin to construct signal resembling psychological concepts of 'color'.
 
 \bigskip
 
@@ -3022,14 +3022,20 @@ The perceived color is defined by the true color of the ring, the color(s) of th
     Neurophysiology 70.5 (1993): 1885-1898.
 
 \bibitem{itti:1998}
-    Laurent Itti, Christof Koch, and Ernst Niebur.
+    Itti L., Koch C., and Niebur E.
     \emph{A Model of Saliency-Based Visual Attention for Rapid Scene Analysis}.
     IEEE Transactions on Pattern Analysis and Machine Intelligence, 20.11 (1999). 1254-1259.
 
 \bibitem{johnson:2008}
-    Johnson, E. N., M. J. Hawken, and R. Shapley.
+    Johnson, E., Hawken, M., and Shapley, R.
     \emph{The Orientation Selectivity of Color-Responsive Neurons in Macaque V1}.
     Journal of Neuroscience 28.32 (2008): 8096-106
+
+\bibitem{lennie:1991}
+    Lennie, P., Haake, W., and Williams, D.
+    \emph{Color in the Primary Visual Cortex}.
+    Computational Models of Visual Processing.
+    Cambridge, Mass.: MIT, (1991): 71-82.
 
 \bibitem{li:1998}
   Zhaoping Li.
@@ -3042,26 +3048,25 @@ The perceived color is defined by the true color of the ring, the color(s) of th
   Network: Computation in Neural Systems 10.2 (1999): 187-212.
 
 \bibitem{otazu:2010}
-    Otazu, X., C. A. Parraga, and M. Vanrell.
+    Otazu, X., Parraga, C., and Vanrell, M.
     \emph{Toward a Unified Chromatic Induction Model}.
     Journal of Vision 10.12 (2010): 5.
 
 \bibitem{penacchio:2013}
-    Olivier Penacchio, Xavier Otazu, and Laura Dempere-Marco.
+    Penacchio O., Otazu, X., and Dempere-Marco, L.
     \emph{A Neurodynamical Model of Brightness Induction in V1}.
     PLoS ONE 8.5 (2013): E64086.
 
 \bibitem{ramirez:2013}
-    Ramirez-Villegas, Juan F., and David F. Ramirez-Moreno.
+    Ramirez-Villegas, J., and Ramirez-Moreno, D.
     \emph{Color Coding in the Cortex: A Modified Approach to Bottom-up Visual Attention}.
     Biological Cybernetics 107.1 (2013): 39-47.
 
 \bibitem{chualupa:encyclopedia}
-    Shapley, Robert, Michael Hawken, and Elizabeth Johnson.
+    Robert, S., Hawken, M., and Johnson, E.
     \emph{Color in the Primary Visual Cortex}.
     The Visual Neurosciences. Vol. 2.
-    Cambridge, Mass.: MIT, 2004.
-    568-86.
+    Cambridge, Mass.: MIT, (2004): 568-86.
 
 \bibitem{schluppeck:2002}
     Schluppeck, D., and S. A. Engel.
