@@ -2195,6 +2195,7 @@ We propose that these rules of interaction are logical as only opponent colors a
 The general and local normalization of activities \cite{heeger:1992} has been extended from its used by Li \cite{li:1999} and Penacchio \cite{penacchio:2013}. We normalize excitatory membrane potentials within double-opponent cells of similar location ($i$), color ($\gamma$), scale ($\sigma$), and orientation ($\theta$) preferences. Likewise we normalize single-opponent cells of similar location ($i$), color ($\gamma$), scale ($\sigma$). We found it important to normalize the activity of these two classes of neurons independently as the information encoded by each is radically different: localized edge information by double-opponent cells, and extensive surface information by single-opponent cells.
 
 % FIGURE: Bowtie Excitatory Interaction Maps
+\afterpage{%
 \begin{figure}[htbp!] \label{fig:bowtie-excite-maps}
     \centering
     \begin{subfigure}[b]{0.2\textwidth}
@@ -2298,8 +2299,10 @@ The general and local normalization of activities \cite{heeger:1992} has been ex
     \end{subfigure}%
     \caption{Graphical representation of \textit{excitatory} interaction weights ($J$) between vertical, diagonal, and horizontal double-opponent cells and single-opponent cells.}
 \end{figure}
-
+\clearpage
+}
 % FIGURE: Bowtie Inhibitory Interaction Maps
+\afterpage{%
 \begin{figure}[htbp!] \label{fig:bowtie-excite-maps}
     \centering
     \begin{subfigure}[b]{0.2\textwidth}
@@ -2403,6 +2406,8 @@ The general and local normalization of activities \cite{heeger:1992} has been ex
     \end{subfigure}%
     \caption{Graphical representation of \textit{inhibitory} interaction weights ($W$) between vertical, diagonal, and horizontal double-opponent cells and single-opponent cells.}
 \end{figure}
+\clearpage
+}
 
 \newpage
 
@@ -2428,48 +2433,6 @@ All experiments involved two or more test stimuli in which human observers can d
 The perceived color is defined by the true color of the ring, the color(s) of the surrounding ring(s), and the interaction between them all.
 
 
-
-\subsection*{Analyze Data Transformation}
-\begin{itemize}
-    \item Opponent Receptive Fields
-    \begin{itemize}
-        \item does SO behave as expected
-        \item does DO behave as expected
-        \item does Itti space behave as expected
-    \end{itemize}
-    \item DWT
-    \begin{itemize}
-        \item does SO behave as expected (as Itti?)
-        \item does DO behave as expected
-        \item (L*a*b* is trusted)
-    \end{itemize}
-    \item What are the differences between these outputs?
-    \begin{itemize}
-        \item Show side by side LDRGBY/LAB+- convolutions
-    \end{itemize}
-    \item What are general shortcomings?
-    \begin{itemize}
-        \item OFF receptive fields function in time: removing green excites red. Our RFs don't reflect this.
-    \end{itemize}
-\end{itemize}
-
-\subsection*{Analyze Neurodynamical Model}
-\begin{itemize}
-    \item We can trust the concept because of Otazu 2013
-    \item We need to analyze how color works
-    \begin{itemize}
-        \item Connections between color channels
-        \begin{itemize}
-            \item What are our assumptions? (\& why?)
-            \item How does it modify the results over no connections?
-            \item How does it modify the results over full connections (including between opponents)?
-        \end{itemize}
-        \item Connections between SO and DO
-    \end{itemize}
-\end{itemize}
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % RESULTS
@@ -2481,7 +2444,7 @@ The perceived color is defined by the true color of the ring, the color(s) of th
 \section{Results}
 
 \afterpage{%
-\begin{figure}[!htbp] \label{img:test-circle-a-opp-results}
+\begin{figure}[H] \label{img:test-circle-a-opp-results}
     \centering
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
@@ -2567,7 +2530,7 @@ The perceived color is defined by the true color of the ring, the color(s) of th
 }
 
 \afterpage{%
-\begin{figure}[!htbp] \label{img:test-circle-a-dwt-results}
+\begin{figure}[H] \label{img:test-circle-a-dwt-results}
     \centering
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
@@ -2653,7 +2616,7 @@ The perceived color is defined by the true color of the ring, the color(s) of th
 }
 
 \afterpage{%
-\begin{figure}[!htbp] \label{img:test-circle-neon-opp-results}
+\begin{figure}[H] \label{img:test-circle-neon-opp-results}
     \centering
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
@@ -2739,7 +2702,7 @@ The perceived color is defined by the true color of the ring, the color(s) of th
 }
 
 \afterpage{%
-\begin{figure}[!htbp] \label{img:test-circle-neon-dwt-results}
+\begin{figure}[H] \label{img:test-circle-neon-dwt-results}
     \centering
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
@@ -2825,7 +2788,7 @@ The perceived color is defined by the true color of the ring, the color(s) of th
 }
 
 \afterpage{%
-\begin{figure}[!htbp] \label{img:test-gradient-opp-results}
+\begin{figure}[H] \label{img:test-gradient-opp-results}
     \centering
     \begin{subfigure}[b]{1\textwidth}
             \centering
@@ -2875,7 +2838,7 @@ The perceived color is defined by the true color of the ring, the color(s) of th
 }
 
 \afterpage{%
-\begin{figure}[!htbp] \label{img:test-gradient-dwt-results}
+\begin{figure}[H] \label{img:test-gradient-dwt-results}
     \centering
     \begin{subfigure}[b]{1\textwidth}
             \centering
@@ -2926,7 +2889,7 @@ The perceived color is defined by the true color of the ring, the color(s) of th
 
 
 \afterpage{%
-\begin{figure}[!htbp] \label{img:test-bars-opp-results}
+\begin{figure}[H] \label{img:test-bars-opp-results}
     \centering
     \begin{subfigure}[b]{1\textwidth}
             \centering
@@ -2976,7 +2939,7 @@ The perceived color is defined by the true color of the ring, the color(s) of th
 }
 
 \afterpage{%
-\begin{figure}[!htbp] \label{img:test-bars-dwt-results}
+\begin{figure}[H] \label{img:test-bars-dwt-results}
     \centering
     \begin{subfigure}[b]{1\textwidth}
             \centering
@@ -3026,7 +2989,7 @@ The perceived color is defined by the true color of the ring, the color(s) of th
 }
 
 \afterpage{%
-\begin{figure}[!htbp] \label{img:crispening-effect}
+\begin{figure}[H] \label{img:crispening-effect}
     \centering
         \begin{subfigure}[b]{0.2\textwidth}
                 \centering
@@ -3060,9 +3023,57 @@ The perceived color is defined by the true color of the ring, the color(s) of th
 % open research lines following our findings.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Conclusions}
 
+We have presented our work on the introduction of biologically plausible representation of color into a neurodynamical model of V1. This is a continuation of the research published by Penacchio \textit{et al.} \cite{penacchio:2013} and there is much left to do. Specifically, we presented two approaches to color representation.
 
+The first, which we referred to as \textit{Opponent Processing of Receptive Fields}, was an attempt to adhere to what is reported in neurobiology. We found this approach to be conceptually enticing; by processing ???. However, we found our implementation to be relatively slow, orders of magnitude slower than our second approach. In general, we found this approach to not be as sensitive to detail as the \textit{Discrete Wavelet Transform in Opponent Space}, in Figure \ref{img:test-circle-a-opp-results} for example.
+
+We also run into a significant issue in how we defined mathematically the Light and Dark opponent color components (Eqs. \ref{eq:opp-light} \& \ref{eq:opp-dark}}). Unlike, their chromatic counterparts, these channels are almost exactly complementary (depending on the center/surround receptive field sizes and weights). This leads to redundancy at the double-opponent level, as can be clearly seen in their receptive field diagrams (Figures \ref{fig:do-rf-inputs-light} \& \ref{fig:do-rf-inputs-dark}). This is also evident in the redundancy of their response patterns in Figure \ref{fig:transform-opp}. This leads to inhibition between the two opponents and they eventually cancel out, as we see in our results. The solution may just be a matter of appropriately defining sizes and weights for the center and surround receptive fields, or it may require we return to the literature to develop a better understanding of the biology, and a new mathematical model for it.
+
+The second approach, which we referred to as \textit{Discrete Wavelet Transform in Opponent Colorspace}, aimed to be much more computationally efficient, though it sacrificed biologically plausibility along the way. We maintain two key points of contention with the concepts behind this approach. First, as we implemented it, it depends on the \textit{CIE L*a*b*} opponent colorspace which was designed to represent color in a perceptually uniform manner. However, this is not to say that it represents color in a biologically meaningful manner. Replacing this colorspace transformation with another may well satisfy these reservations. The other issue with this approach, however, is not so easily addressed. The decomposition of image data, be it through a discrete wavelet transform (DWT) or any other method of convolution, after an explicit mathematical colorspace transformation, be it \textit{CIE L*a*b*} or any other, does not reflect the biological order of operations. In the \textit{Opponent Processing of Receptive Fields} method, we convolve L, M, S input \textit{as} we transform to the opponent colorspace, while in the \textit{Discrete Wavelet Transform in Opponent Colorspace}, we transform to the opponent colorspace \textit{before} we convolve the signal. This difference is not insignificant and leads us to favor the former method over the latter, at least in principle.
+
+That said, the performance of the model tells us that much work is needed. In some experiments we see the predicted results for both methods of color description. For example, in Figures \ref{img:test-bars-opp} and \ref{img:test-bars-dwt} we see both express higher blue activity for the bars which are perceived as blue (Figures \ref{img:test-bars-opp-by-mask} and \ref{img:test-bars-dwt-by-mask}), though in the \textit{Opponent Processing of Receptive Fields} method the blue bars also elicit higher green activity (Figures \ref{img:test-bars-opp-rg-mask}). Other results are less consistent between the two methods. In Figures \ref{img:test-gradient-opp} and \ref{img:test-gradient-dwt} the left rectangles are perceived as green and those to the right, yellow. The \textit{Discrete Wavelet Transform in Opponent Colorspace} method excels, predicting both the green extreme on the left (Figure \ref{img:test-gradient-dwt-rg-mask}) and the yellow extreme on the right (Figure \ref{img:test-gradient-dwt-by-mask}). However, \textit{Opponent Processing of Receptive Fields} method predicts the opposite.
+
+\subsection*{Analyze Data Transformation}
+\begin{itemize}
+    \item Opponent Receptive Fields
+    \begin{itemize}
+        \item does SO behave as expected
+        \item does DO behave as expected
+        \item does Itti space behave as expected
+    \end{itemize}
+    \item DWT
+    \begin{itemize}
+        \item does SO behave as expected (as Itti?)
+        \item does DO behave as expected
+        \item (L*a*b* is trusted)
+    \end{itemize}
+    \item What are the differences between these outputs?
+    \begin{itemize}
+        \item Show side by side LDRGBY/LAB+- convolutions
+    \end{itemize}
+    \item What are general shortcomings?
+    \begin{itemize}
+        \item OFF receptive fields function in time: removing green excites red. Our RFs don't reflect this.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Analyze Neurodynamical Model}
+\begin{itemize}
+    \item We can trust the concept because of Otazu 2013
+    \item We need to analyze how color works
+    \begin{itemize}
+        \item Connections between color channels
+        \begin{itemize}
+            \item What are our assumptions? (\& why?)
+            \item How does it modify the results over no connections?
+            \item How does it modify the results over full connections (including between opponents)?
+        \end{itemize}
+        \item Connections between SO and DO
+    \end{itemize}
+\end{itemize}
 
 
 \newpage
