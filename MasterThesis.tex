@@ -1423,10 +1423,36 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
 
 \subsection{Opponent Processing of Neural Receptive Fields}
 
+Processing starts by convolving each of the L, M, and S cone spectral response functions with two different gaussian filters. These convolutions simulate integration of information in a neuron's receptive field. One convolution is used to build the center receptive field, the other convolution, the surround.
+
+Single-opponent cells' receptive fields are the classical center-surround configuration: symmetric, centered, circular gaussians. Typically, the center is smaller and weighed significantly more heavily than the surround, as in Figure \ref{fig:so-rf-schematic-classic}. Double-opponent receptive fields are markedly more complex: asymmetrical, off-center, elongated gaussian filters. Similarly, these filters can be adjusted to different sizes, shapes, and weights. For our tests we worked with symmetric balanced receptive fields, as in Figure \ref{fig:do-rf-schematic-classic}.
+
+To construct opponent color channels, we contrast center ($c$) and surround ($s$) convolutions of the L, M, and S channels into three pairs: two color and one achromatic.
+
+\begin{flalign}
+    Light(c, s, \sigma)  &= max(0, (\frac{L(c, \sigma) + M(c, \sigma)}{2} - 0.5) - (\frac{L(s, \sigma) + M(s, \sigma)}{2} - 0.5)) \label{eq:opp-light} \\
+    Dark(c, s, \sigma)   &= max(0, (\frac{L(s, \sigma) + M(s, \sigma)}{2} - 0.5) - (\frac{L(c, \sigma) + M(c, \sigma)}{2} - 0.5)) \label{eq:opp-dark} \\
+    Red(c, s, \sigma)    &= max(0, L(c, \sigma) - M(s, \sigma)) \label{eq:opp-red} \\
+    Green(c, s, \sigma)  &= max(0, M(c, \sigma) - L(s, \sigma)) \label{eq:opp-green} \\
+    Blue(c, s, \sigma)   &= max(0, S(c, \sigma) - \frac{L(s, \sigma) + M(s, \sigma)}{2}) \label{eq:opp-blue} \\
+    Yellow(c, s, \sigma) &= max(0, \frac{L(c, \sigma) + M(c, \sigma)}{2} - S(s, \sigma)) \label{eq:opp-yellow}
+\end{flalign}
+
+A schematic of this workflow is presented in Figure \ref{fig:opp-workflow}. It is clear from this schematic, and the equations above, that L and M input are significantly overrepresented. This reflects the biological overrepresentation of the evolutionarily older L and M pathways in human vision, and is more in line with, say, work by Spitzer \textit{et al.} \cite{spitzer:2005} than Itti \textit{et al.} \cite{itti:1998}. Our equations for Light and Dark, however, are novel.
+
+Because the inputs to the Light and Dark receptive fields come from the same cones (L and M), classical opponent center/surround receptive fields will not function to capture both Light and Dark. This can be easily seen in Figure \ref{fig:opp-workflow}; while the Light, Red, Green, Blue, and Yellow all have \textit{on} centers and \textit{off} surrounds, Dark has an \textit{on} surround and an \textit{off} center. This is supported by literature \cite{chualupa:encyclopedia} but introduces issues. For example, by having Light and Dark activity be almost completely complementary, we find double-opponent activity in these channels to be almost completely redundant, as can be seen in \ref{fig:transform-opp}.
+
+Double-opponent cells' responses constructed along the same workflow as single-opponent cells', though their receptive fields are different, Figure \ref{fig:do-rf-inputs}. Different responses are obtained for each preferred orientation by convolving the image with oriented receptive fields. In this work we considered only three basic orientations: horizontal, vertical, and diagonal.
+
+In our implementation, for convenience, we utilize the R, G, and B channels of the raw image as an approximation of L, M, and S cone activity, respectively. It should be noted that this is not biologically reasonable and a preprocessing step should be performed to obtain input more representative of L, M, and S cone spectral responses.
+
+Both single and double-opponent responses are obtained at a number of scales, depending on the size of the input image. To achieve this, the size of the gaussian used to convolve the images are increased exponentially by scale. This reflects neurons' spatial frequency selectivity and confers a degree of scale invariance to the model.
+
+To summarize, this first of two approaches to color description aims to be true to the biology at all cost. We explicitly model the receptive fields of both single-opponent and double-opponent neurons. These receptive fields are used to transduce retinal activity of L, M, and S cones into the cell activity expected in V1. By defining the receptive fields explicitly, we obtain a large degree of control over the response patterns. However, biologically meaningful tuning of these parameters may be impossible given the current understanding of cells' receptive fields. Finally, it is worth nothing that this approach involves a large number of convolutions and proves to be relatively slow; orders of magnitude slower than the next approach we will present. This performance penalty, however, is a one time cost as the input is prepared, it does not affect the performance of the neurodynamical model in any way.
+
 % FIGURE: Opponent Processing Diagram
-\begin{figure}[h] \label{fig:opp-workflow}
-    \centering
-    \captionsetup{justification=centering}
+\afterpage{%
+\begin{figure}[h]
     \resizebox{\textwidth}{!}{%
     \begin{tikzpicture}[auto, >=latex']
     % RGB Input
@@ -1664,171 +1690,13 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
     \end{tikzpicture}
     }
     \caption{Diagram of \textit{Opponent Processing of Receptive Fields} workflow. The L, M, and S channels are convolved with center and surround gaussians and then combined to build opponent colors, here exemplified by single-opponent cell receptive fields. The process is similar for double-opponent cells.}
-\end{figure}
-
-\afterpage{%
-\begin{figure}[h]
-    \centering
-    \begin{subfigure}{0.3\textwidth}
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-original}}
-        \caption{Original}
-    \end{subfigure}%
-    \par \bigskip% SINGLE OPPONENT
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-l}}
-        \caption{\\ Light\\ Single-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-d}}
-        \caption{\\ Dark\\ Single-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-r}}
-        \caption{\\ Red\\ Single-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-g}}
-        \caption{\\ Green\\ Single-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-b}}
-        \caption{\\ Blue\\ Single-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-y}}
-        \caption{\\ Yellow\\ Single-Opponent\\ Cell Response}
-    \end{subfigure}%
-    \par \bigskip% DOUBLE OPPONENT - HORIZONTAL
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-l}}
-        \caption{\\ Light Horizontal\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-d}}
-        \caption{\\ Dark Horizontal\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-r}}
-        \caption{\\ Red Horizontal\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-g}}
-        \caption{\\ Green Horizontal\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-b}}
-        \caption{\\ Blue Horizontal\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-y}}
-        \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}%
-    \par \bigskip% DOUBLE OPPONENT - DIAGONAL
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-l}}
-        \caption{\\ Light Diagonal\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-d}}
-        \caption{\\ Dark Diagonal\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-r}}
-        \caption{\\ Red Diagonal\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-g}}
-        \caption{\\ Green Diagonal\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-b}}
-        \caption{\\ Blue Diagonal\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-y}}
-        \caption{\\ Yellow Diagonal\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}%
-    \par \bigskip% DOUBLE OPPONENT - VERTICAL
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-l}}
-        \caption{\\ Light Vertical\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-d}}
-        \caption{\\ Dark Vertical\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-r}}
-        \caption{\\ Red Vertical\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-g}}
-        \caption{\\ Green Vertical\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-b}}
-        \caption{\\ Blue Vertical\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}
-    \begin{subfigure}{0.15\textwidth}
-        \centering
-        \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-y}}
-        \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
-    \end{subfigure}%
-    \caption{Example of single-opponent and double-opponent response (scale=1) to a test image following the \textit{Opponent Processing of Receptive Fields} workflow. Strong activity is indicated by black and weak activity by white.}
-    \label{fig:transform-opp}
+    \label{fig:opp-workflow}
 \end{figure}
 \clearpage
 }
 
 % FIGURE: Colored Double Opponent Receptive Fields
+\afterpage{%
 \begin{figure}
     \centering
     \captionsetup{justification=centering}
@@ -2069,63 +1937,173 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
     }
     \caption{Yellow DO \\ Receptive Field} \label{fig:do-rf-inputs-yellow}
     \end{subfigure}%
-    \caption{}  \label{fig:do-rf-inputs}
+    \caption{Double-opponent receptive fields utilized in \textit{Opponent Processing of Receptive Fields}.}
+    \label{fig:do-rf-inputs}
 \end{figure}
+\clearpage
+}
 
-
-\subsubsection*{Neural Receptive Fields}
-
-\textbf{//TODO} \textit{REFACTOR INTO PARAGRAPH ON RECEPTIVE FIELDS}
-
-\subsubsection*{Opponent Processing}
-
-\textbf{//TODO} \textit{REFACTOR INTO PARAGRAPH ON OPPONENT PROCESSING}
-
-Processing starts by convolving each of the L, M, and S cone spectral response functions with two different gaussian filters. These convolutions simulate integration of information in a neuron's receptive field. One convolution is used to build the center receptive field, the other convolution, the surround.
-
-Single-opponent cells' receptive fields are the classical center-surround configuration: symmetric, centered, circular gaussians. Typically, the center is smaller and weighed significantly more heavily than the surround, as in Figure \ref{fig:so-rf-schematic-classic}. Double-opponent receptive fields are markedly more complex: asymmetrical, off-center, elongated gaussian filters. Similarly, these filters can be adjusted to different sizes, shapes, and weights. For our tests we worked with symmetric balanced receptive fields, as in Figure \ref{fig:do-rf-schematic-classic}.
-
-In our implementation, for convenience, we utilize the R, G, and B channels of the raw image as an approximation of L, M, and S cone activity, respectively. It should be noted that a preprocessing step could be performed to better match RGB to LMS so as to be more biologically consistent. The impact is likely negligible.
-
-To construct opponent color channels, we contrast center ($c$) and surround ($s$) convolutions of the L, M, and S channels into three pairs: two color \cite{spitzer:2005} and one achromatic.
-
-\begin{flalign}
-    L(c, s, \sigma) &= max(0, (\frac{L(c, \sigma) + M(c, \sigma)}{2} - 0.5) - (\frac{L(s, \sigma) + M(s, \sigma)}{2} - 0.5)) \\
-    D(c, s, \sigma) &= max(0, (\frac{L(s, \sigma) + M(s, \sigma)}{2} - 0.5) - (\frac{L(c, \sigma) + M(c, \sigma)}{2} - 0.5)) \\
-    R(c, s, \sigma) &= max(0, L(c, \sigma) - M(s, \sigma)) \\
-    G(c, s, \sigma) &= max(0, M(c, \sigma) - L(s, \sigma)) \\
-    B(c, s, \sigma) &= max(0, S(c, \sigma) - \frac{L(s, \sigma) + M(s, \sigma)}{2}) \\
-    Y(c, s, \sigma) &= max(0, \frac{L(c, \sigma) + M(c, \sigma)}{2} - S(s, \sigma))
-\end{flalign}
-
-\bigskip
-
-\textbf{//TODO} \textit{PARAGRAPH ON DOUBLE-OPPONENT ORIENTATIONS}
-
-\textbf{//TODO} \textit{PARAGRAPH ON SCALE}
-
-\bigskip
-
-\subsubsection{Considerations}
-\begin{itemize}
-    \item CON: Relatively slow
-    \begin{itemize}
-        \item Could be improved with Gabor instead of gaussian for DO cells.
-        \item Could be improved by reusing SO info -> more biological
-        \item It's just an upfront cost, the neurodynamical processing is the most expensive.
-    \end{itemize}
-    \item PRO: more receptive field control (explicit RF definitions)
-    \item CON: requires tweaking of receptive fields
-    \item PRO: more true to biology (combination of signal rather than numeric transformation of colorspace)
-    \item CON: requires decision on meaningful RGB combination (should be elucidated from biology)
-    \begin{itemize}
-        \item Pre-transformation to LMS might be valuable/meaningful.
-    \end{itemize}
-\end{itemize}
-
-\subsection*{Summary}
-
-This first of two approaches to color representation aims to be true to the biology at all cost. We explicitly model the receptive fields of both single-opponent and double-opponent neurons. These receptive fields are used to transduce retinal activity of L, M, and S cones into the cell activity expected in V1.
+\afterpage{%
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-original}}
+        \caption{Original}
+    \end{subfigure}%
+    \par \bigskip% SINGLE OPPONENT
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-l}}
+        \caption{\\ Light\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-d}}
+        \caption{\\ Dark\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-r}}
+        \caption{\\ Red\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-g}}
+        \caption{\\ Green\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-b}}
+        \caption{\\ Blue\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-y}}
+        \caption{\\ Yellow\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - HORIZONTAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-l}}
+        \caption{\\ Light Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-d}}
+        \caption{\\ Dark Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-r}}
+        \caption{\\ Red Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-g}}
+        \caption{\\ Green Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-b}}
+        \caption{\\ Blue Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-y}}
+        \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - DIAGONAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-l}}
+        \caption{\\ Light Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-d}}
+        \caption{\\ Dark Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-r}}
+        \caption{\\ Red Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-g}}
+        \caption{\\ Green Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-b}}
+        \caption{\\ Blue Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-y}}
+        \caption{\\ Yellow Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - VERTICAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-l}}
+        \caption{\\ Light Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-d}}
+        \caption{\\ Dark Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-r}}
+        \caption{\\ Red Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-g}}
+        \caption{\\ Green Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-b}}
+        \caption{\\ Blue Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-y}}
+        \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \caption{Example of single-opponent and double-opponent response (scale=1) to a test image following the \textit{Opponent Processing of Receptive Fields} workflow. Strong activity is indicated by black and weak activity by white.}
+    \label{fig:transform-opp}
+\end{figure}
+\clearpage
+}
 
 
 \subsection{Discrete Wavelet Transform in Opponent Colorspace}
