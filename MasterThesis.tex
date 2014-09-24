@@ -1457,32 +1457,32 @@ To summarize, this first of two approaches to color description aims to be true 
 \afterpage{%
 \begin{figure}[h]
     \resizebox{\textwidth}{!}{%
-    \begin{tikzpicture}[auto, >=latex']
+    \begin{tikzpicture}[font=\huge, auto, >=latex']
     % RGB Input
-    \draw ( -4.0,  25) node(r)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {L};
-    \draw (  0.0,  25) node(g)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {M};
-    \draw (  4.0,  25) node(b)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {S};
+    \draw ( -4.0, 25) node(r)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {L};
+    \draw (  0.0, 25) node(g)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {M};
+    \draw (  4.0, 25) node(b)[draw, shape=rectangle, minimum height=1.5cm, minimum width=2cm, align=center] {S};
     % Gaussian Convolutions
-    \draw ( -3.0,  18) node(c)[draw, shape=circle, minimum height=5cm, minimum width=5cm, align=center] {};
-    \draw (  3.0,  18) node(s)[draw, shape=circle, minimum height=5cm, minimum width=5cm, align=center] {};
-    \node at (c.north) [below=0.4cm] {CENTER};
-    \node at (c.north) [below=0.9cm] {Convolution};
-    \node at (s.north) [below=0.4cm] {SURROUND};
-    \node at (s.north) [below=0.9cm] {Convolution};
+    \draw ( -3.25, 18) node(c)[draw, shape=circle, minimum height=6cm, minimum width=6cm, align=center] {};
+    \draw (  3.25, 18) node(s)[draw, shape=circle, minimum height=6cm, minimum width=6cm, align=center] {};
+    \node at (c.north) [below=0.8cm] {CENTER};
+    \node at (c.north) [below=4.5cm] {Convolution};
+    \node at (s.north) [below=0.8cm] {SURROUND};
+    \node at (s.north) [below=4.5cm] {Convolution};
     % RGB Centers & Surrounds
-    \draw ( -9.0,   8) node(rc)[draw, shape=rectangle, minimum height=1cm, align=center] {L Center};
-    \draw ( -6.0,  10) node(gc)[draw, shape=rectangle, minimum height=1cm, align=center] {M Center};
-    \draw ( -3.0,  12) node(bc)[draw, shape=rectangle, minimum height=1cm, align=center] {S Center};
-    \draw (  3.0,  12) node(rs)[draw, shape=rectangle, minimum height=1cm, align=center] {L Surround};
-    \draw (  6.0,  10) node(gs)[draw, shape=rectangle, minimum height=1cm, align=center] {M Surround};
-    \draw (  9.0,   8) node(bs)[draw, shape=rectangle, minimum height=1cm, align=center] {S Surround};
+    \draw (-12.25,  8) node(rc)[draw, shape=rectangle, minimum height=1cm, align=center] {L Center};
+    \draw (-7.25, 10) node(gc)[draw, shape=rectangle, minimum height=1cm, align=center] {M Center};
+    \draw (-3.25, 12) node(bc)[draw, shape=rectangle, minimum height=1cm, align=center] {S Center};
+    \draw ( 3.25, 12) node(rs)[draw, shape=rectangle, minimum height=1cm, align=center] {L Surround};
+    \draw ( 7.25, 10) node(gs)[draw, shape=rectangle, minimum height=1cm, align=center] {M Surround};
+    \draw (12.25,  8) node(bs)[draw, shape=rectangle, minimum height=1cm, align=center] {S Surround};
     % Colors
-    \draw (-16.25,  0) node(L)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Light};
-    \draw ( -9.75,  0) node(D)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Dark};
-    \draw ( -3.25,  0) node(R)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Red};
-    \draw (  3.25,  0) node(G)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Green};
-    \draw (  9.75,  0) node(B)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Blue};
-    \draw ( 16.25,  0) node(Y)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Yellow};
+    \draw (-16.25, 0) node(L)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Light};
+    \draw ( -9.75, 0) node(D)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Dark};
+    \draw ( -3.25, 0) node(R)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Red};
+    \draw (  3.25, 0) node(G)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Green};
+    \draw (  9.75, 0) node(B)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Blue};
+    \draw ( 16.25, 0) node(Y)[draw, shape=rectangle, minimum height=1cm, minimum width=2cm, align=center] {Yellow};
     \node (Lon)  at (L.north) [above left]  {+};
     \node (Don)  at (D.north) [above left]  {+};
     \node (Ron)  at (R.north) [above left]  {+};
@@ -1496,38 +1496,38 @@ To summarize, this first of two approaches to color description aims to be true 
     \node (Boff) at (B.north) [above right] {-};
     \node (Yoff) at (Y.north) [above right] {-};
     % Paths A
-    \draw [->, pomegranate] (r)  to[bend right] (c);
-    \draw [->, greensea]    (g)  to             (c);
-    \draw [->, peter]       (b)  to             (c);
-    \draw [->, pomegranate] (r)  to             (s);
-    \draw [->, greensea]    (g)  to             (s);
-    \draw [->, peter]       (b)  to[bend left]  (s);
+    \draw [->, ultra thick, pomegranate] (r)  to[bend right] (c);
+    \draw [->, ultra thick, greensea]    (g)  to             (c);
+    \draw [->, ultra thick, peter]       (b)  to             (c);
+    \draw [->, ultra thick, pomegranate] (r)  to             (s);
+    \draw [->, ultra thick, greensea]    (g)  to             (s);
+    \draw [->, ultra thick, peter]       (b)  to[bend left]  (s);
     % Paths B
-    \draw [->, pomegranate] (c)  to[bend right] (rc);
-    \draw [->, greensea]    (c)  to             (gc);
-    \draw [->, peter]       (c)  to             (bc);
-    \draw [->, pomegranate] (s)  to             (rs);
-    \draw [->, greensea]    (s)  to             (gs);
-    \draw [->, peter]       (s)  to[bend left]  (bs);
+    \draw [->, ultra thick, pomegranate] (c)  to[bend right] (rc);
+    \draw [->, ultra thick, greensea]    (c)  to             (gc);
+    \draw [->, ultra thick, peter]       (c)  to             (bc);
+    \draw [->, ultra thick, pomegranate] (s)  to             (rs);
+    \draw [->, ultra thick, greensea]    (s)  to             (gs);
+    \draw [->, ultra thick, peter]       (s)  to[bend left]  (bs);
     % Paths C
-    \draw [->, pomegranate] (rc) to             (Lon);
-    \draw [->, greensea]    (gc) to[bend right] (Lon);
-    \draw [->, pomegranate] (rs) to             (Loff);
-    \draw [->, greensea]    (gs) to             (Loff);
-    \draw [->, pomegranate] (rs) to[bend right] (Don);
-    \draw [->, greensea]    (gs) to[bend right] (Don);
-    \draw [->, pomegranate] (rc) to[bend left]  (Doff);
-    \draw [->, greensea]    (gc) to[bend left]  (Doff);
-    \draw [->, pomegranate] (rc) to             (Ron);
-    \draw [->, greensea]    (gs) to             (Roff);
-    \draw [->, greensea]    (gc) to             (Gon);
-    \draw [->, pomegranate] (rs) to             (Goff);
-    \draw [->, peter]       (bc) to             (Bon);
-    \draw [->, greensea]    (gs) to             (Boff);
-    \draw [->, pomegranate] (rs) to             (Boff);
-    \draw [->, greensea]    (gc) to             (Yon);
-    \draw [->, pomegranate] (rc) to             (Yon);
-    \draw [->, peter]       (bs) to[bend left]  (Yoff);
+    \draw [->, ultra thick, pomegranate] (rc) to[bend right] (Lon);
+    \draw [->, ultra thick, greensea]    (gc) to             (Lon);
+    \draw [->, ultra thick, pomegranate] (rs) to             (Loff);
+    \draw [->, ultra thick, greensea]    (gs) to             (Loff);
+    \draw [->, ultra thick, pomegranate] (rs) to[bend right] (Don);
+    \draw [->, ultra thick, greensea]    (gs) to[bend right] (Don);
+    \draw [->, ultra thick, pomegranate] (rc) to[bend left]  (Doff);
+    \draw [->, ultra thick, greensea]    (gc) to[bend left]  (Doff);
+    \draw [->, ultra thick, pomegranate] (rc) to             (Ron);
+    \draw [->, ultra thick, greensea]    (gs) to             (Roff);
+    \draw [->, ultra thick, greensea]    (gc) to             (Gon);
+    \draw [->, ultra thick, pomegranate] (rs) to             (Goff);
+    \draw [->, ultra thick, peter]       (bc) to             (Bon);
+    \draw [->, ultra thick, greensea]    (gs) to             (Boff);
+    \draw [->, ultra thick, pomegranate] (rs) to             (Boff);
+    \draw [->, ultra thick, greensea]    (gc) to             (Yon);
+    \draw [->, ultra thick, pomegranate] (rc) to             (Yon);
+    \draw [->, ultra thick, peter]       (bs) to[bend left]  (Yoff);
     % Example Gaussian Convolutions
     \node[below of=c] {
         \begin{tikzpicture}
