@@ -520,16 +520,6 @@ Single-opponent cells are a class of neurons in the early visual system which re
 
 In so called color preferring single-opponent cells, the cone inputs to the center and surround come from cones with different spectral response functions, e.g.: L vs M. By arranging input from different cones into antagonistic  receptive fields, we get a neuron which is sensitive to a particular color, in opposition to another. In the human visual system, we recognize three axes of such color opponency: redness vs. greenness, blueness vs. yellowness, and lightness vs. darkness. To construct these concepts of color, neurons in the visual pathway contrast activity of the three types of cone cells: those sensitive to long (L) wavelength light, those sensitive to medium (M) wavelength light, and those sensitive to short (S) wavelength light. By contrasting relative activity with neighboring L, M, and S cones, the retina itself can already begin to construct signal resembling psychological concepts of 'color'.
 
-\bigskip
-
-\textbf{//TODO} \textit{add image of simple behavior: gradient response to isoluminant chromatic boundary}
-
-\textbf{//TODO} \textit{add image of simple behavior: no response to intensity changes}
-
-\textbf{//TODO} \textit{add image of ON/OFF differences: R-G cell responds to fullscreen green light removed (not red removed)}
-
-\bigskip
-
 % FIGURE: Single-opponent receptive field schematics
 \begin{figure}[H] \label{fig:so-rf-schematic}
     \centering
@@ -599,7 +589,7 @@ In so called color preferring single-opponent cells, the cone inputs to the cent
         \end{tikzpicture}}
     \end{subfigure}%
     \par \bigskip
-    % 3 SUBFIGURES: Top-down view of double-opponent receptive fields
+    % 3 SUBFIGURES: Top-down view of single-opponent receptive fields
     \begin{subfigure}{0.3\textwidth}
         \centering
         \begin{tikzpicture}
@@ -624,7 +614,7 @@ In so called color preferring single-opponent cells, the cone inputs to the cent
         \end{tikzpicture}
         \caption{Symmetric \\ imbalanced \\ single-opponent \\ receptive field}
     \end{subfigure}%
-    \begin{subfigure}{0.3\textwidth}
+    \begin{subfigure}{0.3\textwidth} \label{fig:so-rf-schematic-classic}
         \centering
         \begin{tikzpicture}
             \filldraw[color=greensea,    fill=turquoise!80, very thick]( 0.00,  0.00) circle (1.00);
@@ -638,14 +628,7 @@ In so called color preferring single-opponent cells, the cone inputs to the cent
     \caption{Examples of possible single-opponent receptive field configurations, many others could be designed. All function to describe color properties of surfaces, though their response patterns to similar stimuli vary slightly.}
 \end{figure}
 
-
 As mentioned, one of the three axes of the opponent process theory is lightness vs. darkness. This is achieved in single-opponent cells by providing opponent inputs into the \textit{on} center and the \textit{off} surround from the same cones. By including input of L, M, and/or S cones into both the center and surround, the cells becomes 'color blind' and instead only respond to changes in luminosity. Sometimes incorrectly labeled as 'non-opponent', these neurons are, indeed, single-opponent cells: achromatic single-opponent cells.
-
-\bigskip
-
-\textbf{//TODO} \textit{add image of simple behavior: gradient response to ((mono)chromatic) intensity changes}
-
-\textbf{//TODO} \textit{add image of simple behavior: no response to isoluminant chromatic boundaries}
 
 
 \subsection*{Double-Opponent Neurons}
@@ -780,7 +763,7 @@ The distinction is non-trivial as the response patterns differ significantly, an
         \end{tikzpicture}
         \caption{Symmetric \\ imbalanced \\ double-opponent \\ receptive field}
     \end{subfigure}%
-    \begin{subfigure}{0.3\textwidth}
+    \begin{subfigure}{0.3\textwidth} \label{fig:do-rf-schematic-classic}
         \centering
         \begin{tikzpicture}
             % Frame to ensure alignment:
@@ -802,12 +785,6 @@ The distinction is non-trivial as the response patterns differ significantly, an
 \subsubsection*{Orientation Selectivity}
 
 Research shows that cells identified as double-opponent tend to be orientation selective \cite{johnson:2008, sincich:2005, schluppeck:2002, chalupa:encyclopedia}. That is, they respond most strongly when stimulated by a border of particular orientation, less so with variation from that preferred orientation, and weekly, if at all, to borders orthogonal to the preferred orientation. This is intuitive given the organization of the receptive field as previously defined. By arranging the components of the receptive field to be spatially antagonistic, there will be one orientation of border which best separates the two components, and another orientation, precisely orthogonal, which does not separate the two components at all. This can be easily visualized, as in Figure \ref{fig:do-orient-h} and Figure \ref{fig:do-orient-v}.
-
-\bigskip
-
-\textbf{//TODO} \textit{add image of simple behavior: peak activity AT sharp edge}
-
-\bigskip
 
 It's worth noting that a single-opponent neuron can also be selective to specific orientations. These cells have been identified in biology, though their relative abundance appears minimal. To achieve orientation selectivity, the center and/or surround receptive fields simply need be made non-circular. However, without the balanced asymmetric \textit{on} and \textit{off} receptive fields from each opponent cone(s), an orientation specific single-opponent cell could never be as selective as a double-opponent cell.
 
@@ -1117,20 +1094,6 @@ Furthermore, as may be obvious, the receptive field of a neuron in V1 is directl
 
 The implication is that for each retinal position, in V1 it is necessary to have a large number of both single-opponent and double-opponent cells, selective to the full gamut of parameters possible for each type of cell. Biologically, these collections of cells are organized in \textit{hypercolumns}, a physical grouping of cells in which neuronal connections 'up' and 'down' within the column are much more dense than extensions to cells in other columns. Within a single hypercolumn, all cells are sensitive to a specific retinal location, but together express sensitivity to the full range of parameters.
 
-\bigskip
-
-\textbf{//TODO} \textit{mention relative abundance of SO, \& DO}
-
-\textbf{//TODO} \textit{add image of Shapley response curves for SO, \& DO}
-
-\subsection*{CO Blobs}
-
-\textbf{//TODO} \textit{PARAGRAPH ON WHERE DO CELLS ARE}
-
-\textbf{//TODO} \textit{PARAGRAPH ON WHERE SO CELLS ARE}
-
-\textbf{//TODO} \textit{PARAGRAPH ON PROPOSED CONNECTIONS BETWEEN DO \& SO}
-
 
 \subsection{Computational Modeling:}
 
@@ -1140,12 +1103,6 @@ The model described in this research is an extension of that presented by Penacc
 In Li's original work, a neurodynamical model was presented which focused on global region segmentation using only local interactions between neurons. In the interest of simplicity, Li's implementation dealt only with the nature of these interactions, ignoring where the stimulus, or information, might be coming from. Conceptually, Li defined neurons by their physical position in the image and the 'feature' to which they are sensitive. She then defined the connections between these neurons such that those physically close to each other, and sensitive to similar features, interacted most strongly. Stimulation of one neuron, then, positively stimulated (excited) similar neurons nearby, and negatively stimulated (inhibited) dissimilar neurons nearby. Such excitation and inhibition cascades through the network naturally, producing large scale response patterns defined only by local stimuli.
 
 In the model presented, Li used oriented bars as features, though expressed that any logical feature could be reasonably considered in its place. This choice was biologically inspired by neurons sensitive to specifically oriented bars, the aforementioned double-opponent cells. When considering such features, inter-neuronal connections can be logically deduced: two neurons positively interact most when both 1) are sensitive to similarly oriented bars and 2) are co-located along that same orientation. Two neurons negatively interact most when either of these two conditions is not met.
-
-\bigskip
-
-\textbf{//TODO} \textit{include graphic or oriented bars which positively \& negatively interact}
-
-\bigskip
 
 By defining neuronal connectivity in this manner, patterns of neurons sensitive to co-located and co-aligned bars positively interact with each other to enhance their collective response to the stimuli. Similarly, incoherent stimuli negatively interact with their neighbors and are silenced. From these local interactions, global features are enhanced if they satisfy the connectivity rules, and noise is suppressed. Li showed that this method can be used to enhance contours and identify boundaries between regions for which normal segmentation methods struggle.
 
@@ -1460,11 +1417,7 @@ We present a computational model designed to be representative of the aforementi
 
 \subsection*{Description of Visual Information}
 
-The opponent-process theory defines three axes visual information, obtained by processing of cone activity from the retina. These axes are Red-Green (R-G), Blue-Yellow (B-Y), and Light-Dark (L-D). Neurobiological research corroborates such processing of color information (\textbf{//TODO} \textit{cite this}). \textbf{//TODO} \textit{MORE ON OPPONENT-PROCESS THEORY}
-
-\textbf{//TODO} \textit{PARAGRAPH ON SINGLE AND DOUBLE OPPONENT CELLS}
-
-In accordance with this understanding of biology, the image transformation process should 1) separate opponent color components from each other, and 2) separate surface information from boundary information. We describe two different approaches to this end. The first approach, herein referred to in prolixity as the "\textit{Opponent Processing of Neural Receptive Fields}", represents an effort to explicitly transform raw visual data in strict accordance with neurobiological theory. Essentially attempting to mimic the information processing pathways of the retina, lateral geniculate nucleus (LGN), and striate cortex (V1). The second approach, termed with equal verbosity, is the \textit{"Discrete Wavelet Transform in Opponent Colorspace"}. Here we stray from the details of the biological pathways in an attempt to achieve the same end, through more computationally efficient means.
+In accordance with the understanding of biology presented, we propose that a biologically plausible color descriptor should 1) separate opponent color components from each other, and 2) separate surface information from boundary information. We describe two different approaches to this end. The first approach, herein referred to in prolixity as the "\textit{Opponent Processing of Neural Receptive Fields}", represents an effort to explicitly transform raw visual data in strict accordance with neurobiological theory. Essentially attempting to mimic the information processing pathways of the retina, lateral geniculate nucleus (LGN), and striate cortex (V1). The second approach, termed with equal verbosity, is the \textit{"Discrete Wavelet Transform in Opponent Colorspace"}. Here we stray from the details of the biological pathways in an attempt to achieve the same end, through more computationally efficient means.
 
 In both, the input is a normal RGB image, and the output to the neurodynamical model is a 5 dimensional matrix containing 6 opponent color channels (red ($R$), green ($G$), blue ($B$), yellow ($Y$), light ($L$), \& dark ($D$)), each decomposed into its surface and oriented edge components, at 1 or more scales. In this work we consider just 3 directions of orientation preference at edges: horizontal, diagonal, \& vertical. Before processing by the neurodynamical model, this data is normalized so as to circumvent differences between the data output by these two methods. This normalization step is described in more detail in the section on \textit{Neurodynamical Processing}.
 
@@ -1713,7 +1666,7 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
     \caption{Diagram of \textit{Opponent Processing of Receptive Fields} workflow. The L, M, and S channels are convolved with center and surround gaussians and then combined to build opponent colors, here exemplified by single-opponent cell receptive fields. The process is similar for double-opponent cells.}
 \end{figure}
 
-
+\afterpage{%
 \begin{figure}[h]
     \centering
     \begin{subfigure}{0.3\textwidth}
@@ -1726,152 +1679,154 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-l}}
-        \caption{\\ Light\\ Single-Opponent}
+        \caption{\\ Light\\ Single-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-d}}
-        \caption{\\ Dark\\ Single-Opponent}
+        \caption{\\ Dark\\ Single-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-r}}
-        \caption{\\ Red\\ Single-Opponent}
+        \caption{\\ Red\\ Single-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-g}}
-        \caption{\\ Green\\ Single-Opponent}
+        \caption{\\ Green\\ Single-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-b}}
-        \caption{\\ Blue\\ Single-Opponent}
+        \caption{\\ Blue\\ Single-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-y}}
-        \caption{\\ Yellow\\ Single-Opponent}
+        \caption{\\ Yellow\\ Single-Opponent\\ Cell Response}
     \end{subfigure}%
     \par \bigskip% DOUBLE OPPONENT - HORIZONTAL
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-l}}
-        \caption{\\ Light Horizontal\\ Double-Opponent}
+        \caption{\\ Light Horizontal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-d}}
-        \caption{\\ Dark Horizontal\\ Double-Opponent}
+        \caption{\\ Dark Horizontal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-r}}
-        \caption{\\ Red Horizontal\\ Double-Opponent}
+        \caption{\\ Red Horizontal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-g}}
-        \caption{\\ Green Horizontal\\ Double-Opponent}
+        \caption{\\ Green Horizontal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-b}}
-        \caption{\\ Blue Horizontal\\ Double-Opponent}
+        \caption{\\ Blue Horizontal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-y}}
-        \caption{\\ Yellow Vertical\\ Double-Opponent}
+        \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}%
     \par \bigskip% DOUBLE OPPONENT - DIAGONAL
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-l}}
-        \caption{\\ Light Diagonal\\ Double-Opponent}
+        \caption{\\ Light Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-d}}
-        \caption{\\ Dark Diagonal\\ Double-Opponent}
+        \caption{\\ Dark Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-r}}
-        \caption{\\ Red Diagonal\\ Double-Opponent}
+        \caption{\\ Red Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-g}}
-        \caption{\\ Green Diagonal\\ Double-Opponent}
+        \caption{\\ Green Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-b}}
-        \caption{\\ Blue Diagonal\\ Double-Opponent}
+        \caption{\\ Blue Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-y}}
-        \caption{\\ Yellow Diagonal\\ Double-Opponent}
+        \caption{\\ Yellow Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}%
     \par \bigskip% DOUBLE OPPONENT - VERTICAL
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-l}}
-        \caption{\\ Light Vertical\\ Double-Opponent}
+        \caption{\\ Light Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-d}}
-        \caption{\\ Dark Vertical\\ Double-Opponent}
+        \caption{\\ Dark Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-r}}
-        \caption{\\ Red Vertical\\ Double-Opponent}
+        \caption{\\ Red Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-g}}
-        \caption{\\ Green Vertical\\ Double-Opponent}
+        \caption{\\ Green Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-b}}
-        \caption{\\ Blue Vertical\\ Double-Opponent}
+        \caption{\\ Blue Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-y}}
-        \caption{\\ Yellow Vertical\\ Double-Opponent}
+        \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}%
     \caption{Example of single-opponent and double-opponent response (scale=1) to a test image following the \textit{Opponent Processing of Receptive Fields} workflow. Strong activity is indicated by black and weak activity by white.}
-    \label{fig:blur-effect}
+    \label{fig:transform-opp}
 \end{figure}
+\clearpage
+}
 
 % FIGURE: Colored Double Opponent Receptive Fields
 \begin{figure}
@@ -2117,6 +2072,7 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
     \caption{}  \label{fig:do-rf-inputs}
 \end{figure}
 
+
 \subsubsection*{Neural Receptive Fields}
 
 \textbf{//TODO} \textit{REFACTOR INTO PARAGRAPH ON RECEPTIVE FIELDS}
@@ -2125,9 +2081,9 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
 
 \textbf{//TODO} \textit{REFACTOR INTO PARAGRAPH ON OPPONENT PROCESSING}
 
-Processing starts by convolving each of the L, M, and S cone spectral response functions with two different gaussian filters. These convolutions simulate integration of information in a neuron's receptive field. One convolution is used to build the excitatory component of the receptive field (referred to as the center), the other convolution, the inhibitory (referred to as the surround).
+Processing starts by convolving each of the L, M, and S cone spectral response functions with two different gaussian filters. These convolutions simulate integration of information in a neuron's receptive field. One convolution is used to build the center receptive field, the other convolution, the surround.
 
-Single-opponent cells' receptive fields are the classical center-surround configuration: symmetric, centered, circular gaussians. Typically, the center is smaller and weighed significantly more heavily than the surround, as in Figure \ref{fig:rd-so} (c). Double-opponent receptive fields are markedly more complex: asymmetrical, off-center, elongated gaussian filters. Similarly, these filters can be adjusted to different sizes, shapes, and weights. For our tests we worked with symmetric balanced receptive fields, as in Figure \ref{fig:rd-do} (a).
+Single-opponent cells' receptive fields are the classical center-surround configuration: symmetric, centered, circular gaussians. Typically, the center is smaller and weighed significantly more heavily than the surround, as in Figure \ref{fig:so-rf-schematic-classic}. Double-opponent receptive fields are markedly more complex: asymmetrical, off-center, elongated gaussian filters. Similarly, these filters can be adjusted to different sizes, shapes, and weights. For our tests we worked with symmetric balanced receptive fields, as in Figure \ref{fig:do-rf-schematic-classic}.
 
 In our implementation, for convenience, we utilize the R, G, and B channels of the raw image as an approximation of L, M, and S cone activity, respectively. It should be noted that a preprocessing step could be performed to better match RGB to LMS so as to be more biologically consistent. The impact is likely negligible.
 
