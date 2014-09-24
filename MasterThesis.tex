@@ -499,7 +499,7 @@ Single-opponent cells are a class of neurons in the early visual system which re
 In so called color preferring single-opponent cells, the cone inputs to the center and surround come from cones with different spectral response functions, e.g.: L vs M. By arranging input from different cones into antagonistic  receptive fields, we get a neuron which is sensitive to a particular color, in opposition to another. In the human visual system, we recognize three axes of such color opponency: redness vs. greenness, blueness vs. yellowness, and lightness vs. darkness. To construct these concepts of color, neurons in the visual pathway contrast activity of the three types of cone cells: those sensitive to long (L) wavelength light, those sensitive to medium (M) wavelength light, and those sensitive to short (S) wavelength light. By contrasting relative activity with neighboring L, M, and S cones, the retina itself can already begin to construct signal resembling psychological concepts of 'color'.
 
 % FIGURE: Single-opponent receptive field schematics
-\begin{figure}[H] \label{fig:so-rf-schematic}
+\begin{figure}[H]
     \centering
     \captionsetup{justification=centering}
     % 3 SUBFIGURES: Cross sections of single-opponent receptive fields
@@ -592,7 +592,7 @@ In so called color preferring single-opponent cells, the cone inputs to the cent
         \end{tikzpicture}
         \caption{Symmetric \\ imbalanced \\ single-opponent \\ receptive field}
     \end{subfigure}%
-    \begin{subfigure}{0.3\textwidth} \label{fig:so-rf-schematic-classic}
+    \begin{subfigure}{0.3\textwidth}
         \centering
         \begin{tikzpicture}
             \filldraw[color=greensea,    fill=turquoise!80, very thick]( 0.00,  0.00) circle (1.00);
@@ -602,8 +602,10 @@ In so called color preferring single-opponent cells, the cone inputs to the cent
             \filldraw[color=black,       fill=gray]                    ( 0.00,  0.00) circle (1pt);
         \end{tikzpicture}
         \caption{Classic \\ center/surround \\ single-opponent \\ receptive field}
+        \label{fig:so-rf-schematic-classic}
     \end{subfigure}%
     \caption{Examples of possible single-opponent receptive field configurations, many others could be designed. All function to describe color properties of surfaces, though their response patterns to similar stimuli vary slightly.}
+    \label{fig:so-rf-schematic}
 \end{figure}
 
 As mentioned, one of the three axes of the opponent process theory is lightness vs. darkness. This is achieved in single-opponent cells by providing opponent inputs into the \textit{on} center and the \textit{off} surround from the same cones. By including input of L, M, and/or S cones into both the center and surround, the cells becomes 'color blind' and instead only respond to changes in luminosity. Sometimes incorrectly labeled as 'non-opponent', these neurons are, indeed, single-opponent cells: achromatic single-opponent cells.
@@ -741,7 +743,7 @@ The distinction is non-trivial as the response patterns differ significantly, an
         \end{tikzpicture}
         \caption{Symmetric \\ imbalanced \\ double-opponent \\ receptive field}
     \end{subfigure}%
-    \begin{subfigure}{0.3\textwidth} \label{fig:do-rf-schematic-classic}
+    \begin{subfigure}{0.3\textwidth}
         \centering
         \begin{tikzpicture}
             % Frame to ensure alignment:
@@ -755,6 +757,7 @@ The distinction is non-trivial as the response patterns differ significantly, an
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
         \end{tikzpicture}
         \caption{Center/ \\ surround \\ double-opponent \\ receptive field}
+        \label{fig:do-rf-schematic-classic}
     \end{subfigure}%
     \caption{Examples of various possible double-opponent receptive field configurations, many others could be designed. All function to describe color properties of borders, though their response patterns to similar stimuli vary slightly.}
 \end{figure}
@@ -1100,7 +1103,7 @@ The implication is that for each retinal position, in V1 it is necessary to have
 
 \subsection{Computational Modeling:}
 
-The model described in this research is an extension of that presented by Penacchio \textit{et al.} \cite{otazu:plosive}, itself based on work by Z. Li \cite{li:1998, li:1999}. Before detailing our implementation, it is important to review prior art; these works and others. As our goal is to model the behavior of color preferring and achromatic single-opponent and double-opponent neurons, we will also review other computational endeavors tackling the issue of color and/or form from a biologically inspired perspective.
+The model described in this research is an extension of that presented by Penacchio \textit{et al.} \cite{penacchio:2013}, itself based on work by Z. Li \cite{li:1998, li:1999}. Before detailing our implementation, it is important to review prior art; these works and others. As our goal is to model the behavior of color preferring and achromatic single-opponent and double-opponent neurons, we will also review other computational endeavors tackling the issue of color and/or form from a biologically inspired perspective.
 
 \subsection*{Li's Neurodynamical Model for Segmentation (1999)}
 In Li's original work, a neurodynamical model was presented which focused on global region segmentation using only local interactions between neurons. In the interest of simplicity, Li's implementation dealt only with the nature of these interactions, ignoring where the stimulus, or information, might be coming from. Conceptually, Li defined neurons by their physical position in the image and the 'feature' to which they are sensitive. She then defined the connections between these neurons such that those physically close to each other, and sensitive to similar features, interacted most strongly. Stimulation of one neuron, then, positively stimulated (excited) similar neurons nearby, and negatively stimulated (inhibited) dissimilar neurons nearby. Such excitation and inhibition cascades through the network naturally, producing large scale response patterns defined only by local stimuli.
@@ -1948,7 +1951,7 @@ To summarize, this first of two approaches to color description aims to be true 
 
 \subsection{Discrete Wavelet Transform in Opponent Colorspace}
 
-Previous work by Penacchio \textit{et al.} \cite{otazu:plosive} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edge components, at scales. In the context of our current research, this could be thought of as representing achromatic double-opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent colorspace and examine its applicability as a replacement of the previously detailed \textit{Opponent Processing of Neural Receptive Fields}.
+Previous work by Penacchio \textit{et al.} \cite{penacchio:2013} utilized a discrete wavelet transform (DWT) to decompose a greyscale image into its oriented edge components, at scales. In the context of our current research, this could be thought of as representing achromatic double-opponent cells; the response is greatest at luminosity boundaries, and nonexistent on surfaces or at chromatic changes. In this work we extend their approach to the opponent colorspace and examine its applicability as a replacement of the previously detailed \textit{Opponent Processing of Neural Receptive Fields}.
 
 Unlike the previously presented color descriptor, this transformation begins, not with the convolution step, but instead with a colorspace transformation. We convert the image from RGB to \textit{CIE} $L^*a^*b^*$. This colorspace separates luminance from it's two opponent color channels. The two color channels are $0$ centered; with positive and negative values in $a^*$ denoting redness and greenness, respectively, while positive and negative values in the $b^*$ channel indicate blueness and yellowness, respectively. The luminance channel, $L^*$, scales from $0$ to $100$, $0$ being total darkness, $100$ being pure brightness. We subtract $50$ from this channel to obtain a $0$ centered range of luminance. We consider positive values to define lightness and negative values darkness.
 
@@ -3107,7 +3110,7 @@ That said, the performance of the model tells us that much work is needed. In so
     \emph{Efficient Color Boundary Detection with Color-opoonent Mechanisms}.
     Computer Vision and Pattern Recognition (CVPR), (2013), pp 2810-2817.
 
-\bibitem{zhang:2013}
+\bibitem{zhang:2012}
     Jun Zhang, Youssef Barhomi, and Thomas Serre.
     \emph{A new biologically inspired color image descriptor}.
     Computer Vision – ECCV 2012
