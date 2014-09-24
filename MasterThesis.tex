@@ -1108,7 +1108,7 @@ The implication is that for each retinal position, in V1 it is necessary to have
 
 The model described in this research is an extension of that presented by Penacchio \textit{et al.} \cite{penacchio:2013}, itself based on work by Z. Li \cite{li:1998, li:1999}. Before detailing our implementation, it is important to review prior art; these works and others. As our goal is to model the behavior of color preferring and achromatic single-opponent and double-opponent neurons, we will also review other computational endeavors tackling the issue of color and/or form from a biologically inspired perspective.
 
-\subsection*{Li's Neurodynamical Model for Segmentation (1999)}
+\subsection*{Li's Neurodynamical Model for Segmentation \cite{li:1999}}
 In Li's original work, a neurodynamical model was presented which focused on global region segmentation using only local interactions between neurons. In the interest of simplicity, Li's implementation dealt only with the nature of these interactions, ignoring where the stimulus, or information, might be coming from. Conceptually, Li defined neurons by their physical position in the image and the 'feature' to which they are sensitive. She then defined the connections between these neurons such that those physically close to each other, and sensitive to similar features, interacted most strongly. Stimulation of one neuron, then, positively stimulated (excited) similar neurons nearby, and negatively stimulated (inhibited) dissimilar neurons nearby. Such excitation and inhibition cascades through the network naturally, producing large scale response patterns defined only by local stimuli.
 
 In the model presented, Li used oriented bars as features, though expressed that any logical feature could be reasonably considered in its place. This choice was biologically inspired by neurons sensitive to specifically oriented bars, the aforementioned double-opponent cells. When considering such features, inter-neuronal connections can be logically deduced: two neurons positively interact most when both 1) are sensitive to similarly oriented bars and 2) are co-located along that same orientation. Two neurons negatively interact most when either of these two conditions is not met.
@@ -1333,7 +1333,7 @@ We present a computational model designed to be representative of the aforementi
         \node                  (a)  [draw=gray, fit=(a1)(a2), inner sep=0.75cm] {};
         \node                  (b)  [draw=gray, fit=(b1)(b2), inner sep=0.75cm] {};
         
-        \draw (19.0, 0.0) node (c) [draw, shape=rectangle, minimum height=12.5cm, minimum width=5cm, align=center] {};
+        \draw (19.0, 0.0) node (c) [draw, shape=rectangle, minimum height=8cm, minimum width=5cm, align=center] {};
         \node at (c.north) [below=4.4cm] {Neurodynamical};
         \node at (c.north) [below=4.9cm] {Model};
         \draw[thick, ->] (20.0,-1.0) arc (0:350:1);
@@ -1344,10 +1344,10 @@ We present a computational model designed to be representative of the aforementi
         \node at               (b.north) [above]  {\textit{B. Discrete Wavelet Transform in Opponent Colorspace}};
                 
         \draw [-]              (in) to             (or);
-        \draw [->]             (or) to[bend left]  (a1);
-        \draw [->]             (or) to[bend right] (b1);
-        \draw [->]             (a1) to             (a2);
-        \draw [->]             (b1) to             (b2);
+        \draw [-]              (or) to[bend left]  (a1);
+        \draw [-]              (or) to[bend right] (b1);
+        \draw [-]             (a1) to             (a2);
+        \draw [-]             (b1) to             (b2);
         \draw [->]             (a) to              (c);
         \draw [->]             (b) to              (c);
         \draw [->]             (c) to              (out);
@@ -2146,223 +2146,6 @@ We propose that these rules of interaction are logical as only opponent colors a
 
 \subsubsection*{Activity Normalization ($I_0$)}
 The general and local normalization of activities \cite{heeger:1993} has been extended from its used by Li \cite{li:1999} and Penacchio \cite{penacchio:2013}. We normalize excitatory membrane potentials within double-opponent cells of similar location ($i$), color ($\gamma$), scale ($\sigma$), and orientation ($\theta$) preferences. Likewise we normalize single-opponent cells of similar location ($i$), color ($\gamma$), scale ($\sigma$). We found it important to normalize the activity of these two classes of neurons independently as the information encoded by each is radically different: localized edge information by double-opponent cells, and extensive surface information by single-opponent cells.
-
-% FIGURE: Bowtie Excitatory Interaction Maps
-\afterpage{%
-\begin{figure}[htbp!] \label{fig:bowtie-excite-maps}
-    \centering
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_1_1}
-            \caption{\\ Verical DO \\ \& Verical DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_1_2}
-            \caption{\\ Verical DO \\ \& Diagonal DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_blank}
-            \caption{\\ Verical DO \\ \& Horizontal DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_1_4}
-            \caption{\\ Verical DO \\ \& Non-Oriented SO}
-    \end{subfigure}%
-    \par \bigskip
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_2_1}
-            \caption{\\ Diagonal DO \\ \& Verical DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_2_2}
-            \caption{\\ Diagonal DO \\ \& Diagonal DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_2_3}
-            \caption{\\ Diagonal DO \\ \& Horizontal DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_2_4}
-            \caption{\\ Diagonal DO \\ \& Non-Oriented SO}
-    \end{subfigure}%
-    \par \bigskip
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_blank}
-            \caption{\\ Horizontal DO \\ \& Verical DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_3_2}
-            \caption{\\ Horizontal DO \\ \& Diagonal DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_3_3}
-            \caption{\\ Horizontal DO \\ \& Horizontal DO}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_3_4}
-            \caption{\\ Horizontal DO \\ \& Non-Oriented SO}
-    \end{subfigure}%
-    \par \bigskip
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_4_1}
-            \caption{\\ Non-Oriented SO \\ \& Verical DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_4_2}
-            \caption{\\ Non-Oriented SO \\ \& Diagonal DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_4_3}
-            \caption{\\ Non-Oriented SO \\ \& Horizontal DO}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-j_4_4}
-            \caption{\\ Non-Oriented SO \\ \& Non-Oriented SO}
-    \end{subfigure}%
-    \caption{Graphical representation of \textit{excitatory} interaction weights ($J$) between vertical, diagonal, and horizontal double-opponent cells and single-opponent cells.}
-\end{figure}
-\clearpage
-}
-% FIGURE: Bowtie Inhibitory Interaction Maps
-\afterpage{%
-\begin{figure}[htbp!] \label{fig:bowtie-inhibit-maps}
-    \centering
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_1_1}
-            \caption{\\ Verical DO \\ \& Verical DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_1_2}
-            \caption{\\ Verical DO \\ \& Diagonal DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_blank}
-            \caption{\\ Verical DO \\ \& Horizontal DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_blank}
-            \caption{\\ Verical DO \\ \& Non-Oriented SO}
-    \end{subfigure}%
-    \par \bigskip
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_2_1}
-            \caption{\\ Diagonal DO \\ \& Verical DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_2_2}
-            \caption{\\ Diagonal DO \\ \& Diagonal DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_2_3}
-            \caption{\\ Diagonal DO \\ \& Horizontal DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_blank}
-            \caption{\\ Diagonal DO \\ \& Non-Oriented SO}
-    \end{subfigure}%
-    \par \bigskip
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_blank}
-            \caption{\\ Horizontal DO \\ \& Verical DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_3_2}
-            \caption{\\ Horizontal DO \\ \& Diagonal DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_3_3}
-            \caption{\\ Horizontal DO \\ \& Horizontal DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_blank}
-            \caption{\\ Horizontal DO \\ \& Non-Oriented SO}
-    \end{subfigure}%
-    \par \bigskip
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_blank}
-            \caption{\\ Non-Oriented SO \\ \& Verical DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_blank}
-            \caption{\\ Non-Oriented SO \\ \& Diagonal DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_blank}
-            \caption{\\ Non-Oriented SO \\ \& Horizontal DO}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.2\textwidth}
-            \centering
-            \captionsetup{justification=centering}
-            \includegraphics[width=.85\linewidth]{map-w_blank}
-            \caption{\\ Non-Oriented SO \\ \& Non-Oriented SO}
-    \end{subfigure}%
-    \caption{Graphical representation of \textit{inhibitory} interaction weights ($W$) between vertical, diagonal, and horizontal double-opponent cells and single-opponent cells.}
-\end{figure}
-\clearpage
-}
-
-\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -3562,6 +3345,225 @@ That said, the performance of the model tells us that much work is needed. In so
     \caption{Example of single-opponent and double-opponent response (scale=1) to a test image following the \textit{Discrete Wavelet Transform in Opponent Colorspace} workflow. Strong activity is indicated by black and weak activity by white.}
     \label{fig:transform-dwt}
 \end{figure}
+
+% FIGURE: Bowtie Excitatory Interaction Maps
+\afterpage{%
+\begin{figure}
+    \label{fig:bowtie-excite-maps}
+    \centering
+    \captionsetup{justification=centering}
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_1_1}
+            \caption{\\ Verical DO \\ \& Verical DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_1_2}
+            \caption{\\ Verical DO \\ \& Diagonal DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_blank}
+            \caption{\\ Verical DO \\ \& Horizontal DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_1_4}
+            \caption{\\ Verical DO \\ \& Non-Oriented SO}
+    \end{subfigure}%
+    \par \bigskip
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_2_1}
+            \caption{\\ Diagonal DO \\ \& Verical DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_2_2}
+            \caption{\\ Diagonal DO \\ \& Diagonal DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_2_3}
+            \caption{\\ Diagonal DO \\ \& Horizontal DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_2_4}
+            \caption{\\ Diagonal DO \\ \& Non-Oriented SO}
+    \end{subfigure}%
+    \par \bigskip
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_blank}
+            \caption{\\ Horizontal DO \\ \& Verical DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_3_2}
+            \caption{\\ Horizontal DO \\ \& Diagonal DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_3_3}
+            \caption{\\ Horizontal DO \\ \& Horizontal DO}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_3_4}
+            \caption{\\ Horizontal DO \\ \& Non-Oriented SO}
+    \end{subfigure}%
+    \par \bigskip
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_4_1}
+            \caption{\\ Non-Oriented SO \\ \& Verical DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_4_2}
+            \caption{\\ Non-Oriented SO \\ \& Diagonal DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_4_3}
+            \caption{\\ Non-Oriented SO \\ \& Horizontal DO}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-j_4_4}
+            \caption{\\ Non-Oriented SO \\ \& Non-Oriented SO}
+    \end{subfigure}%
+    \caption{Graphical representation of \textit{excitatory} interaction weights ($J$) between\\ vertical, diagonal, and horizontal double-opponent cells and single-opponent cells.}
+\end{figure}
+\clearpage
+}
+% FIGURE: Bowtie Inhibitory Interaction Maps
+\afterpage{%
+\begin{figure}
+    \label{fig:bowtie-inhibit-maps}
+    \centering
+    \captionsetup{justification=centering}
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_1_1}
+            \caption{\\ Verical DO \\ \& Verical DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_1_2}
+            \caption{\\ Verical DO \\ \& Diagonal DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_blank}
+            \caption{\\ Verical DO \\ \& Horizontal DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_blank}
+            \caption{\\ Verical DO \\ \& Non-Oriented SO}
+    \end{subfigure}%
+    \par \bigskip
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_2_1}
+            \caption{\\ Diagonal DO \\ \& Verical DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_2_2}
+            \caption{\\ Diagonal DO \\ \& Diagonal DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_2_3}
+            \caption{\\ Diagonal DO \\ \& Horizontal DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_blank}
+            \caption{\\ Diagonal DO \\ \& Non-Oriented SO}
+    \end{subfigure}%
+    \par \bigskip
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_blank}
+            \caption{\\ Horizontal DO \\ \& Verical DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_3_2}
+            \caption{\\ Horizontal DO \\ \& Diagonal DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_3_3}
+            \caption{\\ Horizontal DO \\ \& Horizontal DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_blank}
+            \caption{\\ Horizontal DO \\ \& Non-Oriented SO}
+    \end{subfigure}%
+    \par \bigskip
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_blank}
+            \caption{\\ Non-Oriented SO \\ \& Verical DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_blank}
+            \caption{\\ Non-Oriented SO \\ \& Diagonal DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_blank}
+            \caption{\\ Non-Oriented SO \\ \& Horizontal DO}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.2\textwidth}
+            \centering
+            \captionsetup{justification=centering}
+            \includegraphics[width=.85\linewidth]{map-w_blank}
+            \caption{\\ Non-Oriented SO \\ \& Non-Oriented SO}
+    \end{subfigure}%
+    \caption{Graphical representation of \textit{inhibitory} interaction weights ($W$) between\\ vertical, diagonal, and horizontal double-opponent cells and single-opponent cells.}
+\end{figure}
+\clearpage
+}
 
 % that's all folks
 \end{document}
