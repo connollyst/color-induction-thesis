@@ -2684,87 +2684,170 @@ The perceived color is defined by the true color of the ring, the color(s) of th
     \caption{Experimental results for the given test stimuli, \ref{img:test-circle-neon}. In \ref{img:test-circle-neon-dwt-a-ld}, \ref{img:test-circle-neon-dwt-a-rg}, and \ref{img:test-circle-neon-dwt-a-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{left} stimulus (which appears green). In \ref{img:test-circle-neon-dwt-b-ld}, \ref{img:test-circle-neon-dwt-b-rg}, and \ref{img:test-circle-neon-dwt-b-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{right} stimulus (which appears blue). In \ref{img:test-circle-neon-dwt-a-ld-mask}, \ref{img:test-circle-neon-dwt-a-rg-mask}, and \ref{img:test-circle-neon-dwt-a-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring. In \ref{img:test-circle-neon-dwt-b-ld-mask}, \ref{img:test-circle-neon-dwt-b-rg-mask}, and \ref{img:test-circle-neon-dwt-b-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring.}
 \end{figure}
 
-\begin{figure}[!htbp] \label{img:test-circle-a-results}
+\begin{figure}[!htbp] \label{img:test-circle-a-dwt-results}
     \centering
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=230px]{test-circle-a}
             \caption{}
-            \label{img:test-circle-a}
+            \label{img:test-circle-a-dwt}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a1-ld}
+            \includegraphics[width=100px, frame]{test-circle-a1-dwt-ld}
             \caption{Light Dark}
-            \label{img:test-circle-a1-ld}
+            \label{img:test-circle-a1-dwt-ld}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a1-ld-mask}
+            \includegraphics[width=100px, frame]{test-circle-a1-dwt-ld-mask}
             \caption{Light Dark}
-            \label{img:test-circle-a1-ld-mask}
+            \label{img:test-circle-a1-dwt-ld-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a2-ld-mask}
+            \includegraphics[width=100px, frame]{test-circle-a2-dwt-ld-mask}
             \caption{Light Dark}
-            \label{img:test-circle-a2-ld-mask}
+            \label{img:test-circle-a2-dwt-ld-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a2-ld}
+            \includegraphics[width=100px, frame]{test-circle-a2-dwt-ld}
             \caption{Light Dark}
-            \label{img:test-circle-a2-ld}
+            \label{img:test-circle-a2-dwt-ld}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100pt, frame]{test-circle-a1-rg}
+            \includegraphics[width=100pt, frame]{test-circle-a1-dwt-rg}
             \caption{Red Green}
-            \label{img:test-circle-a1-rg}
+            \label{img:test-circle-a1-dwt-rg}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100pt, frame]{test-circle-a1-rg-mask}
+            \includegraphics[width=100pt, frame]{test-circle-a1-dwt-rg-mask}
             \caption{Red Green}
-            \label{img:test-circle-a1-rg-mask}
+            \label{img:test-circle-a1-dwt-rg-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100pt, frame]{test-circle-a2-rg-mask}
+            \includegraphics[width=100pt, frame]{test-circle-a2-dwt-rg-mask}
             \caption{Red Green}
-            \label{img:test-circle-a2-rg-mask}
+            \label{img:test-circle-a2-dwt-rg-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100pt, frame]{test-circle-a2-rg}
+            \includegraphics[width=100pt, frame]{test-circle-a2-dwt-rg}
             \caption{Red Green}
-            \label{img:test-circle-a2-rg}
+            \label{img:test-circle-a2-dwt-rg}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a1-by}
+            \includegraphics[width=100px, frame]{test-circle-a1-dwt-by}
             \caption{Blue Yellow}
-            \label{img:test-circle-a1-by}
+            \label{img:test-circle-a1-dwt-by}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a1-by-mask}
+            \includegraphics[width=100px, frame]{test-circle-a1-dwt-by-mask}
             \caption{Blue Yellow}
-            \label{img:test-circle-a1-by-mask}
+            \label{img:test-circle-a1-dwt-by-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a2-by-mask}
+            \includegraphics[width=100px, frame]{test-circle-a2-dwt-by-mask}
             \caption{Blue Yellow}
-            \label{img:test-circle-a2-by-mask}
+            \label{img:test-circle-a2-dwt-by-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a2-by}
+            \includegraphics[width=100px, frame]{test-circle-a2-dwt-by}
             \caption{Blue Yellow}
-            \label{img:test-circle-a2-by}
+            \label{img:test-circle-a2-dwt-by}
     \end{subfigure}
-    \caption{Experimental results for the given test stimuli, \ref{img:test-circle-a}. In \ref{img:test-circle-a1-ld}, \ref{img:test-circle-a1-rg}, and \ref{img:test-circle-a1-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{left} stimulus (which appears green). In \ref{img:test-circle-a2-ld}, \ref{img:test-circle-a2-rg}, and \ref{img:test-circle-a2-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{right} stimulus (which appears blue). In \ref{img:test-circle-a1-ld-mask}, \ref{img:test-circle-a1-rg-mask}, and \ref{img:test-circle-a1-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring. In \ref{img:test-circle-a2-ld-mask}, \ref{img:test-circle-a2-rg-mask}, and \ref{img:test-circle-a2-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring.}
+    \caption{Experimental results for the given test stimuli, \ref{img:test-circle-a-dwt}. In \ref{img:test-circle-a1-dwt-ld}, \ref{img:test-circle-a1-dwt-rg}, and \ref{img:test-circle-a1-dwt-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{left} stimulus (which appears green). In \ref{img:test-circle-a2-dwt-ld}, \ref{img:test-circle-a2-dwt-rg}, and \ref{img:test-circle-a2-dwt-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{right} stimulus (which appears blue). In \ref{img:test-circle-a1-dwt-ld-mask}, \ref{img:test-circle-a1-dwt-rg-mask}, and \ref{img:test-circle-a1-dwt-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring. In \ref{img:test-circle-a2-dwt-ld-mask}, \ref{img:test-circle-a2-dwt-rg-mask}, and \ref{img:test-circle-a2-dwt-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring.}
+\end{figure}
+
+\begin{figure}[!htbp] \label{img:test-circle-a-opp-results}
+    \centering
+    \begin{subfigure}[b]{0.5\textwidth}
+            \centering
+            \includegraphics[width=230px]{test-circle-a}
+            \caption{}
+            \label{img:test-circle-a-opp}
+    \end{subfigure}\\
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100px, frame]{test-circle-a1-opp-ld}
+            \caption{Light Dark}
+            \label{img:test-circle-a1-opp-ld}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100px, frame]{test-circle-a1-opp-ld-mask}
+            \caption{Light Dark}
+            \label{img:test-circle-a1-opp-ld-mask}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100px, frame]{test-circle-a2-opp-ld-mask}
+            \caption{Light Dark}
+            \label{img:test-circle-a2-opp-ld-mask}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100px, frame]{test-circle-a2-opp-ld}
+            \caption{Light Dark}
+            \label{img:test-circle-a2-opp-ld}
+    \end{subfigure}\\
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100pt, frame]{test-circle-a1-opp-rg}
+            \caption{Red Green}
+            \label{img:test-circle-a1-opp-rg}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100pt, frame]{test-circle-a1-opp-rg-mask}
+            \caption{Red Green}
+            \label{img:test-circle-a1-opp-rg-mask}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100pt, frame]{test-circle-a2-opp-rg-mask}
+            \caption{Red Green}
+            \label{img:test-circle-a2-opp-rg-mask}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100pt, frame]{test-circle-a2-opp-rg}
+            \caption{Red Green}
+            \label{img:test-circle-a2-opp-rg}
+    \end{subfigure}\\
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100px, frame]{test-circle-a1-opp-by}
+            \caption{Blue Yellow}
+            \label{img:test-circle-a1-opp-by}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100px, frame]{test-circle-a1-opp-by-mask}
+            \caption{Blue Yellow}
+            \label{img:test-circle-a1-opp-by-mask}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100px, frame]{test-circle-a2-opp-by-mask}
+            \caption{Blue Yellow}
+            \label{img:test-circle-a2-opp-by-mask}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100px, frame]{test-circle-a2-opp-by}
+            \caption{Blue Yellow}
+            \label{img:test-circle-a2-opp-by}
+    \end{subfigure}
+    \caption{Experimental results for the given test stimuli, \ref{img:test-circle-a-opp}. In \ref{img:test-circle-a1-opp-ld}, \ref{img:test-circle-a1-opp-rg}, and \ref{img:test-circle-a1-opp-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{left} stimulus (which appears green). In \ref{img:test-circle-a2-opp-ld}, \ref{img:test-circle-a2-opp-rg}, and \ref{img:test-circle-a2-opp-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{right} stimulus (which appears blue). In \ref{img:test-circle-a1-opp-ld-mask}, \ref{img:test-circle-a1-opp-rg-mask}, and \ref{img:test-circle-a1-opp-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring. In \ref{img:test-circle-a2-opp-ld-mask}, \ref{img:test-circle-a2-opp-rg-mask}, and \ref{img:test-circle-a2-opp-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring.}
 \end{figure}
 
 \begin{figure}[H] \label{img:test-bars}
