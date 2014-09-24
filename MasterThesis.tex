@@ -1181,10 +1181,10 @@ This set of 42 feature maps; intensity at 6 scales, 2 opponent colors at 6 scale
 Yang \textit{et al.} developed a biologically inspired system of edge detection. To this end, they implemented a model of chromatic double-opponent receptive fields constructed from asymmetric gaussian filters. The first step in their algorithm is to transform the RGB input image to red, green, blue, and yellow opponent color channels. Their approach simply utilizes the red, green, and blue color channels as they are, and define yellow to be the average of red and green input.
 
 \begin{flalign}
-    R &= r \\
-    G &= g \\
-    B &= b \\
-    Y &= \frac{r + g}{2}
+    Red    &= R \\
+    Green  &= G \\
+    Blue   &= B \\
+    Yellow &= \frac{R + G}{2}
 \end{flalign}
 
 These four color components are then convolved with centered, circular gaussian filters. This can be interpreted as modeling the receptive fields of chromatic single-opponent cells. These single-opponent cell responses are then combined in spatially opponent pairs to derive models of chromatic double-opponent cells.
@@ -1203,12 +1203,12 @@ Zhang \textit{et al.} introduce a computational color descriptor which integrate
 Single-opponent cells' responses are modeled by first convolving the RGB input with a center ($c$) surround ($s$) filters, and then applying the following transformations:
 
 \begin{flalign}
-    R(c, s) &= \tfrac{1}{\sqrt{2}}r(c)  + \tfrac{-1}{\sqrt{2}}g(s) \\
-    G(c, s) &= \tfrac{-1}{\sqrt{2}}r(s) + \tfrac{1}{\sqrt{2}}g(c)  \\
-    B(c, s) &= \tfrac{2}{\sqrt{6}}b(c)  + \tfrac{-1}{\sqrt{6}}r(s) + \tfrac{-1}{\sqrt{6}}g(s) \\
-    Y(c, s) &= \tfrac{1}{\sqrt{6}}r(c)  + \tfrac{1}{\sqrt{6}}g(c)  + \tfrac{-2}{\sqrt{6}}b(s) \\
-    L(c, s) &= \tfrac{1}{\sqrt{3}}r(c)  + \tfrac{1}{\sqrt{3}}g(c)  + \tfrac{-1}{\sqrt{3}}b(s) \\
-    D(c, s) &= \tfrac{1}{\sqrt{3}}b(c)  + \tfrac{-1}{\sqrt{3}}r(s) + \tfrac{-1}{\sqrt{3}}g(s)
+    Light(c, s)  &= \tfrac{1}{\sqrt{3}}L(c)  + \tfrac{1}{\sqrt{3}}M(c)  + \tfrac{-1}{\sqrt{3}}S(s) \\
+    Dark(c, s)   &= \tfrac{1}{\sqrt{3}}S(c)  + \tfrac{-1}{\sqrt{3}}L(s) + \tfrac{-1}{\sqrt{3}}M(s) \\
+    Red(c, s)    &= \tfrac{1}{\sqrt{2}}L(c)  + \tfrac{-1}{\sqrt{2}}M(s) \\
+    Green(c, s)  &= \tfrac{-1}{\sqrt{2}}L(s) + \tfrac{1}{\sqrt{2}}M(c)  \\
+    Blue(c, s)   &= \tfrac{2}{\sqrt{6}}S(c)  + \tfrac{-1}{\sqrt{6}}L(s) + \tfrac{-1}{\sqrt{6}}M(s) \\
+    Yellow(c, s) &= \tfrac{1}{\sqrt{6}}L(c)  + \tfrac{1}{\sqrt{6}}M(c)  + \tfrac{-2}{\sqrt{6}}S(s)
 \end{flalign}
 
 In this work the team explored three means of modeling single-opponent centers and surrounds: gradient operator, Gabor filters, and Gaussian derivatives. It is important to note that each of these models of receptive fields were oriented, and thus the models of single-opponent neurons presenter were, at least weakly, oriented themselves
@@ -1217,11 +1217,9 @@ In this work the team explored three means of modeling single-opponent centers a
 \textbf{//TODO} \textit{Mention half-squaring ($Inorm$?)}
 \bigskip
 
-To model double-opponent cell responses, single-opponent cell responses are further convolved with a number of oriented filters. These convolutions are then summed over phase and opponent pairs to yield three spatially and chromatically opponent channels; L-D, R-G, and B-Y (as well as R-Cyan in their work).
+To model double-opponent cell responses, the output from single-opponent cells are further convolved with a number of oriented filters. These convolutions are then summed over phase and opponent pairs to yield three spatially and chromatically opponent channels; L-D, R-G, and B-Y (as well as R-Cyan in their work).
 
-The output of their model is a set of feature maps representing the response patterns of single-opponent and double-opponent neurons selective to specific orientations.
-
-\textbf{//TODO} \textit{Review significance of this work on ours (why do we care?)}
+The output of their model is a set of feature maps representing the response patterns of single-opponent and double-opponent neurons selective to specific orientations. Thus, this work is particularly influential to ours.
 
 
 \subsection*{Spitzer \& Barkan's Model of Color Induction \cite{spitzer:2005}}
@@ -1237,10 +1235,10 @@ Another important difference is that their implementation considered double-oppo
 In their model they defined four opponent color components; red, green, blue, and yellow:
 
 \begin{flalign}
-    R(c, s) &= r(c) - g(s) \\
-    G(c, s) &= g(c) - r(s) \\
-    B(c, s) &= b(c) - \frac{r(s) - g(s)}{2} \\
-    Y(c, s) &= \frac{r(c) - g(c)}{2} - b(s)
+    Red(c, s)    &= r(c) - g(s) \\
+    Green(c, s)  &= g(c) - r(s) \\
+    Blue(c, s)   &= b(c) - \frac{r(s) - g(s)}{2} \\
+    Yellow(c, s) &= \frac{r(c) - g(c)}{2} - b(s)
 \end{flalign}
 
 This definition of the opponent color process seems, to us, more biologically plausible than those presented by Itti \textit{et al.} \cite{itti:1998}, Yang \textit{et al.} \cite{yang:2013}, or Zhang \textit{et al.} \cite{zhang:2012}. Thusly, it will form the basis for our opponent color transformation, presented in the \textit{Method} section below.
@@ -1462,7 +1460,7 @@ To summarize, this first of two approaches to color description aims to be true 
 
 % FIGURE: Opponent Processing Diagram
 \afterpage{%
-\begin{figure}[ht]
+\begin{figure}
     \resizebox{\textwidth}{!}{%
     \begin{tikzpicture}[font=\huge, auto, >=latex']
     % RGB Input
@@ -1949,6 +1947,128 @@ To summarize, this first of two approaches to color description aims to be true 
     \end{subfigure}%
     \caption{Double-opponent receptive fields utilized in \textit{Opponent Processing of Receptive Fields}.}
     \label{fig:do-rf-inputs}
+\end{figure}
+\clearpage
+}
+
+% FIGURE: Oriented double-opponent receptive fields
+\afterpage{%
+\begin{figure}
+    \centering
+    \captionsetup{justification=centering}
+    % Horizontal Double-Opponent Receptive Fields
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.00, 1.43) ellipse   (0.90 and 0.38);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00, 0.58) ellipse   (0.90 and 0.38);
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 1.35) ellipse   (0.90 and 0.30)
+                 node[color=black, anchor=center] {$\scriptstyle L^+M^-$};
+            \filldraw[greensea,       fill=turquoise!80, very thick]( 0.00, 0.65) ellipse   (0.90 and 0.30)
+                 node[color=black, anchor=center] {$\scriptstyle M^+L^-$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
+        \end{tikzpicture}
+        \caption{\\ Vertical $R$ vs. $G$ double-opponent \\ cell receptive fields.}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.00, 1.43) ellipse   (0.90 and 0.38);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.00, 0.58) ellipse   (0.90 and 0.38);
+            \filldraw[greensea,       fill=turquoise!80, very thick]( 0.00, 1.35) ellipse   (0.90 and 0.30)
+                 node[color=black, anchor=center] {$\scriptstyle M^+L^-$};
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.00, 0.65) ellipse   (0.90 and 0.30)
+                 node[color=black, anchor=center] {$\scriptstyle L^+M^-$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
+        \end{tikzpicture}
+        \caption{\\ Vertical $G$ vs. $R$ double-opponent \\ cell receptive fields.}
+    \end{subfigure}%
+    \par \bigskip
+    % Diagonal Double-Opponent Receptive Fields #1
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \filldraw[greensea!80,    fill=turquoise!70, very thick, rotate=45]( 1.16, 0.70) ellipse   (0.38 and 0.90);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick, rotate=45]( 0.33, 0.70) ellipse   (0.38 and 0.90);
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick, rotate=45]( 1.08, 0.70) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-45] {$\scriptstyle L^+M^-$};
+            \filldraw[greensea,       fill=turquoise!80, very thick, rotate=45]( 0.40, 0.70) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-45] {$\scriptstyle M^+L^-$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
+        \end{tikzpicture}
+        \caption{\\ Diagonal $R$ vs. $G$ double-opponent \\ cell receptive fields.}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick, rotate=45]( 1.16, 0.70) ellipse   (0.38 and 0.90);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick, rotate=45]( 0.33, 0.70) ellipse   (0.38 and 0.90);
+            \filldraw[greensea,       fill=turquoise!80, very thick, rotate=45]( 1.08, 0.70) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-45] {$\scriptstyle M^+L^-$};
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick, rotate=45]( 0.40, 0.70) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-45] {$\scriptstyle L^+M^-$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
+        \end{tikzpicture}
+        \caption{\\ Diagonal $G$ vs. $R$ double-opponent \\ cell receptive fields.}
+    \end{subfigure}%
+    \par \bigskip
+    % Vertical Double-Opponent Receptive Fields
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \filldraw[greensea!80,    fill=turquoise!70, very thick]( 0.43, 1.00) ellipse   (0.38 and 0.90);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick](-0.43, 1.00) ellipse   (0.38 and 0.90);
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick]( 0.35, 1.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle L^+M^-$};
+            \filldraw[greensea,       fill=turquoise!80, very thick](-0.35, 1.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle M^+L^-$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
+        \end{tikzpicture}
+        \caption{\\ Horizontal $R$ vs. $G$ double-opponent \\ cell receptive fields.}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.43, 1.00) ellipse   (0.38 and 0.90);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick](-0.43, 1.00) ellipse   (0.38 and 0.90);
+            \filldraw[greensea,       fill=turquoise!80, very thick]( 0.35, 1.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle M^+L^-$};
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick](-0.35, 1.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle L^+M^-$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
+        \end{tikzpicture}
+        \caption{\\ Horizontal $G$ vs. $R$ double-opponent \\ cell receptive fields.}
+    \end{subfigure}%
+    \par \bigskip
+    % Diagonal Double-Opponent Receptive Fields #2
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \filldraw[color=alizarin!90,    fill=alizarin!70, very thick, rotate=45]( 0.70, 1.16) ellipse   (0.90 and 0.38);
+            \filldraw[greensea!80,    fill=turquoise!70,  very thick, rotate=45]( 0.70, 0.28) ellipse   (0.90 and 0.38);
+            \filldraw[greensea,       fill=turquoise!80,  very thick, rotate=45]( 0.70, 1.08) ellipse   (0.90 and 0.30)
+                 node[color=black, anchor=center, rotate=45] {$\scriptstyle M^+L^-$};
+            \filldraw[pomegranate!80, fill=alizarin!80, very thick, rotate=45]( 0.70, 0.36) ellipse   (0.90 and 0.30)
+                 node[color=black, anchor=center, rotate=45] {$\scriptstyle L^+M^-$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
+        \end{tikzpicture}
+        \caption{\\ Diagonal $R$ vs. $G$ double-opponent \\ cell receptive fields.}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \filldraw[greensea!80,    fill=turquoise!70, very thick, rotate=45]( 0.70, 1.16) ellipse   (0.90 and 0.38);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick, rotate=45]( 0.70, 0.28) ellipse   (0.90 and 0.38);
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick, rotate=45]( 0.70, 1.08) ellipse   (0.90 and 0.30)
+                 node[color=black, anchor=center, rotate=45] {$\scriptstyle L^+M^-$};
+            \filldraw[greensea,       fill=turquoise!80, very thick, rotate=45]( 0.70, 0.36) ellipse   (0.90 and 0.30)
+                 node[color=black, anchor=center, rotate=45] {$\scriptstyle M^+L^-$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 1.00) circle    (2pt);
+        \end{tikzpicture}
+        \caption{\\ Diagonal $R$ vs. $G$ double-opponent \\ cell receptive fields.}
+    \end{subfigure}%
+    \caption{Schematic of orientation selectivity in double-opponent receptive field configurations.}
+     \label{fig:do-rf-orientations}
 \end{figure}
 \clearpage
 }
