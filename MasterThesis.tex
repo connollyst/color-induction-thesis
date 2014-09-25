@@ -493,7 +493,7 @@ In order to frame our work, we wish to examine both the current understanding of
 
 Single-opponent cells are a class of neurons in the early visual system which respond best to large areas of color and/or luminance. Their behavior is achieved by constructing classical center-surround receptive fields. The center receptive field serves as the \textit{on} input, exciting the cell when presented with a particular color, while the surround receptive field serves as the \textit{off} input, inhibiting the cell when another color is present or exciting it when that color is removed. These center and surround receptive fields may involve very few retinal cones, or may span many degrees of vision \cite{lennie:1991}.
 
-In so called color preferring single-opponent cells, the cone inputs to the center and surround come from cones with different spectral response functions, e.g., L vs M. By arranging input from different cones into antagonistic  receptive fields, we get a neuron which is sensitive to a particular color, in opposition to another. In the human visual system, we recognize three axes of such color opponency: redness vs. greenness, blueness vs. yellowness, and lightness vs. darkness. To construct these concepts of color, neurons in the visual pathway contrast activity of the three types of cone cells: those sensitive to long (L) wavelength light, those sensitive to medium (M) wavelength light, and those sensitive to short (S) wavelength light. By contrasting relative activity with neighboring L, M, and S cones, the retina itself can already begin to construct signal resembling psychological concepts of `color'.
+In so called color preferring single-opponent cells, the cone inputs to the center and surround come from cones with different spectral response functions, e.g., L vs M. By arranging input from different cones into antagonistic  receptive fields, we get a neuron which is sensitive to a particular color, in opposition to another. In the human visual system, we recognize three axes of such color opponency: redness vs. greenness, blueness vs. yellowness, and lightness vs. darkness. To construct these concepts of color, neurons in the visual pathway contrast activity of the three types of cone cells: those sensitive to long (L) wavelength light, those sensitive to medium (M) wavelength light, and those sensitive to short (S) wavelength light. By contrasting relative activity with neighboring L, M, and S cones, the retina itself can already begin to construct information resembling psychological concepts of `color'.
 
 % FIGURE: Single-opponent receptive field schematics
 \begin{figure}[H]
@@ -610,12 +610,107 @@ As mentioned, one of the three axes of the opponent process theory is lightness 
 
 \subsection*{Double-Opponent Neurons}
 
-We have defined single-opponent cells to best respond to large areas of light/color. We now define double-opponent cells to respond only to the boundaries between such areas. In this regard, it is fair to think of double-opponent cells as biological `edge detectors'. However, there is disagreement about their precise definition in the literature. All parties involved in the discussion agree that the input to a double-opponent neuron is that of two single-opponent neurons itself. In this sense, the term ``double-opponent" can be thought of as indicating that the dimensionality of color opponency has been increased. However, another camp of researchers take the definition a step further and suggest that the two SO inputs are spatially offset. By this definition, the term ``double-opponent" can imply that the cell is sensitive to opponency in two \textit{different} dimensions: color and space.
+We have defined single-opponent cells to best respond to large areas of light/color. We now define double-opponent cells to respond only to the boundaries between such areas. In this regard, it is fair to think of double-opponent cells as biological `edge detectors'. However, there is disagreement about their precise definition in the literature. All parties involved in the discussion agree that the input to a double-opponent neuron is that of two single-opponent neurons. In this sense, the term ``double-opponent" can be thought of as indicating that the dimensionality of color opponency has been increased. However, another camp of researchers take the definition a step further and suggest that the two single-opponent inputs are spatially offset. By this definition, the term ``double-opponent" can imply that the cell is sensitive to opponency in two \textit{different} dimensions: color and space. Schematics of the receptive fields of these two interpretations are presented in Figure \ref{fig:do-rf-comparison}.
 
-The distinction is non-trivial as the response patterns differ significantly, and thus the interpretation of their role in vision differs. Truly, both types of cells may exist in the primate visual system. However, for the purpose of our work we only consider the latter definition: double-opponent cells' receptive fields are both chromatically and spatially antagonistic.
+The distinction is non-trivial as the response patterns differ significantly, and thus the interpretation of their role in vision differs. Truly, both types of cells may exist in the primate visual system. However, for the purpose of our work we only consider the latter definition: double-opponent cells' receptive fields are both chromatically and spatially antagonistic, depicted in Figure \ref{fig:do-rf-schematic}.
 
 % FIGURE: Double-opponent receptive field schematics
-\begin{figure}[H]
+\afterpage{%
+\begin{figure}
+    \centering
+    \captionsetup{justification=centering}
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, very thick] (-1.00,-0.00) .. controls (-0.30,-0.05) .. (-0.05,-2.00);
+            \draw[pomegranate!80, very thick] (-0.05,-2.00) .. controls ( 0.00,-2.10) .. ( 0.05,-2.00);
+            \draw[pomegranate!80, very thick] ( 1.00,-0.00) .. controls ( 0.30,-0.05) .. ( 0.05,-2.00)
+                 node[color=black, anchor=north west] {$L^-M^+$};
+            \draw[pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[pomegranate!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[pomegranate!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00)
+                 node[color=black, anchor=south west] {$L^+M^-$};
+            % OFF Surround
+            \draw[greensea,       very thick] (-1.50, 0.00) .. controls (-0.30, 0.20) .. (-0.05, 0.48);
+            \draw[greensea,       very thick] (-0.05, 0.48) .. controls ( 0.00, 0.49) .. ( 0.05, 0.48);
+            \draw[greensea,       very thick] ( 1.50, 0.00) .. controls ( 0.30, 0.20) .. ( 0.05, 0.48);
+            \draw[greensea,       very thick] (-1.50, 0.00) .. controls (-0.30,-0.20) .. (-0.05,-0.48);
+            \draw[greensea,       very thick] (-0.05,-0.48) .. controls ( 0.00,-0.49) .. ( 0.05,-0.48);
+            \draw[greensea,       very thick] ( 1.50, 0.00) .. controls ( 0.30,-0.20) .. ( 0.05,-0.48);
+            % Reference line & point
+            \draw                                                       (-1.50, 0.00) -- ( 1.50, 0.00);
+            \filldraw[color=black, fill=gray]                           ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                            (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$L^+$};
+            % OFF Surround
+            \draw[greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$M^-$};
+            % ON Center
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$M^+$};
+            % OFF Surround
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$L^-$};
+            % Reference line & point
+            \draw                                                       (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                           ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                            (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}}
+    \end{subfigure}%
+    \par \bigskip
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \filldraw[greensea,    fill=turquoise!80, very thick]( 0.00,  0.00) circle (1.00);
+            \filldraw[color=alizarin!90, fill=alizarin!70,  very thick]( 0.00,  0.00) circle (0.70)
+                 node[color=black,       anchor=south] {$\scriptstyle L^+M^-$}
+                 node[color=black,       anchor=north] {$\scriptstyle M^+L^+$};
+            \filldraw[color=black,       fill=gray]                    ( 0.00,  0.00) circle (1pt);
+        \end{tikzpicture}
+        \caption{\\ Circular concentric\\ double-opponent\\ receptive field}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                              (-2.00, 0.00) --        (2.00, 0.00);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.43, 0.00) ellipse   (0.38 and 0.90);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick](-0.43, 0.00) ellipse   (0.38 and 0.90);
+            \filldraw[greensea,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle M^+L^-$};
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle L^+M^-$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
+        \end{tikzpicture}
+        \caption{\\ Oriented off-center\\ double-opponent\\ receptive field}
+    \end{subfigure}%
+    \caption{Comparison of the two different interpretations of double-opponent neuron receptive fields.}
+    \label{fig:do-rf-comparison}
+\end{figure}
+
+\bigskip
+
+\begin{figure}
     \centering
     \captionsetup{justification=centering}
     % 3 SUBFIGURES: Cross sections of double-opponent receptive fields
@@ -753,7 +848,8 @@ The distinction is non-trivial as the response patterns differ significantly, an
     \caption{Examples of possible double-opponent receptive field configurations, many others could be designed. All function to describe color properties of borders, though their response patterns to similar stimuli vary slightly.}
     \label{fig:do-rf-schematic}
 \end{figure}
-
+\clearpage
+}
 
 \subsubsection*{Orientation Selectivity}
 

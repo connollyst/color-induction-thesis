@@ -21,12 +21,100 @@
 
 \begin{document}
 
-\begin{figure} \label{fig:diagram-full}
-    \resizebox{\textwidth}{!}{%
-    \begin{tikzpicture}
-        
-    \end{tikzpicture}
-    }
+\begin{figure}
+    \centering
+    \captionsetup{justification=centering}
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, very thick] (-1.00,-0.00) .. controls (-0.30,-0.05) .. (-0.05,-2.00);
+            \draw[pomegranate!80, very thick] (-0.05,-2.00) .. controls ( 0.00,-2.10) .. ( 0.05,-2.00);
+            \draw[pomegranate!80, very thick] ( 1.00,-0.00) .. controls ( 0.30,-0.05) .. ( 0.05,-2.00)
+                 node[color=black, anchor=north west] {$L^-M^+$};
+            \draw[pomegranate!80, very thick] (-1.00, 0.00) .. controls (-0.30, 0.05) .. (-0.05, 2.00);
+            \draw[pomegranate!80, very thick] (-0.05, 2.00) .. controls ( 0.00, 2.10) .. ( 0.05, 2.00);
+            \draw[pomegranate!80, very thick] ( 1.00, 0.00) .. controls ( 0.30, 0.05) .. ( 0.05, 2.00)
+                 node[color=black, anchor=south west] {$L^+M^-$};
+            % OFF Surround
+            \draw[greensea,       very thick] (-1.50, 0.00) .. controls (-0.30, 0.20) .. (-0.05, 0.48);
+            \draw[greensea,       very thick] (-0.05, 0.48) .. controls ( 0.00, 0.49) .. ( 0.05, 0.48);
+            \draw[greensea,       very thick] ( 1.50, 0.00) .. controls ( 0.30, 0.20) .. ( 0.05, 0.48);
+            \draw[greensea,       very thick] (-1.50, 0.00) .. controls (-0.30,-0.20) .. (-0.05,-0.48);
+            \draw[greensea,       very thick] (-0.05,-0.48) .. controls ( 0.00,-0.49) .. ( 0.05,-0.48);
+            \draw[greensea,       very thick] ( 1.50, 0.00) .. controls ( 0.30,-0.20) .. ( 0.05,-0.48);
+            % Reference line & point
+            \draw                                                             (-1.50, 0.00) -- ( 1.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
+            % ON Center
+            \draw[pomegranate!80, very thick] (-2.00, 0.00) .. controls (-1.30, 0.05) .. (-1.05, 2.00);
+            \draw[pomegranate!80, very thick] (-1.05, 2.00) .. controls (-1.00, 2.10) .. (-0.95, 2.00);
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls (-0.70, 0.05) .. (-0.95, 2.00)
+                 node[color=black, anchor=south west] {$L^+$};
+            % OFF Surround
+            \draw[greensea,       very thick] (-3.00, 0.00) .. controls (-1.30,-0.05) .. (-1.05,-0.48);
+            \draw[greensea,       very thick] (-1.05,-0.48) .. controls (-1.00,-0.49) .. (-0.95,-0.48);
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls (-0.70,-0.05) .. (-0.95,-0.48)
+                 node[color=black, anchor=north west] {$M^-$};
+            % ON Center
+            \draw[greensea,       very thick] ( 0.00, 0.00) .. controls ( 0.70, 0.05) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 1.05, 0.48) .. controls ( 1.00, 0.49) .. ( 0.95, 0.48);
+            \draw[greensea,       very thick] ( 3.00, 0.00) .. controls ( 1.30, 0.05) .. ( 1.05, 0.48)
+                 node[color=black, anchor=south west] {$M^+$};
+            % OFF Surround
+            \draw[pomegranate!80, very thick] ( 0.00, 0.00) .. controls ( 0.70,-0.05) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 1.05,-2.00) .. controls ( 1.00,-2.10) .. ( 0.95,-2.00);
+            \draw[pomegranate!80, very thick] ( 2.00, 0.00) .. controls ( 1.30,-0.05) .. ( 1.05,-2.00)
+                 node[color=black, anchor=north west] {$L^-$};
+            % Reference line & point
+            \draw                                                             (-2.50, 0.00) -- ( 2.50, 0.00);
+            \filldraw[color=black, fill=gray]                                 ( 0.00, 0.00) circle (2pt);
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                                  (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}}
+    \end{subfigure}%
+    \par \bigskip
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
+            \filldraw[greensea,    fill=turquoise!80, very thick]( 0.00,  0.00) circle (1.00);
+            \filldraw[color=alizarin!90, fill=alizarin!70,  very thick]( 0.00,  0.00) circle (0.70)
+                 node[color=black,       anchor=south] {$\scriptstyle L^+M^-$}
+                 node[color=black,       anchor=north] {$\scriptstyle M^+L^+$};
+            \filldraw[color=black,       fill=gray]                    ( 0.00,  0.00) circle (1pt);
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                           (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}}
+        \caption{\\ Circular concentric\\ double-opponent\\ receptive field}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                              (-2.00, 0.00) --        (2.00, 0.00);
+            \filldraw[color=alizarin!90,    fill=alizarin!70,  very thick]( 0.43, 0.00) ellipse   (0.38 and 0.90);
+            \filldraw[greensea!80,    fill=turquoise!70, very thick](-0.43, 0.00) ellipse   (0.38 and 0.90);
+            \filldraw[greensea,       fill=turquoise!80, very thick]( 0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle M^+L^-$};
+            \filldraw[pomegranate!80, fill=alizarin!80,  very thick](-0.35, 0.00) ellipse   (0.30 and 0.90)
+                 node[color=black, anchor=center, rotate=-90] {$\scriptstyle L^+M^-$};
+            \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
+            % Frame to ensure alignment:
+            \draw[opacity=0]                                              (-3.00, 2.50) rectangle (3.00, -2.50);
+        \end{tikzpicture}}
+        \caption{\\ Oriented off-center\\ double-opponent\\ receptive field}
+    \end{subfigure}%
 \end{figure}
 
 
