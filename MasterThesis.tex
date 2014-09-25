@@ -1174,7 +1174,7 @@ Single-opponent cells' responses are modeled by first convolving the RGB input w
 
 In this work the team explored three means of modeling single-opponent centers and surrounds: gradient operator, Gabor filters, and Gaussian derivatives. It is important to note that each of these models of receptive fields were oriented, and thus the models of single-opponent neurons presented were, at least weakly, oriented.
 
-To model double-opponent cell responses, the output from single-opponent cells are further convolved with a number of oriented filters. These convolutions are then summed over phase and opponent pairs to yield three spatially and chromatically opponent channels; L-D, R-G, and B-Y (as well as R-Cyan in their work).
+To model double-opponent cell responses, the output from single-opponent cells are further convolved with a number of oriented filters. These convolutions are then summed over phase and opponent pairs to yield three spatially and chromatically opponent channels; Light-Dark, Red-Green, and Blue-Yellow (as well as Red-Cyan in their work).
 
 The output of their model is a set of feature maps representing the response patterns of single-opponent and double-opponent neurons selective to specific orientations. Thus, this work is particularly influential to ours.
 
@@ -1187,10 +1187,10 @@ Another important difference is that their implementation considered double-oppo
 
 In their model they defined four opponent color components; red, green, blue, and yellow:
 \begin{flalign}
-    Red(c, s)    &= r(c) - g(s) \\
-    Green(c, s)  &= g(c) - r(s) \\
-    Blue(c, s)   &= b(c) - \frac{r(s) - g(s)}{2} \\
-    Yellow(c, s) &= \frac{r(c) - g(c)}{2} - b(s)
+    Red(c, s)    &= L(c) - M(s) \\
+    Green(c, s)  &= M(c) - L(s) \\
+    Blue(c, s)   &= S(c) - \frac{L(s) - M(s)}{2} \\
+    Yellow(c, s) &= \frac{L(c) - M(c)}{2} - S(s)
 \end{flalign}
 
 This definition of the opponent color process seems, to us, more biologically plausible than those presented by Itti \textit{et al.} \cite{itti:1998}, Yang \textit{et al.} \cite{yang:2013}, or Zhang \textit{et al.} \cite{zhang:2012}. Thusly, it will form the basis for our opponent color transformation, presented in the \textit{Method} section below.
