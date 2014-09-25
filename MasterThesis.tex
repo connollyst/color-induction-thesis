@@ -1098,7 +1098,7 @@ By defining neuronal connectivity in this manner, patterns of neurons sensitive 
 
 \subsection*{Penacchio, Otazu, \& Dempere-Marco's Neurodynamical Model for Brightness Induction \cite{penacchio:2013}}
 
-Li's work laid the foundation for Penacchio \textit{et al.}, who extended and generalized the model to a flexible framework. Most importantly, they dealt with the question which Li had previously not: what is meaningful input to the neurodynamical model? In Li's model, neurons responded to oriented 'bars' which were, it is assumed, provided to the retinotopic neurodynamical model directly. Penacchio \textit{et al.} utilized a discrete wavelet transform (DWT) to decompose real images into their oriented multiresolution components, which then served as the input to the Li's model.
+Li's work laid the foundation for Penacchio \textit{et al.}, who extended and generalized the model to a flexible framework. Most importantly, they dealt with the question which Li had previously not: what is meaningful input to the neurodynamical model? In Li's model, neurons responded to oriented 'bars' which were, it is assumed, provided to the retinotopic neurodynamical model directly. Penacchio \textit{et al.} utilized a discrete wavelet transform (DWT) \cite{mallat:1989} to decompose real images into their oriented multiresolution components, which then served as the input to the Li's model.
 
 In the context of the previously described neurobiology, this multiresolution decomposition, when applied to grayscale images, could be interpreted as modeling the response patterns of achromatic double-opponent cells. Their findings were positive as the neurodynamical model modeled the interactions between these cells, increasing saliency and simulating brightness induction (BI) phenomena at high contrast borders.
 
@@ -2924,6 +2924,16 @@ We propose three possible causes for these inconclusive results: 1) the color de
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{1}
 
+\bibitem{cavanaugh:2002}
+    Cavanaugh, J., Bair, W., and Movshon, A.
+    \emph{Nature and Interaction of Signals From the Receptive Field Center and Surround in Macaque V1 Neurons}.
+    Journal of Neurophysiology 88 (2002): 2530-2546.
+
+\bibitem{conway:2002}
+    Conway, B., Hubel, D., and Livingstone, M.
+    \emph{Color Contrast in Macaque V1}.
+    Cerebral Cortex (2002): 915-925.
+    
 \bibitem{conway:2010}
     Conway, B. R., S. Chatterjee, G. D. Field, G. D. Horwitz, E. N. Johnson, K. Koida, and K. Mancuso.
     \emph{Advances in Color Science: From Retina to Behavior}.
@@ -2965,7 +2975,6 @@ We propose three possible causes for these inconclusive results: 1) the color de
     \emph{A saliency map in primary visual cortex}.
     TRENDS in Cognitive Sciences 6.1 (2002): 9-16
     
-
 \bibitem{otazu:2010}
     Otazu, X., Parraga, C., and Vanrell, M.
     \emph{Toward a Unified Chromatic Induction Model}.
@@ -2987,7 +2996,7 @@ We propose three possible causes for these inconclusive results: 1) the color de
     Biological Cybernetics 107.1 (2013): 39-47.
 
 \bibitem{chalupa:vol2}
-    Robert, S., Hawken, M., and Johnson, E.
+    Shapley, R., Hawken, M., and Johnson, E.
     \emph{Color in the Primary Visual Cortex}.
     The Visual Neurosciences. Vol. 2.
     Cambridge, Mass.: MIT, (2004): 568-86.
@@ -2997,8 +3006,13 @@ We propose three possible causes for these inconclusive results: 1) the color de
     \emph{Color Opponent Neurons in V1: A Review and Model Reconciling Results from Imaging and Single-Unit Recording}.
     Journal of Vision 2.6 (2002): 480-492.
 
+\bibitem{shapley:2002}
+    Shapley, R. and Hawken M.
+    \emph{Neural mechanisms for color perception in the primary visual cortex}.
+    Current Opinion in Neurobiology 12 (2002): 426-432.
+
 \bibitem{shapley:2011}
-    Shapley R. and Hawken M.
+    Shapley, R. and Hawken M.
     \emph{Color in the Cortex: Single- and Double-opponent Cells}.
     Vision Research 51.7 (2011): 701-17.
 
@@ -3006,14 +3020,19 @@ We propose three possible causes for these inconclusive results: 1) the color de
     Sincich, Lawrence C., and Jonathan C. Horton.
     \emph{THE CIRCUITRY OF V1 AND V2: Integration of Color, Form, and Motion}.
     Annual Review of Neuroscience 28.1 (2005): 303-26.
-    
+
+\bibitem{solomon:1993}
+    Solomon, J., Sperling, G., and Chubb, C.
+    \emph{The Lateral Inhibition of Perceived Contrast is Indifferent to On-Center/Off-Center Segregation, but Specific to Orientation}.
+    Vision Research 33.18 (1993): 2671-2683.
+        
 \bibitem{solomon:2007}
-    Solomon, Samuel G., and Peter Lennie.
+    Solomon, Samuel, G., and Lennie, P.
     \emph{The Machinery of Colour Vision}.
     Nature Reviews Neuroscience 8.4 (2007): 276-86.
 
 \bibitem{spitzer:2005}
-    Hedva Spitzer, Yuval Barkan.
+    Spitzer, H., Barkan, Y.
     \emph{Computational adaptation model and its predictions for color induction of first and second orders}.
     Vision Research 45.27 (2005). 3323–3342.
 
@@ -3023,7 +3042,7 @@ We propose three possible causes for these inconclusive results: 1) the color de
     Computer Vision and Pattern Recognition (CVPR), (2013), pp 2810-2817.
 
 \bibitem{zhang:2012}
-    Jun Zhang, Youssef Barhomi, and Thomas Serre.
+    Zhang, J., Barhomi, Y., and Serre, T.
     \emph{A new biologically inspired color image descriptor}.
     Computer Vision – ECCV 2012
     Lecture Notes in Computer Science Volume 7576, (2012): 312-324.
