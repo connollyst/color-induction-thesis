@@ -314,7 +314,7 @@
 % http://www.ctan.org/tex-archive/macros/latex/contrib/dblfloatfix/
 
 
-
+\renewcommand{\figurename}{Figure}
 
 %\ifCLASSOPTIONcaptionsoff
 %  \usepackage[nomarkers]{endfloat}
@@ -454,20 +454,20 @@ primary visual cortex, striate cortex, V1, receptive field, single-opponent, dou
 
 \section{Introduction}
 
-\IEEEPARstart{P}{erception} of color is defined not just by the physical properties of the object, but also the context in which it is viewed. Taking advantage of this, we can create a wealth of optical illusions in which two physically identical stimuli are made to appear as different colors, or two physically different stimuli are made to appear the same, simply by changing the spatial or temporal context \cite{conway:2010}. Consider Fig. \ref{fig:example}, for example. Here we see that two physically identical turquoise rings can be perceived as very different, depending solely on the context in which they are viewed. Two interesting questions arise: why has our color vision evolved to see things 'not as they are', and what are the underlying mechanisms at play?
+\IEEEPARstart{P}{erception} of color is defined not just by the physical properties of the object, but also the context in which it is viewed. Taking advantage of this, we can create a wealth of optical illusions in which two physically identical stimuli are made to appear as different colors, or two physically different stimuli are made to appear the same, simply by changing the spatial or temporal context \cite{conway:2010}. Consider Figure \ref{fig:example}, for example. Here we see that two physically identical turquoise rings can be perceived as very different, depending solely on the context in which they are viewed. Two interesting questions arise: why has our color vision evolved to see things 'not as they are', and what are the underlying mechanisms at play?
 
 \begin{figure}[H]
     \center
     \includegraphics[width=0.45\textwidth]{test-circle-a-reference}
-    \caption{Example of contextual influences on the perception of color. The colors of the all rings on the left are physically identical to those on the right. The order of the rings differs, however. On the left, the test ring borders two yellow rings, while on the right the test ring borders two 'red' rings. This change in context is what defines the perceived difference.}
+    \caption{Example of contextual influences on the perception of color. The colors of the all rings on the left are physically identical to those on the right. The order of the rings differs, however. On the left, the test ring borders two yellow rings, while on the right the test ring borders two red rings. This change in context is what defines the perceived difference.}
     \label{fig:example}
 \end{figure}
 
 \newpage
 
-Neurophysiological research in the past decade or so has witnessed a growing confidence in the community that these phenomena begin to arise as early in primate vision as the primary visual cortex (V1) \cite{conway:2010, johnson:2008, schluppeck:2002, sincich:2005, shapley:2011, solomon:2007}. It is believed that the processing of color and form in V1 are the beginnings of, amongst other effects, color constancy: the ability to perceive an object's color despite ambient luminance changes. This phenomenon has clear evolutionary benefits, such as the ability to recognize the color of ripe fruit even though the color of daylight might be changing from blue to red as the sun sets. Truly, as the ambient light changes, so to does the spectral reflectance of the fruit. Still, its color appears perceptually consistent. It has also been suggested that the processing of color and context in V1 may assist in defining object saliency \cite{li:2002}: the pre-attentive 'importance' of an object.
+Neurophysiological research in the past decade or so has witnessed a growing confidence in the community that these phenomena begin to arise as early in primate vision processing as the primary visual cortex (V1) \cite{conway:2010, johnson:2008, schluppeck:2002, sincich:2005, shapley:2011, solomon:2007}. It is believed that the processing of color and form in V1 are the beginnings of, amongst other effects, color constancy: the ability to perceive an object's color despite ambient luminance changes. This phenomenon has clear evolutionary benefits, such as the ability to recognize the color of ripe fruit even though the color of daylight might be changing from blue to red as the sun sets. Truly, as the ambient light changes, so to does the spectral reflectance of the fruit. Still, its color appears perceptually consistent. It has also been suggested that the processing of color and context in V1 may assist in defining object saliency \cite{li:2002}: the pre-attentive 'importance' of an object.
 
-With respect to the underlying mechanisms, many have proposed that it is the \textit{boundaries} between colored regions which drives the processing of color in V1 \cite{conway:2010, johnson:2008, schluppeck:2002, sincich:2005, shapley:2011, solomon:2007} and, as a consequence, these phenomena. This can be observed in Fig. \ref{fig:example} where it is the border between the turquoise rings and the neighboring rings that determines if they are perceived as green or blue. Specifically, to explain this influence of form on color processing in V1, the literature proposes two broad classifications of neurons: single-opponent cells \& double-opponent cells \cite{johnson:2008}.
+With respect to the underlying mechanisms, many have proposed that it is the \textit{boundaries} between colored regions which drive the processing of color in V1 \cite{conway:2010, johnson:2008, schluppeck:2002, sincich:2005, shapley:2011, solomon:2007} and, as a consequence, these phenomena. This can be observed in Figure \ref{fig:example} where it is the border between the turquoise rings and their neighboring rings that determines if they, the turquoise rings, are perceived as green or blue. Specifically, to explain this influence of form on color processing in V1, the literature proposes two broad classifications of neurons: single-opponent cells \& double-opponent cells \cite{johnson:2008}.
 
 Opponency, in neurobiology, refers to antagonistic inputs of information: one source of input excites the neuron, while another inhibits it. These two antagonistic components are commonly referred to as the \textit{on} and \textit{off} inputs to a neuron. One can think of these two inputs as being what the cell 'is looking for', \textit{on}, and what the cell 'is not looking for', \textit{off}. Intuitively, stimulation from the \textit{on} input excites the neuron, while stimulation from the \textit{off} input inhibits it. Perhaps less intuitively, removal of stimulation from the \textit{off} input also excites the neuron. This behavior is logical when you consider that the two antagonistic inputs typically represent mutually exclusive features. In this way, removal of the negative stimulus often means much the same as presence of a positive stimulus and thus it contributes to excitation of the neuron. Of course, if equal stimuli are provided from both the \textit{on} and \textit{off} inputs, excitation is cancelled out by inhibition and the neuron does not fire. Lastly, recognize that any one neuron usually receives antagonistic input from, in fact, many other neurons. The aggregate stimuli from these excitatory and inhibitory inputs determines if the cell fires.
 
@@ -493,7 +493,7 @@ In order to frame our work, we wish to examine both the current understanding of
 
 Single-opponent cells are a class of neurons in the early visual system which respond best to large areas of color and/or luminance. Their behavior is achieved by constructing classical center-surround receptive fields. The center receptive field serves as the \textit{on} input, exciting the cell when presented with a particular color, while the surround receptive field serves as the \textit{off} input, inhibiting the cell when another color is present or exciting it when that color is removed. These center and surround receptive fields may involve very few retinal cones, or may span many degrees of vision \cite{lennie:1991}.
 
-In so called color preferring single-opponent cells, the cone inputs to the center and surround come from cones with different spectral response functions, e.g.: L vs M. By arranging input from different cones into antagonistic  receptive fields, we get a neuron which is sensitive to a particular color, in opposition to another. In the human visual system, we recognize three axes of such color opponency: redness vs. greenness, blueness vs. yellowness, and lightness vs. darkness. To construct these concepts of color, neurons in the visual pathway contrast activity of the three types of cone cells: those sensitive to long (L) wavelength light, those sensitive to medium (M) wavelength light, and those sensitive to short (S) wavelength light. By contrasting relative activity with neighboring L, M, and S cones, the retina itself can already begin to construct signal resembling psychological concepts of 'color'.
+In so called color preferring single-opponent cells, the cone inputs to the center and surround come from cones with different spectral response functions, e.g., L vs M. By arranging input from different cones into antagonistic  receptive fields, we get a neuron which is sensitive to a particular color, in opposition to another. In the human visual system, we recognize three axes of such color opponency: redness vs. greenness, blueness vs. yellowness, and lightness vs. darkness. To construct these concepts of color, neurons in the visual pathway contrast activity of the three types of cone cells: those sensitive to long (L) wavelength light, those sensitive to medium (M) wavelength light, and those sensitive to short (S) wavelength light. By contrasting relative activity with neighboring L, M, and S cones, the retina itself can already begin to construct signal resembling psychological concepts of 'color'.
 
 % FIGURE: Single-opponent receptive field schematics
 \begin{figure}[H]
@@ -605,14 +605,14 @@ In so called color preferring single-opponent cells, the cone inputs to the cent
     \label{fig:so-rf-schematic}
 \end{figure}
 
-As mentioned, one of the three axes of the opponent process theory is lightness vs. darkness. This is achieved in single-opponent cells by providing opponent inputs into the \textit{on} center and the \textit{off} surround from the same cones. By including input of L, M, and/or S cones into both the center and surround, the cells becomes 'color blind' and instead only respond to changes in luminance. Sometimes incorrectly labeled as 'non-opponent', these neurons are, indeed, single-opponent cells: achromatic single-opponent cells.
+As mentioned, one of the three axes of the opponent process theory is lightness vs. darkness. This is achieved in single-opponent cells by providing opponent inputs into the \textit{on} center and the \textit{off} surround from the same cones. By including input of L, M, and/or S cones into both the center and surround, the cells becomes 'color blind' and instead only respond to changes in luminance \cite{chalupa:vol2}. Sometimes incorrectly labeled as 'non-opponent', these neurons are indeed single-opponent cells, specifically: achromatic single-opponent cells.
 
 
 \subsection*{Double-Opponent Neurons}
 
-We have defined single-opponent cells to best respond to large areas of light/color. We now define double-opponent cells to respond only to the boundaries between such areas. In this regard, it is fair to think of double-opponent cells as biological 'edge detectors'. However, the precise definition of these cells is a topic of confusion in the field of neurobiology. All involved seem to agree that the input to the neuron is that of two single-opponent neurons itself. In this sense, the term "double-opponent" can be thought of as indicating that the dimensionality of color opponency has been doubled. However, another camp of researchers take the definition a step further and suggest that the two SO inputs are spatially offset. By this definition, the term "double-opponent" is thought to indicate that the cell is sensitive to opponency in two \textit{different} dimensions: color and space.
+We have defined single-opponent cells to best respond to large areas of light/color. We now define double-opponent cells to respond only to the boundaries between such areas. In this regard, it is fair to think of double-opponent cells as biological 'edge detectors'. However, there is disagreement about their precise definition in the literature. All parties involved in the discussion agree that the input to a double-opponent neuron is that of two single-opponent neurons itself. In this sense, the term "double-opponent" can be thought of as indicating that the dimensionality of color opponency has been increased. However, another camp of researchers take the definition a step further and suggest that the two SO inputs are spatially offset. By this definition, the term "double-opponent" can imply that the cell is sensitive to opponency in two \textit{different} dimensions: color and space.
 
-The distinction is non-trivial as the response patterns differ significantly, and thus the interpretation of their role in vision differs. Truly, both types of cells may, and likely do exist in the primate visual system. However, for the purpose of our work we only consider the latter definition: double-opponent cells' receptive fields are both chromatically and spatially antagonistic.
+The distinction is non-trivial as the response patterns differ significantly, and thus the interpretation of their role in vision differs. Truly, both types of cells may exist in the primate visual system. However, for the purpose of our work we only consider the latter definition: double-opponent cells' receptive fields are both chromatically and spatially antagonistic.
 
 % FIGURE: Double-opponent receptive field schematics
 \begin{figure}[H]
@@ -750,16 +750,16 @@ The distinction is non-trivial as the response patterns differ significantly, an
         \caption{Center/ \\ surround \\ double-opponent \\ receptive field}
         \label{fig:do-rf-schematic-classic}
     \end{subfigure}%
-    \caption{Examples of various possible double-opponent receptive field configurations, many others could be designed. All function to describe color properties of borders, though their response patterns to similar stimuli vary slightly.}
+    \caption{Examples of possible double-opponent receptive field configurations, many others could be designed. All function to describe color properties of borders, though their response patterns to similar stimuli vary slightly.}
     \label{fig:do-rf-schematic}
 \end{figure}
 
 
 \subsubsection*{Orientation Selectivity}
 
-Research shows that cells identified as double-opponent tend to be orientation selective \cite{johnson:2008, sincich:2005, schluppeck:2002, chalupa:vol2}. That is, they respond most strongly when stimulated by a border of particular orientation, less so with variation from that preferred orientation, and weekly, if at all, to borders orthogonal to the preferred orientation. This is intuitive given the organization of the receptive field as previously defined. By arranging the components of the receptive field to be spatially antagonistic, there will be one orientation of border which best separates the two components, and another orientation, precisely orthogonal, which does not separate the two components at all. This can be easily visualized, as in Fig. \ref{fig:do-orient-h} and Fig. \ref{fig:do-orient-v}.
+Research shows that cells identified as double-opponent tend to be orientation selective \cite{johnson:2008, sincich:2005, schluppeck:2002, chalupa:vol2}. That is, they respond most strongly when stimulated by a border of particular orientation, less so with variation from that preferred orientation, and weakly, if at all, to borders orthogonal to the preferred orientation. This is intuitive given the organization of the receptive field as previously defined. By arranging the components of the receptive field to be spatially antagonistic, there will be one orientation of edge which best separates the two components, and another orientation, precisely orthogonal, which does not separate the two components at all. This can be easily visualized, as in Figure \ref{fig:do-orient-h} and Figure \ref{fig:do-orient-v}.
 
-It's worth noting that a single-opponent neuron can also be selective to specific orientations. These cells have been identified in biology, though their relative abundance appears minimal. To achieve orientation selectivity, the center and/or surround receptive fields simply need be made non-circular. However, without the balanced asymmetric \textit{on} and \textit{off} receptive fields from each opponent cone(s), an orientation specific single-opponent cell could never be as selective as a double-opponent cell.
+It's worth noting that a single-opponent neuron can also be selective to specific orientations. These cells have been identified in biology, though their relative abundance appears minimal \cite{johnson:2008}. To achieve orientation selectivity, the center and/or surround receptive fields simply need be non-circular. However, without the balanced asymmetric \textit{on} and \textit{off} receptive fields from each opponent cone(s), an orientation specific concentric single-opponent cell could never be as selective as a double-opponent cell.
 
 % FIGURE: horizontal red/green double-opponent cell on horizontal red/green border
 \afterpage{%
@@ -781,7 +781,7 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
         }
-        \caption{Weak Response}
+        \caption{No Response}
     \end{subfigure}%
     \begin{subfigure}{0.15\textwidth}
         \centering
@@ -799,7 +799,7 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
         }
-        \caption{Stong Response}
+        \caption{Strong Response}
     \end{subfigure}%
     \begin{subfigure}{0.15\textwidth}
         \centering
@@ -817,7 +817,7 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
         }
-        \caption{Weak Response}
+        \caption{No Response}
     \end{subfigure}%
     \par \bigskip
     \begin{subfigure}{0.15\textwidth}
@@ -836,7 +836,7 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
         }
-        \caption{Weak Response}
+        \caption{No Response}
     \end{subfigure}%
     \begin{subfigure}{0.15\textwidth}
         \centering
@@ -872,7 +872,7 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
         }
-        \caption{Weak Response}
+        \caption{No Response}
     \end{subfigure}
     \caption{A double opponent cell selective to horizontally oriented borders with red above and green below; only responsive to that particular stimulus. In Figure (b), the neuron is presented with its ideal stimulus: its $L^+$ and $M^+$ receptive fields are fully activated while its $L^-$ and $M^-$ receptive fields are completely unactivated. Figure (e) presents the neuron with the exact opposite stimulus, neither its $L^+$ nor $M^+$ receptive fields are activate at all, and both its $L^-$ and $M^-$ receptive fields are fully activated, ensuring no response possible from the cell. While its $L^+$ receptive field might be strongly stimulated in (a) and (f), it's $L^-$ receptive field cancels it out. Similarly, in (c) and (d) its $M^+$ receptive field is stimulated but cancelled out by activity in its $M^-$ receptive field.}
     \label{fig:do-orient-h}
@@ -896,7 +896,7 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
         }
-        \caption{Weak Response}
+        \caption{No Response}
     \end{subfigure}%
     \begin{subfigure}{0.15\textwidth}
         \centering
@@ -914,7 +914,7 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
         }
-        \caption{Weak Response}
+        \caption{No Response}
     \end{subfigure}%
     \begin{subfigure}{0.15\textwidth}
         \centering
@@ -932,7 +932,7 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
         }
-        \caption{Weak Response}
+        \caption{No Response}
     \end{subfigure}%
     \par \bigskip
     \begin{subfigure}{0.15\textwidth}
@@ -951,7 +951,7 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
         }
-        \caption{Weak Response}
+        \caption{No Response}
     \end{subfigure}%
     \begin{subfigure}{0.15\textwidth}
         \centering
@@ -969,7 +969,7 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
         }
-        \caption{Weak Response}
+        \caption{No Response}
     \end{subfigure}%
     \begin{subfigure}{0.15\textwidth}
         \centering
@@ -987,7 +987,7 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
             \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
         }
-        \caption{Weak Response}
+        \caption{No Response}
     \end{subfigure}
     \caption{A double opponent cell selective to vertically oriented borders with red to the right and green on the left; completely unresponsive to a horizontal border. While its $L^+$ receptive field might be strongly stimulated in (a) and (f), it's $L^-$ receptive field cancels it out. Similarly, in (c) and (d) its $M^+$ receptive field is stimulated but cancelled out by activity in its $M^-$ receptive field. In (b) and (e) both of its $L^+$ and $M^+$ receptive fields are moderately activated, but again, cancelled out by activation in its $L^-$ and $M^-$ receptive fields, respectively.}
     \label{fig:do-orient-v}
@@ -997,7 +997,7 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
 
 \subsubsection*{Spatial Frequency Selectivity}
 
-Another important feature of double-opponent cells is that they are inherently sensitive to borders of specific size, or scale. Technically, we refer to such preference of 'scale' as a cell's spatial frequency selectivity. Each double-opponent neuron will be selective to a particular spatial frequency and excited less so by stimuli of spatial frequency deviating from this preference. Again, this is quite intuitively a product of the design of the neuron's receptive field and easily visualized, as in Fig. \ref{fig:do-scale}.
+Another important feature of double-opponent cells is that they are inherently selective to borders of specific 'size', or 'scale'. Technically, we refer to such preference of 'scale' as a cell's spatial frequency selectivity. Each double-opponent neuron will be selective to a particular spatial frequency and excited less so by stimuli of spatial frequency deviating from this preference. Again, this is quite intuitively a product of the design of the neuron's receptive field and easily visualized, as in Figure \ref{fig:do-scale}.
 
 % FIGURE: horizontal red/green double-opponent cell on horizontal red/green border of different spatial frequencies
 \begin{figure}[H]
@@ -1038,7 +1038,7 @@ Another important feature of double-opponent cells is that they are inherently s
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Maximum Response}
+        \caption{String Response}
     \end{subfigure}%
     \begin{subfigure}{0.2\textwidth}
         \centering
@@ -1066,28 +1066,27 @@ Another important feature of double-opponent cells is that they are inherently s
             \filldraw[color=black,          fill=gray]                    ( 0.00, 0.00) circle    (2pt);
         \draw (current bounding box.north east) rectangle (current bounding box.south west);
         \end{tikzpicture}
-        \caption{Maximum Response}
+        \caption{Weak Response}
     \end{subfigure}%
-    \caption{A double opponent cell tuned to a particular spatial frequency. Either a (b) lower or a (c) higher spatial frequency than preferred lowers the response of the cell.} \label{fig:do-scale}
+    \caption{A double opponent cell tuned to a particular spatial frequency. Either (b) a lower or (c) a higher spatial frequency than preferred lowers the response of the cell.} \label{fig:do-scale}
 \end{figure}
 
-As with single-opponent cells, one of the axes of the opponent process theory is 'lightness' vs 'darkness'. While we frequently discuss opponency as being a thing of 'color', we find double-opponent cells which are specifically sensitive to luminance borders.
-Such achromatic sensitivity is easily achieved by balancing cone inputs into the neuron's antagonistic receptive fields, as in single-opponent cells. It behaves just as the previously described double-opponent cells, with specific orientation and spatial frequency selectivity, but responds best to luminance borders rather than chromatic borders. For more details on achromatic receptive fields, please refer back to the section on \textit{Achromatic Single-Opponent Neurons}.
-It is important to reiterate here that the \textit{on} and \textit{off} inputs to light and dark sensitive single-opponent cells are balanced, whereas their chromatic sensitive counterparts are imbalanced in inputs. This has the implication at the double-opponent level that light and dark double-opponent cells are redundant, as can be seen in Figures \ref{fig:do-rf-inputs-light} and \ref{fig:do-rf-inputs-dark}. This is in contrast to the chromatic double-opponent cells depictied in Fig. \ref{fig:do-rf-inputs} which differentiate themselves from their opponent pair by imbalanced inputs from the same cones.
+As with single-opponent cells, one of the axes of the opponent process theory is 'lightness' vs 'darkness'. While we frequently discuss opponency as being a thing of 'color', we find double-opponent cells which are specifically sensitive to luminance borders \cite{johnson:2008}. Such achromacy is easily achieved by balancing cone inputs into the neuron's antagonistic receptive fields, as in single-opponent cells. It behaves just as the previously described double-opponent cells, with specific orientation and spatial frequency selectivity, but responds best to luminance borders rather than chromatic borders. For more details on achromatic receptive fields, please refer back to the section on achromatic single-opponent neurons.
+It is important to reiterate here that the \textit{on} and \textit{off} inputs to light and dark sensitive single-opponent cells are balanced, whereas their chromatic sensitive counterparts are imbalanced in inputs. This has the implication that light and dark double-opponent cells are, as defined, redundant. This can be seen in Figures \ref{fig:do-rf-inputs-light} and \ref{fig:do-rf-inputs-dark}. This is in contrast to the chromatic double-opponent cells depictied in Figure \ref{fig:do-rf-inputs} which differentiate themselves from their opponent pair by imbalanced inputs from the same cones.
 
 
 \subsection*{Hypercolumns}
 
 Thus far we have defined two broad classes of neurons in the primate visual system: single-opponent and double-opponent. Each class has a number of parameters which dictate what stimuli the cell should respond to: opponent color, orientation selectivity, and spatial frequency. A single cell can only be sensitive to a specific combination of settings for each parameter. However, for each parameter it is important to have neurons sensitive to the full range of parameters. Thus, it is necessary to have a collection of neurons which together cover the complete combinatorial set of settings for all parameters.
 
-Furthermore, as may be obvious, the receptive field of a neuron in V1 is directly \textbf{connected/related/tied \textit{(???)}} to a set of neurons in the retina. That is, neurons in V1 are sensitive only to activity at a particular physical location on the retina; V1 is \textit{retinotopic}, or retinally mapped.
+Furthermore, as may be obvious, the receptive field of a neuron in V1 is directly responsive to a set of neurons in the retina. That is, neurons in V1 are sensitive only to activity at a particular physical location on the retina; V1 is \textit{retinotopic}, or retinally mapped.
 
 The implication is that for each retinal position, in V1 it is necessary to have a large number of both single-opponent and double-opponent cells, selective to the full gamut of parameters possible for each type of cell. Biologically, these collections of cells are organized in \textit{hypercolumns}, a physical grouping of cells in which neuronal connections 'up' and 'down' within the column are much more dense than extensions to cells in other columns. Within a single hypercolumn, all cells are sensitive to a specific retinal location, but together express sensitivity to the full range of parameters.
 
 
 \subsection{Computational Modeling:}
 
-The model described in this research is an extension of that presented by Penacchio \textit{et al.} \cite{penacchio:2013}, itself based on work by Z. Li \cite{li:1998, li:1999}. Before detailing our implementation, it is important to review prior art; these works and others. As our goal is to model the behavior of color preferring and achromatic single-opponent and double-opponent neurons, we will also review other computational endeavors tackling the issue of color and/or form from a biologically inspired perspective.
+The model described in this research is an extension of that presented by Penacchio \textit{et al.} \cite{penacchio:2013}, itself based on work by Li \cite{li:1999}. Before detailing our implementation, it is important to review prior art; these two works and others. As our goal is to model the behavior of achromatic and color preferring single-opponent and double-opponent neurons, we will also review other computational endeavors tackling the issue of color and/or form from a biologically inspired perspective.
 
 \subsection*{Li's Neurodynamical Model for Segmentation \cite{li:1999}}
 In Li's original work, a neurodynamical model was presented which focused on global region segmentation using only local interactions between neurons. In the interest of simplicity, Li's implementation dealt only with the nature of these interactions, ignoring where the stimulus, or information, might be coming from. Conceptually, Li defined neurons by their physical position in the image and the 'feature' to which they are sensitive. She then defined the connections between these neurons such that those physically close to each other, and sensitive to similar features, interacted most strongly. Stimulation of one neuron, then, positively stimulated (excited) similar neurons nearby, and negatively stimulated (inhibited) dissimilar neurons nearby. Such excitation and inhibition cascades through the network naturally, producing large scale response patterns defined only by local stimuli.
@@ -1381,7 +1380,7 @@ In both, the input is a normal RGB image, and the output to the neurodynamical m
 
 Processing starts by convolving each of the L, M, and S cone spectral response functions with two different gaussian filters. These convolutions simulate integration of information in a neuron's receptive field. One convolution is used to build the center receptive field, the other convolution, the surround.
 
-Single-opponent cells' receptive fields are the classical center-surround configuration: symmetric, centered, circular gaussians. Typically, the center is smaller and weighed significantly more heavily than the surround, as in Fig. \ref{fig:so-rf-schematic-classic}. Double-opponent receptive fields are markedly more complex: asymmetrical, off-center, elongated gaussian filters. Similarly, these filters can be adjusted to different sizes, shapes, and weights. For our tests we worked with symmetric balanced receptive fields, as in Fig. \ref{fig:do-rf-schematic-classic}.
+Single-opponent cells' receptive fields are the classical center-surround configuration: symmetric, centered, circular gaussians. Typically, the center is smaller and weighed significantly more heavily than the surround, as in Figure \ref{fig:so-rf-schematic-classic}. Double-opponent receptive fields are markedly more complex: asymmetrical, off-center, elongated gaussian filters. Similarly, these filters can be adjusted to different sizes, shapes, and weights. For our tests we worked with symmetric balanced receptive fields, as in Figure \ref{fig:do-rf-schematic-classic}.
 
 To construct opponent color channels, we contrast center ($c$) and surround ($s$) convolutions of the L, M, and S channels into three pairs: two color and one achromatic.
 
@@ -1394,11 +1393,11 @@ To construct opponent color channels, we contrast center ($c$) and surround ($s$
     Yellow(c, s, \sigma) &= max(0, \frac{L(c, \sigma) + M(c, \sigma)}{2} - S(s, \sigma)) \label{eq:opp-yellow}
 \end{flalign}
 
-A schematic of this workflow is presented in Fig. \ref{fig:opp-workflow}. It is clear from this schematic, and the equations above, that L and M input are significantly overrepresented. This reflects the biological overrepresentation of the evolutionarily older L and M pathways in human vision, and is more in line with, say, work by Spitzer \textit{et al.} \cite{spitzer:2005} than Itti \textit{et al.} \cite{itti:1998}. Our equations for Light and Dark, however, are novel.
+A schematic of this workflow is presented in Figure \ref{fig:opp-workflow}. It is clear from this schematic, and the equations above, that L and M input are significantly overrepresented. This reflects the biological overrepresentation of the evolutionarily older L and M pathways in human vision, and is more in line with, say, work by Spitzer \textit{et al.} \cite{spitzer:2005} than Itti \textit{et al.} \cite{itti:1998}. Our equations for Light and Dark, however, are novel.
 
-Because the inputs to the Light and Dark receptive fields come from the same cones (L and M), classical opponent center/surround receptive fields will not function to capture both Light and Dark. This can be easily seen in Fig. \ref{fig:opp-workflow}; while the Light, Red, Green, Blue, and Yellow all have \textit{on} centers and \textit{off} surrounds, Dark has an \textit{on} surround and an \textit{off} center. This is supported by literature \cite{chalupa:vol2} but introduces issues. For example, by having Light and Dark activity be almost completely complementary, we find double-opponent activity in these channels to be almost completely redundant, as can be seen in the Appendix, Fig. \ref{fig:transform-opp}.
+Because the inputs to the Light and Dark receptive fields come from the same cones (L and M), classical opponent center/surround receptive fields will not function to capture both Light and Dark. This can be easily seen in Figure \ref{fig:opp-workflow}; while the Light, Red, Green, Blue, and Yellow all have \textit{on} centers and \textit{off} surrounds, Dark has an \textit{on} surround and an \textit{off} center. This is supported by literature \cite{chalupa:vol2} but introduces issues. For example, by having Light and Dark activity be almost completely complementary, we find double-opponent activity in these channels to be almost completely redundant, as can be seen in the Appendix, Figure \ref{fig:transform-opp}.
 
-Double-opponent cells' responses constructed along the same workflow as single-opponent cells', though their receptive fields are different, Fig. \ref{fig:do-rf-inputs}. Different responses are obtained for each preferred orientation by convolving the image with oriented receptive fields. In this work we considered only three basic orientations: horizontal, vertical, and diagonal.
+Double-opponent cells' responses constructed along the same workflow as single-opponent cells', though their receptive fields are different, Figure \ref{fig:do-rf-inputs}. Different responses are obtained for each preferred orientation by convolving the image with oriented receptive fields. In this work we considered only three basic orientations: horizontal, vertical, and diagonal.
 
 In our implementation, for convenience, we utilize the R, G, and B channels of the raw image as an approximation of L, M, and S cone activity, respectively. It should be noted that this is not biologically reasonable and a preprocessing step should be performed to obtain input more representative of L, M, and S cone spectral responses.
 
@@ -1645,7 +1644,7 @@ To summarize, this first of two approaches to color description aims to be true 
     };
     \end{tikzpicture}
     }
-    \caption{Diagram of \textit{Opponent Processing of Receptive Fields} workflow. The L, M, and S channels are convolved with center and surround gaussians and then combined to build opponent colors, here exemplified by single-opponent cell receptive fields. The process is similar for double-opponent cells.}
+    \caption{Diagram of \textit{Opponent Processing of Neural Receptive Fields} workflow. The L, M, and S channels are convolved with center and surround gaussians and then combined to build opponent colors, here exemplified by single-opponent cell receptive fields. The process is similar for double-opponent cells.}
     \label{fig:opp-workflow}
 \end{figure}
 \clearpage
@@ -1893,7 +1892,7 @@ To summarize, this first of two approaches to color description aims to be true 
     }
     \caption{Yellow DO \\ Receptive Field} \label{fig:do-rf-inputs-yellow}
     \end{subfigure}%
-    \caption{Double-opponent receptive fields utilized in \textit{Opponent Processing of Receptive Fields}.}
+    \caption{Double-opponent receptive fields utilized in \textit{Opponent Processing of Neural Receptive Fields}.}
     \label{fig:do-rf-inputs}
 \end{figure}
 \clearpage
@@ -2039,7 +2038,7 @@ Following multiresolution and orientation decomposition, all wavelet and residua
     Yellow &= | min(0, b^*) |
 \end{align}
 
-The result of this process can be seen in the Appendix, Fig. \ref{fig:transform-dwt}.
+The result of this process can be seen in the Appendix, Figure \ref{fig:transform-dwt}.
 
 
 \subsection*{Neurodynamical Processing}
@@ -2098,375 +2097,406 @@ The general and local normalization of activities \cite{heeger:1993} has been ex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiments}
 
-We evaluated the performance of our model by applying it to a number of test images seen to exhibit color induction effects. The expectation was that the model predict the perceived phenomena.
+We evaluated the performance of our model by applying it to a number of test images seen to exhibit color induction effects. The expectation was that the model predict the perceived phenomena. All experiments involved two or more test stimuli in which human observers can describe a difference between them that doesn't physically exist. For example, most would describe the left inner ring in Figure \ref{fig:example} as being green and the right inner ring as being blue. As is shown, however, the two rings are physically identical. We would expect our model to predict this effect by displaying different neural activity at these two locations.
 
-All experiments involved two or more test stimuli in which human observers can describe a difference between them. For example, most would describe the left inner ring in Fig. \ref{fig:example} as being green and the right inner ring as being blue. As is shown, however, the two rings are physically identical; they have the exact same pixel values.
+For each test image, we applied both the \textit{Opponent Processing of Neural Receptive Fields} and \textit{Discrete Wavelet Transform in Opponent Colorspace} methods so as to compare their performance. In both cases, the output of the model was the retinotopic neural activity in each of the opponent channels. For each test image, we compared this output for differences in \textit{direction} and \textit{magnitude} of activity. For example, in Figure \ref{fig:example} we would expect to see activity in the Red-Green channel toward green for the left inner ring, and Blue-Yellow activity toward blue for the right inner ring.
 
-All test images were paired such that the effects caused two physically similar regions to appear to be different. The output of the model was the retinotopic neural activity in each of the opponent channels. For each pair of test patches, we compared the activity to 1) identify differences in activity and 2) to observe differences in the direction of activity. For example, in Fig. \ref{fig:example} we expect to see activity in the Red-Green channel toward green for the left inner ring, and Blue-Yellow activity toward blue for the right inner ring. Because the unit of neuronal activity is arbitrary, it cannot be used to generate a color image of what the model predicts, a so called 'perceptual image'. However, the unit is self-consistent and so can be compared between the two stimuli to evaluate magnitude and direction of activity.
+All experiments were run with the same model configurations, except where inapplicable, e.g., double-opponent receptive field gaussian configurations are unique to the \textit{Opponent Processing of Neural Receptive Fields} method. All experiments were run for 20 membrane time steps of the neurodynamical model ($\tau$), each time step involving 10 iterations of neural interactions. The output was taken from each time step, excluding the first bootstrapping step, and averaged to obtain a single view of the neural activity in each color channel during the whole experiment. The 3 pairs of opponent colors were subtracted from each other to obtain 3 opponent color channels: Light-Dark, Red-Green, and Blue-Yellow.
 
+These opponent color channels no longer reside in any known colorspace. Even in the cases where we used the \textit{CIE} $L^*a^*b^*$ colorspace transform as input, the output is a measure of neural activity; it is on a completely different scale. As such, the output color channels are visualized independently and interpreted to contain the expected response or not. In all, whiter values indicate activity toward the positive pole, e.g., Red in Red-Green, while darker values indicate activity toward the negative pole, e.g., Green in Red-Green. For each experiment, all output images are on the same scale. However, the scale of results \textit{between} experiments is not consistent; results cannot be compared across experiments.
+
+In some experiments, the differences between test stimuli responses were subtile relative to other activities in the population. To help visually observe differences in activity at the locations it was expected, we masked all other regions of the output and rescaled the visual representation. Still, whiter values indicate activity toward the positive pole and darker values activity toward the negative pole. However, in some cases rescaling enhances differences otherwise missed. Again, all enhanced images in each experiment are on the same scale and can be compared, but enhanced results from experiments are on individual scales and thus cannot be compared.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % RESULTS
 %
-% A presentation and review of the experiments to which the
-% model was subjected.
+% Presentation of the experiments to which the model was
+% subjected.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\afterpage{%
 \section{Results}
-
-Below we present the response of each of the two models described. We averaged activity at each time step so as to obtain an overall behavior of the model. In each of the results below we present output from both the \textit{Opponent Processing of Receptive Fields} and \textit{Discrete Wavelet Transform in Opponent Colorspace} models. For both we obtain models of neural activity in each of the axes of opponent color: Light-Dark, Red-Green, and Blue-Yellow; all axes are zero centered. Higher values are represented as lighter, and lower values as darker, though each experiment is presented on its own scale so as to emphasize detail.
-In some experiments we isolate and enhance the region of the test stimuli in which we expect 
-
-\newpage
-
-\afterpage{%
-\begin{figure}[H] \label{fig:test-circle-a-opp-results}
+\begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.5\textwidth}
+    \captionsetup{justification=centering}
+    \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=230px]{test-circle-a}
+            \includegraphics[width=100px]{test-circle-a-a}
             \caption{}
-            \label{fig:test-circle-a-opp}
+            \label{fig:test-circle-a-opp-a}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100px]{test-circle-a-b}
+            \caption{}
+            \label{fig:test-circle-a-opp-b}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a1-opp-ld}
-            \caption{Light Dark}
-            \label{fig:test-circle-a1-opp-ld}
+            \includegraphics[width=100px, frame]{test-circle-a-opp-a-ld}
+            \caption{\\ Light-Dark\\ Output}
+            \label{fig:test-circle-a-opp-a-ld}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a1-opp-ld-mask}
-            \caption{Light Dark}
-            \label{fig:test-circle-a1-opp-ld-mask}
+            \includegraphics[width=100px, frame]{test-circle-a-opp-a-ld-mask}
+            \caption{\\ Light-Dark\\ Output (Enhanced)}
+            \label{fig:test-circle-a-opp-a-ld-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a2-opp-ld-mask}
-            \caption{Light Dark}
-            \label{fig:test-circle-a2-opp-ld-mask}
+            \includegraphics[width=100px, frame]{test-circle-a-opp-b-ld-mask}
+            \caption{\\ Light-Dark\\ Output (Enhanced)}
+            \label{fig:test-circle-a-opp-b-ld-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a2-opp-ld}
-            \caption{Light Dark}
-            \label{fig:test-circle-a2-opp-ld}
+            \includegraphics[width=100px, frame]{test-circle-a-opp-b-ld}
+            \caption{\\ Light-Dark\\ Output}
+            \label{fig:test-circle-a-opp-b-ld}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100pt, frame]{test-circle-a1-opp-rg}
-            \caption{Red Green}
-            \label{fig:test-circle-a1-opp-rg}
+            \includegraphics[width=100pt, frame]{test-circle-a-opp-a-rg}
+            \caption{\\ Red-Green\\ Output}
+            \label{fig:test-circle-a-opp-a-rg}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100pt, frame]{test-circle-a1-opp-rg-mask}
-            \caption{Red Green}
-            \label{fig:test-circle-a1-opp-rg-mask}
+            \includegraphics[width=100pt, frame]{test-circle-a-opp-a-rg-mask}
+            \caption{\\ Red-Green\\ Output (Enhanced)}
+            \label{fig:test-circle-a-opp-a-rg-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100pt, frame]{test-circle-a2-opp-rg-mask}
-            \caption{Red Green}
-            \label{fig:test-circle-a2-opp-rg-mask}
+            \includegraphics[width=100pt, frame]{test-circle-a-opp-b-rg-mask}
+            \caption{\\ Red-Green\\ Output (Enhanced)}
+            \label{fig:test-circle-a-opp-b-rg-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100pt, frame]{test-circle-a2-opp-rg}
-            \caption{Red Green}
-            \label{fig:test-circle-a2-opp-rg}
+            \includegraphics[width=100pt, frame]{test-circle-a-opp-b-rg}
+            \caption{\\ Red-Green\\ Output}
+            \label{fig:test-circle-a-opp-b-rg}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a1-opp-by}
-            \caption{Blue Yellow}
-            \label{fig:test-circle-a1-opp-by}
+            \includegraphics[width=100px, frame]{test-circle-a-opp-a-by}
+            \caption{\\ Blue-Yellow\\ Output}
+            \label{fig:test-circle-a-opp-a-by}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a1-opp-by-mask}
-            \caption{Blue Yellow}
-            \label{fig:test-circle-a1-opp-by-mask}
+            \includegraphics[width=100px, frame]{test-circle-a-opp-a-by-mask}
+            \caption{\\ Blue-Yellow\\ Output (Enhanced)}
+            \label{fig:test-circle-a-opp-a-by-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a2-opp-by-mask}
-            \caption{Blue Yellow}
-            \label{fig:test-circle-a2-opp-by-mask}
+            \includegraphics[width=100px, frame]{test-circle-a-opp-b-by-mask}
+            \caption{\\ Blue-Yellow\\ Output (Enhanced)}
+            \label{fig:test-circle-a-opp-b-by-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a2-opp-by}
-            \caption{Blue Yellow}
-            \label{fig:test-circle-a2-opp-by}
+            \includegraphics[width=100px, frame]{test-circle-a-opp-b-by}
+            \caption{\\ Blue-Yellow\\ Output}
+            \label{fig:test-circle-a-opp-b-by}
     \end{subfigure}
-    \caption{Experimental results for the given test stimuli, \ref{fig:test-circle-a-opp}, processed by the \textit{Opponent Processing of Receptive Fields} method. In \ref{fig:test-circle-a1-opp-ld}, \ref{fig:test-circle-a1-opp-rg}, and \ref{fig:test-circle-a1-opp-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{left} stimulus (which appears green). In \ref{fig:test-circle-a2-opp-ld}, \ref{fig:test-circle-a2-opp-rg}, and \ref{fig:test-circle-a2-opp-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{right} stimulus (which appears blue). In \ref{fig:test-circle-a1-opp-ld-mask}, \ref{fig:test-circle-a1-opp-rg-mask}, and \ref{fig:test-circle-a1-opp-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring. In \ref{fig:test-circle-a2-opp-ld-mask}, \ref{fig:test-circle-a2-opp-rg-mask}, and \ref{fig:test-circle-a2-opp-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring.}
+    \caption{Experimental results for the given test stimuli, \ref{fig:test-circle-a-opp-a} \& \ref{fig:test-circle-a-opp-b}, processed by the \textit{Opponent Processing of Neural Receptive Fields} method. In \ref{fig:test-circle-a-opp-a-ld}, \ref{fig:test-circle-a-opp-a-rg}, and \ref{fig:test-circle-a-opp-a-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{left} stimulus (which appears green). In \ref{fig:test-circle-a-opp-b-ld}, \ref{fig:test-circle-a-opp-b-rg}, and \ref{fig:test-circle-a-opp-b-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{right} stimulus (which appears blue). In \ref{fig:test-circle-a-opp-a-ld-mask}, \ref{fig:test-circle-a-opp-a-rg-mask}, and \ref{fig:test-circle-a-opp-a-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring. In \ref{fig:test-circle-a-opp-b-ld-mask}, \ref{fig:test-circle-a-opp-b-rg-mask}, and \ref{fig:test-circle-a-opp-b-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring.}
+    \label{fig:test-circle-a-opp-results}
 \end{figure}
 \clearpage
 }
 
 \afterpage{%
-\begin{figure}[H] \label{fig:test-circle-a-dwt-results}
+\begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.5\textwidth}
+    \captionsetup{justification=centering}
+    \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=230px]{test-circle-a}
+            \includegraphics[width=100px]{test-circle-a-a}
             \caption{}
-            \label{fig:test-circle-a-dwt}
+            \label{fig:test-circle-a-dwt-a}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100px]{test-circle-a-b}
+            \caption{}
+            \label{fig:test-circle-a-dwt-b}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a1-dwt-ld}
-            \caption{Light Dark}
-            \label{fig:test-circle-a1-dwt-ld}
+            \includegraphics[width=100px, frame]{test-circle-a-dwt-a-ld}
+            \caption{\\ Light-Dark\\ Output}
+            \label{fig:test-circle-a-dwt-a-ld}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a1-dwt-ld-mask}
-            \caption{Light Dark}
-            \label{fig:test-circle-a1-dwt-ld-mask}
+            \includegraphics[width=100px, frame]{test-circle-a-dwt-a-ld-mask}
+            \caption{\\ Light-Dark\\ Output (Enhanced)}
+            \label{fig:test-circle-a-dwt-a-ld-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a2-dwt-ld-mask}
-            \caption{Light Dark}
-            \label{fig:test-circle-a2-dwt-ld-mask}
+            \includegraphics[width=100px, frame]{test-circle-a-dwt-b-ld-mask}
+            \caption{\\ Light-Dark\\ Output (Enhanced)}
+            \label{fig:test-circle-a-dwt-b-ld-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a2-dwt-ld}
-            \caption{Light Dark}
-            \label{fig:test-circle-a2-dwt-ld}
+            \includegraphics[width=100px, frame]{test-circle-a-dwt-b-ld}
+            \caption{\\ Light-Dark\\ Output}
+            \label{fig:test-circle-a-dwt-b-ld}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100pt, frame]{test-circle-a1-dwt-rg}
-            \caption{Red Green}
-            \label{fig:test-circle-a1-dwt-rg}
+            \includegraphics[width=100pt, frame]{test-circle-a-dwt-a-rg}
+            \caption{\\ Red-Green\\ Output}
+            \label{fig:test-circle-a-dwt-a-rg}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100pt, frame]{test-circle-a1-dwt-rg-mask}
-            \caption{Red Green}
-            \label{fig:test-circle-a1-dwt-rg-mask}
+            \includegraphics[width=100pt, frame]{test-circle-a-dwt-a-rg-mask}
+            \caption{\\ Red-Green\\ Output (Enhanced)}
+            \label{fig:test-circle-a-dwt-a-rg-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100pt, frame]{test-circle-a2-dwt-rg-mask}
-            \caption{Red Green}
-            \label{fig:test-circle-a2-dwt-rg-mask}
+            \includegraphics[width=100pt, frame]{test-circle-a-dwt-b-rg-mask}
+            \caption{\\ Red-Green\\ Output (Enhanced)}
+            \label{fig:test-circle-a-dwt-b-rg-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100pt, frame]{test-circle-a2-dwt-rg}
-            \caption{Red Green}
-            \label{fig:test-circle-a2-dwt-rg}
+            \includegraphics[width=100pt, frame]{test-circle-a-dwt-b-rg}
+            \caption{\\ Red-Green\\ Output}
+            \label{fig:test-circle-a-dwt-b-rg}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a1-dwt-by}
-            \caption{Blue Yellow}
-            \label{fig:test-circle-a1-dwt-by}
+            \includegraphics[width=100px, frame]{test-circle-a-dwt-a-by}
+            \caption{\\ Blue-Yellow\\ Output}
+            \label{fig:test-circle-a-dwt-a-by}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a1-dwt-by-mask}
-            \caption{Blue Yellow}
-            \label{fig:test-circle-a1-dwt-by-mask}
+            \includegraphics[width=100px, frame]{test-circle-a-dwt-a-by-mask}
+            \caption{\\ Blue-Yellow\\ Output (Enhanced)}
+            \label{fig:test-circle-a-dwt-a-by-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a2-dwt-by-mask}
-            \caption{Blue Yellow}
-            \label{fig:test-circle-a2-dwt-by-mask}
+            \includegraphics[width=100px, frame]{test-circle-a-dwt-b-by-mask}
+            \caption{\\ Blue-Yellow\\ Output (Enhanced)}
+            \label{fig:test-circle-a-dwt-b-by-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=100px, frame]{test-circle-a2-dwt-by}
-            \caption{Blue Yellow}
-            \label{fig:test-circle-a2-dwt-by}
+            \includegraphics[width=100px, frame]{test-circle-a-dwt-b-by}
+            \caption{\\ Blue-Yellow\\ Output}
+            \label{fig:test-circle-a-dwt-b-by}
     \end{subfigure}
-    \caption{Experimental results for the given test stimuli, \ref{fig:test-circle-a-dwt}, processed by the \textit{Discrete Wavelet Transform in Opponent Colorspace} method. In \ref{fig:test-circle-a1-dwt-ld}, \ref{fig:test-circle-a1-dwt-rg}, and \ref{fig:test-circle-a1-dwt-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{left} stimulus (which appears green). In \ref{fig:test-circle-a2-dwt-ld}, \ref{fig:test-circle-a2-dwt-rg}, and \ref{fig:test-circle-a2-dwt-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{right} stimulus (which appears blue). In \ref{fig:test-circle-a1-dwt-ld-mask}, \ref{fig:test-circle-a1-dwt-rg-mask}, and \ref{fig:test-circle-a1-dwt-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring. In \ref{fig:test-circle-a2-dwt-ld-mask}, \ref{fig:test-circle-a2-dwt-rg-mask}, and \ref{fig:test-circle-a2-dwt-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring.}
+    \caption{Experimental results for the given test stimuli, \ref{fig:test-circle-a-dwt-a} \& \ref{fig:test-circle-a-dwt-b}, processed by the \textit{Discrete Wavelet Transform in Opponent Colorspace} method. In \ref{fig:test-circle-a-dwt-a-ld}, \ref{fig:test-circle-a-dwt-a-rg}, and \ref{fig:test-circle-a-dwt-a-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{left} stimulus (which appears green). In \ref{fig:test-circle-a-dwt-b-ld}, \ref{fig:test-circle-a-dwt-b-rg}, and \ref{fig:test-circle-a-dwt-b-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{right} stimulus (which appears blue). In \ref{fig:test-circle-a-dwt-a-ld-mask}, \ref{fig:test-circle-a-dwt-a-rg-mask}, and \ref{fig:test-circle-a-dwt-a-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring. In \ref{fig:test-circle-a-dwt-b-ld-mask}, \ref{fig:test-circle-a-dwt-b-rg-mask}, and \ref{fig:test-circle-a-dwt-b-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring.}
+    \label{fig:test-circle-a-dwt-results}
 \end{figure}
 \clearpage
 }
 
 \afterpage{%
-\begin{figure}[H] \label{fig:test-circle-neon-opp-results}
+\begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.5\textwidth}
+    \captionsetup{justification=centering}
+    \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=230px]{test-circle-neon}
+            \includegraphics[width=100px]{test-circle-neon-a}
             \caption{}
-            \label{fig:test-circle-neon-opp}
+            \label{fig:test-circle-neon-opp-a}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100px]{test-circle-neon-b}
+            \caption{}
+            \label{fig:test-circle-neon-opp-b}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-opp-a-ld}
-            \caption{Light Dark}
+            \caption{\\ Light-Dark\\ Output}
             \label{fig:test-circle-neon-opp-a-ld}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-opp-a-ld-mask}
-            \caption{Light Dark}
+            \caption{\\ Light-Dark\\ Output (Enhanced)}
             \label{fig:test-circle-neon-opp-a-ld-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-opp-b-ld-mask}
-            \caption{Light Dark}
+            \caption{\\ Light-Dark\\ Output (Enhanced)}
             \label{fig:test-circle-neon-opp-b-ld-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-opp-b-ld}
-            \caption{Light Dark}
+            \caption{\\ Light-Dark\\ Output}
             \label{fig:test-circle-neon-opp-b-ld}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100pt, frame]{test-circle-neon-opp-a-rg}
-            \caption{Red Green}
+            \caption{\\ Red-Green\\ Output}
             \label{fig:test-circle-neon-opp-a-rg}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100pt, frame]{test-circle-neon-opp-a-rg-mask}
-            \caption{Red Green}
+            \caption{\\ Red-Green\\ Output (Enhanced)}
             \label{fig:test-circle-neon-opp-a-rg-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100pt, frame]{test-circle-neon-opp-b-rg-mask}
-            \caption{Red Green}
+            \caption{\\ Red-Green\\ Output (Enhanced)}
             \label{fig:test-circle-neon-opp-b-rg-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100pt, frame]{test-circle-neon-opp-b-rg}
-            \caption{Red Green}
+            \caption{\\ Red-Green\\ Output}
             \label{fig:test-circle-neon-opp-b-rg}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-opp-a-by}
-            \caption{Blue Yellow}
+            \caption{\\ Blue-Yellow\\ Output}
             \label{fig:test-circle-neon-opp-a-by}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-opp-a-by-mask}
-            \caption{Blue Yellow}
+            \caption{\\ Blue-Yellow\\ Output (Enhanced)}
             \label{fig:test-circle-neon-opp-a-by-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-opp-b-by-mask}
-            \caption{Blue Yellow}
+            \caption{\\ Blue-Yellow\\ Output (Enhanced)}
             \label{fig:test-circle-neon-opp-b-by-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-opp-b-by}
-            \caption{Blue Yellow}
+            \caption{\\ Blue-Yellow\\ Output}
             \label{fig:test-circle-neon-opp-b-by}
     \end{subfigure}
-    \caption{Experimental results for the given test stimuli, \ref{fig:test-circle-neon-opp}, processed by the \textit{Opponent Processing of Receptive Fields} method. In \ref{fig:test-circle-neon-opp-a-ld}, \ref{fig:test-circle-neon-opp-a-rg}, and \ref{fig:test-circle-neon-opp-a-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{left} stimulus (which appears green). In \ref{fig:test-circle-neon-opp-b-ld}, \ref{fig:test-circle-neon-opp-b-rg}, and \ref{fig:test-circle-neon-opp-b-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{right} stimulus (which appears blue). In \ref{fig:test-circle-neon-opp-a-ld-mask}, \ref{fig:test-circle-neon-opp-a-rg-mask}, and \ref{fig:test-circle-neon-opp-a-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring. In \ref{fig:test-circle-neon-opp-b-ld-mask}, \ref{fig:test-circle-neon-opp-b-rg-mask}, and \ref{fig:test-circle-neon-opp-b-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring.}
+    \caption{Experimental results for the given test stimuli, \ref{fig:test-circle-neon-opp}, processed by the \textit{Opponent Processing of Neural Receptive Fields} method. In \ref{fig:test-circle-neon-opp-a-ld}, \ref{fig:test-circle-neon-opp-a-rg}, and \ref{fig:test-circle-neon-opp-a-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{left} stimulus (which appears green). In \ref{fig:test-circle-neon-opp-b-ld}, \ref{fig:test-circle-neon-opp-b-rg}, and \ref{fig:test-circle-neon-opp-b-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{right} stimulus (which appears blue). In \ref{fig:test-circle-neon-opp-a-ld-mask}, \ref{fig:test-circle-neon-opp-a-rg-mask}, and \ref{fig:test-circle-neon-opp-a-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring. In \ref{fig:test-circle-neon-opp-b-ld-mask}, \ref{fig:test-circle-neon-opp-b-rg-mask}, and \ref{fig:test-circle-neon-opp-b-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring.}
+    \label{fig:test-circle-neon-opp-results}
 \end{figure}
 \clearpage
 }
 
 \afterpage{%
-\begin{figure}[H] \label{fig:test-circle-neon-dwt-results}
+\begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.5\textwidth}
+    \captionsetup{justification=centering}
+    \begin{subfigure}[b]{0.25\textwidth}
             \centering
-            \includegraphics[width=230px]{test-circle-neon}
+            \includegraphics[width=100px]{test-circle-neon-a}
             \caption{}
-            \label{fig:test-circle-neon-dwt}
+            \label{fig:test-circle-neon-dwt-a}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=100px]{test-circle-neon-b}
+            \caption{}
+            \label{fig:test-circle-neon-dwt-b}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-dwt-a-ld}
-            \caption{Light Dark}
+            \caption{\\ Light-Dark\\ Output}
             \label{fig:test-circle-neon-dwt-a-ld}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-dwt-a-ld-mask}
-            \caption{Light Dark}
+            \caption{\\ Light-Dark\\ Output (Enhanced)}
             \label{fig:test-circle-neon-dwt-a-ld-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-dwt-b-ld-mask}
-            \caption{Light Dark}
+            \caption{\\ Light-Dark\\ Output (Enhanced)}
             \label{fig:test-circle-neon-dwt-b-ld-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-dwt-b-ld}
-            \caption{Light Dark}
+            \caption{\\ Light-Dark\\ Output}
             \label{fig:test-circle-neon-dwt-b-ld}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100pt, frame]{test-circle-neon-dwt-a-rg}
-            \caption{Red Green}
+            \caption{\\ Red-Green\\ Output}
             \label{fig:test-circle-neon-dwt-a-rg}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100pt, frame]{test-circle-neon-dwt-a-rg-mask}
-            \caption{Red Green}
+            \caption{\\ Red-Green\\ Output (Enhanced)}
             \label{fig:test-circle-neon-dwt-a-rg-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100pt, frame]{test-circle-neon-dwt-b-rg-mask}
-            \caption{Red Green}
+            \caption{\\ Red-Green\\ Output (Enhanced)}
             \label{fig:test-circle-neon-dwt-b-rg-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100pt, frame]{test-circle-neon-dwt-b-rg}
-            \caption{Red Green}
+            \caption{\\ Red-Green\\ Output}
             \label{fig:test-circle-neon-dwt-b-rg}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-dwt-a-by}
-            \caption{Blue Yellow}
+            \caption{\\ Blue-Yellow\\ Output}
             \label{fig:test-circle-neon-dwt-a-by}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-dwt-a-by-mask}
-            \caption{Blue Yellow}
+            \caption{\\ Blue-Yellow\\ Output (Enhanced)}
             \label{fig:test-circle-neon-dwt-a-by-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-dwt-b-by-mask}
-            \caption{Blue Yellow}
+            \caption{\\ Blue-Yellow\\ Output (Enhanced)}
             \label{fig:test-circle-neon-dwt-b-by-mask}
     \end{subfigure}%
     \begin{subfigure}[b]{0.25\textwidth}
             \centering
             \includegraphics[width=100px, frame]{test-circle-neon-dwt-b-by}
-            \caption{Blue Yellow}
+            \caption{\\ Blue-Yellow\\ Output}
             \label{fig:test-circle-neon-dwt-b-by}
     \end{subfigure}
     \caption{Experimental results for the given test stimuli, \ref{fig:test-circle-neon-dwt}, processed by the \textit{Discrete Wavelet Transform in Opponent Colorspace} method. In \ref{fig:test-circle-neon-dwt-a-ld}, \ref{fig:test-circle-neon-dwt-a-rg}, and \ref{fig:test-circle-neon-dwt-a-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{left} stimulus (which appears green). In \ref{fig:test-circle-neon-dwt-b-ld}, \ref{fig:test-circle-neon-dwt-b-rg}, and \ref{fig:test-circle-neon-dwt-b-by} we have the raw output of the L-D, R-G, and B-Y channels for the \textit{right} stimulus (which appears blue). In \ref{fig:test-circle-neon-dwt-a-ld-mask}, \ref{fig:test-circle-neon-dwt-a-rg-mask}, and \ref{fig:test-circle-neon-dwt-a-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring. In \ref{fig:test-circle-neon-dwt-b-ld-mask}, \ref{fig:test-circle-neon-dwt-b-rg-mask}, and \ref{fig:test-circle-neon-dwt-b-by-mask} we mask the raw output of the \textit{left} stimulus so as to isolate the test ring.}
+    \label{fig:test-circle-neon-dwt-results}
 \end{figure}
 \clearpage
 }
 
 \afterpage{%
-\begin{figure}[H] \label{fig:test-gradient-opp-results}
+\begin{figure}[H]
     \centering
+    \captionsetup{justification=centering}
     \begin{subfigure}[b]{1\textwidth}
             \centering
             \includegraphics[width=230px]{test-gradient}
@@ -2476,47 +2506,49 @@ In some experiments we isolate and enhance the region of the test stimuli in whi
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-gradient-opp-ld}
-            \caption{\\ Light-Dark Output}
+            \caption{\\ Light-Dark\\ Output}
             \label{fig:test-gradient-opp-ld}
     \end{subfigure}%
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-gradient-opp-ld-mask}
-            \caption{\\ Light-Dark Output (Enhanced)}
+            \caption{\\ Light-Dark\\ Output (Enhanced)}
             \label{fig:test-gradient-opp-ld-mask}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-gradient-opp-rg}
-            \caption{\\ Red-Green Output}
+            \caption{\\ Red-Green\\ Output}
             \label{fig:test-gradient-opp-rg}
     \end{subfigure}%
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-gradient-opp-rg-mask}
-            \caption{\\ Red-Green Output (Enhanced)}
+            \caption{\\ Red-Green\\ Output (Enhanced)}
             \label{fig:test-gradient-opp-rg-mask}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-gradient-opp-by}
-            \caption{\\ Blue-Yellow Output}
+            \caption{\\ Blue-Yellow\\ Output}
             \label{fig:test-gradient-opp-by}
     \end{subfigure}%
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-gradient-opp-by-mask}
-            \caption{\\ Blue-Yellow Output (Enhanced)}
+            \caption{\\ Blue-Yellow\\ Output (Enhanced)}
             \label{fig:test-gradient-opp-by-mask}
     \end{subfigure}
-    \caption{Experimental results for the given test stimuli, \ref{fig:test-gradient-opp}, processed by the \textit{Opponent Processing of Receptive Fields} method. In \ref{fig:test-gradient-opp-ld}, \ref{fig:test-gradient-opp-rg}, and \ref{fig:test-gradient-opp-by} we have the raw output of the L-D, R-G, and B-Y channels. In \ref{fig:test-gradient-opp-ld-mask}, \ref{fig:test-gradient-opp-rg-mask}, and \ref{fig:test-gradient-opp-by-mask} we mask the raw output so as to isolate and enhance the test patches.}
+    \caption{Experimental results for the given test stimuli, \ref{fig:test-gradient-opp}, processed by the \textit{Opponent Processing of Neural Receptive Fields} method. In \ref{fig:test-gradient-opp-ld}, \ref{fig:test-gradient-opp-rg}, and \ref{fig:test-gradient-opp-by} we have the raw output of the L-D, R-G, and B-Y channels. In \ref{fig:test-gradient-opp-ld-mask}, \ref{fig:test-gradient-opp-rg-mask}, and \ref{fig:test-gradient-opp-by-mask} we mask the raw output so as to isolate and enhance the test patches.}
+    \label{fig:test-gradient-opp-results}
 \end{figure}
 \clearpage
 }
 
 \afterpage{%
-\begin{figure}[H] \label{fig:test-gradient-dwt-results}
+\begin{figure}[H]
     \centering
+    \captionsetup{justification=centering}
     \begin{subfigure}[b]{1\textwidth}
             \centering
             \includegraphics[width=230px]{test-gradient}
@@ -2526,47 +2558,49 @@ In some experiments we isolate and enhance the region of the test stimuli in whi
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-gradient-dwt-ld}
-            \caption{\\ Light-Dark Output}
+            \caption{\\ Light-Dark\\ Output}
             \label{fig:test-gradient-dwt-ld}
     \end{subfigure}%
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-gradient-dwt-ld-mask}
-            \caption{\\ Light-Dark Output (Enhanced)}
+            \caption{\\ Light-Dark\\ Output (Enhanced)}
             \label{fig:test-gradient-dwt-ld-mask}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-gradient-dwt-rg}
-            \caption{\\ Red-Green Output}
+            \caption{\\ Red-Green\\ Output}
             \label{fig:test-gradient-dwt-rg}
     \end{subfigure}%
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-gradient-dwt-rg-mask}
-            \caption{\\ Red-Green Output (Enhanced)}
+            \caption{\\ Red-Green\\ Output (Enhanced)}
             \label{fig:test-gradient-dwt-rg-mask}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-gradient-dwt-by}
-            \caption{\\ Blue-Yellow Output}
+            \caption{\\ Blue-Yellow\\ Output}
             \label{fig:test-gradient-dwt-by}
     \end{subfigure}%
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-gradient-dwt-by-mask}
-            \caption{\\ Blue-Yellow Output (Enhanced)}
+            \caption{\\ Blue-Yellow\\ Output (Enhanced)}
             \label{fig:test-gradient-dwt-by-mask}
     \end{subfigure}
     \caption{Experimental results for the given test stimuli, \ref{fig:test-gradient-dwt}, processed by the \textit{Discrete Wavelet Transform in Opponent Colorspace} method. In \ref{fig:test-gradient-dwt-ld}, \ref{fig:test-gradient-dwt-rg}, and \ref{fig:test-gradient-dwt-by} we have the raw output of the L-D, R-G, and B-Y channels. In \ref{fig:test-gradient-dwt-ld-mask}, \ref{fig:test-gradient-dwt-rg-mask}, and \ref{fig:test-gradient-dwt-by-mask} we mask the raw output so as to isolate and enhance the test patches.}
+    \label{fig:test-gradient-dwt-results}
 \end{figure}
 \clearpage
 }
 
 \afterpage{%
-\begin{figure}[H] \label{fig:test-bars-opp-results}
+\begin{figure}[H]
     \centering
+    \captionsetup{justification=centering}
     \begin{subfigure}[b]{1\textwidth}
             \centering
             \includegraphics[width=230px]{test-bars}
@@ -2576,47 +2610,49 @@ In some experiments we isolate and enhance the region of the test stimuli in whi
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-bars-opp-ld}
-            \caption{\\ Light-Dark Output}
+            \caption{\\ Light-Dark\\ Output}
             \label{fig:test-bars-opp-ld}
     \end{subfigure}%
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-bars-opp-ld-mask}
-            \caption{\\ Light-Dark Output (Enhanced)}
+            \caption{\\ Light-Dark\\ Output (Enhanced)}
             \label{fig:test-bars-opp-ld-mask}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-bars-opp-rg}
-            \caption{\\ Red-Green Output}
+            \caption{\\ Red-Green\\ Output}
             \label{fig:test-bars-opp-rg}
     \end{subfigure}%
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-bars-opp-rg-mask}
-            \caption{\\ Red-Green Output (Enhanced)}
+            \caption{\\ Red-Green\\ Output (Enhanced)}
             \label{fig:test-bars-opp-rg-mask}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-bars-opp-by}
-            \caption{\\ Blue-Yellow Output}
+            \caption{\\ Blue-Yellow\\ Output}
             \label{fig:test-bars-opp-by}
     \end{subfigure}%
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-bars-opp-by-mask}
-            \caption{\\ Blue-Yellow Output (Enhanced)}
+            \caption{\\ Blue-Yellow\\ Output (Enhanced)}
             \label{fig:test-bars-opp-by-mask}
     \end{subfigure}
-    \caption{Experimental results for the given test stimuli, \ref{fig:test-bars-opp}, processed by the \textit{Opponent Processing of Receptive Fields} method. In \ref{fig:test-bars-opp-ld}, \ref{fig:test-bars-opp-rg}, and \ref{fig:test-bars-opp-by} we have the raw output of the L-D, R-G, and B-Y channels. In \ref{fig:test-bars-opp-ld-mask}, \ref{fig:test-bars-opp-rg-mask}, and \ref{fig:test-bars-opp-by-mask} we mask the raw output so as to isolate and enhance the test patches.}
+    \caption{Experimental results for the given test stimuli, \ref{fig:test-bars-opp}, processed by the \textit{Opponent Processing of Neural Receptive Fields} method. In \ref{fig:test-bars-opp-ld}, \ref{fig:test-bars-opp-rg}, and \ref{fig:test-bars-opp-by} we have the raw output of the L-D, R-G, and B-Y channels. In \ref{fig:test-bars-opp-ld-mask}, \ref{fig:test-bars-opp-rg-mask}, and \ref{fig:test-bars-opp-by-mask} we mask the raw output so as to isolate and enhance the test patches.}
+    \label{fig:test-bars-opp-results}
 \end{figure}
 \clearpage
 }
 
 \afterpage{%
-\begin{figure}[H] \label{fig:test-bars-dwt-results}
+\begin{figure}[H]
     \centering
+    \captionsetup{justification=centering}
     \begin{subfigure}[b]{1\textwidth}
             \centering
             \includegraphics[width=230px]{test-bars}
@@ -2626,47 +2662,49 @@ In some experiments we isolate and enhance the region of the test stimuli in whi
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-bars-dwt-ld}
-            \caption{\\ Light-Dark Output}
+            \caption{\\ Light-Dark\\ Output}
             \label{fig:test-bars-dwt-ld}
     \end{subfigure}%
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-bars-dwt-ld-mask}
-            \caption{\\ Light-Dark Output (Enhanced)}
+            \caption{\\ Light-Dark\\ Output (Enhanced)}
             \label{fig:test-bars-dwt-ld-mask}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-bars-dwt-rg}
-            \caption{\\ Red-Green Output}
+            \caption{\\ Red-Green\\ Output}
             \label{fig:test-bars-dwt-rg}
     \end{subfigure}%
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-bars-dwt-rg-mask}
-            \caption{\\ Red-Green Output (Enhanced)}
+            \caption{\\ Red-Green\\ Output (Enhanced)}
             \label{fig:test-bars-dwt-rg-mask}
     \end{subfigure}\\
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-bars-dwt-by}
-            \caption{\\ Blue-Yellow Output}
+            \caption{\\ Blue-Yellow\\ Output}
             \label{fig:test-bars-dwt-by}
     \end{subfigure}%
     \begin{subfigure}[b]{0.5\textwidth}
             \centering
             \includegraphics[width=108px, frame]{test-bars-dwt-by-mask}
-            \caption{\\ Blue-Yellow Output (Enhanced)}
+            \caption{\\ Blue-Yellow\\ Output (Enhanced)}
             \label{fig:test-bars-dwt-by-mask}
     \end{subfigure}
     \caption{Experimental results for the given test stimuli, \ref{fig:test-bars-dwt}, processed by the \textit{Discrete Wavelet Transform in Opponent Colorspace} method. In \ref{fig:test-bars-dwt-ld}, \ref{fig:test-bars-dwt-rg}, and \ref{fig:test-bars-dwt-by} we have the raw output of the L-D, R-G, and B-Y channels. In \ref{fig:test-bars-dwt-ld-mask}, \ref{fig:test-bars-dwt-rg-mask}, and \ref{fig:test-bars-dwt-by-mask} we mask the raw output so as to isolate and enhance the test patches.}
+    \label{fig:test-bars-dwt-results}
 \end{figure}
 \clearpage
 }
 
 \afterpage{%
-\begin{figure}[H] \label{fig:test-crisp-opp}
+\begin{figure}[H]
     \centering
+    \captionsetup{justification=centering}
     \begin{subfigure}[b]{0.2\textwidth}
             \centering
             \includegraphics[width=.85\linewidth, frame]{test-crisp-1}
@@ -2736,14 +2774,16 @@ In some experiments we isolate and enhance the region of the test stimuli in whi
             \caption{}
             \label{fig:test-crisp-opp-3-by}
     \end{subfigure}
-    \caption{Experimental results for the given test stimuli, processed by the \textit{Opponent Processing of Receptive Fields} method. Perceptually, humans find it difficult to distinguish the upper and lower boxes, which differ in brightness only slightly, when presented on a luminous background like black or white. However, it is easy to distinguish them on a background whose luminance lies between them. We obtain positive results in Fig. \ref{fig:test-crisp-opp-2-ld} which identify a luminance difference between the two squares.}
+    \caption{Experimental results for the given test stimuli, processed by the \textit{Opponent Processing of Neural Receptive Fields} method. Perceptually, humans find it difficult to distinguish the upper and lower boxes, which differ in brightness only slightly, when presented on a luminous background like black or white. However, it is easy to distinguish them on a background whose luminance lies between them. We obtain positive results in Figure \ref{fig:test-crisp-opp-2-ld} which identify a luminance difference between the two squares.}
+    \label{fig:test-crisp-opp}
 \end{figure}
 \clearpage
 }
 
 \afterpage{%
-\begin{figure}[H] \label{fig:test-crisp-dwt}
+\begin{figure}[H]
     \centering
+    \captionsetup{justification=centering}
     \begin{subfigure}[b]{0.2\textwidth}
             \centering
             \includegraphics[width=.85\linewidth, frame]{test-crisp-1}
@@ -2813,7 +2853,8 @@ In some experiments we isolate and enhance the region of the test stimuli in whi
             \caption{}
             \label{fig:test-crisp-dwt-3-by}
     \end{subfigure}
-    \caption{Experimental results for the given test stimuli, processed by the \textit{Discrete Wavelet Transform in Opponent Colorspace} method. Perceptually, humans find it difficult to distinguish the upper and lower boxes, which differ in brightness only slightly, when presented on a luminous background like black or white. However, it is easy to distinguish them on a background whose luminance lies between them. We obtain positive results in Fig. \ref{fig:test-crisp-dwt-2-ld} which identify a luminance difference between the two squares.}
+    \caption{Experimental results for the given test stimuli, processed by the \textit{Discrete Wavelet Transform in Opponent Colorspace} method. Perceptually, humans find it difficult to distinguish the upper and lower boxes, which differ in brightness only slightly, when presented on a luminous background like black or white. However, it is easy to distinguish them on a background whose luminance lies between them. We obtain positive results in Figure \ref{fig:test-crisp-dwt-2-ld} which identify a luminance difference between the two squares.}
+    \label{fig:test-crisp-dwt}
 \end{figure}
 \clearpage
 }
@@ -2828,17 +2869,34 @@ In some experiments we isolate and enhance the region of the test stimuli in whi
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newpage
+
 \section{Conclusions}
 
-We have presented our work on the introduction of biologically plausible representation of color into a neurodynamical model of V1. This is a continuation of the research published by Penacchio \textit{et al.} \cite{penacchio:2013} and there is much left to do. Specifically, we presented two approaches to color representation.
+We have presented our work on the introduction of a biologically plausible representation of color into a neurodynamical model of V1. To do so we included models of single-opponent and double-opponent cell response patterns, and the interactions between such cells, to the neurodynamical model developed by Penacchio \textit{et al.} The neuronal interactions were defined logically, as little biological evidence exists to describe their physical interactions. With respect to modeling the cells' responses, we explored two different approaches:
 
-The first, which we referred to as \textit{Opponent Processing of Receptive Fields}, was an attempt to adhere to what is reported in neurobiology. We found this approach to be conceptually enticing; by processing ???. However, we found our implementation to be relatively slow, orders of magnitude slower than our second approach. In general, we found this approach to not be as sensitive to detail as the \textit{Discrete Wavelet Transform in Opponent Space}, in Fig. \ref{fig:test-circle-a-opp-results} for example.
+\subsubsection{Opponent Processing of Neural Receptive Fields}
 
-We also run into a significant issue in how we defined mathematically the Light and Dark opponent color components (Eqs. \ref{eq:opp-light} \& \ref{eq:opp-dark}). Unlike, their chromatic counterparts, these channels are almost exactly complementary (depending on the center/surround receptive field sizes and weights). This leads to redundancy at the double-opponent level, as can be clearly seen in their receptive field diagrams (Figures \ref{fig:do-rf-inputs-light} \& \ref{fig:do-rf-inputs-dark}). This is also evident in the redundancy of their response patterns in Fig. \ref{fig:transform-opp}. This leads to inhibition between the two opponents and they eventually cancel out, as we see in our results. The solution may just be a matter of appropriately defining sizes and weights for the center and surround receptive fields, or it may require we return to the literature to develop a better understanding of the biology, and a new mathematical model for it.
+This was an attempt to adhere to what is reported in neurobiology. This approach is conceptually very enticing due to its biological plausibility. However, our implementation proved to be relatively slow: orders of magnitude slower than our second approach. This can likely be improved by 1) reusing convolutions performed at the single-opponent level to build double-opponent receptive fields, or 2) utilizing Gabor filters rather than gaussians to convolve the input. In general, we found this approach to not be as sensitive to detail as the \textit{Discrete Wavelet Transform in Opponent Space}, in Figure \ref{fig:test-circle-a-opp-results} for example. We suspect this is can be easily addressed by more attentive tuning of the algorithm's parameters, specifically, gaussian receptive field configurations at higher scales. We also run into a significant issue in how we mathematically defined the Light and Dark opponent color components (Eqs. \ref{eq:opp-light} \& \ref{eq:opp-dark}). Unlike their chromatic counterparts, these channels are almost exactly \textit{complementary}. This leads to \textit{redundancy} at the double-opponent level, as can be clearly seen in their receptive field diagrams (Figures \ref{fig:do-rf-inputs-light} \& \ref{fig:do-rf-inputs-dark}). This is also evident in the redundancy of their response patterns in Appendix Figure \ref{fig:transform-opp}. This leads to inhibition between the two opponents and they eventually cancel out, as we see in our results, e.g., Figures \ref{fig:test-circle-a-opp-a-ld} \& \ref{fig:test-circle-a-opp-b-ld}. The solution here may also just be a matter of defining appropriately sizes and weights for the cells' receptive fields, or it may require we return to the literature to develop a better understanding of the biology, and a new mathematical model for it.
 
-The second approach, which we referred to as \textit{Discrete Wavelet Transform in Opponent Colorspace}, aimed to be much more computationally efficient, though it sacrificed biologically plausibility along the way. We maintain two key points of contention with the concepts behind this approach. First, as we implemented it, it depends on the \textit{CIE L*a*b*} opponent colorspace which was designed to represent color in a perceptually uniform manner. However, this is not to say that it represents color in a biologically meaningful manner. Replacing this colorspace transformation with another may well satisfy these reservations. The other issue with this approach, however, is not so easily addressed. The decomposition of image data, be it through a discrete wavelet transform (DWT) or any other method of convolution, after an explicit mathematical colorspace transformation, be it \textit{CIE L*a*b*} or any other, does not reflect the biological order of operations. In the \textit{Opponent Processing of Receptive Fields} method, we convolve L, M, S input \textit{as} we transform to the opponent colorspace, while in the \textit{Discrete Wavelet Transform in Opponent Colorspace}, we transform to the opponent colorspace \textit{before} we convolve the signal. This difference is not insignificant and leads us to favor the former method over the latter, at least in principle.
+\subsubsection{Discrete Wavelet Transform in Opponent Colorspace}
 
-That said, the performance of the model tells us that much work is needed. In some experiments we see the predicted results for both methods of color description. For example, in Figures \ref{fig:test-bars-opp} and \ref{fig:test-bars-dwt} we see both express higher blue activity for the bars which are perceived as blue (Figures \ref{fig:test-bars-opp-by-mask} and \ref{fig:test-bars-dwt-by-mask}), though in the \textit{Opponent Processing of Receptive Fields} method the blue bars also elicit higher green activity (Figures \ref{fig:test-bars-opp-rg-mask}). Other results are less consistent between the two methods. In Figures \ref{fig:test-gradient-opp} and \ref{fig:test-gradient-dwt} the left rectangles are perceived as green and those to the right, yellow. The \textit{Discrete Wavelet Transform in Opponent Colorspace} method excels, predicting both the green extreme on the left (Fig. \ref{fig:test-gradient-dwt-rg-mask}) and the yellow extreme on the right (Fig. \ref{fig:test-gradient-dwt-by-mask}). However, \textit{Opponent Processing of Receptive Fields} method predicts the opposite.
+This color descriptor aimed to be much more computationally efficient, though it sacrificed biologically plausibility along the way. We maintain two key points of contention with the concepts behind this approach. First, as we implemented it, it depends on the \textit{CIE L*a*b*} opponent colorspace which was designed to represent color in a perceptually uniform manner. However, this is not to say that it represents color in a biologically meaningful manner. Replacing this colorspace transformation with another may well satisfy these reservations. The other issue with this approach, however, is not so easily addressed. The decomposition of image data, be it through a discrete wavelet transform (DWT) or any other method of convolution, after an explicit mathematical colorspace transformation, be it \textit{CIE L*a*b*} or any other, does not reflect the biological order of operations. In the \textit{Opponent Processing of Neural Receptive Fields} method, we convolve L, M, S input \textit{as} we transform to the opponent colorspace, while in the \textit{Discrete Wavelet Transform in Opponent Colorspace}, we transform to the opponent colorspace \textit{before} we convolve the signal. This difference is not insignificant and leads us to favor the former method over the latter, at least in principle.
+
+\subsubsection{Neurodynamical Model}
+
+The neurodynamical model used in this research has been shown to explain well some of the biological phenomena believed to emerge in V1, such as saliency \cite{li:1999} and brightness induction \cite{penacchio:2013}. It seems logical that it would continue to explain these and others through the introduction of color. However, for this assumption to hold, it is imperative that color be introduced in a meaningful manner. Beyond the description of color information itself, the connections between the new cells introduced to the model need to be defined appropriately. Unfortunately, as mentioned, we found few specificities in the literature to describe such connections.
+
+Given our descriptions of color information and our implementation of neuronal interactions (albeit more logical than biological) we see that brightness induction does still emerge from the model: Figures \ref{fig:test-crisp-opp} \& \ref{fig:test-crisp-dwt}. In these experiments we see that there is little, if any, difference between the upper and lower test squares when presented on black or white backgrounds (Figures \ref{fig:test-crisp-opp-1-ld}, \ref{fig:test-crisp-opp-3-ld}, \ref{fig:test-crisp-dwt-1-ld}, \& \ref{fig:test-crisp-dwt-3-ld}). However, when presented on a background whose luminance lies between the two test squares, the model responds differently to the upper and lower square (Figures \ref{fig:test-crisp-opp-2-ld} \& \ref{fig:test-crisp-dwt-2-ld}). In these experiments, the driving factor is brightness. That is, the most important color components in play are Light and Dark. It is encouraging to see that both approaches to color description pass this test, though the differences in their response patterns warrants further investigation.
+
+When we apply the algorithm with chromatic test cases, the results are less conclusive. In the example we first presented in this paper (Figure \ref{fig:example}), we find the \textit{Opponent Processing of Neural Receptive Fields} method to identify no significant difference between the two stimuli (Figure \ref{fig:test-circle-a-opp-results}), while the \textit{Discrete Wavelet Transform in Opponent Colorspace} method predicts a perceived difference contrary to that expected: the blue stimulus elicits activity toward yellowness (Figure \ref{fig:test-circle-a-dwt-b-by-mask}), while the green stimulus elicits activity toward redness (Figure \ref{fig:test-circle-a-dwt-a-rg-mask}). It is worth noting here that it does correctly predict the green stimulus as brighter than the blue stimulus (Figure \ref{fig:test-circle-a-dwt-b-ld-mask}); perhaps this is an indication that color and brightness do, in fact, need to be treated differently in such a model.
+
+We see similar results when we apply the algorithm to less appealing, but equally impressive examples of chromatic induction: Figures \ref{fig:test-circle-neon-opp-results} \& \ref{fig:test-circle-neon-dwt-results}. Here the \textit{Opponent Processing of Neural Receptive Fields} color descriptor results in a prediction that the blue stimulus elicits activity toward yellowness (Figure \ref{fig:test-circle-neon-dwt-b-by-mask}), while the green stimulus elicits activity toward redness (Figure \ref{fig:test-circle-neon-dwt-a-rg-mask}). These results would lead this author to consider simply flipping the chromatic axes and being satisfied, however, here we see the \textit{Discrete Wavelet Transform in Opponent Colorspace} method returns the expected output: the blue stimulus elicits activity toward blue (Figure \ref{fig:test-circle-neon-dwt-b-by}) while the green stimulus elicits activity toward green (Figure \ref{fig:test-circle-neon-dwt-a-rg}). This is encouraging, though the degree of difference between the two stimuli does not appear significant.
+
+We also tested the model on larger scaled chromatic induction effects so as to rule out issues with low spatial frequency responses. In Figures \ref{fig:test-gradient-opp} and \ref{fig:test-gradient-dwt} we test the two color descriptors on a green-yellow gradient chromatic induction effect. Here we see that the \textit{Opponent Processing of Neural Receptive Fields} correctly predicts the right rectangles' shift toward yellow (Figure \ref{fig:test-gradient-opp-by-mask}), but incorrectly also predicts those rectangles to be perceived as more green (Figure \ref{fig:test-gradient-opp-rg-mask}). The \textit{Discrete Wavelet Transform in Opponent Colorspace} descriptor, the opposite; it correctly predicts the left rectangles' shift toward green (Figure \ref{fig:test-gradient-dwt-rg-mask}), but incorrectly also predicts the other rectangles to be more blue (Figure \ref{fig:test-gradient-dwt-by-mask}).
+
+We propose three possible causes for these inconclusive results: 1) the color descriptors are inaccurate, 2) the neurodynamical model is insufficient, 3) our analysis of the model is incomplete. At this level of experimentation, all are equally possible. We feel certain that more work needs to be done to properly parameterize the \textit{Opponent Processing of Neural Receptive Fields} method, and have already acknowledged that the \textit{Discrete Wavelet Transform in Opponent Colorspace} method has its shortcomings. Similarly, we have touched on the lack of neurobiological support for meaningful models of interaction between chromatically tuned neurons. Finally, it need be recognized that all of our experimental results involve the summarization of the activity a multidimensional dynamic network into 3 static dimensions of information. More meaningful methods of interpreting the activity of this network can likely be devised, and may well elucidate more optimistic results, or at the very least, avenues of improvement.
+
 
 \newpage
 
@@ -3130,7 +3188,7 @@ That said, the performance of the model tells us that much work is needed. In so
         \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-y}}
         \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}%
-    \caption{Example of single-opponent and double-opponent response (scale=1) to a test image following the \textit{Opponent Processing of Receptive Fields} workflow. Strong activity is indicated by black and weak activity by white.}
+    \caption{Example of single-opponent and double-opponent response (scale=1) to a test image following the \textit{Opponent Processing of Neural Receptive Fields} workflow. Strong activity is indicated by black and weak activity by white.}
     \label{fig:transform-opp}
 \end{figure}
 
