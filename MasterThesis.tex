@@ -459,21 +459,21 @@ primary visual cortex, striate cortex, V1, receptive field, single-opponent, dou
 \begin{figure}[H]
     \center
     \includegraphics[width=0.45\textwidth]{test-circle-a-reference}
-    \caption{Example of contextual influences on the perception of color. The colors of the all rings on the left are physically identical to those on the right. The order of the rings differs, however. On the left, the test ring borders two yellow rings, while on the right the test ring borders to two 'red' rings. This change incontext is what induces the perceived difference.}
+    \caption{Example of contextual influences on the perception of color. The colors of the all rings on the left are physically identical to those on the right. The order of the rings differs, however. On the left, the test ring borders two yellow rings, while on the right the test ring borders to two 'red' rings. This change in context is what induces the perceived difference.}
     \label{fig:example}
 \end{figure}
 
 \newpage
 
-Neurophysiological research in the past decade or so has witnessed a growing confidence in the community that these phenomena begin to arise as early in primate vision as the primary visual cortex (V1) \cite{schluppeck:2002, sincich:2005, solomon:2007, johnson:2008, conway:2010, shapley:2011}. It is believed that the processing of color and form in V1 are the beginnings of, amongst other effects, color constancy: the ability to perceive an objects color despite ambient luminance changes. This phenomenon has clear evolutionary benefits, such as the ability to recognize the color of ripe fruit even though the color of daylight might be changing from blue to red as the sun sets. Truly, as the ambient light changes, so to does the spectral reflectance of the fruit. Still, its color appears perseptually consistent. It has also been suggested that the processing of color and context in V1 may assist in defining object saliency \cite{li:2002}: the perceived 'importance' of an object.
+Neurophysiological research in the past decade or so has witnessed a growing confidence in the community that these phenomena begin to arise as early in primate vision as the primary visual cortex (V1) \cite{conway:2010, johnson:2008, schluppeck:2002, sincich:2005, solomon:2007, shapley:2011}. It is believed that the processing of color and form in V1 are the beginnings of, amongst other effects, color constancy: the ability to perceive an objects color despite ambient luminance changes. This phenomenon has clear evolutionary benefits, such as the ability to recognize the color of ripe fruit even though the color of daylight might be changing from blue to red as the sun sets. Truly, as the ambient light changes, so to does the spectral reflectance of the fruit. Still, its color appears perceptually consistent. It has also been suggested that the processing of color and context in V1 may assist in defining object saliency \cite{li:2002}: the perceived 'importance' of an object.
 
-With respect to the underlying mechanisims, many have proposed that it is the \textit{boundaries} between colored regions which drives the processing of color in V1 \cite{schluppeck:2002, sincich:2005, solomon:2007, johnson:2008, conway:2010, shapley:2011} and, as a consequence, these prenomena. This can be observed in Figure \ref{fig:example} where it is the border between the turquoise rings and the neighboring rings that determine if they are perceived as green or blue. Specifically, to explain this influence of form on color processing in V1, the literature proposes two broad classifications of neurons: single-opponent cells \& double-opponent cells \cite{johnson:2008}.
+With respect to the underlying mechanisms, many have proposed that it is the \textit{boundaries} between colored regions which drives the processing of color in V1 \cite{conway:2010, johnson:2008, schluppeck:2002, sincich:2005, solomon:2007, shapley:2011} and, as a consequence, these phenomena. This can be observed in Figure \ref{fig:example} where it is the border between the turquoise rings and the neighboring rings that determine if they are perceived as green or blue. Specifically, to explain this influence of form on color processing in V1, the literature proposes two broad classifications of neurons: single-opponent cells \& double-opponent cells \cite{johnson:2008}.
 
 Opponency, in neurobiology, refers to antagonistic inputs of information: one source of input excites the neuron, while another inhibits it. These two antagonistic components of opponency are commonly referred to as the \textit{on} and \textit{off} inputs to a neuron. One can think of these two inputs as being what the cell is 'looking for', \textit{on}, and what the cell is 'not looking for', \textit{off}. Intuitively, stimuli from the \textit{on} input excites the neuron, while stimuli from the \textit{off} input inhibits it. Perhaps less intuitively, removal of stimuli from the \textit{off} input also excites the neuron. This behavior is logical when you consider that the two antagonistic inputs typically represent mutually exclusive features. In this way, removal of the negative stimuli often means much the same as presence of the positive stimuli and thus, removal of such stimuli contributes to excitation of the neuron. Of course, if equal stimuli are provided from both the \textit{on} and \textit{off} inputs, excitation is cancelled out by inhibition and the neuron does not fire. Lastly, recognize that any one neuron usually receives antagonistic input from, in fact, many other neurons. The aggregate stimuli from these excitatory and inhibitory inputs determines if the cell fires.
 
-With respect to cells in the early visual system, we specifically use opponency to refer to chromatic and spatial opponency. We will now detail what exactly this means, with specific examples of neurons' expected patterns of response to various stimuli, as well as the implications of such responses. To frame this explanation, consider that single-opponent cells respond best to \textit{large areas} of light/color, while double-opponent cells respond only to the \textit{boundaries} between such areas.
+With respect to cells in the early visual system, we specifically use opponency to refer to chromatic and spatial antagonism. In Section \ref{section:neurobiology} we detail what exactly this means, with specific examples of neurons' expected patterns of response to various stimuli, as well as the implications of such responses. To frame this explanation, consider for now that single-opponent cells respond best to \textit{large areas} of color, while double-opponent cells respond only to the \textit{boundaries} between such areas.
 
-Within, we propose a computational model designed around the current understanding of this biology. We present two implementations, one more biologically accurate, and another more computationally elegant. We explore the behavior of these models with respect to what they can teach us about the assumed biological theories, as well as their application to the field of computer vision.
+With this understanding of color and context in V1, our research proposes a computational model designed to describe color and the neurodynamical processes behind it. We present two implementations, one more biologically accurate and another more computationally elegant. We explore the behavior of these models with respect to what they can teach us about the assumed biological theories, as well as their application to the field of computer vision.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -485,7 +485,9 @@ Within, we propose a computational model designed around the current understandi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{State of the art}
 
-\subsection{Neurobiology}
+In order to frame our work, we wish to examine both the current understanding of the neurobiological mechanisms at play, as well as previous work in modeling these mechanisms. We present this review in the following sections, \textit{A. Neurobiology} and \textit{B. Computational Modeling}.
+
+\subsection{Neurobiology} \label{section:neurobiology}
 
 \subsection*{Single-Opponent Neurons}
 
@@ -998,7 +1000,7 @@ It's worth noting that a single-opponent neuron can also be selective to specifi
 Another important feature of double-opponent cells is that they are inherently sensitive to borders of specific size, or scale. Technically, we refer to such preference of 'scale' as a cell's spatial frequency selectivity. Each double-opponent neuron will be selective to a particular spatial frequency and excited less so by stimuli of spatial frequency deviating from this preference. Again, this is quite intuitively a product of the design of the neuron's receptive field and easily visualized, as in Figure \ref{fig:do-scale}.
 
 % FIGURE: horizontal red/green double-opponent cell on horizontal red/green border of different spatial frequencies
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \begin{subfigure}{0.2\textwidth}
         \centering
@@ -1068,9 +1070,6 @@ Another important feature of double-opponent cells is that they are inherently s
     \end{subfigure}%
     \caption{A double opponent cell tuned to a particular spatial frequency. Either a (b) lower or a (c) higher spatial frequency than preferred lowers the response of the cell.} \label{fig:do-scale}
 \end{figure}
-
-
-\subsubsection*{Achromatic Double-Opponent Neurons}
 
 As with single-opponent cells, one of the axes of the opponent process theory is 'lightness' vs 'darkness'. While we frequently discuss opponency as being a thing of 'color', we find double-opponent cells which are specifically sensitive to luminance borders.
 Such achromatic sensitivity is easily achieved by balancing cone inputs into the neuron's antagonistic receptive fields, as in single-opponent cells. It behaves just as the previously described double-opponent cells, with specific orientation and spatial frequency selectivity, but responds best to luminance borders rather than chromatic borders. For more details on achromatic receptive fields, please refer back to the section on \textit{Achromatic Single-Opponent Neurons}.
