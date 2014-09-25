@@ -1097,28 +1097,16 @@ In the model presented, Li used oriented bars as features, though expressed that
 By defining neuronal connectivity in this manner, patterns of neurons sensitive to co-located and co-aligned bars positively interact with each other to enhance their collective response to the stimuli. Similarly, incoherent stimuli negatively interact with their neighbors and are silenced. From these local interactions, global features are enhanced if they satisfy the connectivity rules, and noise is suppressed. Li showed that this method can be used to enhance contours and identify boundaries between regions for which normal segmentation methods struggle.
 
 
-\subsection*{Penacchio, Otazu, \& Dempere-Marco's Neurodynamical Model for Brightness Induction (2013)}
+\subsection*{Penacchio, Otazu, \& Dempere-Marco's Neurodynamical Model for Brightness Induction \cite{penacchio:2013}}
 
-Li's work laid the foundation for Penacchio \textit{et al.} who extended the model to a usable framework which:
-\begin{enumerate}
-    \item Uses real black \& white images /movies as input.
-    \item Utilizes discrete wavelet transforms to extract edges (more on this later).
-    \item Added multi scale support.
-    \item Summarizes the results into an output 'perceptual image'.
-\end{enumerate}
-Their research was focused on observing brightness induction (BI) arising from such a neurodynamical model.
-\begin{itemize}
-    \item No color, just black \& white \textit{edges}
-    \item Generalized to real images (edges vs lines)
-    \item Added scales
-    \item Dynamical processing
-    \item \textbf{Avoid detail, save that for \textit{Method}..?}
-    \item Extension of Z. Li's edge detection work
-    \item Uses DWT to extract oriented edges in grayscale
-    \begin{itemize}
-        \item ..in our context, it's essentially a luminance sensitive double-opponent cell.
-    \end{itemize}
-\end{itemize}
+Li's work laid the foundation for Penacchio \textit{et al.}, who extended and generalized the model to a flexible framework. Most importantly, they dealt with the question which Li had previously not: what is meaningful input to the neurodynamical model? In Li's model, neurons responded to oriented 'bars' which were, it is assumed, provided to the retinotopic neurodynamical model directly. Penacchio \textit{et al.} utilized a discrete wavelet transform (DWT) to decompose real images into their oriented multiresolution components, which then served as the input to the Li's model.
+
+In the context of the previously described neurobiology, this multiresolution decomposition, when applied to grayscale images, could be interpreted as modeling the response patterns of achromatic double-opponent cells. Their findings were positive as the neurodynamical model modeled the interactions between these cells, increasing saliency and simulating brightness induction (BI) phenomena at high contrast borders.
+
+A byproduct of using a DWT to obtain input was that they did not just obtain oriented edge information, but multiresolution oriented edge information. This added another dimension to the hypercolumn model: for each retinotopic position, they modeled the activity and interactions of achromatic double-opponent cells with both orientation and spatial frequency selectivity. Introducing this extra dimension of input information required the specification of interactions between neurons of differing spatial frequency selectivity in the dynamical model.
+
+As mentioned, our work is a direct continuation of this research line. Thus, we build on this model, introducing yet another dimension to the hypercolumn model: color. Similarly, it will be necessary that we introduce biologically meaningful interactions between neurons of differing chromatic selectivity to the dynamical model.
+
 
 \subsection*{Itti, Koch, \& Niebur's Model for Saliency \cite{itti:1998}}
 
