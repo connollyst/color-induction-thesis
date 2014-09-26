@@ -1180,10 +1180,10 @@ The implication is that for each retinal position, in V1 it is necessary to have
 
 \subsection{Computational Modeling:}
 
-The model described in this research is an extension of that presented by Penacchio \textit{et al.} \cite{penacchio:2013}, itself based on work by Li \cite{li:1999}. Before detailing our implementation, it is important to review prior art; these two works and others. As our goal is to model the behavior of achromatic and color preferring single-opponent and double-opponent neurons, we will also review other computational endeavors tackling the issue of color and/or form from a biologically inspired perspective.
+The model described in this research is an extension of that presented by Penacchio \textit{et al.} \cite{penacchio:2013}, itself based on work by Li \cite{li:1999}. Before detailing our implementation, it is important to review prior art; these two works and others. As our goal is to model the behavior of achromatic and color preferring single-opponent and double-opponent neurons, we will also review other computational endeavors tackling the issue of color in context from a biologically inspired perspective.
 
 \subsection*{Li's Neurodynamical Model for Segmentation \cite{li:1999}}
-In Li's original work, a neurodynamical model was presented which focused on global region segmentation using only local interactions between neurons. In the interest of simplicity, Li's implementation dealt only with the nature of these interactions, ignoring where the stimulus, or information, might be coming from. Conceptually, Li defined neurons by their physical position in the image and the `feature' to which they are sensitive. She then defined the connections between these neurons such that those physically close to each other, and sensitive to similar features, interacted most strongly. Stimulation of one neuron, then, positively stimulated (excited) similar neurons nearby, and negatively stimulated (inhibited) dissimilar neurons nearby. Such excitation and inhibition cascades through the network naturally, producing large scale response patterns defined only by local stimuli.
+In Li's original work, a neurodynamical model was presented which focused on global region segmentation using only local interactions between neurons. In the interest of simplicity, Li's implementation dealt only with the nature of these interactions, ignoring where the stimulus might be coming from. Li defined neurons by two parameters: their physical position in the visual field and the `feature' to which they are sensitive. She then defined the connections between these neurons such that those physically close to each other, and sensitive to similar features, interacted most strongly. Stimulation of one neuron, then, positively stimulated (excited) similar neurons nearby, and negatively stimulated (inhibited) dissimilar neurons nearby. She saw that such excitation and inhibition cascades through the network naturally, producing large scale response patterns defined only by local stimuli.
 
 In the model presented, Li used oriented bars as features, though expressed that any logical feature could be reasonably considered in its place. This choice was biologically inspired by neurons sensitive to specifically oriented bars, the aforementioned double-opponent cells. When considering such features, inter-neuronal connections can be logically deduced: two neurons positively interact most when both 1) are sensitive to similarly oriented bars and 2) are co-located along that same orientation. Two neurons negatively interact most when either of these two conditions is not met.
 
@@ -1192,11 +1192,11 @@ By defining neuronal connectivity in this manner, patterns of neurons sensitive 
 
 \subsection*{Penacchio, Otazu, \& Dempere-Marco's Neurodynamical Model for Brightness Induction \cite{penacchio:2013}}
 
-Li's work laid the foundation for Penacchio \textit{et al.}, who extended and generalized the model to a flexible framework. Most importantly, they dealt with the question which Li had previously not: what is meaningful input to the neurodynamical model? In Li's model, neurons responded to oriented `bars' which were, it is assumed, provided to the retinotopic neurodynamical model directly. Penacchio \textit{et al.} utilized a discrete wavelet transform (DWT) \cite{mallat:1989} to decompose real images into their oriented multiresolution components, which then served as the input to Li's model.
+Li's work laid the foundation for Penacchio \textit{et al.} who extended and generalized the model to a flexible framework. Most importantly, they dealt with the question which Li had previously not: what is meaningful input to the neurodynamical model? In Li's model, neurons responded to oriented `bars' which were, it is assumed, provided to the retinotopic neurodynamical model directly. Penacchio \textit{et al.} utilized a discrete wavelet transform (DWT) \cite{mallat:1989} to decompose real images into their oriented multiresolution components, which then served as the previously missing input to Li's model.
 
-In the context of the previously described neurobiology, this multiresolution decomposition, when applied to grayscale images, could be interpreted as modeling the response patterns of achromatic double-opponent cells. Their findings were positive as the neurodynamical model modeled the interactions between these cells, increasing saliency and simulating brightness induction (BI) phenomena at high contrast borders.
+In neurobiological terms, this multiresolution decomposition, when applied to grayscale images, can be interpreted as modeling the response patterns of achromatic double-opponent cells. Their findings were positive: the model correctly represented the interactions between these cells, increasing saliency and simulating brightness induction (BI) phenomena at high contrast borders.
 
-A byproduct of using a DWT to obtain input was that they did not just obtain oriented edge information, but multiresolution oriented edge information. This added another dimension to the hypercolumn model: for each retinotopic position, they modeled the activity and interactions of achromatic double-opponent cells with both orientation and spatial frequency selectivity. Introducing this extra dimension of input information required the specification of interactions between neurons of differing spatial frequency selectivity in the dynamical model.
+A pleasant byproduct of using a DWT to generate their input was that they did not just obtain oriented edge information, but multiresolution oriented edge information. This introduced another dimension to their hypercolumn model: for each retinotopic position they modeled the activity and interactions of achromatic double-opponent cells with both orientation \textit{and spatial frequency selectivity}. Worth noting, inclusion of this extra dimension of information required the definition of interactions between neurons of differing spatial frequency selectivity in the dynamical model.
 
 As mentioned, our work is a direct continuation of this research line. Thus, we build on this model, introducing yet another dimension to the hypercolumn model: color. Similarly, it will be necessary that we introduce biologically meaningful interactions between neurons of differing chromatic selectivity to the dynamical model.
 
@@ -1205,17 +1205,17 @@ As mentioned, our work is a direct continuation of this research line. Thus, we 
 
 Itti \textit{et al.} implemented a biologically inspired model of visual attention, or saliency. This work included opponent processing of color, center/surround receptive fields at scales, and orientation selectivity. Because of these features, and their overlap with our own goals, we acknowledge it as an influential work.
 
-In this model color is included by treating the RGB image as analogous for L, M, and S cone activity. From this Red, Green, Blue, and Yellow color components, as well as a single Intensity component is derived, using the following formulae:
+In their work Itti \textit{et al.}, as many of us do, utilize raw RGB image input as a correlate of LMS spectral response. From this input Red, Green, Blue, and Yellow color components, as well as a single raw intensity ($I$) component, are derived using the following formulae:
 
 \begin{flalign}
-    Intensity &= \frac{(L + M + S)}{3} \\
-    Red       &= max(0, L - \frac{(M + S)}{2}) \\
-    Green     &= max(0, M - \frac{(L + S)}{2}) \\
-    Blue      &= max(0, S - \frac{(L + M)}{2}) \\
-    Yellow    &= max(0, \frac{(L + M)}{2} - \frac{|(L + M)|}{2} - S)
+    I      &= \frac{(L + M + S)}{3} \\
+    Red    &= max(0, L - \frac{(M + S)}{2}) \\
+    Green  &= max(0, M - \frac{(L + S)}{2}) \\
+    Blue   &= max(0, S - \frac{(L + M)}{2}) \\
+    Yellow &= max(0, \frac{(L + M)}{2} - \frac{|(L + M)|}{2} - S)
 \end{flalign}
 
-Each of the $L$, $M$, and $S$ (RGB) channels are normalized by $I$ in order to decouple hue from intensity. These derived color components (and intensity) are computed for a set of images convolved in a \textit{Gaussian pyramid} and contrasted across scales to obtain center/surround opponent color (and intensity) channels:
+Each of the $L$, $M$, and $S$ channels are first normalized by $I$ in order to decouple hue from intensity. These derived color components (and $I$) are computed for a set of images convolved in a \textit{Gaussian pyramid} and contrasted across scales to obtain center/surround opponent color channels:
 
 \begin{flalign}
     Intensity(c, s)  &= |I(c) \ominus I(s)| \\
@@ -1229,14 +1229,14 @@ Itti \textit{et al.} also compute orientation features by deconvolving $I$ with 
     O(c, s, \theta)  &= |O(c, \theta) \ominus O(s, \theta)|
 \end{flalign}
 
-Biologically, such features could be considered representative of achromatic double-opponent cells. Similar to the features obtained by Penacchio \textit{et al.}'s use of discrete wavelet transforms (DWT), they include information about the intensity, position, and orientation of edges.
+Biologically, such features could be considered representative of achromatic double-opponent cells. Similar to the features modelled by Penacchio \textit{et al.}'s use of discrete wavelet transforms (DWT) they include information about the intensity, position, and orientation of edges.
 
 This set of 42 feature maps; intensity at 6 scales, 2 opponent colors at 6 scales each, and 4 orientations at 6 scales each, provide input for a dynamical neural network. In their neurodynamical model of saliency, each point of the feature maps represents activity of a neuron and interactions between neurons ensure that only the most active locations remain, while all others are suppressed.
 
 
 \subsection*{Yang, Gao, Li \& Li's Model of Boundary Detection \cite{yang:2013}}
 
-Yang \textit{et al.} developed a biologically inspired system of edge detection. To this end, they implemented a model of chromatic double-opponent receptive fields constructed from asymmetric gaussian filters. The first step in their algorithm is to transform the RGB input image to red, green, blue, and yellow opponent color channels. Their approach simply utilizes the red, green, and blue color channels as they are, and define yellow to be the average of red and green input.
+Yang \textit{et al.} developed a biologically inspired system of edge detection. To this end they implemented a model of chromatic double-opponent receptive fields constructed from asymmetric gaussian filters. The first step in their algorithm is to transform the RGB input image to red, green, blue, and yellow opponent color channels. Their approach utilizes the red, green, and blue color channels as they are, and defines yellow as the average of red and green input:
 
 \begin{flalign}
     Red    &= R \\
@@ -1247,14 +1247,14 @@ Yang \textit{et al.} developed a biologically inspired system of edge detection.
 
 These four color components are then convolved with centered, circular gaussian filters. This can be interpreted as modeling the receptive fields of chromatic single-opponent cells. These single-opponent cell responses are then combined in spatially opponent pairs to derive models of chromatic double-opponent cells.
 
-For their purposes of boundary detection, they evaluate their modeling of double-opponent cells only, discarding single-opponent cell responses. However, their implementation of single-opponent cells is perfectly reasonable and taken as inspiration in our work. The primary shortcoming of the research by Zhang \textit{et al.} lies in the description of color itself; while convenient, it is not supported by biology thus needs to be rethought.
+For their purposes of boundary detection, they evaluate their modeling of double-opponent cells only, discarding single-opponent cell responses. However, their implementation of single-opponent cells is perfectly reasonable and taken as inspiration in our work. The primary shortcoming of the research by Zhang \textit{et al.} lies in the description of color itself; while convenient, it is not supported by biology.
 
 
 \subsection*{Zhang, Barhomi, \& Serre's Biologically Inspired Color Descriptor \cite{zhang:2012}}
 
-Zhang \textit{et al.} introduce a computational color descriptor which integrates color and form. They specifically aim to model the behavior of single-opponent and double-opponent cells in the primate visual system. To do so, they consider the three classical opponent axes (Red-Green, Blue-Yellow, Light-Dark), as well as a fourth (Red-Cyan), omitted here.
+Zhang \textit{et al.} introduce a computational color descriptor which integrates color and form. They specifically aim to model the behavior of single-opponent and double-opponent cells in the primate visual system. To do so, they consider the three classical opponent axes (Light-Dark, Red-Green, Blue-Yellow), as well as a fourth (Red-Cyan), omitted here.
 
-Single-opponent cells' responses are modeled by first convolving the RGB input with a center ($c$) surround ($s$) filters, and then applying the following transformations:
+Single-opponent cells' responses are modeled by first convolving the LMS input with center ($c$) surround ($s$) filters, and then applying the following transformations:
 
 \begin{flalign}
     Light(c, s)  &= \tfrac{1}{\sqrt{3}}L(c)  + \tfrac{1}{\sqrt{3}}M(c)  + \tfrac{-1}{\sqrt{3}}S(s) \\
@@ -1269,12 +1269,12 @@ In this work the team explored three means of modeling single-opponent centers a
 
 To model double-opponent cell responses, the output from single-opponent cells are further convolved with a number of oriented filters. These convolutions are then summed over phase and opponent pairs to yield three spatially and chromatically opponent channels; Light-Dark, Red-Green, and Blue-Yellow (as well as Red-Cyan in their work).
 
-The output of their model is a set of feature maps representing the response patterns of single-opponent and double-opponent neurons selective to specific orientations. Thus, this work is particularly influential to ours.
+The output of their model is a set of feature maps representing the response patterns of single-opponent and double-opponent neurons selective to specific orientations. Because of this, their work is particularly influential to ours.
 
 
 \subsection*{Spitzer \& Barkan's Model of Color Induction \cite{spitzer:2005}}
 
-Spitzer \textit{et al.} implemented a computational model of color induction by processing center and surround receptive fields of single and double-opponent neurons. While we also aim to model color induction, as well as brightness induction, our approach differs significantly from theirs. Our model seeks to introduce induction effects primarily through its neurodynamical component, while theirs relies mostly on center and surround (and remote) effects introduced by the cells' receptive fields, as well as a temporal adaptation function.
+Spitzer \textit{et al.} implemented a computational model of color induction by processing center and surround receptive fields of single and double-opponent neurons. While we also aim to model color induction, our approach differs significantly from theirs. Our model seeks to introduce induction effects primarily through its neurodynamical component, while theirs relies mostly on center and surround (and remote) effects introduced by the cells' receptive fields, as well as a temporal adaptation function.
 
 Another important difference is that their implementation considered double-opponent cells to be circular concentric. That is, they accepted the definition of double-opponent cells which we discarded in our research (see \textit{Double-Opponent Neurons} above). Using this definition of double-opponent cells, Spitzer \textit{et al.} were able to model well chromatic induction and simultaneous contrast effects, though their model was not sensitive to oriented edges.
 
@@ -1290,10 +1290,9 @@ This definition of the opponent color process seems, to us, more biologically pl
 
 
 \subsection*{Comparison of Models}
-Our current work is a direct continuation of the research presented in the first two of these computational models. The latter four represent but a small selection of the wealth of effort being put into computationally describing color in a biologically plausible manner. It is important to recognize that these five models each had different specific research goals and so do not intend to be directly compared to one another. We present them here to frame our current work. Table \ref{tab:model-comparison} presents the features implemented in these models with respect to the goals of our work. This comparison elucidates our intentions: to bring biologically inspired descriptions of color to the neurodynamical processing model developed by Penacchio \cite{penacchio:2013} and Li \cite{li:1999}.
+Our current work is a direct continuation of the research presented in the first two of these computational models. The latter four represent but a small selection of the wealth of effort being put into computationally describing color in a biologically plausible manner. It is important to recognize that these six models each had different specific research goals and so do not intend to be directly compared to one another. We present them here to frame our current work. Table \ref{tab:model-comparison} presents the features implemented in these models with respect to the goals of our work. This comparison elucidates our intentions: to bring a biologically inspired description of color to the neurodynamical processing model developed by Penacchio \cite{penacchio:2013}.
 
 \begin{table}[H]
-    \label{tab:model-comparison}
     \caption{Comparison of computational models relevant to our current work.}
     \resizebox{\columnwidth}{!}{%
     \begin{threeparttable}
@@ -1310,6 +1309,7 @@ Our current work is a direct continuation of the research presented in the first
         \multicolumn{1}{r|}{DO RF}        & Gabor-like Gaussians / DWT & DWT                             & N/A               & Gabor Pyramid         & Gabor                       & Gabor-like Gaussians   & Difference of Gaussians \\
         \multicolumn{1}{r|}{Goal}         & Color Induction            & Brightness Induction            & Saliency          & Saliency              & Color Induction             & Edge Detection         & Color Descriptor                     
     \end{tabular}
+    \bigskip
     \begin{tablenotes}
         \item Definition of criteria:
         \begin{tabular}{p{1.5cm} r l}
@@ -1327,8 +1327,10 @@ Our current work is a direct continuation of the research presented in the first
     \end{tablenotes}
     \end{threeparttable}
     }
+    \label{tab:model-comparison}
 \end{table}
 
+\pagebreak
 
 \subsection{Summary}
 
