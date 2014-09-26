@@ -1494,7 +1494,7 @@ To construct opponent color channels, we contrast center ($c$) and surround ($s$
 
 A schematic of this workflow is presented in Figure \ref{fig:opp-workflow}. It is clear from this schematic, and the equations above, that L and M input are significantly overrepresented. This reflects the biological overrepresentation of the evolutionarily older L and M pathways in human vision, and is more in line with, say, work by Spitzer \textit{et al.} \cite{spitzer:2005} than Itti \textit{et al.} \cite{itti:1998}. Our equations for Light and Dark, however, are novel.
 
-Because the inputs to the Light and Dark receptive fields come from the same cones (L and M), classical opponent center/surround receptive fields will not function to capture both Light and Dark. This can be easily seen in Figure \ref{fig:opp-workflow}; while the Light, Red, Green, Blue, and Yellow all have \textit{on} centers and \textit{off} surrounds, Dark has an \textit{on} surround and an \textit{off} center. This is supported by literature \cite{chalupa:vol2} but introduces issues. For example, by having Light and Dark activity be almost completely complementary, we find double-opponent activity in these channels to be almost completely redundant, as can be seen in the Appendix, Figure \ref{fig:transform-opp}.
+Because the inputs to the Light and Dark receptive fields come from the same cones (L and M), classical opponent center/surround receptive fields will not function to capture both Light and Dark. This can be easily seen in Figure \ref{fig:opp-workflow}; while the Light, Red, Green, Blue, and Yellow all have \textit{on} centers and \textit{off} surrounds, Dark has an \textit{on} surround and an \textit{off} center. This is supported by literature \cite{chalupa:vol2} but introduces issues. For example, by having Light and Dark activity be almost completely complementary, we find double-opponent activity in these channels to be almost completely redundant, as can be seen in the Appendix, Figures \ref{fig:transform-opp-s1}, \ref{fig:transform-opp-s2} \& \ref{fig:transform-opp-s3}.
 
 Double-opponent cells' responses are constructed along the same workflow as single-opponent cells', though their receptive fields are different. As depicted in Figure \ref{fig:do-rf-inputs} their receptive fields are spatially opposed. As a consequence, their receptive fields are thus oriented, as depicted in Figure \ref{fig:do-rf-orientations}.. Different responses are obtained for each preferred orientation by convolving the image with oriented receptive fields. In this work we considered only three basic orientations: horizontal, vertical, and diagonal.
 
@@ -2137,7 +2137,7 @@ Following multiresolution and orientation decomposition, all wavelet and residua
     Yellow &= | min(0, b^*) |
 \end{align}
 
-The result of this process can be seen in the Appendix, Figure \ref{fig:transform-dwt}.
+Examples of the output of this process can be seen in the Appendix, Figures \ref{fig:transform-dwt-s1}, \ref{fig:transform-dwt-s2} \& \ref{fig:transform-dwt-s3}.
 
 
 \subsection*{Neurodynamical Processing}
@@ -2976,7 +2976,7 @@ We have presented our work on the introduction of a biologically plausible repre
 
 \subsubsection{Opponent Processing of Neural Receptive Fields}
 
-This was an attempt to adhere to what is reported in neurobiology. This approach is conceptually very enticing due to its biological plausibility. However, our implementation proved to be relatively slow: orders of magnitude slower than our second approach. This can likely be improved by 1) reusing convolutions performed at the single-opponent level to build double-opponent receptive fields, or 2) utilizing Gabor filters rather than gaussians to convolve the input. In general, we found this approach to not be as sensitive to detail as the \textit{Discrete Wavelet Transform in Opponent Space}, in Figure \ref{fig:test-circle-a-opp-results} for example. We suspect this is can be easily addressed by more attentive tuning of the algorithm's parameters, specifically, gaussian receptive field configurations at higher scales. We also run into a significant issue in how we mathematically defined the Light and Dark opponent color components (Eqs. \ref{eq:opp-light} \& \ref{eq:opp-dark}). Unlike their chromatic counterparts, these channels are almost exactly \textit{complementary}. This leads to \textit{redundancy} at the double-opponent level, as can be clearly seen in their receptive field diagrams (Figures \ref{fig:do-rf-inputs-light} \& \ref{fig:do-rf-inputs-dark}). This is also evident in the redundancy of their response patterns in Appendix Figure \ref{fig:transform-opp}. This leads to inhibition between the two opponents and they eventually cancel out, as we see in our results, e.g., Figures \ref{fig:test-circle-a-opp-a-ld} \& \ref{fig:test-circle-a-opp-b-ld}. The solution here may also just be a matter of defining appropriately sizes and weights for the cells' receptive fields, or it may require we return to the literature to develop a better understanding of the biology, and a new mathematical model for it.
+This was an attempt to adhere to what is reported in neurobiology. This approach is conceptually very enticing due to its biological plausibility. However, our implementation proved to be relatively slow: orders of magnitude slower than our second approach. This can likely be improved by 1) reusing convolutions performed at the single-opponent level to build double-opponent receptive fields, or 2) utilizing Gabor filters rather than gaussians to convolve the input. In general, we found this approach to not be as sensitive to detail as the \textit{Discrete Wavelet Transform in Opponent Space}, in Figure \ref{fig:test-circle-a-opp-results} for example. We suspect this is can be easily addressed by more attentive tuning of the algorithm's parameters, specifically, gaussian receptive field configurations at higher scales. We also run into a significant issue in how we mathematically defined the Light and Dark opponent color components (Eqs. \ref{eq:opp-light} \& \ref{eq:opp-dark}). Unlike their chromatic counterparts, these channels are almost exactly \textit{complementary}. This leads to \textit{redundancy} at the double-opponent level, as can be clearly seen in their receptive field diagrams (Figures \ref{fig:do-rf-inputs-light} \& \ref{fig:do-rf-inputs-dark}). This is also evident in the redundancy of their response patterns in Appendix Figures \ref{fig:transform-opp-s1}, \ref{fig:transform-opp-s2} \& \ref{fig:transform-opp-s3}. This leads to inhibition between the two opponents and they eventually cancel out, as we see in our results, e.g., Figures \ref{fig:test-circle-a-opp-a-ld} \& \ref{fig:test-circle-a-opp-b-ld}. The solution here may also just be a matter of defining appropriately sizes and weights for the cells' receptive fields, or it may require we return to the literature to develop a better understanding of the biology, and a new mathematical model for it.
 
 \subsubsection{Discrete Wavelet Transform in Opponent Colorspace}
 
@@ -3150,6 +3150,7 @@ We propose three possible causes for these inconclusive results: 1) the color de
 
 \newpage
 
+\afterpage{%
 \appendix
 \begin{figure}[H]
     \centering
@@ -3162,154 +3163,156 @@ We propose three possible causes for these inconclusive results: 1) the color de
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-l}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-so-L}}
         \caption{\\ Light\\ Single-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-d}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-so-D}}
         \caption{\\ Dark\\ Single-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-r}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-so-R}}
         \caption{\\ Red\\ Single-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-g}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-so-g}}
         \caption{\\ Green\\ Single-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-b}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-so-B}}
         \caption{\\ Blue\\ Single-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-so-y}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-so-Y}}
         \caption{\\ Yellow\\ Single-Opponent\\ Cell Response}
     \end{subfigure}%
     \par \bigskip% DOUBLE OPPONENT - HORIZONTAL
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-l}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-h-L}}
         \caption{\\ Light Horizontal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-d}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-h-D}}
         \caption{\\ Dark Horizontal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-r}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-h-R}}
         \caption{\\ Red Horizontal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-g}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-h-g}}
         \caption{\\ Green Horizontal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-b}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-h-B}}
         \caption{\\ Blue Horizontal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-doh-y}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-h-Y}}
         \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}%
     \par \bigskip% DOUBLE OPPONENT - DIAGONAL
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-l}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-d-L}}
         \caption{\\ Light Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-d}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-d-D}}
         \caption{\\ Dark Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-r}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-d-R}}
         \caption{\\ Red Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-g}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-d-g}}
         \caption{\\ Green Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-b}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-d-B}}
         \caption{\\ Blue Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dod-y}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-d-Y}}
         \caption{\\ Yellow Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}%
     \par \bigskip% DOUBLE OPPONENT - VERTICAL
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-l}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-v-L}}
         \caption{\\ Light Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-d}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-v-D}}
         \caption{\\ Dark Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-r}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-v-R}}
         \caption{\\ Red Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-g}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-v-g}}
         \caption{\\ Green Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-b}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-v-B}}
         \caption{\\ Blue Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-dov-y}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s1-do-v-Y}}
         \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}%
-    \caption{Example of single-opponent and double-opponent response (scale=1) to a test image following the \textit{Opponent Processing of Neural Receptive Fields} workflow. Strong activity is indicated by black and weak activity by white.}
-    \label{fig:transform-opp}
+    \caption{Example of single-opponent and double-opponent response ($\sigma$=1) to a test image following the \textit{Opponent Processing of Neural Receptive Fields} workflow. Strong activity is indicated by white and weak activity by black.}
+    \label{fig:transform-opp-s1}
 \end{figure}
-
+\clearpage
+}
+\afterpage{%
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.3\textwidth}
@@ -3321,154 +3324,799 @@ We propose three possible causes for these inconclusive results: 1) the color de
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-so-l}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-so-L}}
         \caption{\\ Light\\ Single-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-so-d}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-so-D}}
         \caption{\\ Dark\\ Single-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-so-r}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-so-R}}
         \caption{\\ Red\\ Single-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-so-g}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-so-g}}
         \caption{\\ Green\\ Single-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-so-b}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-so-B}}
         \caption{\\ Blue\\ Single-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-so-y}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-so-Y}}
         \caption{\\ Yellow\\ Single-Opponent\\ Cell Response}
     \end{subfigure}%
     \par \bigskip% DOUBLE OPPONENT - HORIZONTAL
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-doh-l}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-h-L}}
         \caption{\\ Light Horizontal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-doh-d}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-h-D}}
         \caption{\\ Dark Horizontal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-doh-r}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-h-R}}
         \caption{\\ Red Horizontal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-doh-g}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-h-g}}
         \caption{\\ Green Horizontal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-doh-b}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-h-B}}
         \caption{\\ Blue Horizontal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-doh-y}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-h-Y}}
         \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}%
     \par \bigskip% DOUBLE OPPONENT - DIAGONAL
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-dod-l}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-d-L}}
         \caption{\\ Light Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-dod-d}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-d-D}}
         \caption{\\ Dark Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-dod-r}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-d-R}}
         \caption{\\ Red Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-dod-g}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-d-g}}
         \caption{\\ Green Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-dod-b}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-d-B}}
         \caption{\\ Blue Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-dod-y}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-d-Y}}
         \caption{\\ Yellow Diagonal\\ Double-Opponent\\ Cell Response}
     \end{subfigure}%
     \par \bigskip% DOUBLE OPPONENT - VERTICAL
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-dov-l}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-v-L}}
         \caption{\\ Light Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-dov-d}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-v-D}}
         \caption{\\ Dark Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-dov-r}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-v-R}}
         \caption{\\ Red Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-dov-g}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-v-g}}
         \caption{\\ Green Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-dov-b}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-v-B}}
         \caption{\\ Blue Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}
     \begin{subfigure}{0.15\textwidth}
         \centering
         \captionsetup{justification=centering}
-        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-dov-y}}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s2-do-v-Y}}
         \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
     \end{subfigure}%
-    \caption{Example of single-opponent and double-opponent response (scale=1) to a test image following the \textit{Discrete Wavelet Transform in Opponent Colorspace} workflow. Strong activity is indicated by black and weak activity by white.}
-    \label{fig:transform-dwt}
+    \caption{Example of single-opponent and double-opponent response ($\sigma$=2) to a test image following the \textit{Opponent Processing of Neural Receptive Fields} workflow. Strong activity is indicated by white and weak activity by black.}
+    \label{fig:transform-opp-s2}
 \end{figure}
-
+\clearpage
+}
+\afterpage{%
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-original}}
+        \caption{Original}
+    \end{subfigure}%
+    \par \bigskip% SINGLE OPPONENT
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-so-L}}
+        \caption{\\ Light\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-so-D}}
+        \caption{\\ Dark\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-so-R}}
+        \caption{\\ Red\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-so-g}}
+        \caption{\\ Green\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-so-B}}
+        \caption{\\ Blue\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-so-Y}}
+        \caption{\\ Yellow\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - HORIZONTAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-h-L}}
+        \caption{\\ Light Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-h-D}}
+        \caption{\\ Dark Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-h-R}}
+        \caption{\\ Red Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-h-g}}
+        \caption{\\ Green Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-h-B}}
+        \caption{\\ Blue Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-h-Y}}
+        \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - DIAGONAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-d-L}}
+        \caption{\\ Light Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-d-D}}
+        \caption{\\ Dark Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-d-R}}
+        \caption{\\ Red Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-d-g}}
+        \caption{\\ Green Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-d-B}}
+        \caption{\\ Blue Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-d-Y}}
+        \caption{\\ Yellow Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - VERTICAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-v-L}}
+        \caption{\\ Light Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-v-D}}
+        \caption{\\ Dark Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-v-R}}
+        \caption{\\ Red Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-v-g}}
+        \caption{\\ Green Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-v-B}}
+        \caption{\\ Blue Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-opp-s3-do-v-Y}}
+        \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \caption{Example of single-opponent and double-opponent response ($\sigma$=3) to a test image following the \textit{Opponent Processing of Neural Receptive Fields} workflow. Strong activity is indicated by white and weak activity by black.}
+    \label{fig:transform-opp-s3}
+\end{figure}
+\clearpage
+}
+\afterpage{%
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-original}}
+        \caption{Original}
+    \end{subfigure}%
+    \par \bigskip% SINGLE OPPONENT
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-so-L}}
+        \caption{\\ Light\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-so-D}}
+        \caption{\\ Dark\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-so-R}}
+        \caption{\\ Red\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-so-g}}
+        \caption{\\ Green\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-so-B}}
+        \caption{\\ Blue\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-so-Y}}
+        \caption{\\ Yellow\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - HORIZONTAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-h-L}}
+        \caption{\\ Light Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-h-D}}
+        \caption{\\ Dark Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-h-R}}
+        \caption{\\ Red Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-h-g}}
+        \caption{\\ Green Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-h-B}}
+        \caption{\\ Blue Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-h-Y}}
+        \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - DIAGONAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-d-L}}
+        \caption{\\ Light Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-d-D}}
+        \caption{\\ Dark Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-d-R}}
+        \caption{\\ Red Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-d-g}}
+        \caption{\\ Green Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-d-B}}
+        \caption{\\ Blue Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-d-Y}}
+        \caption{\\ Yellow Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - VERTICAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-v-L}}
+        \caption{\\ Light Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-v-D}}
+        \caption{\\ Dark Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-v-R}}
+        \caption{\\ Red Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-v-g}}
+        \caption{\\ Green Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-v-B}}
+        \caption{\\ Blue Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s1-do-v-Y}}
+        \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \caption{Example of single-opponent and double-opponent response ($\sigma$=1) to a test image following the \textit{Discrete Wavelet Transform in Opponent Colorspace} workflow. Strong activity is indicated by white and weak activity by black.}
+    \label{fig:transform-dwt-s1}
+\end{figure}
+\clearpage
+}
+\afterpage{%
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-original}}
+        \caption{Original}
+    \end{subfigure}%
+    \par \bigskip% SINGLE OPPONENT
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-so-L}}
+        \caption{\\ Light\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-so-D}}
+        \caption{\\ Dark\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-so-R}}
+        \caption{\\ Red\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-so-g}}
+        \caption{\\ Green\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-so-B}}
+        \caption{\\ Blue\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-so-Y}}
+        \caption{\\ Yellow\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - HORIZONTAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-h-L}}
+        \caption{\\ Light Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-h-D}}
+        \caption{\\ Dark Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-h-R}}
+        \caption{\\ Red Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-h-g}}
+        \caption{\\ Green Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-h-B}}
+        \caption{\\ Blue Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-h-Y}}
+        \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - DIAGONAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-d-L}}
+        \caption{\\ Light Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-d-D}}
+        \caption{\\ Dark Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-d-R}}
+        \caption{\\ Red Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-d-g}}
+        \caption{\\ Green Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-d-B}}
+        \caption{\\ Blue Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-d-Y}}
+        \caption{\\ Yellow Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - VERTICAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-v-L}}
+        \caption{\\ Light Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-v-D}}
+        \caption{\\ Dark Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-v-R}}
+        \caption{\\ Red Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-v-g}}
+        \caption{\\ Green Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-v-B}}
+        \caption{\\ Blue Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s2-do-v-Y}}
+        \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \caption{Example of single-opponent and double-opponent response ($\sigma$=2) to a test image following the \textit{Discrete Wavelet Transform in Opponent Colorspace} workflow. Strong activity is indicated by white and weak activity by black.}
+    \label{fig:transform-dwt-s2}
+\end{figure}
+\clearpage
+}
+\afterpage{%
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-original}}
+        \caption{Original}
+    \end{subfigure}%
+    \par \bigskip% SINGLE OPPONENT
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-so-L}}
+        \caption{\\ Light\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-so-D}}
+        \caption{\\ Dark\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-so-R}}
+        \caption{\\ Red\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-so-g}}
+        \caption{\\ Green\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-so-B}}
+        \caption{\\ Blue\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-so-Y}}
+        \caption{\\ Yellow\\ Single-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - HORIZONTAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-h-L}}
+        \caption{\\ Light Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-h-D}}
+        \caption{\\ Dark Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-h-R}}
+        \caption{\\ Red Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-h-g}}
+        \caption{\\ Green Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-h-B}}
+        \caption{\\ Blue Horizontal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-h-Y}}
+        \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - DIAGONAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-d-L}}
+        \caption{\\ Light Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-d-D}}
+        \caption{\\ Dark Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-d-R}}
+        \caption{\\ Red Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-d-g}}
+        \caption{\\ Green Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-d-B}}
+        \caption{\\ Blue Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-d-Y}}
+        \caption{\\ Yellow Diagonal\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \par \bigskip% DOUBLE OPPONENT - VERTICAL
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-v-L}}
+        \caption{\\ Light Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-v-D}}
+        \caption{\\ Dark Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-v-R}}
+        \caption{\\ Red Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-v-g}}
+        \caption{\\ Green Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-v-B}}
+        \caption{\\ Blue Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}
+    \begin{subfigure}{0.15\textwidth}
+        \centering
+        \captionsetup{justification=centering}
+        \resizebox{\linewidth}{!}{\includegraphics[frame]{transform-dwt-s3-do-v-Y}}
+        \caption{\\ Yellow Vertical\\ Double-Opponent\\ Cell Response}
+    \end{subfigure}%
+    \caption{Example of single-opponent and double-opponent response ($\sigma$=3) to a test image following the \textit{Discrete Wavelet Transform in Opponent Colorspace} workflow. Strong activity is indicated by white and weak activity by black.}
+    \label{fig:transform-dwt-s3}
+\end{figure}
+\clearpage
+}
 % FIGURE: Bowtie Excitatory Interaction Maps
 \afterpage{%
 \begin{figure}
