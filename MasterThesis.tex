@@ -1288,12 +1288,14 @@ In their model they defined four opponent color components; red, green, blue, an
 
 This definition of the opponent color process seems, to us, more biologically plausible than those presented by Itti \textit{et al.} \cite{itti:1998}, Yang \textit{et al.} \cite{yang:2013}, or Zhang \textit{et al.} \cite{zhang:2012}. Thusly, it will form the basis for our opponent color transformation, presented in the \textit{Method} section below.
 
+\bigskip
 
 \subsection*{Comparison of Models}
 Our current work is a direct continuation of the research presented in the first two of these computational models. The latter four represent but a small selection of the wealth of effort being put into computationally describing color in a biologically plausible manner. It is important to recognize that these six models each had different specific research goals and so do not intend to be directly compared to one another. We present them here to frame our current work. Table \ref{tab:model-comparison} presents the features implemented in these models with respect to the goals of our work. This comparison elucidates our intentions: to bring a biologically inspired description of color to the neurodynamical processing model developed by Penacchio \textit{et al.} \cite{penacchio:2013}.
 
+\bigskip
+
 \begin{table}[H]
-    \caption{Comparison of computational models relevant to our current work.}
     \resizebox{\columnwidth}{!}{%
     \begin{threeparttable}
     \begin{tabular}{rccccccc}
@@ -1309,9 +1311,10 @@ Our current work is a direct continuation of the research presented in the first
         \multicolumn{1}{r|}{DO RF}        & Gabor-like Gaussians / DWT & DWT                             & N/A               & Gabor Pyramid         & Gabor                       & Gabor-like Gaussians   & Difference of Gaussians \\
         \multicolumn{1}{r|}{Goal}         & Color Induction            & Brightness Induction            & Saliency          & Saliency              & Color Induction             & Edge Detection         & Color Descriptor                     
     \end{tabular}
+    \caption{Comparison of computational models relevant to our current work.}
     \bigskip
     \begin{tablenotes}
-        \item Definition of criteria:
+        \item Evaluated on the following criteria:
         \begin{tabular}{p{1.5cm} r l}
             & Dynamical:    & Does the work attempt to model neurodynamical processes? \\
             & Intensity:    & Does the work consider achromatic differences as features? \\
@@ -1468,7 +1471,7 @@ We present a computational model designed to be representative of the aforementi
 
 \subsection*{Description of Visual Information}
 
-In accordance with the understanding of biology presented, we propose that a biologically plausible color descriptor should 1) separate opponent color components from each other, and 2) separate surface information from boundary information. We describe two different approaches to this end. The first approach, herein referred to in prolixity as the \textit{Opponent Processing of Neural Receptive Fields} method, represents an effort to explicitly transform raw visual data in strict accordance with neurobiological theory. Essentially attempting to mimic the information processing pathways of the retina, lateral geniculate nucleus (LGN), and striate cortex (V1). The second approach, termed with equal verbosity, is the \textit{Discrete Wavelet Transform in Opponent Colorspace} method. Here we stray from the details of the biological pathways in an attempt to achieve the same end, through more computationally efficient means.
+In accordance with the understanding of biology presented, we propose that a biologically plausible color descriptor should 1) separate opponent color components from each other, and 2) separate surface information from boundary information. We describe two different means to this end. The first approach, herein referred to in prolixity as the \textit{Opponent Processing of Neural Receptive Fields} method, represents an effort to explicitly transform raw visual data in strict accordance with neurobiological theory. Essentially attempting to mimic the information processing pathways of the retina, lateral geniculate nucleus (LGN), and striate cortex (V1). The second approach, termed with equal verbosity, is the \textit{Discrete Wavelet Transform in Opponent Colorspace} method. Here we stray from the details of the biological pathways in an attempt to achieve the same end, through more computationally efficient means.
 
 In both, the input is a normal RGB image, and the output to the neurodynamical model is a 5 dimensional matrix containing 6 opponent color channels ($Light$, $Dark$, $Red$, $Green$, $Blue$, \& $Yellow$), each decomposed into its surface and oriented edge components, at 1 or more scales. In this work we consider just 3 directions of orientation preference at edges: horizontal, diagonal, \& vertical. Before processing by the neurodynamical model, this data is normalized so as to circumvent differences between the data output by these two methods. This normalization step is described in more detail in the section on \textit{Neurodynamical Processing}.
 
@@ -1493,7 +1496,7 @@ A schematic of this workflow is presented in Figure \ref{fig:opp-workflow}. It i
 
 Because the inputs to the Light and Dark receptive fields come from the same cones (L and M), classical opponent center/surround receptive fields will not function to capture both Light and Dark. This can be easily seen in Figure \ref{fig:opp-workflow}; while the Light, Red, Green, Blue, and Yellow all have \textit{on} centers and \textit{off} surrounds, Dark has an \textit{on} surround and an \textit{off} center. This is supported by literature \cite{chalupa:vol2} but introduces issues. For example, by having Light and Dark activity be almost completely complementary, we find double-opponent activity in these channels to be almost completely redundant, as can be seen in the Appendix, Figure \ref{fig:transform-opp}.
 
-Double-opponent cells' responses constructed along the same workflow as single-opponent cells', though their receptive fields are different, Figure \ref{fig:do-rf-inputs}. Different responses are obtained for each preferred orientation by convolving the image with oriented receptive fields. In this work we considered only three basic orientations: horizontal, vertical, and diagonal.
+Double-opponent cells' responses are constructed along the same workflow as single-opponent cells', though their receptive fields are different. As depicted in Figure \ref{fig:do-rf-inputs} their receptive fields are spatially opposed. As a consequence, their receptive fields are thus oriented, as depicted in Figure \ref{fig:do-rf-orientations}.. Different responses are obtained for each preferred orientation by convolving the image with oriented receptive fields. In this work we considered only three basic orientations: horizontal, vertical, and diagonal.
 
 In our implementation, for convenience, we utilize the R, G, and B channels of the raw image as an approximation of L, M, and S cone activity, respectively. It should be noted that this is not biologically reasonable and a preprocessing step should be performed to obtain input more representative of L, M, and S cone spectral responses.
 
