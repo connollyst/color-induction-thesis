@@ -1484,8 +1484,8 @@ Single-opponent cells' receptive fields are the classical center-surround config
 To construct opponent color channels, we contrast center ($c$) and surround ($s$) convolutions of the L, M, and S channels into three pairs: two color and one achromatic.
 
 \begin{flalign}
-    Light(c, s, \sigma)  &= max(0, (\frac{L(c, \sigma) + M(c, \sigma)}{2} - 0.5) - (\frac{L(s, \sigma) + M(s, \sigma)}{2} - 0.5)) \label{eq:opp-light} \\
-    Dark(c, s, \sigma)   &= max(0, (\frac{L(s, \sigma) + M(s, \sigma)}{2} - 0.5) - (\frac{L(c, \sigma) + M(c, \sigma)}{2} - 0.5)) \label{eq:opp-dark} \\
+    Light(c, s, \sigma)  &= max(0, \frac{L(c, \sigma) + M(c, \sigma)}{2} - \frac{L(s, \sigma) + M(s, \sigma)}{2} - 0.5) \label{eq:opp-light} \\
+    Dark(c, s, \sigma)   &= max(0, \frac{L(s, \sigma) + M(s, \sigma)}{2} - \frac{L(c, \sigma) + M(c, \sigma)}{2} + 0.5) \label{eq:opp-dark} \\
     Red(c, s, \sigma)    &= max(0, L(c, \sigma) - M(s, \sigma)) \label{eq:opp-red} \\
     Green(c, s, \sigma)  &= max(0, M(c, \sigma) - L(s, \sigma)) \label{eq:opp-green} \\
     Blue(c, s, \sigma)   &= max(0, S(c, \sigma) - \frac{L(s, \sigma) + M(s, \sigma)}{2}) \label{eq:opp-blue} \\
